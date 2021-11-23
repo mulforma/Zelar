@@ -11,8 +11,8 @@ const data = [];
 const config = {
     border: getBorderCharacters('norc'),
     columns: [
-        { width: 10, alignment: 'center' }, 
-        { width: 10, alignment: 'center' }, 
+        { width: 10, alignment: 'center' },
+        { width: 10, alignment: 'center' },
         { width: 10, alignment: 'center' }
     ],
     header: {
@@ -44,14 +44,14 @@ for (const folder of commandFolder) {
 
         // Import command
         const command = require(`./commands/${folder}/${file}`);
-    
+
         // Push command to table
         data.push([
             command.category,
             command.data.name,
             Date.now() - startTime + 'ms'
         ]);
-    
+
         // Set in collection
         client.commands.set(command.data.name, command);
     }
@@ -65,7 +65,7 @@ const Game = [
     'PUBG',
     'CS:GO',
     'Terraria',
-    'Call of Duty Mobile',
+    'Call of Duty Mobile'
     /* Add yours here */
 ];
 
@@ -73,7 +73,7 @@ const Game = [
 client.once('ready', () => {
     // Interval every 10 seconds
     setInterval(() => {
-    // Set bot's presence 
+    // Set bot's presence
         client.user.setPresence({
             activities: [
                 {

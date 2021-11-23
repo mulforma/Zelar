@@ -34,16 +34,19 @@ module.exports = {
     // Set command category
     category: 'Mod',
     // Excute function
-    /** 
-     * @param {import('discord.js').Client} client
-     * @param {import('discord.js').CommandInteraction} interaction
-     */
+    /**
+   * @param {import('discord.js').Client} client
+   * @param {import('discord.js').CommandInteraction} interaction
+   */
     async execute(client, interaction) {
     // Get options value (target)
-        const user = await
-        /** @type {import('discord.js').GuildMember} */ (interaction.options.getMember('target'));
+        const user = await /** @type {import('discord.js').GuildMember} */ (
+            interaction.options.getMember('target')
+        );
         // Interaction member
-        const member = /** @type {import('discord.js').GuildMember} */ (interaction.member);
+        const member = /** @type {import('discord.js').GuildMember} */ (
+            interaction.member
+        );
         // Check if user who called command has permissions 'KICK_MEMBERS'
         // More about Premission.FLAGS, see (https://discord.js.org/#/docs/main/stable/class/Permissions?scrollTo=s-FLAGS)
         if (!member.permissions.has(Permissions.FLAGS.KICK_MEMBERS)) {
@@ -103,7 +106,7 @@ module.exports = {
 
         // Filter actions
         const filter = (i) =>
-            // Button id must equal to 'Confirm' and user who click button is user who called command
+        // Button id must equal to 'Confirm' and user who click button is user who called command
             i.customId === 'Confirm' && i.user.id === interaction.user.id;
 
         // Start message collector
@@ -115,25 +118,28 @@ module.exports = {
         });
 
         // On collector start
-        collector.on('collect', async (
-            /** @type {import('discord.js').MessageComponentInteraction}*/ i
-        ) => {
-            // If button id equal to 'Confirm'
-            if (i.customId === 'Confirm') {
-                // Kick user
-                await user.kick(
-                    // Check if there is reason text, if not, reason equal to 'Unspecified'
-                    !reason ? 'Unspecified' : reason
-                );
-        
-                // Update message
-                await i.update({
-                    // Set message content
-                    content: `Successfully kick <@${user.id}>`,
-                    // Clear message button
-                    components: []
-                });
+        collector.on(
+            'collect',
+            async (
+                /** @type {import('discord.js').MessageComponentInteraction}*/ i
+            ) => {
+                // If button id equal to 'Confirm'
+                if (i.customId === 'Confirm') {
+                    // Kick user
+                    await user.kick(
+                        // Check if there is reason text, if not, reason equal to 'Unspecified'
+                        !reason ? 'Unspecified' : reason
+                    );
+
+                    // Update message
+                    await i.update({
+                        // Set message content
+                        content: `Successfully kick <@${user.id}>`,
+                        // Clear message button
+                        components: []
+                    });
+                }
             }
-        });
+        );
     }
 };

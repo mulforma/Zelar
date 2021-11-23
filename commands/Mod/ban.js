@@ -34,24 +34,26 @@ module.exports = {
     // Set command category
     category: 'Mod',
     // Excute function
-    /** 
-     * @param {import('discord.js').Client} client
-     * @param {import('discord.js').CommandInteraction} interaction
-     */
+    /**
+   * @param {import('discord.js').Client} client
+   * @param {import('discord.js').CommandInteraction} interaction
+   */
     async execute(client, interaction) {
     // Get options value (target)
-        const user = await
-        /** @type {import('discord.js').GuildMember} */ (interaction.options.getMember('target'));
+        const user = await /** @type {import('discord.js').GuildMember} */ (
+            interaction.options.getMember('target')
+        );
         // Interaction member
-        const member = /** @type {import('discord.js').GuildMember} */ (interaction.member);
+        const member = /** @type {import('discord.js').GuildMember} */ (
+            interaction.member
+        );
         // Check if user who called command has permissions 'BAN_MEMBERS'
         // More about Premission.FLAGS, see (https://discord.js.org/#/docs/main/stable/class/Permissions?scrollTo=s-FLAGS)
         if (!member.permissions.has(Permissions.FLAGS.BAN_MEMBERS)) {
             // Reply user
             return await interaction.reply({
                 // Set message content
-                content:
-          'You can\'t ban member because you have no permissions to ban.',
+                content: 'You can\'t ban member because you have no permissions to ban.',
                 // Set if only user who called command can see it
                 ephemeral: true
             });
@@ -115,25 +117,28 @@ module.exports = {
         });
 
         // On collector start
-        collector.on('collect', async (
-        /** @type {import('discord.js').MessageComponentInteraction}*/ i
-        ) => {
-            // If button id equal to 'Confirm'
-            if (i.customId === 'Confirm') {
-                // Ban user
-                await user.ban(
-                    // Check if there is reason text, if not, reason equal to 'Unspecified'
-                    !reason ? { reason: 'Unspecified' } : { reason: reason }
-                );
-        
-                // Update message
-                await i.update({
-                    // Set message content
-                    content: `Successfully ban <@${user.id}>`,
-                    // Clear message button
-                    components: []
-                });
+        collector.on(
+            'collect',
+            async (
+                /** @type {import('discord.js').MessageComponentInteraction}*/ i
+            ) => {
+                // If button id equal to 'Confirm'
+                if (i.customId === 'Confirm') {
+                    // Ban user
+                    await user.ban(
+                        // Check if there is reason text, if not, reason equal to 'Unspecified'
+                        !reason ? { reason: 'Unspecified' } : { reason: reason }
+                    );
+
+                    // Update message
+                    await i.update({
+                        // Set message content
+                        content: `Successfully ban <@${user.id}>`,
+                        // Clear message button
+                        components: []
+                    });
+                }
             }
-        });
+        );
     }
 };
