@@ -34,13 +34,19 @@ module.exports = {
     // Set command category
     category: 'Mod',
     // Excute function
+    /** 
+     * @param {import('discord.js').Client} client
+     * @param {import('discord.js').CommandInteraction} interaction
+     */
     async execute(client, interaction) {
     // Get options value (target)
-        const user = await interaction.options.getMember('target');
-
+        const user = await
+        /** @type {import('discord.js').GuildMember} */ (interaction.options.getMember('target'));
+        // Interaction member
+        const member = /** @type {import('discord.js').GuildMember} */ (interaction.member);
         // Check if user who called command has permissions 'BAN_MEMBERS'
         // More about Premission.FLAGS, see (https://discord.js.org/#/docs/main/stable/class/Permissions?scrollTo=s-FLAGS)
-        if (!interaction.member.permissions.has(Permissions.FLAGS.BAN_MEMBERS)) {
+        if (!member.permissions.has(Permissions.FLAGS.BAN_MEMBERS)) {
             // Reply user
             return await interaction.reply({
                 // Set message content
@@ -109,7 +115,9 @@ module.exports = {
         });
 
         // On collector start
-        collector.on('collect', async (i) => {
+        collector.on('collect', async (
+        /** @type {import('discord.js').MessageComponentInteraction}*/ i
+        ) => {
             // If button id equal to 'Confirm'
             if (i.customId === 'Confirm') {
                 // Ban user
