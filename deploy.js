@@ -18,7 +18,7 @@ for (const folder of commandFolder) {
     const commandFiles = fs
         .readdirSync(`./commands/${folder}`)
         .filter((file) => file.endsWith('.js'));
-  
+
     // Listing file in commandFiles
     for (const file of commandFiles) {
     // Import command

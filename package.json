@@ -4,11 +4,9 @@
   "description": "My first discord bot using discord.js v.13",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
     "lint": "eslint .",
-    "prettier": "prettier -w .",
     "dev": "nodemon",
-    "start": "node index.js"
+    "start": "node ."
   },
   "keywords": [
     "discord-bot"

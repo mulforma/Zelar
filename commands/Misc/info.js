@@ -42,10 +42,10 @@ module.exports = {
     // Set command category
     category: 'Misc',
     // Execute command function
-    /** 
-     * @param {import('discord.js').Client} client
-     * @param {import('discord.js').CommandInteraction} interaction
-     */
+    /**
+   * @param {import('discord.js').Client} client
+   * @param {import('discord.js').CommandInteraction} interaction
+   */
     async execute(client, interaction) {
     // Function getUserBannerUrl
         async function getUserBannerUrl(userId) {
@@ -55,8 +55,8 @@ module.exports = {
             const user = await client.api.users(userId).get();
             // Return user banner
             return user.banner
-            // Check if there is banner, if not, return default image
-                ? `https://cdn.discordapp.com/banners/${userId}/${user.banner}?size=512`
+                ? // Check if there is banner, if not, return default image
+                `https://cdn.discordapp.com/banners/${userId}/${user.banner}?size=512`
                 : 'https://i.redd.it/pyeuy7iyfw961.png';
         }
 
@@ -64,8 +64,8 @@ module.exports = {
         if (interaction.options.getSubcommand() === 'member') {
             // Get GuildMember from target user
             const member =
-                /** @type {import('discord.js').GuildMember} */
-                (interaction.options.getMember('target'));
+        /** @type {import('discord.js').GuildMember} */
+        (interaction.options.getMember('target'));
             // Create new embed
             const embed = new MessageEmbed()
             // Set embed title
@@ -76,16 +76,29 @@ module.exports = {
             // More about GuildMember, see (https://discord.js.org/#/docs/main/stable/class/GuildMember)
             // More about User, see (https://discord.js.org/#/docs/main/stable/class/User)
                 .addField('💳 Username', member.user.username, true)
-                .addField('✏ Nickname', member.nickname ? member.nickname : 'No nickname', true)
+                .addField(
+                    '✏ Nickname',
+                    member.nickname ? member.nickname : 'No nickname',
+                    true
+                )
                 .addField('🆔 UserID', member.user.id, true)
                 .addField('#️⃣ Discriminator', member.user.discriminator, true)
-                .addField('🕐 Joined Discord', ms(Date.now() - member.user.createdTimestamp, { long: true }) +' ago', true)
-                .addField('👋 Joined Server', ms(Date.now() - member.joinedTimestamp, { long: true }) + ' ago', true)
+                .addField(
+                    '🕐 Joined Discord',
+                    ms(Date.now() - member.user.createdTimestamp, { long: true }) +
+            ' ago',
+                    true
+                )
+                .addField(
+                    '👋 Joined Server',
+                    ms(Date.now() - member.joinedTimestamp, { long: true }) + ' ago',
+                    true
+                )
             // Set thumbnail as target user avatar
                 .setThumbnail(member.user.avatarURL({ dynamic: false }))
             // Set image as user banner
                 .setImage(await getUserBannerUrl(member.user.id));
-      
+
             // Reply message with embed
             await interaction.reply({ embeds: [embed] });
 
