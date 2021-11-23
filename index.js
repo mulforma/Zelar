@@ -1,12 +1,13 @@
 // Import modules
 require('dotenv').config();
 const fs = require('fs');
-const { Client, Collection, Intents } = require('discord.js');
+const { Client, Intents, Collection } = require('discord.js');
 const { table, getBorderCharacters } = require('table');
 
 // Set table
 const data = [];
 // Set table config
+/** @type {import('table').TableUserConfig}  */
 const config = {
     border: getBorderCharacters('norc'),
     columns: [
