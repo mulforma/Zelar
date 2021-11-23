@@ -12,14 +12,22 @@ module.exports = {
     // Set command category
     category: 'Misc',
     // Execute function
+    /** 
+     * @param {import('discord.js').Client} client
+     * @param {import('discord.js').CommandInteraction} interaction
+     */
     async execute(client, interaction) {
     // Wait for message to send
-        const sent = await interaction.reply({
+        const sent = await
+        /** @type {import('discord.js').CommandInteraction}*/
+        interaction.reply({
             content: 'Pinging...',
             fetchReply: true
         });
         // Roundtrip latency
-        const time = sent.createdTimestamp - interaction.createdTimestamp;
+        const time =
+            /** @type {import('discord.js').Message} */
+            (sent).createdTimestamp - interaction.createdTimestamp;
         // Reply with latency
         interaction.editReply(`
       Roundtrip latency : ${time}ms\nWebsocket heartbeat : ${client.ws.ping}ms

@@ -42,10 +42,16 @@ module.exports = {
     // Set command category
     category: 'Misc',
     // Execute command function
+    /** 
+     * @param {import('discord.js').Client} client
+     * @param {import('discord.js').CommandInteraction} interaction
+     */
     async execute(client, interaction) {
     // Function getUserBannerUrl
         async function getUserBannerUrl(userId) {
             // Get user from userId
+            /** @type {import('discord.js').User} */
+            // @ts-ignore
             const user = await client.api.users(userId).get();
             // Return user banner
             return user.banner
@@ -57,7 +63,9 @@ module.exports = {
         // If user call subcommand 'member'
         if (interaction.options.getSubcommand() === 'member') {
             // Get GuildMember from target user
-            const member = interaction.options.getMember('target');
+            const member =
+                /** @type {import('discord.js').GuildMember} */
+                (interaction.options.getMember('target'));
             // Create new embed
             const embed = new MessageEmbed()
             // Set embed title
