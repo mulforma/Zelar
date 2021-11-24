@@ -16,7 +16,6 @@
     ],
     "quotes": ["error", "single"],
     "semi": ["error", "always"],
-    "no-console": "error",
     "no-unused-vars": "error",
     "no-undef": "error",
     "no-unreachable": "error",
