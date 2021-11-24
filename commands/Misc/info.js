@@ -48,11 +48,11 @@ module.exports = {
    */
     async execute(client, interaction) {
     // Function getUserBannerUrl
+        /** @param {String} userId */
         async function getUserBannerUrl(userId) {
             // Get user from userId
             /** @type {import('discord.js').User} */
-            // @ts-ignore
-            const user = await client.api.users(userId).get();
+            const user = await client.users.cache.get(userId).fetch();
             // Return user banner
             return user.banner
                 ? // Check if there is banner, if not, return default image
