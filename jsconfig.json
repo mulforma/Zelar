@@ -4,5 +4,7 @@
     "target": "es2021",
     "checkJs": true
   },
-  "exclude": ["node_modules"]
+  "exclude": [
+    "node_modules"
+  ]
 }

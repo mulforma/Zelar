@@ -1,61 +1,56 @@
 // Import dotenv
-require('dotenv').config();
+require("dotenv").config();
 // Import fs
-const fs = require('fs');
+const fs = require("fs");
 // Import REST
-const { REST } = require('@discordjs/rest');
+const { REST } = require("@discordjs/rest");
 /// Import Routes
-const { Routes } = require('discord-api-types/v9');
+const { Routes } = require("discord-api-types/v9");
 
 // Command Array
 const commands = [];
 // Reading ./commands folder
-const commandFolder = fs.readdirSync('./commands');
+const commandFolder = fs.readdirSync("./commands");
 
 // Listing folder in ./commands
 for (const folder of commandFolder) {
-    // Filter file in folder to be .js
-    const commandFiles = fs
-        .readdirSync(`./commands/${folder}`)
-        .filter((file) => file.endsWith('.js'));
-
-    // Listing file in commandFiles
-    for (const file of commandFiles) {
+  // Filter file in folder to be .js
+  const commandFiles = fs.readdirSync(`./commands/${folder}`).filter((file) => file.endsWith(".js"));
+  
+  // Listing file in commandFiles
+  for (const file of commandFiles) {
     // Import command
-        const command = require(`./commands/${folder}/${file}`);
-        // Push command in to Command Array
-        commands.push(command.data.toJSON());
-    }
+    const command = require(`./commands/${folder}/${file}`);
+    // Push command in to Command Array
+    commands.push(command.data.toJSON());
+  }
 }
 
 // REST instance
-const rest = new REST({ version: '9' }).setToken(process.env.TOKEN);
+const rest = new REST({ version: "9" }).setToken(process.env.TOKEN);
 
 // Auto execute
-(async () => {
-    try {
+( async () => {
+  try {
     // Log "Started refreshing application (/) commands."
-        console.log('Started refreshing application (/) commands.');
-
-        // Request put in Discord API
-        await rest.put(
-            /* This is for registering commands in development server only
-         Use applicationCommands to deploy global commands instead
-         It took 1 hour to loaded command if you deploy global commands
-         But server commands will loaded immediately
-      */
-            Routes.applicationGuildCommands(
-                process.env.ClientId,
-                process.env.GuildId
-            ),
-            // Send command to Discord API
-            { body: commands }
-        );
-
-        // Log successful response
-        console.log('Successfully reloaded application (/) commands.');
-    } catch (error) {
+    console.log("Started refreshing application (/) commands.");
+    
+    // Request put in Discord API
+    await rest.put(
+      /* This is for registering commands in development server only
+       Use applicationCommands to deploy global commands instead
+       It took 1 hour to loaded command if you deploy global commands
+       But server commands will loaded immediately
+       */
+      Routes.applicationGuildCommands(process.env.ClientId, process.env.GuildId),
+      // Send command to Discord API
+      { body: commands }
+    );
+    
+    // Log successful response
+    console.log("Successfully reloaded application (/) commands.");
+  } catch (error) {
     // Catch error
-        console.error(error);
-    }
-})();
+    console.error(error);
+  }
+} )();

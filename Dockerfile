@@ -10,4 +10,6 @@ RUN npm install
 
 COPY . .
 
+CMD ["node", "deploy"]
+
 CMD ["npm", "start"]
