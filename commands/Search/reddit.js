@@ -23,7 +23,7 @@ module.exports = {
         .setRequired(true)
     ),
   // Set command category
-  category: "Misc",
+  category: "Search",
   // Execute function
   /**
    * @param {import('discord.js').Client} client
