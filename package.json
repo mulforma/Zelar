@@ -1,7 +1,7 @@
 {
   "name": "nintod",
   "version": "1.0.0",
-  "description": "Discord bot",
+  "description": "A simple, open-source, and free, fast, secure, and reliable discord bot.",
   "main": "bot.js",
   "scripts": {
     "dev": "nodemon",
