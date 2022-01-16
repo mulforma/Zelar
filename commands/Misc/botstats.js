@@ -51,8 +51,11 @@ module.exports = {
         // Reply with embed
         await interaction.reply({
           embeds: [
-            new MessageEmbed().setTitle("Bot info").setColor("#0099ff").setDescription(
-              `
+            new MessageEmbed()
+              .setTitle("Bot info")
+              .setColor("#0099ff")
+              .setDescription(
+                `
             **Servers:** ${promises[0].reduce((acc, guilds) => acc + guilds, 0)}
             **Members:** ${promises[1].reduce((acc, member) => acc + member, 0)}
             **Channels:** ${client.channels.cache.size}
@@ -60,23 +63,42 @@ module.exports = {
             **Uptime:** ${ms(client.uptime)}
             **Shards:** ${client.shard.count}
           `
-            ).setThumbnail(client.user.displayAvatarURL()).setFooter({
-              text: `Requested by ${interaction.user.tag}`,
-              iconURL: interaction.user.avatarURL(),
-            }),
+              )
+              .setThumbnail(client.user.displayAvatarURL())
+              .setFooter({
+                text: `Requested by ${interaction.user.tag}`,
+                iconURL: interaction.user.avatarURL(),
+              }),
           ],
         });
         break;
       case "server":
         await interaction.reply({
           embeds: [
-            await new MessageEmbed().setTitle("Bots server info").setThumbnail(client.user.displayAvatarURL()).addField("Platform", `${os.platform()} ${os.release()}`).addField("Architecture", os.arch()).addField("System Uptime", ms(ms(`${os.uptime()}s`))).addField(
-              "CPUs",
-              `${os.cpus().map((x) => x.model).join("\n")}`
-            ).addField("CPU Cores", `${os.cpus().length}`).addField("RAM Free", `${( os.freemem() / 1024 / 1024 ).toFixed(2)} MB`).addField("RAM Total", `${( os.totalmem() / 1024 / 1024 ).toFixed(2)} MB`).addField("RAM Usage", `${( ( 1 - os.freemem() / os.totalmem() ) * 100 ).toFixed(2)}%`).addField("Discord.js Version", `${require("discord.js").version}`).addField("Node.js Version", `${process.version}`).setColor("#0099ff").setFooter({
-              text: `Requested by ${interaction.user.tag}`,
-              iconURL: interaction.user.avatarURL(),
-            }),
+            await new MessageEmbed()
+              .setTitle("Bots server info")
+              .setThumbnail(client.user.displayAvatarURL())
+              .addField("Platform", `${os.platform()} ${os.release()}`)
+              .addField("Architecture", os.arch())
+              .addField("System Uptime", ms(ms(`${os.uptime()}s`)))
+              .addField(
+                "CPUs",
+                `${os
+                  .cpus()
+                  .map((x) => x.model)
+                  .join("\n")}`
+              )
+              .addField("CPU Cores", `${os.cpus().length}`)
+              .addField("RAM Free", `${( os.freemem() / 1024 / 1024 ).toFixed(2)} MB`)
+              .addField("RAM Total", `${( os.totalmem() / 1024 / 1024 ).toFixed(2)} MB`)
+              .addField("RAM Usage", `${( ( 1 - os.freemem() / os.totalmem() ) * 100 ).toFixed(2)}%`)
+              .addField("Discord.js Version", `${require("discord.js").version}`)
+              .addField("Node.js Version", `${process.version}`)
+              .setColor("#0099ff")
+              .setFooter({
+                text: `Requested by ${interaction.user.tag}`,
+                iconURL: interaction.user.avatarURL(),
+              }),
           ],
         });
     }

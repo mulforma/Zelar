@@ -53,7 +53,8 @@ module.exports = {
     async function getUserBannerUrl (userId) {
       // Get user from userId
       /** @type {import('discord.js').User} */
-      const user = await client.users.cache.get(userId).fetch();
+      const user = await client.users.cache.get(userId)
+        .fetch();
       // Return user banner
       return user.banner
         ? // Check if there is banner, if not, return default image
@@ -76,7 +77,12 @@ module.exports = {
         // Add embed fields
         // More about GuildMember, see (https://discord.js.org/#/docs/main/stable/class/GuildMember)
         // More about User, see (https://discord.js.org/#/docs/main/stable/class/User)
-        .addField("💳 Username", member.user.username, true).addField("✏ Nickname", member.nickname ? member.nickname : "No nickname", true).addField("🆔 UserID", member.user.id.toString(), true).addField("#️⃣ Discriminator", member.user.discriminator, true).addField("🕐 Joined Discord", ms(Date.now() - member.user.createdTimestamp, { long: true }) + " ago", true).addField("👋 Joined Server", ms(Date.now() - member.joinedTimestamp, { long: true }) + " ago", true)
+        .addField("💳 Username", member.user.username, true)
+        .addField("✏ Nickname", member.nickname ? member.nickname : "No nickname", true)
+        .addField("🆔 UserID", member.user.id.toString(), true)
+        .addField("#️⃣ Discriminator", member.user.discriminator, true)
+        .addField("🕐 Joined Discord", ms(Date.now() - member.user.createdTimestamp, { long: true }) + " ago", true)
+        .addField("👋 Joined Server", ms(Date.now() - member.joinedTimestamp, { long: true }) + " ago", true)
         // Set thumbnail as target user avatar
         .setThumbnail(member.user.avatarURL({ dynamic: false }))
         // Set image as user banner
@@ -97,7 +103,14 @@ module.exports = {
         .setColor("RANDOM")
         // Add embed fields
         // More about Guild, see (https://discord.js.org/#/docs/main/stable/class/Guild)
-        .addField("👋 Server name", server.name, true).addField("📃 Server ID", server.id.toString(), true).addField("🙍‍♂️ Server Owner", `<@${server.ownerId}>`, true).addField("👪 All member", `${server.memberCount} members`, true).addField("🚫 NSFW Level", server.nsfwLevel, true).addField("👮‍♀️ Verification level", server.verificationLevel, true).addField("✅ isVerified", server.verified.toString(), true).addField("🚨 mfaLevel", server.mfaLevel, true)
+        .addField("👋 Server name", server.name, true)
+        .addField("📃 Server ID", server.id.toString(), true)
+        .addField("🙍‍♂️ Server Owner", `<@${server.ownerId}>`, true)
+        .addField("👪 All member", `${server.memberCount} members`, true)
+        .addField("🚫 NSFW Level", server.nsfwLevel, true)
+        .addField("👮‍♀️ Verification level", server.verificationLevel, true)
+        .addField("✅ isVerified", server.verified.toString(), true)
+        .addField("🚨 mfaLevel", server.mfaLevel, true)
         // Set thumbnail as server icon
         .setThumbnail(server.iconURL());
       // Reply with embed

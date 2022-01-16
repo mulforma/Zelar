@@ -26,7 +26,10 @@ module.exports = {
     const { data } = await axios.get("https://meme-api.herokuapp.com/gimme");
     // Send meme
     interaction.reply({
-      embeds: [new MessageEmbed().setTitle(data.title).setImage(data.url).setURL(data.postLink).setColor("GREEN")],
+      embeds: [new MessageEmbed().setTitle(data.title)
+        .setImage(data.url)
+        .setURL(data.postLink)
+        .setColor("GREEN")],
     });
   },
 };

@@ -79,7 +79,9 @@ module.exports = {
     // Add confirm button
     const confirm = new MessageActionRow().addComponents(
       /** @type any */
-      ( new MessageButton().setCustomId("Confirm").setLabel("Confirm").setStyle("DANGER") )
+      ( new MessageButton().setCustomId("Confirm")
+        .setLabel("Confirm")
+        .setStyle("DANGER") )
     );
     
     // Get reason
