@@ -32,7 +32,7 @@ module.exports = {
           .setFooter({ text: `Request by ${interaction.user.tag}`, iconURL: interaction.user.displayAvatarURL() })
           .setThumbnail(client.user.displayAvatarURL())
           .setURL("https://x.vvx.bar/nt/git")
-        ],
+      ],
     })
   },
 };
