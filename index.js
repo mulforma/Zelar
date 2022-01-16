@@ -1,5 +1,6 @@
 // Import dotenv
-require("dotenv").config();
+require("dotenv")
+  .config();
 // Import ShardingManager from discord.js
 const { ShardingManager } = require("discord.js");
 

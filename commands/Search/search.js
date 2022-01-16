@@ -1,5 +1,6 @@
 // Load env
-require("dotenv").config();
+require("dotenv")
+  .config();
 // Import SlashCommandBuilder
 const { SlashCommandBuilder } = require("@discordjs/builders");
 // Import cheerio
@@ -11,13 +12,16 @@ const axios = require("axios");
 
 // Search for image
 const searchImage = (query) => {
-  return axios.get(`https://www.google.com/search?q=${query}&tbm=isch`).then((response) => {
-    const $ = cheerio.load(response.data);
-    const image = $("img")[1];
-    return image ? image.attribs.src : null;
-  }).catch((error) => {
-    console.log(error);
-  });
+  return axios
+    .get(`https://www.google.com/search?q=${query}&tbm=isch`)
+    .then((response) => {
+      const $ = cheerio.load(response.data);
+      const image = $("img")[1];
+      return image ? image.attribs.src : null;
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 };
 
 // Export command
@@ -45,7 +49,8 @@ module.exports = {
             // Set required
             .setRequired(true)
         )
-    ).addSubcommand((subcommand) =>
+    )
+    .addSubcommand((subcommand) =>
       subcommand
         // Set subcommand name
         .setName("wiki")
@@ -61,7 +66,8 @@ module.exports = {
             // Set required
             .setRequired(true)
         )
-    ).addSubcommand((subcommand) =>
+    )
+    .addSubcommand((subcommand) =>
       subcommand
         // Set subcommand name
         .setName("duck")
@@ -77,7 +83,8 @@ module.exports = {
             // Set required
             .setRequired(true)
         )
-    ).addSubcommand((subcommand) =>
+    )
+    .addSubcommand((subcommand) =>
       subcommand
         // Set subcommand name
         .setName("wikidata")
@@ -93,7 +100,8 @@ module.exports = {
             // Set required
             .setRequired(true)
         )
-    ).addSubcommand((subcommand) =>
+    )
+    .addSubcommand((subcommand) =>
       subcommand
         // Set subcommand name
         .setName("quotes")
@@ -127,85 +135,129 @@ module.exports = {
       // If subcommand is image
       case "image":
         // Search for image
-        searchImage(query).then((img) => {
-          // If image is not found
-          if (!img) {
-            interaction.reply({ embeds: [new MessageEmbed().setTitle("No image found!").setColor("#ff0000")] });
-          } else {
-            interaction.reply({ embeds: [new MessageEmbed().setTitle(query).setImage(img).setColor(0x00ae86)] });
-          }
-        });
+        searchImage(query)
+          .then((img) => {
+            // If image is not found
+            if (!img) {
+              interaction.reply({
+                embeds: [new MessageEmbed().setTitle("No image found!")
+                  .setColor("#ff0000")]
+              });
+            } else {
+              interaction.reply({
+                embeds: [new MessageEmbed().setTitle(query)
+                  .setImage(img)
+                  .setColor(0x00ae86)]
+              });
+            }
+          });
         break;
       // If subcommand is Wiki
       case "wiki":
         // Search in wiki
-        axios.get(
-          `https://en.wikipedia.org/w/api.php?action=query&format=json&prop=extracts&exintro=&explaintext=&titles=${query}`
-        ).then((response) => {
-          // Get data
-          let pages = response.data.query.pages;
-          // If no results
-          if (!pages[Object.keys(pages)[0]].extract) {
-            interaction.reply({ embeds: [new MessageEmbed().setTitle("No results found!").setColor("#ff0000")] });
-          } else {
-            // Get the first result
-            const result = pages[Object.keys(pages)[0]];
-            // Send the result
-            interaction.reply({
-              embeds: [
-                new MessageEmbed().setTitle(result.title).setDescription(
-                  result.extract.substr(0, result.extract.length >= 500 ? 497 : result.extract.length) + "..."
-                ).setColor(0x00ae86).setURL(`https://en.wikipedia.org/wiki/${encodeURIComponent(result.title)}`),
-              ],
-            });
-          }
-        }).catch((error) => {
-          console.log(error);
-        });
+        axios
+          .get(
+            `https://en.wikipedia.org/w/api.php?action=query&format=json&prop=extracts&exintro=&explaintext=&titles=${query}`
+          )
+          .then((response) => {
+            // Get data
+            let pages = response.data.query.pages;
+            // If no results
+            if (!pages[Object.keys(pages)[0]].extract) {
+              interaction.reply({
+                embeds: [new MessageEmbed().setTitle("No results found!")
+                  .setColor("#ff0000")]
+              });
+            } else {
+              // Get the first result
+              const result = pages[Object.keys(pages)[0]];
+              // Send the result
+              interaction.reply({
+                embeds: [
+                  new MessageEmbed()
+                    .setTitle(result.title)
+                    .setDescription(
+                      result.extract.substr(0, result.extract.length >= 500 ? 497 : result.extract.length) + "..."
+                    )
+                    .setColor(0x00ae86)
+                    .setURL(`https://en.wikipedia.org/wiki/${encodeURIComponent(result.title)}`),
+                ],
+              });
+            }
+          })
+          .catch((error) => {
+            console.log(error);
+          });
         break;
       case "duck":
         // Search in duckduckgo
-        axios.get(`https://api.duckduckgo.com/?q=${query}&format=json&pretty=1`).then((response) => {
-          // Get data
-          let data = response.data;
-          // If no results
-          if (!data.AbstractText) {
-            interaction.reply({ embeds: [new MessageEmbed().setTitle("No results found!").setColor("#ff0000")] });
-          } else {
-            // Send the result
+        axios
+          .get(`https://api.duckduckgo.com/?q=${query}&format=json&pretty=1`)
+          .then((response) => {
+            // Get data
+            let data = response.data;
+            // If no results
+            if (!data.AbstractText) {
+              interaction.reply({
+                embeds: [new MessageEmbed().setTitle("No results found!")
+                  .setColor("#ff0000")]
+              });
+            } else {
+              // Send the result
+              interaction.reply({
+                embeds: [
+                  new MessageEmbed()
+                    .setTitle(data.Heading)
+                    .setDescription(data.AbstractText)
+                    .setColor(0x00ae86)
+                    .setURL(data.AbstractURL),
+                ],
+              });
+            }
+          })
+          .catch((error) => {
+            console.log(error);
             interaction.reply({
-              embeds: [
-                new MessageEmbed().setTitle(data.Heading).setDescription(data.AbstractText).setColor(0x00ae86).setURL(data.AbstractURL),
-              ],
+              embeds: [new MessageEmbed().setTitle("Error!")
+                .setColor("#ff0000")]
             });
-          }
-        }).catch((error) => {
-          console.log(error);
-          interaction.reply({ embeds: [new MessageEmbed().setTitle("Error!").setColor("#ff0000")] });
-        });
+          });
         break;
       case "wikidata":
         // Search in wikidata
-        axios.get(
-          `https://www.wikidata.org/w/api.php?action=wbsearchentities&search=${query}&language=en&format=json&type=item`
-        ).then((response) => {
-          // Get data
-          let data = response.data;
-          // If no results
-          if (!data.search) {
-            interaction.reply({ embeds: [new MessageEmbed().setTitle("No results found!").setColor("#ff0000")] });
-          } else {
-            // Send the result
+        axios
+          .get(
+            `https://www.wikidata.org/w/api.php?action=wbsearchentities&search=${query}&language=en&format=json&type=item`
+          )
+          .then((response) => {
+            // Get data
+            let data = response.data;
+            // If no results
+            if (!data.search) {
+              interaction.reply({
+                embeds: [new MessageEmbed().setTitle("No results found!")
+                  .setColor("#ff0000")]
+              });
+            } else {
+              // Send the result
+              interaction.reply({
+                embeds: [
+                  new MessageEmbed()
+                    .setTitle(data.search[0].label)
+                    .setDescription(data.search[0].description)
+                    .setColor(0x00ae86)
+                    .setURL(data.search[0].concepturi),
+                ],
+              });
+            }
+          })
+          .catch((error) => {
+            console.log(error);
             interaction.reply({
-              embeds: [
-                new MessageEmbed().setTitle(data.search[0].label).setDescription(data.search[0].description).setColor(0x00ae86).setURL(data.search[0].concepturi),
-              ],
+              embeds: [new MessageEmbed().setTitle("Error!")
+                .setColor("#ff0000")]
             });
-          }
-        }).catch((error) => {
-          console.log(error);
-          interaction.reply({ embeds: [new MessageEmbed().setTitle("Error!").setColor("#ff0000")] });
-        });
+          });
         break;
     }
   },

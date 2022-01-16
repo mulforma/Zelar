@@ -16,7 +16,8 @@ module.exports = {
     // Add string option
     .addStringOption((option) =>
       // Set option name
-      option.setName("subreddit")
+      option
+        .setName("subreddit")
         // Set option description
         .setDescription("The subreddit to search")
         // Set option required
@@ -61,7 +62,9 @@ module.exports = {
     } catch (e) {
       // Send error message
       return interaction.reply({
-        embeds: [new MessageEmbed().setColor("#ff0000").setTitle("Error").setDescription("Subreddit not found")],
+        embeds: [new MessageEmbed().setColor("#ff0000")
+          .setTitle("Error")
+          .setDescription("Subreddit not found")],
       });
     }
   },

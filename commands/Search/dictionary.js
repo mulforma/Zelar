@@ -1,5 +1,6 @@
 // Load env
-require("dotenv").config();
+require("dotenv")
+  .config();
 // Import SlashCommandBuilder
 const { SlashCommandBuilder } = require("@discordjs/builders");
 // Import MessageEmbed from discord.js
@@ -32,7 +33,8 @@ module.exports = {
             // Set required
             .setRequired(true)
         )
-    ).addSubcommand((subcommand) =>
+    )
+    .addSubcommand((subcommand) =>
       subcommand
         // Set subcommand name
         .setName("urban")
@@ -66,52 +68,66 @@ module.exports = {
       // If subcommand is urban
       case "urban":
         // Get word from Urban Dictionary
-        const urban = await axios.get(`http://api.urbandictionary.com/v0/define?term=${query}`).then((response) => {
-          // Get word
-          const word = response.data.list[0];
-          // Get word definition
-          const wordDefinition = word.definition;
-          // Get word example
-          const wordExample = word.example;
-          // Return word
-          return new MessageEmbed().setTitle(`Urban Dictionary: ${word.word}`).setDescription(wordDefinition).addField("Example", wordExample).setColor("#00ff00").setFooter({
-            text: `Requested by ${interaction.message.author.tag}`,
-            iconURL: interaction.message.author.displayAvatarURL(),
+        const urban = await axios
+          .get(`https://api.urbandictionary.com/v0/define?term=${query}`)
+          .then((response) => {
+            // Get word
+            const word = response.data.list[0];
+            // Get word definition
+            const wordDefinition = word.definition;
+            // Get word example
+            const wordExample = word.example;
+            // Return word
+            return new MessageEmbed()
+              .setTitle(`Urban Dictionary: ${word.word}`)
+              .setDescription(wordDefinition)
+              .addField("Example", wordExample)
+              .setColor("#00ff00")
+              .setFooter({
+                text: `Requested by ${interaction.message.author.tag}`,
+                iconURL: interaction.message.author.displayAvatarURL(),
+              });
+          })
+          .catch((error) => {
+            console.log(error);
+            interaction.reply("Something went wrong");
           });
-        }).catch((error) => {
-          console.log(error);
-          interaction.reply("Something went wrong");
-        });
         // Send message
         await interaction.reply({ embeds: [urban] });
         break;
       case "search":
         // Get word from dictionary
-        const dictionary = await axios.get(
-          `https://api.dictionaryapi.dev/api/v2/entries/en/${query}?ui=en&definitions=true&synonyms=true&antonyms=true&examples=true&audio=true`
-        ).then((response) => {
-          // Get word
-          const word = response.data[0];
-          // Get word definition
-          const wordDefinition = word.meanings[0].definitions[0].definition;
-          // Get word example
-          const wordExample = word.meanings[0].definitions[0].example;
-          // Get synonyms
-          const wordSynonyms = word.meanings[0].definitions[0].synonyms;
-          // Get antonyms
-          const wordAntonyms = word.meanings[0].definitions[0].antonyms;
-          
-          // Get word example
-          const wordOrigin = word.origin;
-          // Return word
-          return new MessageEmbed().setTitle(query).setDescription(wordDefinition).addField("Origin", wordOrigin).addField("Example", wordExample).addField("Synonyms", wordSynonyms.join(", ") || "-").addField("Antonyms", wordAntonyms.join(", ") || "-").setColor("#0099ff").setFooter({
-            text: `Request by ${interaction.user.tag}`,
-            iconURL: interaction.user.avatarURL(),
-          }).setTimestamp();
-        }).catch((error) => {
-          console.log(error);
-          interaction.reply("Something went wrong");
-        });
+        const dictionary = await axios
+          .get(
+            `https://api.dictionaryapi.dev/api/v2/entries/en/${query}?ui=en&definitions=true&synonyms=true&antonyms=true&examples=true&audio=true`
+          )
+          .then((response) => {
+            // Get word
+            const word = response.data[0];
+            // Get word definition
+            const wordDefinition = word.meanings[0].definitions[0];
+            
+            // Return word
+            return new MessageEmbed()
+              .setTitle(query)
+              .setDescription(wordDefinition.definition)
+              .addField("Origin", wordDefinition.origin || "Unknown")
+              .addField("Example", wordDefinition.example || "-")
+              .addField("Phonetic", word.phonetic || "-")
+              .addField("Synonyms", wordDefinition.synonyms.join(", ") || "-")
+              .addField("Antonyms", wordDefinition.antonyms.join(", ") || "-")
+              .setURL(word.phonetics[0].audio.replace("//", "https://"))
+              .setColor("#0099ff")
+              .setFooter({
+                text: `Request by ${interaction.user.tag}`,
+                iconURL: interaction.user.avatarURL(),
+              })
+              .setTimestamp();
+          })
+          .catch((error) => {
+            console.log(error);
+            interaction.reply("Word not found");
+          });
         
         await interaction.reply({ embeds: [dictionary] });
     }

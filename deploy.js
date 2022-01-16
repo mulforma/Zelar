@@ -1,5 +1,6 @@
 // Import dotenv
-require("dotenv").config();
+require("dotenv")
+  .config();
 // Import fs
 const fs = require("fs");
 // Import REST
@@ -15,7 +16,8 @@ const commandFolder = fs.readdirSync("./commands");
 // Listing folder in ./commands
 for (const folder of commandFolder) {
   // Filter file in folder to be .js
-  const commandFiles = fs.readdirSync(`./commands/${folder}`).filter((file) => file.endsWith(".js"));
+  const commandFiles = fs.readdirSync(`./commands/${folder}`)
+    .filter((file) => file.endsWith(".js"));
   
   // Listing file in commandFiles
   for (const file of commandFiles) {

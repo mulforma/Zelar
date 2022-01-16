@@ -1,5 +1,6 @@
 // Import modules
-require("dotenv").config();
+require("dotenv")
+  .config();
 const fs = require("fs");
 const { Client, Intents, Collection } = require("discord.js");
 
@@ -15,12 +16,11 @@ const commandFolder = fs.readdirSync("./commands");
 // List all folder in files
 for (const folder of commandFolder) {
   // Filter for .js files
-  const commandFiles = fs.readdirSync(`./commands/${folder}`).filter((file) => file.endsWith(".js"));
+  const commandFiles = fs.readdirSync(`./commands/${folder}`)
+    .filter((file) => file.endsWith(".js"));
   
   // List all files in folder
   for (const file of commandFiles) {
-    // Start timer
-    const startTime = Date.now();
     
     // Import command
     const command = require(`./commands/${folder}/${file}`);
@@ -31,7 +31,8 @@ for (const folder of commandFolder) {
 }
 
 // Read folder 'events'
-const eventFolder = fs.readdirSync("./events").filter((file) => file.endsWith(".js"));
+const eventFolder = fs.readdirSync("./events")
+  .filter((file) => file.endsWith(".js"));
 
 // List all folder in files
 for (const file of eventFolder) {
