@@ -4,7 +4,10 @@ const { SlashCommandBuilder } = require("@discordjs/builders");
 const { MessageEmbed } = require("discord.js");
 // Import ms
 const ms = require("ms");
+// Import os
 const os = require("os");
+// Import ipInfo
+const ipInfo = require("ipinfo")
 
 // Export command
 module.exports = {
@@ -73,6 +76,8 @@ module.exports = {
         });
         break;
       case "server":
+        // Get location
+        let info = await ipInfo();
         await interaction.reply({
           embeds: [
             await new MessageEmbed()
@@ -81,6 +86,10 @@ module.exports = {
               .addField("Platform", `${os.platform()} ${os.release()}`)
               .addField("Architecture", os.arch())
               .addField("System Uptime", ms(ms(`${os.uptime()}s`)))
+              .addField("Host location", `${info.city}, ${info.region} :flag_${info.country.toLowerCase()}:`)
+              .addField("Host IP", info.ip)
+              .addField("Host name", info.hostname)
+              .addField("Host organization", info.org)
               .addField(
                 "CPUs",
                 `${os
