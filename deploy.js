@@ -42,7 +42,7 @@ const rest = new REST({ version: "9" }).setToken(process.env.TOKEN);
       /* This is for registering commands in development server only
        Use applicationCommands to deploy global commands instead
        It took 1 hour to loaded command if you deploy global commands
-       But server commands will loaded immediately
+       But server commands will load immediately
        */
       Routes.applicationGuildCommands(process.env.ClientId, process.env.GuildId),
       // Send command to Discord API
