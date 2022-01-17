@@ -84,8 +84,8 @@ module.exports = {
               .addField("Example", wordExample)
               .setColor("#00ff00")
               .setFooter({
-                text: `Requested by ${interaction.message.author.tag}`,
-                iconURL: interaction.message.author.displayAvatarURL(),
+                text: `Requested by ${interaction.user.tag}`,
+                iconURL: interaction.member.displayAvatarURL(),
               });
           })
           .catch((error) => {
