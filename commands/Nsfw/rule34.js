@@ -5,22 +5,14 @@ const axios = require("axios");
 // Import MessageEmbed
 const { MessageEmbed } = require("discord.js");
 
-// Set rating
-const rating = {
-  e: "explicit",
-  s: "safe",
-  q: "questionable",
-  u: "unknown",
-}
-
 // Export command
 module.exports = {
   // Set command data
   data: new SlashCommandBuilder()
     // Set command name
-    .setName("danbooru")
+    .setName("rule34")
     // Set command description
-    .setDescription("Search danbooru!")
+    .setDescription("Search rule34!")
     // Add string option
     .addStringOption((option) =>
       option
@@ -63,23 +55,23 @@ module.exports = {
       // Else
       : "";
     
-    // Get random page
-    const page = Math.floor(Math.random() * 100) + 1;
+    // Fetch random image
+    const { data } = await axios.get(`https://rule34.xxx/index.php?page=dapi&s=post&q=index&tags=${tags}&json=1`);
     
     // Get random image
-    axios.get(`https://danbooru.donmai.us/posts.json?tags=${tags ? tags : ''}&page=${page}&limit=1`)
-      .then(res => {
-        // Send image
-        interaction.reply({
-          embeds: [
-            new MessageEmbed()
-              .setTitle(`Image from ${res.data[0].tag_string_artist}`)
-              .setImage(res.data[0].file_url)
-              .setColor('GREEN')
-              .setURL(`https://danbooru.donmai.us/posts/${res.data[0].id}`)
-              .setFooter({ text: `rating: ${rating[res.data[0].rating]} | score: ${res.data[0].score}` })
-          ],
-        });
-      });
+    const image = data[Math.floor(Math.random() * data.length)];
+  
+    // Send image
+    await interaction.reply({
+      embeds: [
+        new MessageEmbed()
+          .setTitle('Image from ' + image.owner)
+          .setColor("#ffb6c1")
+          .setImage(image.file_url)
+          .setFooter({ text: `rating: ${image.rating} | score: ${image.score}` })
+          .setURL(`https://gelbooru.com/index.php?page=post&s=view&id=${image.id}`)
+      ],
+    })
+
   },
 };

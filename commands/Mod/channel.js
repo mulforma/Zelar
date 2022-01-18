@@ -88,7 +88,7 @@ module.exports = {
         )
     ),
   // Set command category
-  category: "Misc",
+  category: "Mod",
   // Execute function
   /**
    * @param {import('discord.js').Client} client
