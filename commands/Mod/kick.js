@@ -45,7 +45,7 @@ module.exports = {
     // Interaction member
     const member = /** @type {import('discord.js').GuildMember} */ ( interaction.member );
     // Check if user who called command has permissions 'KICK_MEMBERS'
-    // More about Premission.FLAGS, see (https://discord.js.org/#/docs/main/stable/class/Permissions?scrollTo=s-FLAGS)
+    // More about Permission.FLAGS, see (https://discord.js.org/#/docs/main/stable/class/Permissions?scrollTo=s-FLAGS)
     if (!member.permissions.has(Permissions.FLAGS.KICK_MEMBERS)) {
       // Reply user
       return await interaction.reply({
