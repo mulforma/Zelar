@@ -12,7 +12,11 @@
     ( Also don't judge the bot by its profile picture )
   </p>
 </p>
+                   
+## TEST SERVER
 
+The bot is not yet available for all server, Please go to [this discord server](https://x.vvx.bar/nt/sup)
+                   
 ## HOST THE BOT
 
 You can host the bot on your own server, or you can host it on a free Heroku account. Make sure you have the following
