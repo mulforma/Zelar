@@ -60,7 +60,7 @@ module.exports = {
     
     // Get random image
     const image = data[Math.floor(Math.random() * data.length)];
-  
+    
     // Send image
     await interaction.reply({
       embeds: [
@@ -72,6 +72,6 @@ module.exports = {
           .setURL(`https://gelbooru.com/index.php?page=post&s=view&id=${image.id}`)
       ],
     })
-
+    
   },
 };
