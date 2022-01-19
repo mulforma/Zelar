@@ -14,7 +14,7 @@ module.exports = {
     // Set command description
     .setDescription("Send a meme"),
   // Set command category
-  category: "Misc",
+  category: "Fun",
   // Execute function
   /**
    * @param {import('discord.js').Client} client

@@ -12,7 +12,7 @@ module.exports = {
     // Set command description
     .setDescription("Play rock paper scissors with the bot."),
   // Set command category
-  category: "Misc",
+  category: "Game",
   // Execute function
   /**
    * @param {import('discord.js').Client} client
