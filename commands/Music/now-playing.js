@@ -31,7 +31,6 @@ module.exports = {
       });
     }
     
-    console.log(queue.current)
     // Loop methods
     const loopMethods = ["None", "Track", "Queue"];
     
@@ -44,7 +43,7 @@ module.exports = {
       // Set thumbnail
       .setThumbnail(queue.current.thumbnail)
       // Set description
-      .setDescription(`${queue.current.author} - ${queue.current.duration}`)
+      .setDescription(`${queue.current.author} - ${queue.current.duration} (Loop ${loopMethods[queue.loop]})`)
       // Set footer
       .setFooter({ text: `Requested by ${queue.current.requestedBy.tag}` });
     
