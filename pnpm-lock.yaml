@@ -16,10 +16,8 @@ specifiers:
   ms: ^2.1.3
   nodemon: ^2.0.14
   npmlog: ^6.0.0
-  play-dl: ^1.8.0
   prettier: ^2.4.1
   tinyurl: ^1.1.7
-  ytsr: ^3.6.0
 
 dependencies:
   '@discordjs/builders': 0.7.0
@@ -37,10 +35,8 @@ dependencies:
   ms: 2.1.3
   nodemon: 2.0.15
   npmlog: 6.0.0
-  play-dl: 1.8.0
   prettier: 2.5.1
   tinyurl: 1.1.7
-  ytsr: 3.6.0
 
 packages:
 
@@ -1350,17 +1346,6 @@ packages:
     engines: {node: '>=8.6'}
     dev: false
 
-  /play-audio/0.4.9:
-    resolution: {integrity: sha512-An88OAvbCcFZH00n9eq6+t2LmJUPJgBCz8ycKXdvUWQz3GcZ3U4o1ZsSHfVFIuoiKuovX+ue5gKNcfSs4ophew==}
-    dev: false
-
-  /play-dl/1.8.0:
-    resolution: {integrity: sha512-Z3k8WoHmmanlKbdjWCmCpzvkYOA/7H83Uc5eorPWQtnvkUIiitYs4UM7r2RIjOyfHqEQZxPhRikWP9OW3Ena2g==}
-    engines: {node: '>=16.0.0'}
-    dependencies:
-      play-audio: 0.4.9
-    dev: false
-
   /prepend-http/2.0.0:
     resolution: {integrity: sha1-6SQ0v6XqjBn0HN/UAddBo8gZ2Jc=}
     engines: {node: '>=4'}
@@ -1836,13 +1821,6 @@ packages:
       m3u8stream: 0.8.6
       miniget: 4.2.2
       sax: 1.2.4
-    dev: false
-
-  /ytsr/3.6.0:
-    resolution: {integrity: sha512-3fN8lxL+JHtp2xEZoAK3AeTjNm5WB4MH6n2OxHNxP06xQtuO5khbLwh6IJGiZRNi/v3de+jYYbctp2pUqNT/Qw==}
-    engines: {node: '>=8'}
-    dependencies:
-      miniget: 4.2.2
     dev: false
 
   /zod/3.11.6:

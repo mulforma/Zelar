@@ -2,8 +2,6 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
 // Import QueryType from discord-player
 const { QueryType } = require("discord-player");
-// Import log
-const log = require('npmlog');
 
 // Export command
 module.exports = {
