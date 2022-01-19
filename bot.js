@@ -32,7 +32,6 @@ for (const folder of commandFolder) {
     // Log loaded command
     log.info("Loading commands...", `${command.data.name} loaded!`);
     
-    // Set in collection
     client.commands.set(command.data.name, command);
   }
 }
