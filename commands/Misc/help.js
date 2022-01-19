@@ -29,7 +29,10 @@ module.exports = {
           .addField("All commands: ", "https://x.vvx.bar/nt/cmd")
           .addField("Invite to server: ", "https://x.vvx.bar/nt/inv")
           .addField("Support server: ", "https://x.vvx.bar/nt/sup")
-          .setFooter({ text: `Request by ${interaction.user.tag}`, iconURL: interaction.user.displayAvatarURL() })
+          .setFooter({
+            text: `Request by ${interaction.user.tag}`,
+            iconURL: interaction.user.displayAvatarURL()
+          })
           .setThumbnail(client.user.displayAvatarURL())
           .setURL("https://x.vvx.bar/nt/git")
       ],

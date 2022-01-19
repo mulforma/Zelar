@@ -36,9 +36,9 @@ const rest = new REST({ version: "9" }).setToken(process.env.TOKEN);
   try {
     // Log "Started refreshing application (/) commands."
     console.log("Started refreshing application (/) commands.");
-
-    let applicationCommands = (process.env.NODE_ENV === "production") ? Routes.applicationCommands(process.env.ClientId) : Routes.applicationGuildCommands(process.env.ClientId, process.env.GuildId)
-
+    
+    let applicationCommands = ( process.env.NODE_ENV === "production" ) ? Routes.applicationCommands(process.env.ClientId) : Routes.applicationGuildCommands(process.env.ClientId, process.env.GuildId)
+    
     // Request put in Discord API
     await rest.put(
       /* This is for registering commands in development server only
@@ -46,7 +46,7 @@ const rest = new REST({ version: "9" }).setToken(process.env.TOKEN);
        It took 1 hour to loaded command if you deploy global commands
        But server commands will load immediately
        */
-        applicationCommands,
+      applicationCommands,
       // Send command to Discord API
       { body: commands }
     );
