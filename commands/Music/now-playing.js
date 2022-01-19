@@ -43,7 +43,7 @@ module.exports = {
       // Set thumbnail
       .setThumbnail(queue.current.thumbnail)
       // Set description
-      .setDescription(`${queue.current.author} - ${queue.current.duration} (Loop ${loopMethods[queue.loop]})`)
+      .setDescription(`${queue.current.author} - ${queue.current.duration} (Loop ${loopMethods[queue.repeatMode]})`)
       // Set footer
       .setFooter({ text: `Requested by ${queue.current.requestedBy.tag}` });
     
