@@ -44,7 +44,7 @@ module.exports = {
     
     // If the song is not found
     if (!result) {
-      await interaction.reply({
+      interaction.reply({
         content: 'Result not found.',
       })
     }
@@ -64,7 +64,7 @@ module.exports = {
       // Remove queue
       queue.destroy();
       // Reply
-      return await interaction.reply({
+      return interaction.reply({
         content: 'Failed to connect to the voice channel.',
       })
     }
@@ -82,7 +82,7 @@ module.exports = {
     }
     
     // Reply
-    await interaction.reply({
+    interaction.reply({
       content: '[💿] Command received.',
       ephemeral: true
     })

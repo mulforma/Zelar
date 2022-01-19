@@ -6,9 +6,9 @@ module.exports = {
   // Set command data
   data: new SlashCommandBuilder()
     // Set command name
-    .setName("skip")
+    .setName("pause")
     // Set command description
-    .setDescription("Skips the current song."),
+    .setDescription("Pauses the current song."),
   // Set command category
   category: "Music",
   // Execute function
@@ -29,19 +29,18 @@ module.exports = {
       });
     }
     
-    // Skip song
-    const success = queue.skip();
+    // Pause queue
+    const success = queue.setPaused(true);
     
-    // Check if skip was successful
+    // Check if queue was paused
     if (success) {
       // Send success message
       return interaction.reply({
-        content: "Skipped the current song."
+        content: "The song has been paused."
       });
     } else {
-      // Send error message
       return interaction.reply({
-        content: "Something went wrong..."
+        content: "There was an error pausing the song."
       });
     }
   },
