@@ -40,13 +40,13 @@ module.exports = {
     );
     
     // RPS result
-    const result = (rps[Math.floor(Math.random() * rps.length)]);
+    const result = ( rps[Math.floor(Math.random() * rps.length)] );
     
     // Filter for input
     const filter = (i) =>
       i.customId === 'rock' ||
       i.customId === 'paper' ||
-      (i.customId === 'scissors' && i.user.id === interaction.user.id);
+      ( i.customId === 'scissors' && i.user.id === interaction.user.id );
     
     // Listen for input
     const collector = interaction.channel.createMessageComponentCollector({
@@ -63,7 +63,7 @@ module.exports = {
     // On input
     collector.on('collect', async (i) => {
       await i.deferUpdate();
-  
+      
       // Check the result
       if (result === i.customId) {
         // Reply
@@ -72,9 +72,9 @@ module.exports = {
           components: []
         })
       } else if (
-        (i.customId === "rock"     && result === "scissors") ||
-        (i.customId === "paper"    && result === "rock")     ||
-        (i.customId === "scissors" && result === "paper")
+        ( i.customId === "rock" && result === "scissors" ) ||
+        ( i.customId === "paper" && result === "rock" ) ||
+        ( i.customId === "scissors" && result === "paper" )
       ) {
         // Reply
         await interaction.editReply({

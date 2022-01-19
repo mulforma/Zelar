@@ -28,10 +28,10 @@ for (const folder of commandFolder) {
   for (const file of commandFiles) {
     // Import command
     const command = require(`./commands/${folder}/${file}`);
-
+    
     // Log loaded command
     log.info("Loading commands...", `${command.data.name} loaded!`);
-
+    
     // Set in collection
     client.commands.set(command.data.name, command);
   }
@@ -58,14 +58,14 @@ for (const file of eventFolder) {
 
 // Read folder 'player'
 const playerFolder = fs.readdirSync("./player")
-    .filter((file) => file.endsWith(".js"));
+  .filter((file) => file.endsWith(".js"));
 
 // List all folder in files
 for (const file of playerFolder) {
   // Import event
   const event = require(`./player/${file}`);
-
-    // Listen on
+  
+  // Listen on
   client.player.on(event.name, (...args) => event.run(...args));
 }
 
