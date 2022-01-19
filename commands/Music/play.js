@@ -10,7 +10,7 @@ module.exports = {
     // Set command name
     .setName("play")
     // Set command description
-    .setDescription("Play a song.")
+    .setDescription("Add a song to the queue.")
     // Add string option
     .addStringOption(option =>
       option
