@@ -1,8 +1,6 @@
-<!-- make image center -->
-
 <p align="center">
   <a href="https://x.vvx.bar/nt/inv">
-    <img src="https://files.vvx.bar/record/nine.png" height="96" width="96" style="border-radius: 9999px" ">
+    <img src="https://files.vvx.bar/record/nine.png" height="96" width="96" style="border-radius: 9999px" />
     <h2 align="center">
         𝗧𝗛𝗘 𝗡𝗜𝗡𝗧𝗢𝗗 𝗣𝗥𝗢𝗝𝗘𝗖𝗧
     </h2>
