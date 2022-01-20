@@ -26,7 +26,6 @@ module.exports = {
     const { data } = await axios.get("https://meme-api.herokuapp.com/gimme");
     // Send meme
     interaction.reply({
-      content: '',
       embeds: [new MessageEmbed().setTitle(data.title)
         .setImage(data.url)
         .setURL(data.postLink)
