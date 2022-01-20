@@ -20,7 +20,7 @@ module.exports = {
   async execute (client, interaction) {
     // Get queue
     const queue = client.player.getQueue(interaction.guild.id);
-  
+    
     // Check if queue is empty
     if (!queue) {
       // Send error message
@@ -33,7 +33,7 @@ module.exports = {
     const progress = queue.createProgressBar();
     // Get player timestamp
     const timestamp = queue.getPlayerTimestamp();
-  
+    
     // Check if timestamp.progress is Infinity
     if (timestamp.progress === Infinity) {
       // Send error message

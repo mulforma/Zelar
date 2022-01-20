@@ -96,7 +96,8 @@ module.exports = {
         // Add command to embed
         embed.addField(
           `${commandData.data.name.toUpperCase()}`,
-          `**Description:** ${commandData.data.description}\n**Category:** ${commandData.category}\n**Options:** ${commandData.data.options.map(o => `\`${o.name}\``).join(" ")}`
+          `**Description:** ${commandData.data.description}\n**Category:** ${commandData.category}\n**Options:** ${commandData.data.options.map(o => `\`${o.name}\``)
+            .join(" ")}`
         );
     }
     
