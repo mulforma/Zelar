@@ -45,9 +45,6 @@ module.exports = {
       });
     }
     
-    // Loop methods
-    const loopMethods = ['', '🔁', '🔂'];
-    
     // Create embed
     const embed = new MessageEmbed()
       .setColor("#00ff00")

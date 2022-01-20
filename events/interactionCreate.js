@@ -17,11 +17,6 @@ module.exports = {
     } catch (error) {
       // Log when error
       console.error(error);
-      // Send message to user
-      interaction.reply({
-        content: "There was an error while executing this command!",
-        ephemeral: true,
-      });
     }
   },
 };
