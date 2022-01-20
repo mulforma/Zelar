@@ -36,7 +36,7 @@ module.exports = {
     // Check if queue is not playing
     if (!queue) {
       // Send error message
-      return interaction.reply({ content: "There is no song playing." });
+      return await interaction.reply({ content: "There is no song playing." });
     }
     
     // Get mode
@@ -44,7 +44,7 @@ module.exports = {
     
     if(!["off", "track", "queue"].includes(mode.toLowerCase())) {
       // Send error message
-      return interaction.reply({ content: "Invalid loop mode." });
+      return await interaction.reply({ content: "Invalid loop mode." });
     }
     
     // Set loop mode
@@ -53,10 +53,10 @@ module.exports = {
     // Check if setting loop mode was successful
     if (!success) {
       // Send error message
-      return interaction.reply({ content: "Failed to set loop mode." });
+      return await interaction.reply({ content: "Failed to set loop mode." });
     } else {
       // Send success message
-      return interaction.reply({ content: `Set loop mode to ${mode.toUpperCase()}.` });
+      return await interaction.reply({ content: `Set loop mode to ${mode.toUpperCase()}.` });
     }
   },
 };

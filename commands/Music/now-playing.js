@@ -26,7 +26,7 @@ module.exports = {
     // If queue is empty
     if (!queue) {
       // Send error message
-      return interaction.reply({
+      return await interaction.reply({
         content: "There is no song playing."
       });
     }
@@ -48,6 +48,6 @@ module.exports = {
       .setFooter({ text: `Requested by ${queue.current.requestedBy.tag}` });
     
     // Send embed
-    interaction.reply({ embeds: [embed] });
+    await interaction.reply({ embeds: [embed] });
   },
 };
