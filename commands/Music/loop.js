@@ -42,7 +42,7 @@ module.exports = {
     // Get mode
     const mode = interaction.options.getString("mode");
     
-    if(!["off", "track", "queue"].includes(mode.toLowerCase())) {
+    if (!["off", "track", "queue"].includes(mode.toLowerCase())) {
       // Send error message
       return await interaction.reply({ content: "Invalid loop mode." });
     }

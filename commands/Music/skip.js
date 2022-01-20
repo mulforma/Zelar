@@ -20,7 +20,7 @@ module.exports = {
   async execute (client, interaction) {
     // Get queue
     const queue = client.player.getQueue(interaction.guild.id);
-  
+    
     // Check if queue is empty
     if (!queue) {
       // Send error message
