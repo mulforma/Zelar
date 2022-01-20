@@ -29,7 +29,7 @@ for (const folder of commandFolder) {
 }
 
 // REST instance
-const rest = new REST({ version: "9" }).setToken(process.env.TOKEN);
+const rest = new REST({ version: "9" }).setToken(( process.env.NODE_ENV === "production" ) ? process.env.PROD_TOKEN : process.env.TOKEN);
 
 // Auto execute
 ( async () => {
@@ -37,7 +37,7 @@ const rest = new REST({ version: "9" }).setToken(process.env.TOKEN);
     // Log "Started refreshing application (/) commands."
     console.log("Started refreshing application (/) commands.");
     
-    let applicationCommands = ( process.env.NODE_ENV === "production" ) ? Routes.applicationCommands(process.env.ClientId) : Routes.applicationGuildCommands(process.env.ClientId, process.env.GuildId)
+    let applicationCommands = ( process.env.NODE_ENV === "production" ) ? Routes.applicationCommands(process.env.PROD_ClientId) : Routes.applicationGuildCommands(process.env.ClientId, process.env.GuildId)
     
     // Request put in Discord API
     await rest.put(

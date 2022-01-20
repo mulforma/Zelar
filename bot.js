@@ -69,4 +69,4 @@ for (const file of playerFolder) {
 }
 
 // Login to bot
-client.login(process.env.TOKEN);
+client.login(( process.env.NODE_ENV === "production" ) ? process.env.PROD_TOKEN : process.env.TOKEN);
