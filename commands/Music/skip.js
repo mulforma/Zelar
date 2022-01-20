@@ -24,7 +24,7 @@ module.exports = {
     // Check if queue is empty
     if (!queue) {
       // Send error message
-      return interaction.reply({
+      return await interaction.reply({
         content: "There is no song playing."
       });
     }
@@ -35,12 +35,12 @@ module.exports = {
     // Check if skip was successful
     if (success) {
       // Send success message
-      return interaction.reply({
+      return await interaction.reply({
         content: "Skipped the current song."
       });
     } else {
       // Send error message
-      return interaction.reply({
+      return await interaction.reply({
         content: "Something went wrong..."
       });
     }

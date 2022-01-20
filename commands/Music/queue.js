@@ -26,7 +26,7 @@ module.exports = {
     // If queue is empty
     if (!queue) {
       // Send error message
-      return interaction.reply({
+      return await interaction.reply({
         embed: new MessageEmbed()
           .setColor("#ff0000")
           .setDescription("There is no queue.")
@@ -36,7 +36,7 @@ module.exports = {
     // If there is no next song
     if (!queue.tracks[0]) {
       // Send error message
-      return interaction.reply({
+      return await interaction.reply({
         embeds: [
           new MessageEmbed()
             .setColor("#ff0000")
@@ -54,6 +54,6 @@ module.exports = {
       .setThumbnail(client.user.displayAvatarURL())
     
     // Send embed
-    interaction.reply({ embeds: [embed] });
+    await interaction.reply({ embeds: [embed] });
   },
 };
