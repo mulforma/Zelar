@@ -12,14 +12,14 @@ module.exports = {
     // Set command description
     .setDescription("Add a song to the queue.")
     // Add string option
-    .addStringOption(option =>
+    .addStringOption((option) =>
       option
         // Set option name
         .setName("song")
         // Set option description
         .setDescription("The song to play.")
         // Set option required
-        .setRequired(true)
+        .setRequired(true),
     ),
   // Set command category
   category: "Music",
@@ -29,31 +29,28 @@ module.exports = {
    * @param {import('discord.js').CommandInteraction} interaction
    * @returns {Promise<void>}
    */
-  async execute (client, interaction) {
+  async execute(client, interaction) {
     // Get query
     const query = interaction.options.getString("song");
-    
+
     // Search the song
-    const result = await client.player.search(
-      query,
-      {
-        requestedBy: interaction.user.id,
-        searchEngine: QueryType.AUTO
-      }
-    )
-    
+    const result = await client.player.search(query, {
+      requestedBy: interaction.user.id,
+      searchEngine: QueryType.AUTO,
+    });
+
     // If the song is not found
     if (!result) {
       await interaction.reply({
-        content: 'Result not found.',
-      })
+        content: "Result not found.",
+      });
     }
-    
+
     // Create queue
     const queue = await client.player.createQueue(interaction.guild, {
-      metadata: interaction
+      metadata: interaction,
     });
-    
+
     // Try / Catch
     try {
       // Connect to voice channel
@@ -65,26 +62,26 @@ module.exports = {
       queue.destroy();
       // Reply
       return await interaction.reply({
-        content: 'Failed to connect to the voice channel.',
-      })
+        content: "Failed to connect to the voice channel.",
+      });
     }
-    
+
     // Add song to queue
     if (result.playlist) {
-      queue.addTracks(result.tracks)
+      queue.addTracks(result.tracks);
     } else {
-      queue.addTrack(result.tracks[0])
+      queue.addTrack(result.tracks[0]);
     }
-    
+
     // Play the song
     if (!queue.playing) {
       await queue.play();
     }
-    
+
     // Reply
     await interaction.reply({
-      content: '[💿] Command received.',
-      ephemeral: true
-    })
+      content: "[💿] Command received.",
+      ephemeral: true,
+    });
   },
 };

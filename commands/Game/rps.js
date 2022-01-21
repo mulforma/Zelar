@@ -19,75 +19,66 @@ module.exports = {
    * @param {import('discord.js').CommandInteraction} interaction
    * @returns {Promise<void>}
    */
-  async execute (client, interaction) {
+  async execute(client, interaction) {
     // Set variables
     const rps = ["rock", "paper", "scissors"];
-    
+
     // Set button
     const rpsButton = new MessageActionRow().addComponents(
-      new MessageButton()
-        .setCustomId('rock')
-        .setLabel('✊')
-        .setStyle('PRIMARY'),
-      new MessageButton()
-        .setCustomId('paper')
-        .setLabel('✋')
-        .setStyle('PRIMARY'),
-      new MessageButton()
-        .setCustomId('scissors')
-        .setLabel('✌')
-        .setStyle('PRIMARY')
+      new MessageButton().setCustomId("rock").setLabel("✊").setStyle("PRIMARY"),
+      new MessageButton().setCustomId("paper").setLabel("✋").setStyle("PRIMARY"),
+      new MessageButton().setCustomId("scissors").setLabel("✌").setStyle("PRIMARY"),
     );
-    
+
     // RPS result
-    const result = ( rps[Math.floor(Math.random() * rps.length)] );
-    
+    const result = rps[Math.floor(Math.random() * rps.length)];
+
     // Filter for input
     const filter = (i) =>
-      i.customId === 'rock' ||
-      i.customId === 'paper' ||
-      ( i.customId === 'scissors' && i.user.id === interaction.user.id );
-    
+      i.customId === "rock" ||
+      i.customId === "paper" ||
+      (i.customId === "scissors" && i.user.id === interaction.user.id);
+
     // Listen for input
     const collector = interaction.channel.createMessageComponentCollector({
       filter,
-      time: 10000
+      time: 10000,
     });
-    
+
     // Reply
     await interaction.reply({
       content: "Choose rock, paper, or scissors!",
-      components: [rpsButton]
-    })
-    
+      components: [rpsButton],
+    });
+
     // On input
-    collector.on('collect', async (i) => {
+    collector.on("collect", async (i) => {
       await i.deferUpdate();
-      
+
       // Check the result
       if (result === i.customId) {
         // Reply
         await interaction.editReply({
           content: `[🧑] You choose **${i.customId}**\n[🤖] I choose **${result}**\nResult : **You tied!**`,
-          components: []
-        })
+          components: [],
+        });
       } else if (
-        ( i.customId === "rock" && result === "scissors" ) ||
-        ( i.customId === "paper" && result === "rock" ) ||
-        ( i.customId === "scissors" && result === "paper" )
+        (i.customId === "rock" && result === "scissors") ||
+        (i.customId === "paper" && result === "rock") ||
+        (i.customId === "scissors" && result === "paper")
       ) {
         // Reply
         await interaction.editReply({
           content: `[🧑] You choose **${i.customId}**\n[🤖] I choose **${result}**\nResult : **You win!**`,
-          components: []
-        })
+          components: [],
+        });
       } else {
         // Reply
         await interaction.editReply({
           content: `[🧑] You choose **${i.customId}**\n[🤖] I choose **${result}**\nResult : **You lose!**`,
-          components: []
-        })
+          components: [],
+        });
       }
-    })
+    });
   },
 };

@@ -26,7 +26,7 @@ module.exports = {
             // Set description
             .setDescription("Select a member to give role")
             // Set required
-            .setRequired(true)
+            .setRequired(true),
         )
         // Add role option
         .addRoleOption((option) =>
@@ -36,8 +36,8 @@ module.exports = {
             // Set description
             .setDescription("Select a role to give member")
             // Set required
-            .setRequired(false)
-        )
+            .setRequired(false),
+        ),
     )
     // Add subcommands
     .addSubcommand((subcommand) =>
@@ -54,7 +54,7 @@ module.exports = {
             // Set description
             .setDescription("Select a member to remove role")
             // Set required
-            .setRequired(true)
+            .setRequired(true),
         )
         // Add role option
         .addRoleOption((option) =>
@@ -64,8 +64,8 @@ module.exports = {
             // Set description
             .setDescription("Select a role to remove from member")
             // Set required
-            .setRequired(true)
-        )
+            .setRequired(true),
+        ),
     ),
   // Command category
   category: "Mod",
@@ -75,7 +75,7 @@ module.exports = {
    * @param {import('discord.js').CommandInteraction} interaction
    * @returns {Promise<void>}
    */
-  async execute (client, interaction) {
+  async execute(client, interaction) {
     // Check if user has permission to use command
     if (!interaction.member.permissions.has(Permissions.FLAGS.MANAGE_ROLES)) {
       // Send error message
@@ -87,7 +87,7 @@ module.exports = {
     // Get role and target
     const role = interaction.options.getRole("role");
     const member = interaction.options.getMember("target");
-    
+
     // If subcommand is give
     if (interaction.options.getSubcommand() === "give") {
       // Add role to member

@@ -28,8 +28,8 @@ module.exports = {
             // Set option description
             .setDescription("Select a member")
             // Set if command is required
-            .setRequired(true)
-        )
+            .setRequired(true),
+        ),
     )
     // Add subcommand
     .addSubcommand((subcommand) =>
@@ -37,7 +37,7 @@ module.exports = {
         // Set subcommand name
         .setName("server")
         // Set subcommand description
-        .setDescription("Give server's information")
+        .setDescription("Give server's information"),
     ),
   // Set command category
   category: "Misc",
@@ -47,27 +47,26 @@ module.exports = {
    * @param {import('discord.js').CommandInteraction} interaction
    * @returns {Promise<void>}
    */
-  async execute (client, interaction) {
+  async execute(client, interaction) {
     // Function getUserBannerUrl
     /** @param {String} userId */
-    async function getUserBannerUrl (userId) {
+    async function getUserBannerUrl(userId) {
       // Get user from userId
       /** @type {import('discord.js').User} */
-      const user = await client.users.cache.get(userId)
-        .fetch();
+      const user = await client.users.cache.get(userId).fetch();
       // Return user banner
       return user.banner
         ? // Check if there is banner, if not, return default image
-        `https://cdn.discordapp.com/banners/${userId}/${user.banner}?size=512`
+          `https://cdn.discordapp.com/banners/${userId}/${user.banner}?size=512`
         : "https://i.redd.it/pyeuy7iyfw961.png";
     }
-    
+
     // If user call subcommand 'member'
     if (interaction.options.getSubcommand() === "member") {
       // Get GuildMember from target user
       const member =
         /** @type {import('discord.js').GuildMember} */
-        ( interaction.options.getMember("target") );
+        (interaction.options.getMember("target"));
       // Create new embed
       const embed = new MessageEmbed()
         // Set embed title
@@ -87,10 +86,10 @@ module.exports = {
         .setThumbnail(member.user.avatarURL({ dynamic: false }))
         // Set image as user banner
         .setImage(await getUserBannerUrl(member.user.id.toString()));
-      
+
       // Reply message with embed
       await interaction.reply({ embeds: [embed] });
-      
+
       // If user call subcommand 'server'
     } else if (interaction.options.getSubcommand() === "server") {
       // Fetch this server data

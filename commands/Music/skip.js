@@ -17,31 +17,31 @@ module.exports = {
    * @param {import('discord.js').CommandInteraction} interaction
    * @returns {Promise<void>}
    */
-  async execute (client, interaction) {
+  async execute(client, interaction) {
     // Get queue
     const queue = client.player.getQueue(interaction.guild.id);
-    
+
     // Check if queue is empty
     if (!queue) {
       // Send error message
       return await interaction.reply({
-        content: "There is no song playing."
+        content: "There is no song playing.",
       });
     }
-    
+
     // Skip song
     const success = queue.skip();
-    
+
     // Check if skip was successful
     if (success) {
       // Send success message
       return await interaction.reply({
-        content: "Skipped the current song."
+        content: "Skipped the current song.",
       });
     } else {
       // Send error message
       return await interaction.reply({
-        content: "Something went wrong..."
+        content: "Something went wrong...",
       });
     }
   },

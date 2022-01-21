@@ -1,6 +1,5 @@
 // Import modules
-require("dotenv")
-  .config();
+require("dotenv").config();
 const fs = require("fs");
 const { Client, Intents, Collection } = require("discord.js");
 const { Player } = require("discord-player");
@@ -21,30 +20,28 @@ const commandFolder = fs.readdirSync("./commands");
 // List all folder in files
 for (const folder of commandFolder) {
   // Filter for .js files
-  const commandFiles = fs.readdirSync(`./commands/${folder}`)
-    .filter((file) => file.endsWith(".js"));
-  
+  const commandFiles = fs.readdirSync(`./commands/${folder}`).filter((file) => file.endsWith(".js"));
+
   // List all files in folder
   for (const file of commandFiles) {
     // Import command
     const command = require(`./commands/${folder}/${file}`);
-    
+
     // Log loaded command
     log.info("Loading commands...", `${command.data.name} loaded!`);
-    
+
     client.commands.set(command.data.name, command);
   }
 }
 
 // Read folder 'events'
-const eventFolder = fs.readdirSync("./events")
-  .filter((file) => file.endsWith(".js"));
+const eventFolder = fs.readdirSync("./events").filter((file) => file.endsWith(".js"));
 
 // List all folder in files
 for (const file of eventFolder) {
   // Import event
   const event = require(`./events/${file}`);
-  
+
   // Check if event is once
   if (event.once) {
     // Listen once
@@ -56,17 +53,16 @@ for (const file of eventFolder) {
 }
 
 // Read folder 'player'
-const playerFolder = fs.readdirSync("./player")
-  .filter((file) => file.endsWith(".js"));
+const playerFolder = fs.readdirSync("./player").filter((file) => file.endsWith(".js"));
 
 // List all folder in files
 for (const file of playerFolder) {
   // Import event
   const event = require(`./player/${file}`);
-  
+
   // Listen on
   client.player.on(event.name, (...args) => event.run(...args));
 }
 
 // Login to bot
-client.login(( process.env.NODE_ENV === "production" ) ? process.env.PROD_TOKEN : process.env.TOKEN);
+client.login(process.env.NODE_ENV === "production" ? process.env.PROD_TOKEN : process.env.TOKEN);

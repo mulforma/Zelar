@@ -19,21 +19,21 @@ module.exports = {
    * @param {import('discord.js').CommandInteraction} interaction
    * @returns {Promise<void>}
    */
-  async execute (client, interaction) {
+  async execute(client, interaction) {
     // Get queue
     const queue = client.player.getQueue(interaction.guild.id);
-    
+
     // If queue is empty
     if (!queue) {
       // Send error message
       return await interaction.reply({
-        content: "There is no song playing."
+        content: "There is no song playing.",
       });
     }
-    
+
     // Loop methods
     const loopMethods = ["None", "Track", "Queue"];
-    
+
     // Create embed
     const embed = new MessageEmbed()
       // Set title
@@ -46,7 +46,7 @@ module.exports = {
       .setDescription(`${queue.current.author} - ${queue.current.duration} (Loop ${loopMethods[queue.repeatMode]})`)
       // Set footer
       .setFooter({ text: `Requested by ${queue.current.requestedBy.tag}` });
-    
+
     // Send embed
     await interaction.reply({ embeds: [embed] });
   },

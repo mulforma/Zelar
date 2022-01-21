@@ -19,7 +19,7 @@ module.exports = {
         // Set option description
         .setDescription("Select a user to ban")
         // Set if option is required
-        .setRequired(true)
+        .setRequired(true),
     )
     // Add string option
     .addStringOption((option) =>
@@ -29,7 +29,7 @@ module.exports = {
         // Set option description
         .setDescription("Reason for ban")
         // Set if option is required
-        .setRequired(false)
+        .setRequired(false),
     ),
   // Set command category
   category: "Mod",
@@ -39,11 +39,11 @@ module.exports = {
    * @param {import('discord.js').CommandInteraction} interaction
    * @returns {Promise<void>}
    */
-  async execute (client, interaction) {
+  async execute(client, interaction) {
     // Get options value (target)
-    const user = await /** @type {import('discord.js').GuildMember} */ ( interaction.options.getMember("target") );
+    const user = await /** @type {import('discord.js').GuildMember} */ (interaction.options.getMember("target"));
     // Interaction member
-    const member = /** @type {import('discord.js').GuildMember} */ ( interaction.member );
+    const member = /** @type {import('discord.js').GuildMember} */ (interaction.member);
     // Check if user who called command has permissions 'BAN_MEMBERS'
     // More about Premission.FLAGS, see (https://discord.js.org/#/docs/main/stable/class/Permissions?scrollTo=s-FLAGS)
     if (!member.permissions.has(Permissions.FLAGS.BAN_MEMBERS)) {
@@ -55,7 +55,7 @@ module.exports = {
         ephemeral: true,
       });
     }
-    
+
     // If target user has higher roles than called user
     if (!user.bannable) {
       // Set message content
@@ -66,7 +66,7 @@ module.exports = {
         ephemeral: true,
       });
     }
-    
+
     // Check if user want to kick yourself
     if (user.id === interaction.user.id) {
       // Set message content
@@ -77,7 +77,7 @@ module.exports = {
         ephemeral: true,
       });
     }
-    
+
     // Add message components
     const confirm = new MessageActionRow().addComponents(
       // Add button
@@ -87,24 +87,24 @@ module.exports = {
         // Set button message
         .setLabel("Confirm")
         // Set button style, see more (https://discord.js.org/#/docs/main/stable/typedef/MessageButtonStyle)
-        .setStyle("DANGER")
+        .setStyle("DANGER"),
     );
-    
+
     // Get reason string
     const reason = interaction.options.getString("reason");
-    
+
     // Wait user to confirm
     await interaction.reply({
       content: `Are you sure you want to ban <@${user.id}>?`,
       components: [confirm],
       ephemeral: true,
     });
-    
+
     // Filter for answer buttons
     const filter = (i) =>
       // Check if id is Confirm and if it is the same user
       i.customId === "Confirm" && i.user.id === interaction.user.id;
-    
+
     // Start message collector
     const collector = interaction.channel.createMessageComponentCollector({
       // Add filter
@@ -112,7 +112,7 @@ module.exports = {
       // Set collector timeout (15 seconds)
       time: 15000,
     });
-    
+
     // On collector start
     collector.on("collect", async (/** @type {import('discord.js').MessageComponentInteraction}*/ i) => {
       // If button id equal to 'Confirm'
@@ -120,9 +120,9 @@ module.exports = {
         // Ban user
         await user.ban(
           // Check if there is reason text, if not, reason equal to 'Unspecified'
-          !reason ? { reason: "Unspecified" } : { reason: reason }
+          !reason ? { reason: "Unspecified" } : { reason: reason },
         );
-        
+
         // Update message
         await i.update({
           // Set message content

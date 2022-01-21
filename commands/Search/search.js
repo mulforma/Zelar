@@ -1,6 +1,5 @@
 // Load env
-require("dotenv")
-  .config();
+require("dotenv").config();
 // Import SlashCommandBuilder
 const { SlashCommandBuilder } = require("@discordjs/builders");
 // Import cheerio
@@ -47,8 +46,8 @@ module.exports = {
             // Set description
             .setDescription("The query to search for")
             // Set required
-            .setRequired(true)
-        )
+            .setRequired(true),
+        ),
     )
     .addSubcommand((subcommand) =>
       subcommand
@@ -64,8 +63,8 @@ module.exports = {
             // Set description
             .setDescription("The query to search for")
             // Set required
-            .setRequired(true)
-        )
+            .setRequired(true),
+        ),
     )
     .addSubcommand((subcommand) =>
       subcommand
@@ -81,8 +80,8 @@ module.exports = {
             // Set description
             .setDescription("The query to search for")
             // Set required
-            .setRequired(true)
-        )
+            .setRequired(true),
+        ),
     )
     .addSubcommand((subcommand) =>
       subcommand
@@ -98,8 +97,8 @@ module.exports = {
             // Set description
             .setDescription("The query to search for")
             // Set required
-            .setRequired(true)
-        )
+            .setRequired(true),
+        ),
     )
     .addSubcommand((subcommand) =>
       subcommand
@@ -115,8 +114,8 @@ module.exports = {
             // Set description
             .setDescription("The query to search for")
             // Set required
-            .setRequired(true)
-        )
+            .setRequired(true),
+        ),
     ),
   // Set command category
   category: "Search",
@@ -126,38 +125,34 @@ module.exports = {
    * @param {import('discord.js').CommandInteraction} interaction
    * @returns {Promise<void>}
    */
-  async execute (client, interaction) {
+  async execute(client, interaction) {
     // Get query
     const query = interaction.options.getString("query");
-    
+
     // Get subcommand
     switch (interaction.options.getSubcommand()) {
       // If subcommand is image
       case "image":
         // Search for image
-        searchImage(query)
-          .then((img) => {
-            // If image is not found
-            if (!img) {
-              interaction.reply({
-                embeds: [new MessageEmbed().setTitle("No image found!")
-                  .setColor("#ff0000")]
-              });
-            } else {
-              interaction.reply({
-                embeds: [new MessageEmbed().setTitle(query)
-                  .setImage(img)
-                  .setColor(0x00ae86)]
-              });
-            }
-          });
+        searchImage(query).then((img) => {
+          // If image is not found
+          if (!img) {
+            interaction.reply({
+              embeds: [new MessageEmbed().setTitle("No image found!").setColor("#ff0000")],
+            });
+          } else {
+            interaction.reply({
+              embeds: [new MessageEmbed().setTitle(query).setImage(img).setColor(0x00ae86)],
+            });
+          }
+        });
         break;
       // If subcommand is Wiki
       case "wiki":
         // Search in wiki
         axios
           .get(
-            `https://en.wikipedia.org/w/api.php?action=query&format=json&prop=extracts&exintro=&explaintext=&titles=${query}`
+            `https://en.wikipedia.org/w/api.php?action=query&format=json&prop=extracts&exintro=&explaintext=&titles=${query}`,
           )
           .then((response) => {
             // Get data
@@ -165,8 +160,7 @@ module.exports = {
             // If no results
             if (!pages[Object.keys(pages)[0]].extract) {
               interaction.reply({
-                embeds: [new MessageEmbed().setTitle("No results found!")
-                  .setColor("#ff0000")]
+                embeds: [new MessageEmbed().setTitle("No results found!").setColor("#ff0000")],
               });
             } else {
               // Get the first result
@@ -177,7 +171,7 @@ module.exports = {
                   new MessageEmbed()
                     .setTitle(result.title)
                     .setDescription(
-                      result.extract.substr(0, result.extract.length >= 500 ? 497 : result.extract.length) + "..."
+                      result.extract.substr(0, result.extract.length >= 500 ? 497 : result.extract.length) + "...",
                     )
                     .setColor(0x00ae86)
                     .setURL(`https://en.wikipedia.org/wiki/${encodeURIComponent(result.title)}`),
@@ -199,8 +193,7 @@ module.exports = {
             // If no results
             if (!data.AbstractText) {
               interaction.reply({
-                embeds: [new MessageEmbed().setTitle("No results found!")
-                  .setColor("#ff0000")]
+                embeds: [new MessageEmbed().setTitle("No results found!").setColor("#ff0000")],
               });
             } else {
               // Send the result
@@ -218,8 +211,7 @@ module.exports = {
           .catch((error) => {
             console.log(error);
             interaction.reply({
-              embeds: [new MessageEmbed().setTitle("Error!")
-                .setColor("#ff0000")]
+              embeds: [new MessageEmbed().setTitle("Error!").setColor("#ff0000")],
             });
           });
         break;
@@ -227,7 +219,7 @@ module.exports = {
         // Search in wikidata
         axios
           .get(
-            `https://www.wikidata.org/w/api.php?action=wbsearchentities&search=${query}&language=en&format=json&type=item`
+            `https://www.wikidata.org/w/api.php?action=wbsearchentities&search=${query}&language=en&format=json&type=item`,
           )
           .then((response) => {
             // Get data
@@ -235,8 +227,7 @@ module.exports = {
             // If no results
             if (!data.search) {
               interaction.reply({
-                embeds: [new MessageEmbed().setTitle("No results found!")
-                  .setColor("#ff0000")]
+                embeds: [new MessageEmbed().setTitle("No results found!").setColor("#ff0000")],
               });
             } else {
               // Send the result
@@ -254,8 +245,7 @@ module.exports = {
           .catch((error) => {
             console.log(error);
             interaction.reply({
-              embeds: [new MessageEmbed().setTitle("Error!")
-                .setColor("#ff0000")]
+              embeds: [new MessageEmbed().setTitle("Error!").setColor("#ff0000")],
             });
           });
         break;
