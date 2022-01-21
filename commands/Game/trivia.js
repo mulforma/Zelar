@@ -21,15 +21,14 @@ module.exports = {
    * @param {import('discord.js').CommandInteraction} interaction
    * @returns {Promise<void>}
    */
-  async execute (client, interaction) {
+  async execute(client, interaction) {
     // Fetch trivia from API
     const response = await axios.get("https://opentdb.com/api.php?amount=1&type=boolean&encode=base64");
-    
+
     // Create embed
     const embed = new MessageEmbed()
       // Set title
-      .setTitle(Buffer.from(response.data.results[0].question.toString(), "base64")
-        .toString())
+      .setTitle(Buffer.from(response.data.results[0].question.toString(), "base64").toString())
       // Set color
       .setColor("RANDOM")
       // Set timestamp
@@ -40,12 +39,10 @@ module.exports = {
         iconURL: interaction.user.avatarURL(),
       })
       // Add field category
-      .addField("Category", Buffer.from(response.data.results[0].category.toString(), "base64")
-        .toString(), true)
+      .addField("Category", Buffer.from(response.data.results[0].category.toString(), "base64").toString(), true)
       // Add field difficulty
-      .addField("Difficulty", Buffer.from(response.data.results[0].difficulty.toString(), "base64")
-        .toString(), true);
-    
+      .addField("Difficulty", Buffer.from(response.data.results[0].difficulty.toString(), "base64").toString(), true);
+
     // Add answer buttons
     const btn = new MessageActionRow().addComponents(
       new MessageButton()
@@ -61,17 +58,17 @@ module.exports = {
         // Set text
         .setLabel("False")
         // Set color style
-        .setStyle("DANGER")
+        .setStyle("DANGER"),
     );
-    
+
     // Send embed and buttons
     await interaction.reply({ embeds: [embed], components: [btn] });
-    
+
     // Filter for answer buttons
     const filter = (i) =>
       // Check if id is true or false and if it is the same user
-      ( i.customId === "false" || i.customId === "true" ) && i.user.id === interaction.user.id;
-    
+      (i.customId === "false" || i.customId === "true") && i.user.id === interaction.user.id;
+
     // Wait for answer
     const collector = interaction.channel.createMessageComponentCollector({
       // Filter for answer buttons
@@ -79,7 +76,7 @@ module.exports = {
       // Timeout for answer
       time: 30000,
     });
-    
+
     // When answer is received
     await collector.on("collect", async (i) => {
       try {
@@ -89,11 +86,10 @@ module.exports = {
         // If answer is not true or false
         console.log(e);
       }
-      
+
       // Correct answer
-      let correctAnswer = Buffer.from(response.data.results[0].correct_answer, "base64")
-        .toString();
-      
+      let correctAnswer = Buffer.from(response.data.results[0].correct_answer, "base64").toString();
+
       // Check if answer is correct
       if (i.customId.toLowerCase() === correctAnswer.toLowerCase()) {
         // Send congrats message

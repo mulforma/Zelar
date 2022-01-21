@@ -19,7 +19,7 @@ module.exports = {
         // Set option description
         .setDescription("The url to shorten")
         // Set option required
-        .setRequired(true)
+        .setRequired(true),
     ),
   // Set command category
   category: "Utils",
@@ -29,15 +29,14 @@ module.exports = {
    * @param {import('discord.js').CommandInteraction} interaction
    * @returns {Promise<void>}
    */
-  async execute (client, interaction) {
+  async execute(client, interaction) {
     // Get url
     const url = interaction.options.getString("url");
-    
+
     // Shorten url
     const shortUrl = await tinyURL.shorten(url);
-    
+
     // Send message
-    await interaction.reply({ content: /**@type String*/( shortUrl === 'Error' ? 'Something went wrong' : shortUrl ) });
-    
+    await interaction.reply({ content: /**@type String*/ (shortUrl === "Error" ? "Something went wrong" : shortUrl) });
   },
 };

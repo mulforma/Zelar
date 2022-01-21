@@ -18,18 +18,18 @@ module.exports = {
    * @param {import('discord.js').CommandInteraction} interaction
    * @returns {Promise<void>}
    */
-  async execute (client, interaction) {
-    let genNum = Math.ceil(Math.random() * 100)
+  async execute(client, interaction) {
+    let genNum = Math.ceil(Math.random() * 100);
     let isEven = genNum % 2 === 0;
-    
+
     await interaction.reply({
       embeds: [
         new MessageEmbed()
           .setTitle("🎲 Coin Flip")
           .addField("Result", isEven ? "Heads" : "Tails")
           .addField("Generated Number", String(genNum))
-          .setColor(0x00FF00)
-      ]
-    })
+          .setColor(0x00ff00),
+      ],
+    });
   },
 };

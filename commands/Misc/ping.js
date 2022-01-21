@@ -17,17 +17,17 @@ module.exports = {
    * @param {import('discord.js').CommandInteraction} interaction
    * @returns {Promise<void>}
    */
-  async execute (client, interaction) {
+  async execute(client, interaction) {
     // Wait for message to send
-    const sent = await /** @type {import('discord.js').CommandInteraction}*/
-      interaction.reply({
-        content: "Pinging...",
-        fetchReply: true,
-      });
-    // Roundtrip latency
+    const sent = await /** @type {import('discord.js').CommandInteraction}*/ interaction.reply({
+      content: "Pinging...",
+      fetchReply: true,
+    });
+
+    // Round-trip latency
     const time =
       /** @type {import('discord.js').Message} */
-      ( sent ).createdTimestamp - interaction.createdTimestamp;
+      (sent).createdTimestamp - interaction.createdTimestamp;
     // Reply with latency
     await interaction.editReply(`
       Round trip latency : ${time}ms\nWebsocket heartbeat : ${client.ws.ping}ms

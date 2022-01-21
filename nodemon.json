@@ -1,6 +1,4 @@
 {
-  "watch": [
-    "."
-  ],
+  "watch": ["."],
   "ext": "js,json,md,env"
 }

@@ -1,6 +1,5 @@
 // Load env
-require("dotenv")
-  .config();
+require("dotenv").config();
 // Import SlashCommandBuilder
 const { SlashCommandBuilder } = require("@discordjs/builders");
 // Import MessageEmbed from discord.js
@@ -31,8 +30,8 @@ module.exports = {
             // Set description
             .setDescription("The query to search for")
             // Set required
-            .setRequired(true)
-        )
+            .setRequired(true),
+        ),
     )
     .addSubcommand((subcommand) =>
       subcommand
@@ -48,8 +47,8 @@ module.exports = {
             // Set description
             .setDescription("The query to search for")
             // Set required
-            .setRequired(true)
-        )
+            .setRequired(true),
+        ),
     ),
   // Set command category
   category: "Search",
@@ -59,14 +58,14 @@ module.exports = {
    * @param {import('discord.js').CommandInteraction} interaction
    * @returns {Promise<void>}
    */
-  async execute (client, interaction) {
+  async execute(client, interaction) {
     // Get query
     const query = interaction.options.getString("query");
-    
+
     // Get subcommand
     switch (interaction.options.getSubcommand()) {
       // If subcommand is urban
-      case "urban":
+      case "urban": {
         // Get word from Urban Dictionary
         const urban = await axios
           .get(`https://api.urbandictionary.com/v0/define?term=${query}`)
@@ -95,18 +94,19 @@ module.exports = {
         // Send message
         await interaction.reply({ embeds: [urban] });
         break;
-      case "search":
+      }
+      case "search": {
         // Get word from dictionary
         const dictionary = await axios
           .get(
-            `https://api.dictionaryapi.dev/api/v2/entries/en/${query}?ui=en&definitions=true&synonyms=true&antonyms=true&examples=true&audio=true`
+            `https://api.dictionaryapi.dev/api/v2/entries/en/${query}?ui=en&definitions=true&synonyms=true&antonyms=true&examples=true&audio=true`,
           )
           .then((response) => {
             // Get word
             const word = response.data[0];
             // Get word definition
             const wordDefinition = word.meanings[0].definitions[0];
-            
+
             // Return word
             return new MessageEmbed()
               .setTitle(query)
@@ -128,8 +128,9 @@ module.exports = {
             console.log(error);
             interaction.reply("Word not found");
           });
-        
+
         await interaction.reply({ embeds: [dictionary] });
+      }
     }
   },
 };

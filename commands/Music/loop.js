@@ -12,14 +12,14 @@ module.exports = {
     // Set command description
     .setDescription("Loop the current song.")
     // Add string option
-    .addStringOption(option =>
+    .addStringOption((option) =>
       option
         // Set option name
         .setName("mode")
         // Set option description
         .setDescription("Loop mode. (Off, Track and Queue)")
         // Set option required
-        .setRequired(true)
+        .setRequired(true),
     ),
   // Set command category
   category: "Music",
@@ -29,27 +29,27 @@ module.exports = {
    * @param {import('discord.js').CommandInteraction} interaction
    * @returns {Promise<void>}
    */
-  async execute (client, interaction) {
+  async execute(client, interaction) {
     // Get queue
     const queue = client.player.getQueue(interaction.guild.id);
-    
+
     // Check if queue is not playing
     if (!queue) {
       // Send error message
       return await interaction.reply({ content: "There is no song playing." });
     }
-    
+
     // Get mode
     const mode = interaction.options.getString("mode");
-    
+
     if (!["off", "track", "queue"].includes(mode.toLowerCase())) {
       // Send error message
       return await interaction.reply({ content: "Invalid loop mode." });
     }
-    
+
     // Set loop mode
     const success = queue.setRepeatMode(QueueRepeatMode[mode.toUpperCase()]);
-    
+
     // Check if setting loop mode was successful
     if (!success) {
       // Send error message

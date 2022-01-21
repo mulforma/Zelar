@@ -19,7 +19,7 @@ module.exports = {
         // Option description
         .setDescription("Select a user to unban")
         // Option required
-        .setRequired(true)
+        .setRequired(true),
     ),
   // Command category
   category: "Mod",
@@ -29,7 +29,7 @@ module.exports = {
    * @param {import('discord.js').CommandInteraction} interaction
    * @returns {Promise<void>}
    */
-  async execute (client, interaction) {
+  async execute(client, interaction) {
     // Check if user has permission to ban members
     if (!interaction.member.permissions.has(Permissions.FLAGS.BAN_MEMBERS)) {
       // Send error message
@@ -38,10 +38,10 @@ module.exports = {
         ephemeral: true,
       });
     }
-    
+
     // Get user to unban
     const id = await interaction.options.get("id");
-    
+
     // Unban user
     await interaction.guild.members.unban(id?.value);
     // Send success message

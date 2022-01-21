@@ -7,7 +7,7 @@ const ms = require("ms");
 // Import os
 const os = require("os");
 // Import ipInfo
-const ipInfo = require("ipinfo")
+const ipInfo = require("ipinfo");
 
 // Export command
 module.exports = {
@@ -23,7 +23,7 @@ module.exports = {
         // Set subcommand name
         .setName("bot")
         // Set subcommand description
-        .setDescription("Check bot stats")
+        .setDescription("Check bot stats"),
     )
     // Add subcommands
     .addSubcommand((subcommand) =>
@@ -31,7 +31,7 @@ module.exports = {
         // Set subcommand name
         .setName("server")
         // Set subcommand description
-        .setDescription("Check server stats")
+        .setDescription("Check server stats"),
     ),
   // Set command category
   category: "Misc",
@@ -40,7 +40,7 @@ module.exports = {
    * @param {import('discord.js').CommandInteraction} interaction
    * @returns {Promise<void>}
    */
-  async execute (client, interaction) {
+  async execute(client, interaction) {
     // Get subcommand
     const subcommand = interaction.options.getSubcommand();
     // Promises
@@ -48,7 +48,7 @@ module.exports = {
       await client.shard.fetchClientValues("guilds.cache.size"),
       await client.shard.broadcastEval((c) => c.guilds.cache.reduce((acc, guild) => acc + guild.memberCount, 0)),
     ];
-    
+
     switch (subcommand) {
       case "bot":
         // Reply with embed
@@ -65,7 +65,7 @@ module.exports = {
             **Commands:** ${client.commands.size}
             **Uptime:** ${ms(client.uptime)}
             **Shards:** ${client.shard.count}
-          `
+          `,
               )
               .setThumbnail(client.user.displayAvatarURL())
               .setFooter({
@@ -75,7 +75,7 @@ module.exports = {
           ],
         });
         break;
-      case "server":
+      case "server": {
         // Get location
         let info = await ipInfo();
         await interaction.reply({
@@ -95,12 +95,12 @@ module.exports = {
                 `${os
                   .cpus()
                   .map((x) => x.model)
-                  .join("\n")}`
+                  .join("\n")}`,
               )
               .addField("CPU Cores", `${os.cpus().length}`)
-              .addField("RAM Free", `${( os.freemem() / 1024 / 1024 ).toFixed(2)} MB`)
-              .addField("RAM Total", `${( os.totalmem() / 1024 / 1024 ).toFixed(2)} MB`)
-              .addField("RAM Usage", `${( ( 1 - os.freemem() / os.totalmem() ) * 100 ).toFixed(2)}%`)
+              .addField("RAM Free", `${(os.freemem() / 1024 / 1024).toFixed(2)} MB`)
+              .addField("RAM Total", `${(os.totalmem() / 1024 / 1024).toFixed(2)} MB`)
+              .addField("RAM Usage", `${((1 - os.freemem() / os.totalmem()) * 100).toFixed(2)}%`)
               .addField("Discord.js Version", `${require("discord.js").version}`)
               .addField("Node.js Version", `${process.version}`)
               .setColor("#0099ff")
@@ -110,6 +110,7 @@ module.exports = {
               }),
           ],
         });
+      }
     }
   },
 };

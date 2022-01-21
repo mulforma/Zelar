@@ -17,31 +17,31 @@ module.exports = {
    * @param {import('discord.js').CommandInteraction} interaction
    * @returns {Promise<void>}
    */
-  async execute (client, interaction) {
+  async execute(client, interaction) {
     // Get queue
     const queue = client.player.getQueue(interaction.guild.id);
-    
+
     // Check if queue is empty
     if (!queue) {
       // Send error message
       return await interaction.reply({
-        content: "There is no song playing."
+        content: "There is no song playing.",
       });
     }
-    
+
     // Get progress bar
     const progress = queue.createProgressBar();
     // Get player timestamp
     const timestamp = queue.getPlayerTimestamp();
-    
+
     // Check if timestamp.progress is Infinity
     if (timestamp.progress === Infinity) {
       // Send error message
       return await interaction.reply({
-        content: "Can't get the progress of the live stream."
+        content: "Can't get the progress of the live stream.",
       });
     }
-    
+
     // Send progress message
     await interaction.reply({ content: `${progress} (**${timestamp.progress}**%)` });
   },

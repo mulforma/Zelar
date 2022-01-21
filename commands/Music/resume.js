@@ -17,30 +17,30 @@ module.exports = {
    * @param {import('discord.js').CommandInteraction} interaction
    * @returns {Promise<void>}
    */
-  async execute (client, interaction) {
+  async execute(client, interaction) {
     // Get queue
     const queue = client.player.getQueue(interaction.guild.id);
-    
+
     // Check if queue is empty
     if (!queue) {
       // Send error message
       return await interaction.reply({
-        content: "There is no song playing."
+        content: "There is no song playing.",
       });
     }
-    
+
     // Pause queue
     const success = queue.setPaused(false);
-    
+
     // Check if queue was paused
     if (success) {
       // Send success message
       return await interaction.reply({
-        content: "The song has been resumed."
+        content: "The song has been resumed.",
       });
     } else {
       return await interaction.reply({
-        content: "There was an error resuming the song."
+        content: "There was an error resuming the song.",
       });
     }
   },
