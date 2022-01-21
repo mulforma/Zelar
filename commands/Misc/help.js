@@ -79,32 +79,33 @@ module.exports = {
           embed.addField(`${category}`, `${commands.map((c) => `\`${c.data.name}\``).join(" ")}`);
         }
         break;
-      case "command":
-        {
-          // Get command
-          const command = interaction.options.getString("command");
-          // Get command
-          const commandData = client.commands.find((c) => c.data.name === command);
-          // If command is not found
-          if (!commandData) {
-            // Send error message
-            await interaction.reply({ content: "Command not found." });
-            // Return
-            return;
-          }
-          // Add command to embed
-          embed.addField(
-            `${commandData.data.name.toUpperCase()}`,
-            `**Description:** ${commandData.data.description}\n**Category:** ${
-              commandData.category
-            }\n**Options:** ${commandData.data.options.map((o) => `\`${o.name}\``).join(" ")}`,
-          );
+      case "command": {
+        // Get command
+        const command = interaction.options.getString("command");
+        // Get command
+        const commandData = client.commands.find((c) => c.data.name === command);
+        // If command is not found
+        if (!commandData) {
+          // Send error message
+          await interaction.reply({ content: "Command not found." });
+          // Return
+          return;
         }
-
-        // Reply with embed
-        await interaction.reply({
-          embeds: [embed],
-        });
+        // Add command to embed
+        embed.addField(
+          `${commandData.data.name.toUpperCase()}`,
+          `**Description:** ${commandData.data.description}\n**Category:** ${
+            commandData.category
+          }\n**Options:** ${commandData.data.options.map((o) => `\`${o.name}\``)
+            .join(" ")}`,
+        );
+        break;
+      }
     }
+
+    // Reply with embed
+    await interaction.reply({
+      embeds: [embed],
+    });
   },
 };
