@@ -88,7 +88,7 @@ module.exports = {
               .addField("System Uptime", ms(ms(`${os.uptime()}s`)))
               .addField("Host location", `${info.city}, ${info.region} :flag_${info.country.toLowerCase()}:`)
               .addField("Host IP", info.ip)
-              .addField("Host name", info.hostname)
+              .addField("Host name", info.hostname || 'None')
               .addField("Host organization", info.org)
               .addField(
                 "CPUs",
