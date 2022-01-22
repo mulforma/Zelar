@@ -92,10 +92,7 @@ module.exports = {
               .addField("Host organization", info.org)
               .addField(
                 "CPUs",
-                `${os
-                  .cpus()
-                  .map((x) => x.model)
-                  .join("\n")}`,
+                `${[...new Set(os.cpus().map(x => x.model))].join('\n')}`,
               )
               .addField("CPU Cores", `${os.cpus().length}`)
               .addField("RAM Free", `${(os.freemem() / 1024 / 1024).toFixed(2)} MB`)
