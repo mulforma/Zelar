@@ -20,6 +20,11 @@
   </p>
 </p>
 
+## WHY NINTOD?
+
+Because it's open-source! We are currently working on a lot of features (but we are also working on a lot of bugs too).
+You can help us by contributing to the project. Because we love open-source, isn't that right?
+
 ## SUPPORT SERVER
 
 If you want to talk about the bot development, Please go to [this discord server](https://x.vvx.bar/nt/sup)
