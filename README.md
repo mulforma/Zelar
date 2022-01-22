@@ -1,6 +1,11 @@
 [![wakatime](https://wakatime.com/badge/user/5cb7cd14-ac7e-4fc0-9f81-6036760cb6a3/project/8bf24191-6879-495c-8a26-091bc71846c3.svg)](https://wakatime.com/badge/user/5cb7cd14-ac7e-4fc0-9f81-6036760cb6a3/project/8bf24191-6879-495c-8a26-091bc71846c3)
 [![commit](https://img.shields.io/github/commit-activity/m/badges/shields)](https://github.com/tinvv/Nintod/pulse)
 [![CodeFactor](https://www.codefactor.io/repository/github/thevvx/nintod/badge)](https://www.codefactor.io/repository/github/thevvx/nintod)
+![version](https://img.shields.io/node/v/discord.js?style=plastic)
+![license](https://img.shields.io/github/license/thevvx/nintod)
+![toplang](https://img.shields.io/github/languages/top/thevvx/nintod)
+[![deezcord](https://img.shields.io/discord/828842616442454066)](https://x.vvx.bar/nt/sup)
+[![gitter](https://img.shields.io/gitter/room/tinvv/community)](https://gitter.im/tinvv/community)
 
 <p align="center">
   <a href="https://x.vvx.bar/nt/inv">
