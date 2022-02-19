@@ -20,13 +20,13 @@ module.exports = {
   async execute(client, interaction) {
     client.db
       .select("inventory")
-      .from("users")
+      .from("user")
       .where("userId", interaction.message.author.id)
       .then(async (result) => {
         if (result[0].inventory.length === 0) {
-          interaction.message.channel.send("You have no items in your inventory.");
+          await interaction.reply("You have no items in your inventory.");
         } else {
-          interaction.message.channel.send(
+          await interaction.reply(
             `You have the following items in your inventory:\n${Object.keys(JSON.parse(result[0].inventory)).join(
               ", ",
             )}`,
