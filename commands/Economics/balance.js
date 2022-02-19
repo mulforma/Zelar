@@ -40,7 +40,6 @@ module.exports = {
       .andWhere("serverId", interaction.guild.id)
       .then(async (rows) => {
         // Check if user has balance
-        console.log(rows);
         if (rows.length === 0) {
           // Send error message
           interaction.reply(
