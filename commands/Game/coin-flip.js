@@ -31,7 +31,8 @@ module.exports = {
     const seed = interaction.options.getInteger("seed") || new Date().getTime();
     // Random number function
     const randomNum = (seed) => {
-      const x = Math.sin(seed++) * 10000;
+      let s = seed;
+      const x = Math.sin(s++) * 10000;
       return x - Math.floor(x);
     };
     // Get random number
