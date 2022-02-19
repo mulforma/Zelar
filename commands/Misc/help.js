@@ -96,8 +96,7 @@ module.exports = {
           `${commandData.data.name.toUpperCase()}`,
           `**Description:** ${commandData.data.description}\n**Category:** ${
             commandData.category
-          }\n**Options:** ${commandData.data.options.map((o) => `\`${o.name}\``)
-            .join(" ")}`,
+          }\n**Options:** ${commandData.data.options.map((o) => `\`${o.name}\``).join(" ")}`,
         );
         break;
       }

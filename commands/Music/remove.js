@@ -10,14 +10,14 @@ module.exports = {
     // Set command description
     .setDescription("Remove the song from the queue.")
     // Add number option
-    .addNumberOption(option =>
+    .addNumberOption((option) =>
       option
         // Set option name
         .setName("track-number")
         // Set option description
         .setDescription("The track number to remove.")
         // Set option required
-        .setRequired(true)
+        .setRequired(true),
     ),
   // Set command category
   category: "Music",
@@ -31,7 +31,7 @@ module.exports = {
     // Get queue
     const queue = client.player.getQueue(interaction.guild.id);
     // Get track number
-    const trackNumber = (interaction.options.getNumber("track-number") - 1);
+    const trackNumber = interaction.options.getNumber("track-number") - 1;
 
     // Check if queue is empty
     if (!queue) {
@@ -40,7 +40,7 @@ module.exports = {
         content: "There is no song playing.",
       });
     }
-    
+
     // Remove song
     const success = queue.remove(trackNumber);
 
