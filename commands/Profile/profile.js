@@ -19,11 +19,15 @@ module.exports = {
    * @param {import('discord.js').CommandInteraction} interaction
    * @returns {Promise<void>}
    */
-  async execute (client, interaction) {
+  async execute(client, interaction) {
     // Get user
     const { user } = interaction;
     // Get user profile
-    const profile = await client.db.select("*").from("user").where("userId", user.id).andWhere("serverId", interaction.guild.id);
+    const profile = await client.db
+      .select("*")
+      .from("user")
+      .where("userId", user.id)
+      .andWhere("serverId", interaction.guild.id);
     // Check if profile exists
     if (!profile.length) {
       // Create profile
@@ -49,9 +53,9 @@ module.exports = {
             .addField("✨ XPs", profile[0].xp)
             .addField("💰 Coins", profile[0].coin)
             .addField("💼 Jobs", profile[0].jobs || "None")
-            .setFooter({ text:`Requested by ${interaction.user.username}`, iconURL: interaction.user.avatarURL()} )
-        ]
-      })
+            .setFooter({ text: `Requested by ${interaction.user.username}`, iconURL: interaction.user.avatarURL() }),
+        ],
+      });
     }
   },
 };
