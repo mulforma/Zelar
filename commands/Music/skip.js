@@ -38,11 +38,10 @@ module.exports = {
       return await interaction.reply({
         content: "Skipped the current song.",
       });
-    } else {
-      // Send error message
-      return await interaction.reply({
-        content: "Something went wrong...",
-      });
     }
+    // Send error message
+    return await interaction.reply({
+      content: "Something went wrong...",
+    });
   },
 };

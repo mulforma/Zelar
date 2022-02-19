@@ -54,9 +54,8 @@ module.exports = {
     if (!success) {
       // Send error message
       return await interaction.reply({ content: "Failed to set loop mode." });
-    } else {
-      // Send success message
-      return await interaction.reply({ content: `Set loop mode to ${mode.toUpperCase()}.` });
     }
+    // Send success message
+    return await interaction.reply({ content: `Set loop mode to ${mode.toUpperCase()}.` });
   },
 };

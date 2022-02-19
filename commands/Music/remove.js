@@ -50,11 +50,10 @@ module.exports = {
       return await interaction.reply({
         content: "Song removed.",
       });
-    } else {
-      // Send error message
-      return await interaction.reply({
-        content: "Something went wrong...",
-      });
     }
+    // Send error message
+    return await interaction.reply({
+      content: "Something went wrong...",
+    });
   },
 };
