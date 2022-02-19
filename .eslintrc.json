@@ -28,6 +28,7 @@
     "no-var": "error",
     "no-const-assign": "error",
     "prefer-const": "error",
-    "prefer-destructuring": "error"
+    "prefer-destructuring": "error",
+    "no-return-await": "error"
   }
 }
