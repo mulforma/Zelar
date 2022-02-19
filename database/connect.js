@@ -11,7 +11,7 @@ const knex = require("knex")({
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
     port: process.env.DB_PORT,
-    ssl: true
+    ssl: true,
   },
 });
 
@@ -40,14 +40,13 @@ try {
         });
       }
     });
-  
+
     // Create a table when the table does not exist
     await knex.schema.hasTable("server").then(async (exists) => {
       if (!exists) {
         await knex.schema.createTable("server", (table) => {
           // Create server ID
-          table.increments("serverId")
-            .primary();
+          table.increments("serverId").primary();
           // Create commandSettings column
           table.json("commandSettings");
           // Create roomSettings column
@@ -55,15 +54,14 @@ try {
         });
       }
     });
-    
+
     // Create a table when the table does not exist
     await knex.schema.hasTable("playerShop").then(async (exists) => {
       if (!exists) {
         // Create a table when the table does not exist
         await knex.schema.createTable("playerShop", (table) => {
           // Create items ID
-          table.increments("itemId")
-            .primary();
+          table.increments("itemId").primary();
           // Create item name
           table.string("itemName");
           // Create item emoji
@@ -79,15 +77,14 @@ try {
         });
       }
     });
-    
+
     // Create a table when the table does not exist
     await knex.schema.hasTable("officialShop").then(async (exists) => {
       if (!exists) {
         // Create a table when the table does not exist
         await knex.schema.createTable("officialShop", (table) => {
           // Create items ID
-          table.increments("itemId")
-            .primary();
+          table.increments("itemId").primary();
           // Create item name
           table.string("itemName");
           // Create item emoji
