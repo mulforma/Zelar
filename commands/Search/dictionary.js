@@ -73,7 +73,7 @@ module.exports = {
           .get(`https://api.urbandictionary.com/v0/define?term=${query}`)
           .then((response) => {
             // Get word
-            const word = response.data.list[0];
+            const [word] = response.data.list;
             // Get word definition
             const wordDefinition = word.definition;
             // Get word example
@@ -105,9 +105,9 @@ module.exports = {
           )
           .then((response) => {
             // Get word
-            const word = response.data[0];
+            const [word] = response.data;
             // Get word definition
-            const wordDefinition = word.meanings[0].definitions[0];
+            const [wordDefinition] = word.meanings[0].definitions;
 
             // Return word
             return new MessageEmbed()

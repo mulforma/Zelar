@@ -43,7 +43,7 @@ module.exports = {
     // Get options value (target)
     const user = await /** @type {import('discord.js').GuildMember} */ (interaction.options.getMember("target"));
     // Interaction member
-    const member = /** @type {import('discord.js').GuildMember} */ (interaction.member);
+    const { member } = /** @type {import('discord.js').GuildMember} */ (interaction);
     // Check if user who called command has permissions 'KICK_MEMBERS'
     // More about Permission.FLAGS, see (https://discord.js.org/#/docs/main/stable/class/Permissions?scrollTo=s-FLAGS)
     if (!member.permissions.has(Permissions.FLAGS.KICK_MEMBERS)) {
