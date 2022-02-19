@@ -23,11 +23,19 @@
 ## Why nintod?
 
 Because it's open-source! We are currently working on a lot of features (but we are also working on a lot of bugs too).
+Nintod is also **free** and have **no premium tiers**. Who still have to pay for a bot? It's also **easy to use**. with a simple command.
+The source code is well documented and easy to understand (Because we write comments in the code, all lines).
 You can help us by contributing to the project. Because we love open-source, isn't that right?
 
 ## Where can I find support server?
 
-If you want to talk about the bot development, Please go to [this discord server](https://x.vvx.bar/nt/sup)
+If you want to talk about the bot development, Please go to [this discord server](https://x.vvx.bar/nt/sup) and solve Wick's challenge.
+If you just want to talk with me, Just go to that same link. 
+
+# How can I contribute?
+
+You can contribute to the project by [fork](https://github.com/thevvx/Nintod/fork) the repository, and make a [pull request](https://github.com/thevvx/Nintod/pulls).
+Minors contributions are welcome. But please, don't spam us. We are not a spamming community. We are a friendly community. 
 
 ## How can I host the bot?
 
@@ -40,15 +48,25 @@ installed:
 - [Database (CockroachDB)](https://www.cockroachlabs.com/), You can get a free account on [CockroachDB](https://www.cockroachlabs.com/) choosing serverless options.
 - [Docker](https://www.docker.com/) (Optional)
 
-Then install the required dependencies by running one of the following commands that you already have installed:
+Then install the required dependencies by running this:
+ 
+```bash
+$ npm install # or yarn 
+```
 
-With npm: `npm install`  
-With yarn: `yarn`  
-With pnpm: `pnpm install`
+Also don't forget to change `.env.example` to `.env` and insert your data Then deploy the command by running
 
-Also don't forget to change `.env.example` to `.env` and insert your data Then deploy the command
+```bash
+$ node deploy
+```
 
-## LICENSE
+And run the bot
+
+```bash
+$ npm start # npm run dev for nodemon
+```
+
+## License
 
 This project is licensed under the [Apache 2.0](/LICENSE) license.
 
