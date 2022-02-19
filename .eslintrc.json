@@ -27,6 +27,7 @@
     "no-undef": "error",
     "no-var": "error",
     "no-const-assign": "error",
-    "prefer-const": "error"
+    "prefer-const": "error",
+    "prefer-destructuring": "error"
   }
 }
