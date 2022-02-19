@@ -17,7 +17,7 @@ const searchImage = (query) => {
     .get(`https://www.google.com/search?q=${query}&tbm=isch`)
     .then((response) => {
       const $ = cheerio.load(response.data);
-      const [,image] = $("img");
+      const [, image] = $("img");
       return image ? image.attribs.src : null;
     })
     .catch((error) => {
@@ -158,7 +158,7 @@ module.exports = {
           )
           .then((response) => {
             // Get data
-            const {pages} = response.data.query;
+            const { pages } = response.data.query;
             // If no results
             if (!pages[Object.keys(pages)[0]].extract) {
               interaction.reply({
@@ -191,7 +191,7 @@ module.exports = {
           .get(`https://api.duckduckgo.com/?q=${query}&format=json&pretty=1`)
           .then((response) => {
             // Get data
-            const {data} = response;
+            const { data } = response;
             // If no results
             if (!data.AbstractText) {
               interaction.reply({
@@ -225,7 +225,7 @@ module.exports = {
           )
           .then((response) => {
             // Get data
-            const {data} = response;
+            const { data } = response;
             // If no results
             if (!data.search) {
               interaction.reply({
