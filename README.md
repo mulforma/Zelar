@@ -20,35 +20,37 @@
   </p>
 </p>
 
-## WHY NINTOD?
+## Why nintod?
 
 Because it's open-source! We are currently working on a lot of features (but we are also working on a lot of bugs too).
 You can help us by contributing to the project. Because we love open-source, isn't that right?
 
-## SUPPORT SERVER
+## Where can I find support server?
 
 If you want to talk about the bot development, Please go to [this discord server](https://x.vvx.bar/nt/sup)
 
-## HOST THE BOT
+## How can I host the bot?
 
-You can host the bot on your own server, or you can host it on a free Heroku account. Make sure you have the following
+You can host the bot on your own server, or you can host it on any cloud provider (such as [Amazon Web Services](https://aws.amazon.com/), [Microsoft Azure](https://azure.microsoft.com/), [Google Cloud Platform](https://cloud.google.com/), [Digital Ocean](https://www.digitalocean.com/) and countless others) . Make sure you have the following
 installed:
 
 - [Node.js (v16.6.0 or above)](https://nodejs.org/en/)
 - [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/) or [pnpm](https://pnpm.js.org/) or other node package manager
-- Python 3.6 or above (For `@discordjs/opus` library)
+- [Python 3.6](https://www.python.org/) or above (For `@discordjs/opus` library)
+- [Database (CockroachDB)](https://www.cockroachlabs.com/), You can get a free account on [CockroachDB](https://www.cockroachlabs.com/) choosing serverless options.
+- [Docker](https://www.docker.com/) (Optional)
 
-Then install the required dependencies by running
+Then install the required dependencies by running one of the following commands that you already have installed:
 
-NPM: `npm install`  
-YARN: `yarn`  
-PNPM: `pnpm install`
+With npm: `npm install`  
+With yarn: `yarn`  
+With pnpm: `pnpm install`
 
 Also don't forget to change `.env.example` to `.env` and insert your data Then deploy the command
 
 ## LICENSE
 
-This project is licensed under the Apache 2.0 license.
+This project is licensed under the [Apache 2.0](/LICENSE) license.
 
 ## Who is in the profile picture?
 
