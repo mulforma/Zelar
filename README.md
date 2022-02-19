@@ -1,4 +1,4 @@
-[![wakatime](https://wakatime.com/badge/user/5cb7cd14-ac7e-4fc0-9f81-6036760cb6a3/project/8bf24191-6879-495c-8a26-091bc71846c3.svg)](https://wakatime.com/badge/user/5cb7cd14-ac7e-4fc0-9f81-6036760cb6a3/project/8bf24191-6879-495c-8a26-091bc71846c3)
+[![wakatime](https://wakatime.com/badge/user/5cb7cd14-ac7e-4fc0-9f81-6036760cb6a3/project/43c4defc-5916-4bc2-aca5-0683f99c9e2d.svg)](https://wakatime.com/badge/user/5cb7cd14-ac7e-4fc0-9f81-6036760cb6a3/project/43c4defc-5916-4bc2-aca5-0683f99c9e2d)
 [![commit](https://img.shields.io/github/commit-activity/m/badges/shields)](https://github.com/tinvv/Nintod/pulse)
 [![CodeFactor](https://www.codefactor.io/repository/github/thevvx/nintod/badge)](https://www.codefactor.io/repository/github/thevvx/nintod)
 ![version](https://img.shields.io/node/v/discord.js?style=plastic)
