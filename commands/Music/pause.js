@@ -38,10 +38,9 @@ module.exports = {
       return await interaction.reply({
         content: "The song has been paused.",
       });
-    } else {
-      return await interaction.reply({
-        content: "There was an error pausing the song.",
-      });
     }
+    return await interaction.reply({
+      content: "There was an error pausing the song.",
+    });
   },
 };

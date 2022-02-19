@@ -110,7 +110,7 @@ module.exports = {
       // Check if button id is Confirm
       if (i.customId === "Confirm") {
         // Timeout user
-        await user.timeout(time, !reason ? { reason: "Unspecified" } : { reason: reason });
+        await user.timeout(time, { reason: reason ? reason : "Unspecified" });
         // Send success message
         await i.update({
           content: `Successfully ${timeInMilliseconds === 0 ? "clear timeout" : "timeout"} <@${user.id}>`,

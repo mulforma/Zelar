@@ -38,10 +38,9 @@ module.exports = {
       return await interaction.reply({
         content: "The song has been resumed.",
       });
-    } else {
-      return await interaction.reply({
-        content: "There was an error resuming the song.",
-      });
     }
+    return await interaction.reply({
+      content: "There was an error resuming the song.",
+    });
   },
 };

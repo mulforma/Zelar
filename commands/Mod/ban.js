@@ -120,7 +120,7 @@ module.exports = {
         // Ban user
         await user.ban(
           // Check if there is reason text, if not, reason equal to 'Unspecified'
-          !reason ? { reason: "Unspecified" } : { reason: reason },
+          { reason: reason ? reason : "Unspecified" },
         );
 
         // Update message
