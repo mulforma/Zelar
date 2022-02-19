@@ -1,9 +1,15 @@
-// Import modules
+// Import dotenv
 require("dotenv").config();
+// Import fs
 const fs = require("fs");
+// Import Client, Intents, and Collection from Discord.js
 const { Client, Intents, Collection } = require("discord.js");
+// Import Player from discord-player
 const { Player } = require("discord-player");
+// Import npmlog
 const log = require("npmlog");
+// Import knex
+const knex = require("./database/connect");
 
 // Create new client instance
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_VOICE_STATES] });
@@ -13,6 +19,9 @@ client.commands = new Collection();
 
 // Initialize Player
 client.player = new Player(client);
+
+// Set db
+client.db = knex;
 
 // Read folder 'commands'
 const commandFolder = fs.readdirSync("./commands");

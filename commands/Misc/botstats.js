@@ -87,8 +87,6 @@ module.exports = {
               .addField("Architecture", os.arch())
               .addField("System Uptime", ms(ms(`${os.uptime()}s`)))
               .addField("Host location", `${info.city}, ${info.region} :flag_${info.country.toLowerCase()}:`)
-              .addField("Host IP", info.ip)
-              .addField("Host name", info.hostname || "None")
               .addField("Host organization", info.org)
               .addField("CPUs", `${[...new Set(os.cpus().map((x) => x.model))].join("\n")}`)
               .addField("CPU Cores", `${os.cpus().length}`)
