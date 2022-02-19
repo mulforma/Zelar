@@ -22,6 +22,8 @@ module.exports = {
   async execute(client, interaction) {
     // Set variables
     const rps = ["rock", "paper", "scissors"];
+    // Set random coin amount
+    const randCoin = Math.floor(Math.random() * 15) + 1;
 
     // Set button
     const rpsButton = new MessageActionRow().addComponents(
@@ -69,9 +71,31 @@ module.exports = {
       ) {
         // Reply
         await interaction.editReply({
-          content: `[🧑] You choose **${i.customId}**\n[🤖] I choose **${result}**\nResult : **You win!**`,
+          content: `[🧑] You choose **${i.customId}**\n[🤖] I choose **${result}**\nResult : **You win!**\nYou won **${randCoin} coins!**`,
           components: [],
         });
+
+        // Add coins
+        client.db
+          .select("coin")
+          .from("user")
+          .where("userId", interaction.user.id)
+          .andWhere("serverId", interaction.guild.id)
+          .then(async (row) => {
+            if (!row[0]) {
+              return;
+            }
+
+            // Set coins
+            const coins = Number(Number(row[0].coin || 0) + randCoin);
+
+            // Update coins
+            await client
+              .db("user")
+              .where("userId", interaction.user.id)
+              .andWhere("serverId", interaction.guild.id)
+              .update({ coin: coins });
+          });
       } else {
         // Reply
         await interaction.editReply({

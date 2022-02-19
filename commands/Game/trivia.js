@@ -26,6 +26,8 @@ module.exports = {
   async execute(client, interaction) {
     // Fetch trivia from API
     const response = await axios.get("https://opentdb.com/api.php?amount=1&type=boolean&encode=base64");
+    // Set random coin amount
+    const randCoin = Math.floor(Math.random() * 30) + 1;
 
     // Create embed
     const embed = new MessageEmbed()
@@ -96,10 +98,30 @@ module.exports = {
       if (i.customId.toLowerCase() === correctAnswer.toLowerCase()) {
         // Send congrats message
         await i.editReply({
-          content: "🎉 Hooray! That's the correct answer!",
+          content: `🎉 Hooray! That's the correct answer!\nYou won **${randCoin} coins!**`,
           components: [],
           embeds: [],
         });
+        // Add coins
+        client.db
+          .select("coin")
+          .from("user")
+          .where("userId", interaction.user.id)
+          .andWhere("serverId", interaction.guild.id)
+          .then(async (row) => {
+            if (!row[0]) {
+              return;
+            }
+            // Set coins
+            const coins = (row[0].coin || 0) + randCoin;
+
+            // Update coins
+            await client
+              .db("user")
+              .where("userId", interaction.user.id)
+              .andWhere("serverId", interaction.guild.id)
+              .update({ coin: coins });
+          });
       }
       // If answer is incorrect
       else if (i.customId.toLowerCase() !== correctAnswer.toLowerCase()) {

@@ -39,7 +39,7 @@ async function initTable() {
       });
     }
   });
-  
+
   // Create a table when the table does not exist
   await knex.schema.hasTable("server").then(async (exists) => {
     if (!exists) {
@@ -53,7 +53,7 @@ async function initTable() {
       });
     }
   });
-  
+
   // Create a table when the table does not exist
   await knex.schema.hasTable("playerShop").then(async (exists) => {
     if (!exists) {
@@ -76,7 +76,7 @@ async function initTable() {
       });
     }
   });
-  
+
   // Create a table when the table does not exist
   await knex.schema.hasTable("officialShop").then(async (exists) => {
     if (!exists) {
