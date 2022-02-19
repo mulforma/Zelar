@@ -21,7 +21,7 @@ module.exports = {
    */
   async execute (client, interaction) {
     // Get user
-    const user = interaction.user;
+    const { user } = interaction;
     // Get user profile
     const profile = await client.db.select("*").from("user").where("userId", user.id).andWhere("serverId", interaction.guild.id);
     // Check if profile exists
