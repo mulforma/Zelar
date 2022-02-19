@@ -49,6 +49,7 @@ module.exports = {
           new MessageEmbed()
             .setTitle(`${user.username}'s profile`)
             .setColor("BLUE")
+            .setThumbnail(user.displayAvatarURL({ dynamic: true }))
             .addField("🔼 Levels", profile[0].level)
             .addField("✨ XPs", profile[0].xp)
             .addField("💰 Coins", profile[0].coin)
