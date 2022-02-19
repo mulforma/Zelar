@@ -40,7 +40,7 @@ module.exports = {
       const { data } = await axios.get(`https://www.reddit.com/r/${subreddit}.json`);
 
       // Get random post
-      let post = data.data.children[Math.floor(Math.random() * data.data.children.length)].data;
+      const post = data.data.children[Math.floor(Math.random() * data.data.children.length)].data;
 
       // Create embed
       const embed = new MessageEmbed()

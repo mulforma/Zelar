@@ -4,8 +4,10 @@ require("dotenv").config();
 const fs = require("fs");
 // Import REST
 const { REST } = require("@discordjs/rest");
-/// Import Routes
+// Import Routes
 const { Routes } = require("discord-api-types/v9");
+// Import npmlog
+const log = require("npmlog");
 
 // Command Array
 const commands = [];
@@ -35,9 +37,9 @@ const rest = new REST({ version: "9" }).setToken(
 (async () => {
   try {
     // Log "Started refreshing application (/) commands."
-    console.log("Started refreshing application (/) commands.");
+    log.info("Started refreshing application (/) commands.");
 
-    let applicationCommands =
+    const applicationCommands =
       process.env.NODE_ENV === "production"
         ? Routes.applicationCommands(process.env.PROD_ClientId)
         : Routes.applicationGuildCommands(process.env.ClientId, process.env.GuildId);
@@ -55,9 +57,9 @@ const rest = new REST({ version: "9" }).setToken(
     );
 
     // Log successful response
-    console.log("Successfully reloaded application (/) commands.");
+    log.info("Successfully reloaded application (/) commands.");
   } catch (error) {
     // Catch error
-    console.error(error);
+    log.error(error);
   }
 })();

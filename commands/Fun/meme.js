@@ -23,7 +23,7 @@ module.exports = {
    */
   async execute(client, interaction) {
     // Fetch meme by axios
-    let { data } = await axios.get("https://meme-api.herokuapp.com/gimme");
+    const { data } = await axios.get("https://meme-api.herokuapp.com/gimme");
     // Create new button
     const button = new MessageActionRow().addComponents(
       new MessageButton()
@@ -55,7 +55,7 @@ module.exports = {
         // Defer update
         await i.deferUpdate();
         // Fetch a new meme
-        let { data } = await axios.get("https://meme-api.herokuapp.com/gimme");
+        const { data } = await axios.get("https://meme-api.herokuapp.com/gimme");
         // Send meme
         await interaction.editReply({
           embeds: [new MessageEmbed().setTitle(data.title).setImage(data.url).setURL(data.postLink).setColor("GREEN")],

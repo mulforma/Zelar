@@ -8,6 +8,8 @@ const cheerio = require("cheerio");
 const { MessageEmbed } = require("discord.js");
 // Import axios
 const axios = require("axios");
+// Import npmlog
+const log = require("npmlog");
 
 // Search for image
 const searchImage = (query) => {
@@ -19,7 +21,7 @@ const searchImage = (query) => {
       return image ? image.attribs.src : null;
     })
     .catch((error) => {
-      console.log(error);
+      log.info(error);
     });
 };
 
@@ -156,7 +158,7 @@ module.exports = {
           )
           .then((response) => {
             // Get data
-            let pages = response.data.query.pages;
+            const pages = response.data.query.pages;
             // If no results
             if (!pages[Object.keys(pages)[0]].extract) {
               interaction.reply({
@@ -171,7 +173,7 @@ module.exports = {
                   new MessageEmbed()
                     .setTitle(result.title)
                     .setDescription(
-                      result.extract.substr(0, result.extract.length >= 500 ? 497 : result.extract.length) + "...",
+                      `${result.extract.substr(0, result.extract.length >= 500 ? 497 : result.extract.length)}...`,
                     )
                     .setColor(0x00ae86)
                     .setURL(`https://en.wikipedia.org/wiki/${encodeURIComponent(result.title)}`),
@@ -180,7 +182,7 @@ module.exports = {
             }
           })
           .catch((error) => {
-            console.log(error);
+            log.error(error);
           });
         break;
       case "duck":
@@ -189,7 +191,7 @@ module.exports = {
           .get(`https://api.duckduckgo.com/?q=${query}&format=json&pretty=1`)
           .then((response) => {
             // Get data
-            let data = response.data;
+            const data = response.data;
             // If no results
             if (!data.AbstractText) {
               interaction.reply({
@@ -209,7 +211,7 @@ module.exports = {
             }
           })
           .catch((error) => {
-            console.log(error);
+            log.error(error);
             interaction.reply({
               embeds: [new MessageEmbed().setTitle("Error!").setColor("#ff0000")],
             });
@@ -223,7 +225,7 @@ module.exports = {
           )
           .then((response) => {
             // Get data
-            let data = response.data;
+            const data = response.data;
             // If no results
             if (!data.search) {
               interaction.reply({
@@ -243,12 +245,13 @@ module.exports = {
             }
           })
           .catch((error) => {
-            console.log(error);
+            log.error(error);
             interaction.reply({
               embeds: [new MessageEmbed().setTitle("Error!").setColor("#ff0000")],
             });
           });
         break;
+      default:
     }
   },
 };

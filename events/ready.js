@@ -9,6 +9,8 @@ const Game = [
   "Call of Duty Mobile",
   /* Add more here */
 ];
+// Import npmlog
+const log = require("npmlog");
 
 module.exports = {
   name: "ready",
@@ -31,6 +33,6 @@ module.exports = {
       });
     }, 10000);
     // Log when bot is ready
-    console.log("Bot is ready!");
+    log.info("Bot is ready!");
   },
 };

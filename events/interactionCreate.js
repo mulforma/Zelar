@@ -1,3 +1,6 @@
+// Import npmlog
+const log = require("npmlog");
+
 module.exports = {
   name: "interactionCreate",
   description: "Triggered when a new interaction is created.",
@@ -16,7 +19,7 @@ module.exports = {
       await command.execute(client, interaction);
     } catch (error) {
       // Log when error
-      console.error(error);
+      log.error(error);
     }
   },
 };

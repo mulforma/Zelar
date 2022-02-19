@@ -80,8 +80,8 @@ module.exports = {
         .addField("✏ Nickname", member.nickname ? member.nickname : "No nickname", true)
         .addField("🆔 UserID", member.user.id.toString(), true)
         .addField("#️⃣ Discriminator", member.user.discriminator, true)
-        .addField("🕐 Joined Discord", ms(Date.now() - member.user.createdTimestamp, { long: true }) + " ago", true)
-        .addField("👋 Joined Server", ms(Date.now() - member.joinedTimestamp, { long: true }) + " ago", true)
+        .addField("🕐 Joined Discord", `${ms(Date.now() - member.user.createdTimestamp, { long: true })} ago`, true)
+        .addField("👋 Joined Server", `${ms(Date.now() - member.joinedTimestamp, { long: true })} ago`, true)
         // Set thumbnail as target user avatar
         .setThumbnail(member.user.avatarURL({ dynamic: false }))
         // Set image as user banner

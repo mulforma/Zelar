@@ -57,9 +57,9 @@ module.exports = {
     const avatarImg = await Canvas.loadImage(avatar);
 
     // Create canvas
-    let canvas = Canvas.createCanvas(700, 250);
+    const canvas = Canvas.createCanvas(700, 250);
     // Get canvas context
-    let ctx = canvas.getContext("2d");
+    const ctx = canvas.getContext("2d");
 
     // Draw image background
     ctx.drawImage(card, 0, 0, canvas.width, canvas.height);
@@ -82,7 +82,7 @@ module.exports = {
     // Set fill color
     ctx.fillStyle = "#ffffff";
     // Draw text
-    ctx.fillText(Math.floor(Math.random() * 100) + 1 + "%", canvas.width / 2.5, canvas.height / 1.3);
+    ctx.fillText(`${Math.floor(Math.random() * 100) + 1}%`, canvas.width / 2.5, canvas.height / 1.3);
 
     // Begin path
     ctx.beginPath();

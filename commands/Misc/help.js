@@ -100,6 +100,7 @@ module.exports = {
         );
         break;
       }
+      default:
     }
 
     // Reply with embed
