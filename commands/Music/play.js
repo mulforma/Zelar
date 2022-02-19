@@ -61,7 +61,7 @@ module.exports = {
       // Remove queue
       queue.destroy();
       // Reply
-      return await interaction.reply({
+      return interaction.reply({
         content: "Failed to connect to the voice channel.",
       });
     }

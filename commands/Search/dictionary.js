@@ -131,7 +131,7 @@ module.exports = {
             interaction.reply("Word not found");
           });
 
-        return await interaction.reply({ embeds: [dictionary] });
+        return interaction.reply({ embeds: [dictionary] });
       }
       default:
     }

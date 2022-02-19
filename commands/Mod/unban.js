@@ -33,7 +33,7 @@ module.exports = {
     // Check if user has permission to ban members
     if (!interaction.member.permissions.has(Permissions.FLAGS.BAN_MEMBERS)) {
       // Send error message
-      return await interaction.reply({
+      return interaction.reply({
         content: "You can't unban member because you have no permissions to ban.",
         ephemeral: true,
       });

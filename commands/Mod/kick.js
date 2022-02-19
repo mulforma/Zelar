@@ -48,7 +48,7 @@ module.exports = {
     // More about Permission.FLAGS, see (https://discord.js.org/#/docs/main/stable/class/Permissions?scrollTo=s-FLAGS)
     if (!member.permissions.has(Permissions.FLAGS.KICK_MEMBERS)) {
       // Reply user
-      return await interaction.reply({
+      return interaction.reply({
         // Set message content
         content: "You can't kick member because you have no permissions to kick.",
         // Set if only user who called command can see it
@@ -59,7 +59,7 @@ module.exports = {
     // If target user has higher roles than called user
     if (!user.kickable) {
       // Set message content
-      return await interaction.reply({
+      return interaction.reply({
         // Set message content
         content: "You can't kick member with higher role than you.",
         // Set if only user who called command can see it
@@ -70,7 +70,7 @@ module.exports = {
     // Check if user want to kick yourself
     if (user.id === interaction.user.id) {
       // Set message content
-      return await interaction.reply({
+      return interaction.reply({
         // Set message content
         content: "You can't kick yourself!",
         // Set if only user who called command can see it
