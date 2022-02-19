@@ -11,12 +11,12 @@ module.exports = {
     // Set command description
     .setDescription("Flips a coin and returns the result")
     // Add string option
-    .addIntegerOption(option =>
+    .addIntegerOption((option) =>
       option
         // Set name
         .setName("seed")
         // Set description
-        .setDescription("Seed for the coin flip generated value")
+        .setDescription("Seed for the coin flip generated value"),
     ),
   // Set command category
   category: "Game",
@@ -33,7 +33,7 @@ module.exports = {
     let randomNum = (seed) => {
       let x = Math.sin(seed++) * 10000;
       return x - Math.floor(x);
-    }
+    };
     // Get random number
     let genNum = randomNum(seed) * 100;
     // Check if it's even
