@@ -34,7 +34,7 @@ If you want to talk about the bot development, Please go to [this discord server
 You can host the bot on your own server, or you can host it on a free Heroku account. Make sure you have the following
 installed:
 
-- [Node.js (v16.6.0 and above)](https://nodejs.org/en/)
+- [Node.js (v16.6.0 or above)](https://nodejs.org/en/)
 - [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/) or [pnpm](https://pnpm.js.org/) or other node package manager
 - Python 3.6 or above (For `@discordjs/opus` library)
 
