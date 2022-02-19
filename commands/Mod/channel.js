@@ -140,7 +140,7 @@ module.exports = {
         }
 
         // Fetch guild channel
-        let guildChannel = await interaction.guild.channels.fetch();
+        const guildChannel = await interaction.guild.channels.fetch();
 
         // Create channel
         const channel = await interaction.guild.channels.create(name, {
@@ -157,10 +157,10 @@ module.exports = {
         const channelName = interaction.options.getString("name");
 
         // Fetch guild channel
-        let guildChannel2 = await interaction.guild.channels.fetch();
+        const guildChannel2 = await interaction.guild.channels.fetch();
 
         // Fetch channel
-        let fetchedChannel = guildChannel2.find((c) => c.name === channelName);
+        const fetchedChannel = guildChannel2.find((c) => c.name === channelName);
 
         // Check if channel exists
         if (!fetchedChannel) {
@@ -178,6 +178,7 @@ module.exports = {
         interaction.reply(`Deleted channel ${fetchedChannel.name}`);
         break;
       }
+      default:
     }
   },
 };

@@ -30,7 +30,7 @@ module.exports = {
    */
   async execute(client, interaction) {
     // Get target
-    let target = interaction.options.getUser("target") || interaction.user;
+    const target = interaction.options.getUser("target") || interaction.user;
 
     // Send user's avatar
     await interaction.reply({

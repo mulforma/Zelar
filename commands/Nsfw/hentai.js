@@ -72,7 +72,7 @@ module.exports = {
     await interaction.reply({
       embeds: [
         new MessageEmbed()
-          .setTitle("Image from " + image.data.post[0].owner)
+          .setTitle(`Image from ${image.data.post[0].owner}`)
           .setColor("#ffb6c1")
           .setImage(image.data.post[0].file_url)
           .setFooter({ text: `rating: ${image.data.post[0].rating} | score: ${image.data.post[0].score}` })

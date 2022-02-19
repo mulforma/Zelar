@@ -4,6 +4,8 @@ const { SlashCommandBuilder } = require("@discordjs/builders");
 const axios = require("axios");
 // Import MessageEmbed, MessageActionRow and MessageButton from discord.js
 const { MessageEmbed, MessageActionRow, MessageButton } = require("discord.js");
+// Import npmlog
+const log = require("npmlog");
 
 // Export command
 module.exports = {
@@ -84,11 +86,11 @@ module.exports = {
         await i.deferUpdate();
       } catch (e) {
         // If answer is not true or false
-        console.log(e);
+        log.error(e);
       }
 
       // Correct answer
-      let correctAnswer = Buffer.from(response.data.results[0].correct_answer, "base64").toString();
+      const correctAnswer = Buffer.from(response.data.results[0].correct_answer, "base64").toString();
 
       // Check if answer is correct
       if (i.customId.toLowerCase() === correctAnswer.toLowerCase()) {

@@ -6,6 +6,8 @@ const { SlashCommandBuilder } = require("@discordjs/builders");
 const { MessageEmbed } = require("discord.js");
 // Import axios
 const axios = require("axios");
+// Import npmlog
+const log = require("npmlog");
 
 // Export command
 module.exports = {
@@ -88,7 +90,7 @@ module.exports = {
               });
           })
           .catch((error) => {
-            console.log(error);
+            log.error(error);
             interaction.reply("Something went wrong");
           });
         // Send message
@@ -125,12 +127,13 @@ module.exports = {
               .setTimestamp();
           })
           .catch((error) => {
-            console.log(error);
+            log.error(error);
             interaction.reply("Word not found");
           });
 
-        await interaction.reply({ embeds: [dictionary] });
+        return await interaction.reply({ embeds: [dictionary] });
       }
+      default:
     }
   },
 };

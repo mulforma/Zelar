@@ -77,7 +77,7 @@ module.exports = {
         break;
       case "server": {
         // Get location
-        let info = await ipInfo();
+        const info = await ipInfo();
         await interaction.reply({
           embeds: [
             await new MessageEmbed()
@@ -104,7 +104,9 @@ module.exports = {
               }),
           ],
         });
+        break;
       }
+      default:
     }
   },
 };

@@ -19,6 +19,14 @@
     ],
     "linebreak-style": ["error", "windows"],
     "quotes": ["error", "double"],
-    "semi": ["error", "always"]
+    "semi": ["error", "always"],
+    "prefer-template": "error",
+    "no-console": "error",
+    "default-case": "error",
+    "no-unused-vars": "error",
+    "no-undef": "error",
+    "no-var": "error",
+    "no-const-assign": "error",
+    "prefer-const": "error"
   }
 }

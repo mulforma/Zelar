@@ -28,16 +28,16 @@ module.exports = {
    */
   async execute(client, interaction) {
     // Get seed
-    let seed = interaction.options.getInteger("seed") || new Date().getTime();
+    const seed = interaction.options.getInteger("seed") || new Date().getTime();
     // Random number function
-    let randomNum = (seed) => {
-      let x = Math.sin(seed++) * 10000;
+    const randomNum = (seed) => {
+      const x = Math.sin(seed++) * 10000;
       return x - Math.floor(x);
     };
     // Get random number
-    let genNum = randomNum(seed) * 100;
+    const genNum = randomNum(seed) * 100;
     // Check if it's even
-    let isEven = Math.trunc(genNum) % 2 === 0;
+    const isEven = Math.trunc(genNum) % 2 === 0;
 
     // Reply with result
     await interaction.reply({
