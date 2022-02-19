@@ -52,7 +52,7 @@ module.exports = {
     // Check if user has permission to timeout
     if (!interaction.member.permissions.has(Permissions.FLAGS.MODERATE_MEMBERS)) {
       // Send error message
-      return await interaction.reply({
+      return interaction.reply({
         content: "You can't timeout member because you have no permissions to moderate members.",
         ephemeral: true,
       });
@@ -61,7 +61,7 @@ module.exports = {
     // Check if user can be timed out
     if (!user.moderatable) {
       // Send error message
-      return await interaction.reply({
+      return interaction.reply({
         content: "You can't timeout member with higher role than you.",
         ephemeral: true,
       });
@@ -70,7 +70,7 @@ module.exports = {
     // Check if user timeout themselves
     if (user.id === interaction.user.id) {
       // Send error message
-      return await interaction.reply({
+      return interaction.reply({
         content: "You can't timeout yourself, and why would you?",
         ephemeral: true,
       });

@@ -108,7 +108,7 @@ module.exports = {
     // Check if user has permission
     if (!interaction.member.permissions.has(Permissions.FLAGS.MANAGE_CHANNELS)) {
       // Reply user
-      return await interaction.reply({
+      return interaction.reply({
         // Set message content
         content: "You can't use this command because you don't have permission `MANAGE_CHANNELS`",
         // Set if only user who called command can see it
@@ -131,7 +131,7 @@ module.exports = {
         // Check if channel type is valid
         if (!channelTypeElement) {
           // Reply user
-          return await interaction.reply({
+          return interaction.reply({
             // Set message content
             content: "Channel type is invalid.\nValid types: text, voice",
             // Set if only user who called command can see it
@@ -165,7 +165,7 @@ module.exports = {
         // Check if channel exists
         if (!fetchedChannel) {
           // Reply user
-          return await interaction.reply({
+          return interaction.reply({
             // Set message content
             content: "Channel doesn't exist.",
             // Set if only user who called command can see it

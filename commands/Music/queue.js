@@ -26,7 +26,7 @@ module.exports = {
     // If queue is empty
     if (!queue) {
       // Send error message
-      return await interaction.reply({
+      return interaction.reply({
         embed: new MessageEmbed().setColor("#ff0000").setDescription("There is no queue."),
       });
     }
@@ -34,7 +34,7 @@ module.exports = {
     // If there is no next song
     if (!queue.tracks[0]) {
       // Send error message
-      return await interaction.reply({
+      return interaction.reply({
         embeds: [new MessageEmbed().setColor("#ff0000").setDescription("There is no queue after this song.")],
       });
     }

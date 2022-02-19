@@ -24,7 +24,7 @@ module.exports = {
     // Check if queue is empty
     if (!queue) {
       // Send error message
-      return await interaction.reply({
+      return interaction.reply({
         content: "There is no song playing.",
       });
     }
@@ -37,7 +37,7 @@ module.exports = {
     // Check if timestamp.progress is Infinity
     if (timestamp.progress === Infinity) {
       // Send error message
-      return await interaction.reply({
+      return interaction.reply({
         content: "Can't get the progress of the live stream.",
       });
     }

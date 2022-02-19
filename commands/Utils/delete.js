@@ -33,7 +33,7 @@ module.exports = {
     // Check if user has permission to use command
     if (!interaction.member.permissions.has(Permissions.FLAGS.MANAGE_MESSAGES)) {
       // Send error message
-      return await interaction.reply({
+      return interaction.reply({
         content: "You can't use this command because you don't have permission to manage message.",
         ephemeral: true,
       });
@@ -44,7 +44,7 @@ module.exports = {
     // Check if amount is more than 100
     if (amount > 100) {
       // Send error message
-      return await interaction.reply({
+      return interaction.reply({
         content: "Amount must not be higher than 100.",
         ephemeral: true,
       });
@@ -52,7 +52,7 @@ module.exports = {
     // If amount is less than or equal to 0
     else if (amount <= 0) {
       // Send error message
-      return await interaction.reply({
+      return interaction.reply({
         content: "Amount must not be equal to or less than zero.",
         ephemeral: true,
       });

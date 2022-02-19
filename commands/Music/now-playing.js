@@ -26,7 +26,7 @@ module.exports = {
     // If queue is empty
     if (!queue) {
       // Send error message
-      return await interaction.reply({
+      return interaction.reply({
         content: "There is no song playing.",
       });
     }

@@ -79,7 +79,7 @@ module.exports = {
     // Check if user has permission to use command
     if (!interaction.member.permissions.has(Permissions.FLAGS.MANAGE_ROLES)) {
       // Send error message
-      return await interaction.reply({
+      return interaction.reply({
         content: "You can't use this command because you don't have permission to manage roles.",
         ephemeral: true,
       });
@@ -93,7 +93,7 @@ module.exports = {
       // Add role to member
       member.roles.add(role);
       // Send success message
-      return await interaction.reply({
+      return interaction.reply({
         content: `Successfully add role <@&${role.id}> to <@${member.id}> `,
         ephemeral: true,
       });
@@ -103,7 +103,7 @@ module.exports = {
       // Remove role from member
       member.roles.remove(role);
       // Send success message
-      return await interaction.reply({
+      return interaction.reply({
         content: `Successfully remove role <@&${role.id}> from <@${member.id}> `,
         ephemeral: true,
       });
