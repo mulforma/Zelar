@@ -12,7 +12,7 @@ module.exports = {
     // Set command description
     .setDescription("Set up or view your profile."),
   // Set command category
-  category: "Leveling",
+  category: "Profile",
   // Execute function
   /**
    * @param {import('discord.js').Client} client
