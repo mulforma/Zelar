@@ -1,20 +1,18 @@
 const checkPlayerExists = require("./checkUserExists");
 
-module.exports = (interaction, db, userId, guildId, coinAmount) => {
+module.exports = async (interaction, db, userId, guildId, coinAmount) => {
   // Make sure the user exists
   checkPlayerExists(interaction, db, userId, guildId);
 
   /// Get player's current coins
-  const coins = db.select("coin").from("user").where("userId", userId).andWhere("serverId", guildId).first();
+  const coins = await db.select("coin").from("user").where("userId", userId).andWhere("serverId", guildId)
 
   // Add the coin amount to the user's balance
   db("user")
+    .update("coin", Number(coins[0].coin) + coinAmount)
     .where("userId", userId)
     .andWhere("serverId", guildId)
-    .update({
-      coin: coins.coin + coinAmount,
-    });
-
+  
   // Return the new balance
-  return coins.coin + coinAmount;
+  return coins[0].coin + coinAmount;
 };
