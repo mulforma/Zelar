@@ -19,7 +19,7 @@ module.exports = {
       await command.execute(client, interaction);
     } catch (error) {
       // Log when error
-      console.error(error);
+      log.error(error);
     }
   },
 };
