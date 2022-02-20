@@ -1,19 +1,23 @@
 const ms = require("ms");
 module.exports = (interaction, db, cmdName, timeoutMs, userData) => {
   // Get index
-  const index = userData.timeout.commands.findIndex(i => i.command === cmdName);
-  
+  const index = userData.timeout.commands.findIndex((i) => i.command === cmdName);
+
   // Check if index is valid
   if (index !== -1) {
     // Set timeout
-    const timeout = userData.timeout.commands.find(i => i.command === "rob");
+    const timeout = userData.timeout.commands.find((i) => i.command === "rob");
     // Check if timeout reaches the end
-    if ((Number(timeout.time) + timeoutMs) - Date.now() <= 0) {
+    if (Number(timeout.time) + timeoutMs - Date.now() <= 0) {
       // Remove timeout
-      userData.timeout = userData.timeout.commands.filter(i => i.command !== "rob");
+      userData.timeout = userData.timeout.commands.filter((i) => i.command !== "rob");
     } else {
       // Send error message
-      return interaction.reply(`<@${interaction.user.id}> You can use this command again in ${ms((Number(timeout.time) + timeoutMs) - Date.now())}`);
+      return interaction.reply(
+        `<@${interaction.user.id}> You can use this command again in ${ms(
+          Number(timeout.time) + timeoutMs - Date.now(),
+        )}`,
+      );
     }
   }
   // Check if index is -1
@@ -21,7 +25,7 @@ module.exports = (interaction, db, cmdName, timeoutMs, userData) => {
     // Add timeout
     userData.timeout.commands.push({
       command: cmdName,
-      time: Date.now()
+      time: Date.now(),
     });
   } else {
     // Update timeout
@@ -31,11 +35,11 @@ module.exports = (interaction, db, cmdName, timeoutMs, userData) => {
   // Save timeout
   db("user")
     .update({
-      timeout: userData.timeout
+      timeout: userData.timeout,
     })
     .where({
       userId: interaction.user.id,
-      serverId: interaction.guild.id
+      serverId: interaction.guild.id,
     })
-    .then()
-}
+    .then();
+};

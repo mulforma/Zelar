@@ -18,14 +18,14 @@ module.exports = {
     // Set command description
     .setDescription("Rob someone")
     // Add user option
-    .addUserOption(option =>
+    .addUserOption((option) =>
       option
         // Set option name
         .setName("target")
         // Set option description
         .setDescription("The target user you want to rob")
         // Set option required
-        .setRequired(true)
+        .setRequired(true),
     ),
   // Set command category
   category: "Game",
@@ -41,9 +41,7 @@ module.exports = {
     // Check if target is not command author
     if (target.id === interaction.user.id) {
       // Send error message
-      interaction.reply(
-        "You can't rob yourself, you're a good person"
-      );
+      interaction.reply("You can't rob yourself, you're a good person");
       // Return
       return;
     }
@@ -53,15 +51,15 @@ module.exports = {
     const targetData = await getUserData(interaction, client.db, target.id, interaction.guild.id);
     // Set timeout data to be 5 minutes
     const timeout = ms("5m");
-    
-    await checkTimeout(interaction, client.db, "rob", timeout, userData)
-    
+
+    await checkTimeout(interaction, client.db, "rob", timeout, userData);
+
     // Check if target user has enough coins
     if (Number(targetData.coin) < 100) {
       // Send error message
       return interaction.reply(`Oops! They are too poor to rob!`);
     }
-    
+
     // 30% chance to rob successfully
     if (Math.random() < 0.3) {
       // Generate random percentage between 10% and 40%
