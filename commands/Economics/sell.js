@@ -56,7 +56,7 @@ module.exports = {
       // Send error message
       return interaction.reply(`You don't have any ${item} to sell!`);
     }
-  
+
     // Get items as json
     const itemsJson = userData.inventory.items.find((i) => i.name === item);
 
@@ -68,18 +68,18 @@ module.exports = {
 
     // Get market price
     const marketPrice = await getItemData(client.db, "itemId", itemsJson.id);
-    
+
     // Check if market has item
-    if(!marketPrice.price) {
+    if (!marketPrice.price) {
       return interaction.reply(`The market doesn't have any ${item}!`);
     }
-    
+
     // Get item index
     const itemIndex = userData.inventory.items.findIndex((i) => i.name === item);
-    
+
     // Remove item amount
     userData.inventory.items[itemIndex].amount -= amount;
-    
+
     // Check if item amount is 0
     if (userData.inventory.items[itemIndex].amount === 0) {
       // Remove item
@@ -87,15 +87,19 @@ module.exports = {
     }
 
     // Update inventory anc calculate new balance
-    client.db("user").update({
-      inventory: JSON.stringify(userData.inventory),
-      coin: Number(userData.coin) + (amount * Number(marketPrice.price)),
-    }).where({
-      userId: interaction.user.id,
-      serverId: interaction.guild.id,
-    }).then(() => {
-      // Send success message
-      interaction.reply(`You sold ${amount} ${item} for ${amount * marketPrice.price} coins!`);
-    });
+    client
+      .db("user")
+      .update({
+        inventory: JSON.stringify(userData.inventory),
+        coin: Number(userData.coin) + amount * Number(marketPrice.price),
+      })
+      .where({
+        userId: interaction.user.id,
+        serverId: interaction.guild.id,
+      })
+      .then(() => {
+        // Send success message
+        interaction.reply(`You sold ${amount} ${item} for ${amount * marketPrice.price} coins!`);
+      });
   },
 };
