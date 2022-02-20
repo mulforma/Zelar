@@ -4,7 +4,6 @@ const { SlashCommandBuilder } = require("@discordjs/builders");
 const getUserData = require("../../function/getUserData");
 // Import getItemData
 const getItemData = require("../../function/getItemData");
-const { get } = require("cheerio/lib/api/traversing");
 
 // Export command
 module.exports = {
