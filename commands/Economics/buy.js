@@ -41,7 +41,7 @@ module.exports = {
    */
   async execute(client, interaction) {
     // Get user data
-    const user = await getUserData(client.db, interaction.user.id, interaction.guild.id);
+    const user = await getUserData(interaction, client.db, interaction.user.id, interaction.guild.id);
     // Get item
     const item = interaction.options.getString("item");
     // Get amount

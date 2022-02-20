@@ -48,7 +48,7 @@ module.exports = {
     const amount = interaction.options.getInteger("amount");
 
     // Get user
-    const userData = await getUserData(client.db, interaction.user.id, interaction.guild.id);
+    const userData = await getUserData(interaction, client.db, interaction.user.id, interaction.guild.id);
     // Get items array
     const itemsArr = userData.inventory.items.map((i) => i.name);
     // Check if user has item
