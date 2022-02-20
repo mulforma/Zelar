@@ -70,7 +70,7 @@ module.exports = {
         `You need more ${Number(shopItem[0].itemPrice) - Number(user.coin)} coins to buy this item.`,
       );
     }
-    
+
     // Update user data
     await client
       .db("user")
@@ -79,7 +79,7 @@ module.exports = {
       .update({
         coin: Number(user.coin) - Number(shopItem[0].itemPrice) * amount,
       });
-    
+
     // Add to inventory
     user.inventory.items.push({
       amount: amount,
@@ -96,7 +96,7 @@ module.exports = {
     await client.db("user").where("userId", interaction.user.id).andWhere("serverId", interaction.guild.id).update({
       inventory: user.inventory,
     });
-    
+
     // Reply with success
     return interaction.reply(`You bought ${shopItem[0].itemName} for ${Number(shopItem[0].price) * amount} coins.`);
   },
