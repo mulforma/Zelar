@@ -57,7 +57,7 @@ module.exports = {
     // Check if target user has enough coins
     if (Number(targetData.coin) < 100) {
       // Send error message
-      return interaction.reply(`Oops! They are too poor to rob!`);
+      return interaction.reply("Oops! They are too poor to rob!");
     }
 
     // 30% chance to rob successfully
