@@ -12,7 +12,7 @@ module.exports = {
     // Set command description
     .setDescription("View your current inventory."),
   // Set command category
-  category: "Misc",
+  category: "Profile",
   // Execute function
   /**
    * @param {import('discord.js').Client} client

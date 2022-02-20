@@ -2,6 +2,8 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
 // Import MessageActionRow and MessageButton from discord.js
 const { MessageActionRow, MessageButton } = require("discord.js");
+// Import function 'addCoin'
+const addCoin = require("../../function/addCoin");
 
 // Export command
 module.exports = {
@@ -76,26 +78,7 @@ module.exports = {
         });
 
         // Add coins
-        client.db
-          .select("coin")
-          .from("user")
-          .where("userId", interaction.user.id)
-          .andWhere("serverId", interaction.guild.id)
-          .then(async (row) => {
-            if (!row[0]) {
-              return;
-            }
-
-            // Set coins
-            const coins = Number(Number(row[0].coin || 0) + randCoin);
-
-            // Update coins
-            await client
-              .db("user")
-              .where("userId", interaction.user.id)
-              .andWhere("serverId", interaction.guild.id)
-              .update({ coin: coins });
-          });
+        addCoin(interaction, client.db, interaction.user.id, interaction.guild.id, randCoin);
       } else {
         // Reply
         await interaction.editReply({
