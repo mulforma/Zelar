@@ -37,8 +37,21 @@ module.exports = {
         level: 1,
         xp: 0,
         coin: 0,
-        inventory: {},
-        timeout: {},
+        inventory: {
+          items: [
+            {
+              amount: 2,
+              description: "Redeem this for 1,000 coins",
+              emoji: "<:wumpcoin:889984011865292800>",
+              id: 3,
+              name: "$2000 Coupon",
+              rarity: "Very rare",
+              type: "Collectable.Coupon",
+              usable: true,
+            },
+          ],
+        },
+        timeout: { commands: [], daily: 0, weekly: 0 },
       });
       // Send message
       interaction.reply("Your profile has been created.");

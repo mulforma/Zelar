@@ -9,7 +9,7 @@
 
 <p align="center">
   <a href="https://x.vvx.bar/nt/inv">
-    <img src="https://files.vvx.bar/record/nine.png" height="96" width="96" style="border-radius: 9999px" />
+    <img src="/docs/logo.png" height="96" width="96" style="border-radius: 9999px" />
     <h2 align="center">
         𝗧𝗛𝗘 𝗡𝗜𝗡𝗧𝗢𝗗 𝗣𝗥𝗢𝗝𝗘𝗖𝗧
     </h2>
@@ -30,12 +30,12 @@ You can help us by contributing to the project. Because we love open-source, isn
 ## Where can I find support server?
 
 If you want to talk about the bot development, Please go to [this discord server](https://x.vvx.bar/nt/sup) and solve Wick's challenge.
-If you just want to talk with me, Just go to that same link. 
+If you just want to talk with me, Just go to that same link.
 
 # How can I contribute?
 
 You can contribute to the project by [fork](https://github.com/thevvx/Nintod/fork) the repository, and make a [pull request](https://github.com/thevvx/Nintod/pulls).
-Minors contributions are welcome. But please, don't spam us. We are not a spamming community. We are a friendly community. 
+Minors contributions are welcome. But please, don't spam us. We are not a spamming community. We are a friendly community.
 
 ## How can I host the bot?
 
@@ -49,9 +49,9 @@ installed:
 - [Docker](https://www.docker.com/) (Optional)
 
 Then install the required dependencies by running this:
- 
+
 ```bash
-$ npm install # or yarn 
+$ npm install # or yarn
 ```
 
 Also don't forget to change `.env.example` to `.env` and insert your data Then deploy the command by running

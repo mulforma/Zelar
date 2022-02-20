@@ -17,9 +17,9 @@ const knex = require("knex")({
 
 async function initTable() {
   // Create a table when the table does not exist
-  await knex.schema.hasTable("users").then(async (exists) => {
+  await knex.schema.hasTable("user").then(async (exists) => {
     if (!exists) {
-      await knex.schema.createTable("users", (table) => {
+      await knex.schema.createTable("user", (table) => {
         // Create server ID
         table.integer("serverId");
         // Create user ID
@@ -92,6 +92,25 @@ async function initTable() {
         table.string("itemDescription");
         // Create item price
         table.integer("itemPrice");
+      });
+    }
+  });
+
+  // Create a table when the table does not exist
+  await knex.schema.hasTable("globalItems").then(async (exists) => {
+    if (!exists) {
+      // Create a table when the table does not exist
+      await knex.schema.createTable("globalItems", (table) => {
+        // Create items ID
+        table.increments("itemId").primary();
+        // Create item name
+        table.string("itemName");
+        // Create item emoji
+        table.string("itemEmoji");
+        // Create item description
+        table.string("itemDescription");
+        // Add item type
+        table.string("itemType");
       });
     }
   });
