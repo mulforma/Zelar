@@ -119,7 +119,7 @@ module.exports = {
             .slice(itemsStart, itemsEnd)
             .map(
               (item, idx) =>
-                `${index + 1}. <@${item.userId}> - ${item.coin} coins`
+                `${idx + 1}. <@${item.userId}> - ${item.coin} coins`
             )
             .join("\n\n"),
         );
@@ -142,7 +142,7 @@ module.exports = {
             .slice(itemsStart, itemsEnd)
             .map(
               (item, idx) =>
-                `${index + 1}. <@${item.userId}> - ${item.coin} coins`
+                `${idx + 1}. <@${item.userId}> - ${item.coin} coins`
             )
             .join("\n\n"),
         );
