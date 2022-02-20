@@ -79,8 +79,8 @@ module.exports = {
     const collector = interaction.channel.createMessageComponentCollector({
       // Add filter
       filter,
-      // Set collector timeout (15 seconds)
-      time: 15000,
+      // Set collector timeout (60 seconds)
+      time: 60000,
     });
 
     // On collector start
