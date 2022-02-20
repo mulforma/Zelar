@@ -1,3 +1,3 @@
-module.exports = (db, selector) => {
-  return db.select("*").from("globalItems").where(selector).first();
+module.exports = (db, selector, value) => {
+  return db.select("*").from("globalItems").where(selector, value).first();
 };
