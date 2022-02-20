@@ -80,17 +80,23 @@ module.exports = {
         coin: Number(user.coin) - Number(shopItem[0].itemPrice) * amount,
       });
 
-    // Add to inventory
-    user.inventory.items.push({
-      amount: amount,
-      description: shopItem[0].itemDescription,
-      emoji: shopItem[0].itemEmoji,
-      id: shopItem[0].itemId,
-      name: shopItem[0].itemName,
-      rarity: shopItem[0].itemRarity,
-      type: shopItem[0].itemType,
-      usable: shopItem[0].usable,
-    });
+    // Check if user has item
+    if (user.inventory.items.findIndex((i) => i.name === shopItem[0].itemName)) {
+      // Update items amount
+      user.inventory.items[user.inventory.items.findIndex((i) => i.name === shopItem[0].itemName)].amount += amount;
+    } else {
+      // Add to inventory
+      user.inventory.items.push({
+        amount: amount,
+        description: shopItem[0].itemDescription,
+        emoji: shopItem[0].itemEmoji,
+        id: shopItem[0].itemId,
+        name: shopItem[0].itemName,
+        rarity: shopItem[0].itemRarity,
+        type: shopItem[0].itemType,
+        usable: shopItem[0].usable,
+      });
+    }
 
     // Save user data
     await client.db("user").where("userId", interaction.user.id).andWhere("serverId", interaction.guild.id).update({
@@ -98,6 +104,6 @@ module.exports = {
     });
 
     // Reply with success
-    return interaction.reply(`You bought ${shopItem[0].itemName} for ${Number(shopItem[0].price) * amount} coins.`);
+    return interaction.reply(`You bought ${shopItem[0].itemName} for ${Number(shopItem[0].itemPrice) * amount} coins.`);
   },
 };
