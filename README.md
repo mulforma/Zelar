@@ -45,7 +45,7 @@ installed:
 - [Node.js (v16.6.0 or above)](https://nodejs.org/en/)
 - [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/) or [pnpm](https://pnpm.js.org/) or other node package manager
 - [Python 3.6](https://www.python.org/) or above (For `@discordjs/opus` library)
-- [Database (CockroachDB)](https://www.cockroachlabs.com/), You can get a free account on [CockroachDB](https://www.cockroachlabs.com/) choosing serverless options.
+- [Database (CockroachDB or PostgreSQL)](https://www.cockroachlabs.com/), You can get a free account on [CockroachDB](https://www.cockroachlabs.com/) choosing serverless options.
 - [Docker](https://www.docker.com/) (Optional)
 
 Then install the required dependencies by running this:

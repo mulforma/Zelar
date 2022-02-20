@@ -4,7 +4,7 @@ require("dotenv").config();
 const log = require("npmlog");
 // Import knex
 const knex = require("knex")({
-  client: "cockroachdb",
+  client: "cockroachdb", // Change to "pg" for PostgreSQL
   connection: {
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
