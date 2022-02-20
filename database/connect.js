@@ -55,29 +55,6 @@ async function initTable() {
   });
 
   // Create a table when the table does not exist
-  await knex.schema.hasTable("playerShop").then(async (exists) => {
-    if (!exists) {
-      // Create a table when the table does not exist
-      await knex.schema.createTable("playerShop", (table) => {
-        // Create items ID
-        table.increments("itemId").primary();
-        // Create item name
-        table.string("itemName");
-        // Create item emoji
-        table.string("itemEmoji");
-        // Create item description
-        table.string("itemDescription");
-        // Create item price
-        table.integer("itemPrice");
-        // Create item in stock
-        table.integer("itemInStock");
-        // Create item sellers
-        table.json("itemSeller");
-      });
-    }
-  });
-
-  // Create a table when the table does not exist
   await knex.schema.hasTable("officialShop").then(async (exists) => {
     if (!exists) {
       // Create a table when the table does not exist
