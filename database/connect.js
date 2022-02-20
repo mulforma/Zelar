@@ -69,6 +69,8 @@ async function initTable() {
         table.string("itemDescription");
         // Create item price
         table.integer("itemPrice");
+        // Create item type
+        table.string("itemType");
       });
     }
   });
@@ -88,6 +90,14 @@ async function initTable() {
         table.string("itemDescription");
         // Add item type
         table.string("itemType");
+        // Add item rarity
+        table.string("itemRarity");
+        // Add item price
+        table.integer("price");
+        // Add item usable
+        table.boolean("usable");
+        // Add item sellable
+        table.boolean("sellable");
       });
     }
   });
