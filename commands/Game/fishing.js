@@ -2,6 +2,10 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
 // Import ms
 const ms = require("ms");
+// Import getUserData
+const getUserData = require("../../function/getUserData");
+// Import checkTimeout
+const checkTimeout = require("../../function/checkTimeout");
 
 // Export command
 module.exports = {
@@ -20,116 +24,62 @@ module.exports = {
    * @returns {Promise<void>}
    */
   async execute(client, interaction) {
-    // Get user inventory and timeout
-    client.db
-      .select("inventory", "timeout")
-      .from("user")
-      .where("userId", interaction.user.id)
-      .then(async (res) => {
-        if (res[0].timeout.commands.map((i) => i.time) - Date.now() > 0) {
-          interaction.send(
-            `You can't use this command for another ${ms(res[0].timeout.commands.map((i) => i.time) - Date.now())}`,
-          );
-          return;
-        }
-        // Check if user has fishing rod
-        if (res[0].inventory.items.map((i) => i.name).includes("Fishing Rod")) {
-          // 50% chance of catching a fish with a fishing rod
-          if (Math.random() < 0.5) {
-            // Get random fish from table "globalItems"
-            const fish = client.db
-              .select("*")
-              .from("globalItems")
-              .where("itemType", "Collectable.Fish")
-              .orderByRaw("RANDOM()")
-              .limit(1)
-              .then((res) => res[0]);
-            // Add fish to inventory
-            client.db
-              .update("inventory", JSON.stringify(JSON.parse(res[0].inventory).items.concat(fish)))
-              .where("userId", interaction.user.id)
-              .then(() => {
-                // Send message
-                interaction.reply(`You caught a ${fish.itemName}!`);
-                // Add command timeout to 5 minutes
-                const timeoutTime = new Date().getTime();
-                // Add time to table "timeout"
-                client.db
-                  .insert({
-                    command: "fishing",
-                    time: timeoutTime,
-                  })
-                  .where("userId", interaction.user.id)
-                  .andWhere("serverId", interaction.guild.id);
-              });
-          } else {
-            // Send message
-            await interaction.reply("😢 Sadly, You didn't catch anything.");
-          }
-          // Add fish to inventory
-          client.db
-            .insert({
-              userId: interaction.user.id,
-              itemId: "fish",
-            })
-            .into("inventory")
-            .then(() => {
-              // Send message
-              interaction.send("You put the fish in your inventory!");
-            });
-        } else {
-          // 15% chance of catching a fish without a fishing rod
-          if (Math.random() < 0.15) {
-            // Get random fish from table "globalItems"
-            const fish = client.db
-              .select("*")
-              .from("globalItems")
-              .where("itemType", "Collectable.Fish")
-              .orderByRaw("RANDOM()")
-              .limit(1)
-              .then((res) => res[0]);
-            // Add fish to inventory
-            client.db
-              .update(
-                "inventory",
-                JSON.stringify(
-                  JSON.parse(res[0].inventory).items.concat({
-                    amount: 1,
-                    id: fish.itemId,
-                    name: fish.itemName,
-                    rarity: fish.rarity,
-                    usable: false,
-                    type: fish.itemType,
-                    emoji: fish.itemEmoji,
-                    description: fish.description,
-                  }),
-                ),
-              )
-              .where("userId", interaction.user.id)
-              .andWhere("serverId", interaction.guild.id)
-              .then(() => {
-                // Send message
-                interaction.reply(`You caught a ${fish.itemName}!`);
-                // Add command timeout to 5 minutes
-                const timeoutTime = new Date().getTime();
-                // Set command timeout
-                const cmdTimeout = {
-                  command: "fishing",
-                  time: timeoutTime,
-                };
-                // Add time to column "timeout" in table "user"
-                client.db
-                  .update("timeout", JSON.stringify(JSON.parse(res[0].timeout).commands.concat(cmdTimeout)))
-                  .where("userId", interaction.user.id)
-                  .andWhere("serverId", interaction.guild.id);
-              });
-          } else {
-            // Send message
-            interaction.reply(
-              "😢 Sadly, You didn't catch anything.\n(You need a fishing rod to increase your chances of catching a fish)",
-            );
-          }
-        }
-      });
+    // Get user
+    const userData = await getUserData(interaction, client.db, interaction.user.id, interaction.guild.id);
+    // Set timeout data to be 2 minutes
+    const timeout = ms("2m");
+
+    // Check if user is in timeout
+    if (await checkTimeout(interaction, client.db, "fishing", timeout, userData)) {
+      return;
+    }
+
+    // 45% Chance of getting a fish if has fishing rod, 15% chance if no fishing rod
+    if (
+      Math.floor(Math.random() * 100) <=
+      (userData.inventory.items.findIndex((i) => i.name === "Fishing Rod") === -1 ? 45 : 15)
+    ) {
+      // Get random fish
+      const fish = await client.db
+        .select("*")
+        .from("globalItems")
+        .where("itemType", "Collectable.Fish")
+        .orderByRaw("RANDOM()");
+      // Send message
+      interaction.reply(`🎉 You caught a ${fish[0].itemName}!`);
+      // Check if user has this fish in inventory, If yes, add 1 to amount
+      if (userData.inventory.items.findIndex((i) => i.id === fish[0].id) !== -1) {
+        // Add 1 to amount
+        userData.inventory.items[userData.inventory.items.findIndex((i) => i.id === fish[0].id)].amount += 1;
+      } else {
+        // Add fish to inventory
+        userData.inventory.items.push({
+          id: fish[0].id,
+          amount: 1,
+          name: fish[0].itemName,
+          type: fish[0].itemType,
+          description: fish[0].itemDescription,
+          emoji: fish[0].itemEmoji,
+          rarity: fish[0].itemRarity,
+          usable: fish[0].usable,
+        });
+      }
+
+      // Save user data
+      await client
+        .db("user")
+        .update("inventory", userData.inventory)
+        .where("userId", interaction.user.id)
+        .andWhere("serverId", interaction.guild.id);
+    } else {
+      // Send message
+      interaction.reply(
+        `😢 You didn't catch anything.${
+          userData.inventory.items.findIndex((i) => i.name === "Fishing Rod") === -1
+            ? "\nYou can buy a fishing rod to increase your chance of catching a fish."
+            : ""
+        }`,
+      );
+    }
   },
 };
