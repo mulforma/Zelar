@@ -34,9 +34,9 @@ module.exports = {
     const weeklyAmount = 3000;
     // Week in milliseconds
     const week = 604800000;
-  
+
     // If user lasted weekly coin time is less than a day
-    if ((currentDate - lastWeekly) < week) {
+    if (currentDate - lastWeekly < week) {
       // Send message
       interaction.reply(
         `You already got your weekly coins.\nYou can get your coins again in ${ms(week - (currentDate - lastWeekly))}`,
@@ -47,7 +47,8 @@ module.exports = {
       // Set new daily time
       userData.timeout.weekly = currentDate;
       // Save user data
-      await client.db("user")
+      await client
+        .db("user")
         .update("timeout", userData.timeout)
         .where("userId", interaction.user.id)
         .where("serverId", interaction.guild.id);

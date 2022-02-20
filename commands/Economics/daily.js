@@ -36,7 +36,7 @@ module.exports = {
     const day = 86400000;
 
     // If user lasted daily coin time is less than a day
-    if ((currentDate - lastDaily) < day) {
+    if (currentDate - lastDaily < day) {
       // Send message
       interaction.reply(
         `You already got your daily coins!\nYou can get them again in ${ms(day - (currentDate - lastDaily))}`,
@@ -47,7 +47,8 @@ module.exports = {
       // Set new daily time
       userData.timeout.daily = currentDate;
       // Save user data
-      await client.db("user")
+      await client
+        .db("user")
         .update("timeout", userData.timeout)
         .where("userId", interaction.user.id)
         .where("serverId", interaction.guild.id);
