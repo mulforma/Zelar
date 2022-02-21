@@ -87,7 +87,7 @@ module.exports = {
     } else {
       // Add to inventory
       user.inventory.items.push({
-        amount: amount,
+        amount,
         description: shopItem[0].itemDescription,
         emoji: shopItem[0].itemEmoji,
         id: shopItem[0].itemId,
