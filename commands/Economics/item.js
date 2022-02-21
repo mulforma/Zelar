@@ -14,14 +14,14 @@ module.exports = {
     // Set command description
     .setDescription("Get information about an item.")
     // Add string option
-    .addStringOption(option =>
+    .addStringOption((option) =>
       option
         // Set option name
         .setName("item")
         // Set option description
         .setDescription("The name of the item.")
         // Set option required
-        .setRequired(true)
+        .setRequired(true),
     ),
   // Set command category
   category: "Economics",
@@ -31,7 +31,7 @@ module.exports = {
    * @param {import('discord.js').CommandInteraction} interaction
    * @returns {Promise<void>}
    */
-  async execute (client, interaction) {
+  async execute(client, interaction) {
     // Get item name
     const itemName = interaction.options.getString("item");
     // Get item data
