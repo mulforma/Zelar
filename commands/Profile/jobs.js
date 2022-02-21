@@ -52,10 +52,10 @@ module.exports = {
         .setDescription(
           jobs
             .map(
-              (job) =>
-                `${Number(user.level) < Number(job.minimumLevel) ? "🔒" : "✅"} **${job.name}** - *${
-                  job.description
-                }*\nIncome: $${job.income}`,
+              (j) =>
+                `${Number(user.level) < Number(j.minimumLevel) ? "🔒" : "✅"} **${j.name}** - *${
+                  j.description
+                }*\nIncome: $${j.income}`,
             )
             .join("\n\n"),
         )
