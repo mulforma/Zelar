@@ -55,6 +55,22 @@ async function initTable() {
   });
 
   // Create a table when the table does not exist
+  await knex.schema.hasTable("jobs").then(async (exists) => {
+    if (!exists) {
+      await knex.schema.createTable("jobs", (table) => {
+        // Create name
+        table.string("name").primary();
+        // Create description
+        table.string("description");
+        // Create income
+        table.integer("income");
+        // Create minimum level
+        table.integer("minimumLevel");
+      });
+    }
+  });
+
+  // Create a table when the table does not exist
   await knex.schema.hasTable("officialShop").then(async (exists) => {
     if (!exists) {
       // Create a table when the table does not exist
