@@ -43,24 +43,22 @@ module.exports = {
     if (!job.length) {
       // Send error message
       return interaction.reply("What!? This job doesn't exist! Reassign it with `/jobs`");
-    } else {
-      // Get job data
-      const [jobData] = job;
-      // Add job income to user money
-      userData.coin += jobData.income;
-      // Check if user already has a timeout
-      if (userData.timeout.commands.findIndex((i) => i.command === "work") !== -1) {
-        // Update timeout
-        userData.timeout.commands[userData.timeout.commands.findIndex((i) => i.command === "work")].timeout =
-          Date.now();
-      }
-
-      // Add timeout
-      userData.timeout.commands.push({
-        command: "work",
-        timeout: Date.now(),
-      });
     }
+    // Get job data
+    const [jobData] = job;
+    // Add job income to user money
+    userData.coin += jobData.income;
+    // Check if user already has a timeout
+    if (userData.timeout.commands.findIndex((i) => i.command === "work") !== -1) {
+      // Update timeout
+      userData.timeout.commands[userData.timeout.commands.findIndex((i) => i.command === "work")].timeout = Date.now();
+    }
+
+    // Add timeout
+    userData.timeout.commands.push({
+      command: "work",
+      timeout: Date.now(),
+    });
     // Update user data
     client
       .db("users")
