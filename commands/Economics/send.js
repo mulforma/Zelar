@@ -107,7 +107,7 @@ module.exports = {
       // Add item to target inventory
       targetData.inventory.items.push({
         name: item,
-        amount: amount,
+        amount,
       });
     }
     // Remove amount from user item
