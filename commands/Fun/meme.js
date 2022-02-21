@@ -55,11 +55,11 @@ module.exports = {
         // Defer update
         await i.deferUpdate();
         // Fetch a new meme
-        const { newData } = await axios.get("https://meme-api.herokuapp.com/gimme");
+        const { data } = await axios.get("https://meme-api.herokuapp.com/gimme");
         // Send meme
         await interaction.editReply({
           embeds: [
-            new MessageEmbed().setTitle(newData.title).setImage(newData.url).setURL(newData.postLink).setColor("GREEN"),
+            new MessageEmbed().setTitle(data.title).setImage(data.url).setURL(data.postLink).setColor("GREEN"),
           ],
           components: [button],
         });

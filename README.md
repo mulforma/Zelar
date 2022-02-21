@@ -69,8 +69,3 @@ $ npm start # npm run dev for nodemon
 ## License
 
 This project is licensed under the [Apache 2.0](/LICENSE) license.
-
-## Who is in the profile picture?
-
-He is my friend and one of the [VVX](https://vvx.bar/) members, Nine, he mostly does about java development.  
-Visit his github profile [here](https://github.com/ThatVeryDumbGuy)
