@@ -36,44 +36,43 @@ module.exports = {
     if (!userData.jobs) {
       // Send error message
       return interaction.reply("You don't have a job!\nType`/jobs` to see all jobs");
-    } else {
-      // Get job
-      const job = await client.db.select("*").from("jobs").where("name", userData.jobs);
-      // Check if job exists
-      if (!job.length) {
-        // Send error message
-        return interaction.reply("What!? This job doesn't exist! Reassign it with `/jobs`");
-      } else {
-        // Get job data
-        const [jobData] = job;
-        // Add job income to user money
-        userData.coin += jobData.income;
-        // Check if user already has a timeout
-        if (userData.timeout.commands.findIndex((i) => i.command === "work") !== -1) {
-          // Update timeout
-          userData.timeout.commands[userData.timeout.commands.findIndex((i) => i.command === "work")].timeout =
-            Date.now();
-        } else {
-          // Add timeout
-          userData.timeout.commands.push({
-            command: "work",
-            timeout: Date.now(),
-          });
-        }
-        // Update user data
-        client
-          .db("users")
-          .update({
-            coin: userData.coin,
-            timeout: userData.timeout,
-          })
-          .where({
-            userId: interaction.user.id,
-            serverId: interaction.guild.id,
-          });
-        // Send success message
-        interaction.reply(`You worked as **${jobData.name}** and earned ${jobData.income}, ez money!`);
-      }
     }
+    // Get job
+    const job = await client.db.select("*").from("jobs").where("name", userData.jobs);
+    // Check if job exists
+    if (!job.length) {
+      // Send error message
+      return interaction.reply("What!? This job doesn't exist! Reassign it with `/jobs`");
+    } else {
+      // Get job data
+      const [jobData] = job;
+      // Add job income to user money
+      userData.coin += jobData.income;
+      // Check if user already has a timeout
+      if (userData.timeout.commands.findIndex((i) => i.command === "work") !== -1) {
+        // Update timeout
+        userData.timeout.commands[userData.timeout.commands.findIndex((i) => i.command === "work")].timeout =
+          Date.now();
+      }
+
+      // Add timeout
+      userData.timeout.commands.push({
+        command: "work",
+        timeout: Date.now(),
+      });
+    }
+    // Update user data
+    client
+      .db("users")
+      .update({
+        coin: userData.coin,
+        timeout: userData.timeout,
+      })
+      .where({
+        userId: interaction.user.id,
+        serverId: interaction.guild.id,
+      });
+    // Send success message
+    interaction.reply(`You worked as **${jobData.name}** and earned ${jobData.income}, ez money!`);
   },
 };

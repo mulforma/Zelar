@@ -72,15 +72,14 @@ module.exports = {
       await addCoin(interaction, client.db, target.id, interaction.guild.id, amount * -1);
       // Send success message
       return interaction.reply(`You robbed ${target.username} for ${amount} coins!`);
-    } else {
-      // Generate random percentage between 10% and 30%
-      const percentage = Math.random() * 20 + 10;
-      // Calculate amount of coins to rob
-      const amount = Math.floor(targetData.coin * (percentage / 100));
-      // Remove coins from user
-      await addCoin(interaction, client.db, interaction.user.id, interaction.guild.id, amount * -1);
-      // Send fail message
-      return interaction.reply(`Oh no! You got caught! You lost ${amount} coins!`);
     }
+    // Generate random percentage between 10% and 30%
+    const percentage = Math.random() * 20 + 10;
+    // Calculate amount of coins to rob
+    const amount = Math.floor(targetData.coin * (percentage / 100));
+    // Remove coins from user
+    await addCoin(interaction, client.db, interaction.user.id, interaction.guild.id, amount * -1);
+    // Send fail message
+    return interaction.reply(`Oh no! You got caught! You lost ${amount} coins!`);
   },
 };
