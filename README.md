@@ -16,7 +16,6 @@
   </a>
   <p align="center">
     A simple, open-source, and free, fast, secure, and reliable discord bot. <br>
-    ( Also don't judge the bot by its profile picture )
   </p>
 </p>
 
