@@ -5,7 +5,14 @@ module.exports = (interaction, db, userId, guildId) => {
     .andWhere("serverId", guildId)
     .then((user) => {
       if (user.length <= 0) {
-        return interaction.reply("You don't have a profile yet! Type `/profile` to create one!");
+        // Check if interaction has been replied to
+        if (interaction.replied) {
+          // If so, send channel message
+          return interaction.channel.send("You don't have a profile yet! Type `/profile` to create one!");
+        } else {
+          // If not, reply to interaction
+          return interaction.reply("You don't have a profile yet! Type `/profile` to create one!");
+        }
       }
     });
 };
