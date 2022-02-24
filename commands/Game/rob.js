@@ -52,7 +52,7 @@ module.exports = {
     // Set timeout data to be 5 minutes
     const timeout = ms("5m");
 
-    await checkTimeout(interaction, client.db, "rob", timeout, userData);
+    checkTimeout(interaction, client.db, "rob", timeout, userData);
 
     // Check if target user has enough coins
     if (Number(targetData.coin) < 100) {
