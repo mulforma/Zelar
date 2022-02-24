@@ -29,6 +29,7 @@
     "no-const-assign": "error",
     "prefer-const": "error",
     "prefer-destructuring": "error",
-    "no-return-await": "error"
+    "no-return-await": "error",
+    "no-case-declarations": "off"
   }
 }
