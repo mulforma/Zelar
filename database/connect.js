@@ -20,6 +20,8 @@ async function initTable() {
   await knex.schema.hasTable("user").then(async (exists) => {
     if (!exists) {
       await knex.schema.createTable("user", (table) => {
+        // Create ID
+        table.increments("id").primary();
         // Create server ID
         table.integer("serverId");
         // Create user ID
