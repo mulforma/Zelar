@@ -95,6 +95,8 @@ module.exports = {
             interaction.channel.send(`🎉 Correct! You won ${amount} coins!`);
             // Add coins
             addCoin(interaction, client.db, interaction.user.id, interaction.guild.id, amount);
+            // Stop collector
+            collector.stop();
           } else if (tries < 3) {
             // Add to tries
             tries++;
@@ -132,6 +134,8 @@ module.exports = {
             interaction.channel.send(`🎉 Correct! You won ${amount} coins!`);
             // Add coins
             addCoin(interaction, client.db, interaction.user.id, interaction.guild.id, amount);
+            // Stop collector
+            collector.stop();
           } else if (tries < 3) {
             // Add to tries
             tries++;
