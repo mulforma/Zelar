@@ -8,9 +8,9 @@ module.exports = {
   // Set command data
   data: new SlashCommandBuilder()
     // Set command name
-    .setName("beautiful")
+    .setName("handsome")
     // Set command description
-    .setDescription("How beautiful you are?")
+    .setDescription("How handsome you are?")
     // Add user option
     .addUserOption((option) =>
       option
@@ -22,7 +22,7 @@ module.exports = {
         .setRequired(false),
     ),
   // Set command category
-  category: "Fun",
+  category: "Image",
   // Execute function
   /**
    * @param {import('discord.js').Client} client
@@ -52,7 +52,7 @@ module.exports = {
     // Get user avatar
     const avatar = user.displayAvatarURL({ format: "png", size: 1024 });
     // Load card image
-    const card = await Canvas.loadImage("./assets/beautiful.png");
+    const card = await Canvas.loadImage("./assets/handsome.png");
     // Load avatar
     const avatarImg = await Canvas.loadImage(avatar);
 
@@ -71,11 +71,11 @@ module.exports = {
     ctx.shadowBlur = 25;
 
     // Apply header text
-    ctx.font = applyText(canvas, "Beautiful Rate");
+    ctx.font = applyText(canvas, "Handsome Rate");
     // Set fill color
     ctx.fillStyle = "#ffffff";
     // Draw text
-    ctx.fillText("Beautiful Rate", canvas.width / 2.5, canvas.height / 2.3);
+    ctx.fillText("Handsome Rate", canvas.width / 2.5, canvas.height / 2.3);
 
     // Apply random number text
     ctx.font = applyText(canvas, Math.floor(Math.random() * 100) + 1);
