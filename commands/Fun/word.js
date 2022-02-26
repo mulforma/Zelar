@@ -43,7 +43,7 @@ module.exports = {
       // Make some letters underscores
       const blankLetters = letter.map((letter) => (Math.random() > 0.33 ? letter : "\\_"));
       // Check if word is already filled or none of the letters are revealed
-      if (blankLetters === letter || blankLetters.every((letter) => letter === "\\_")) {
+      if (blankLetters.join("") === letter || blankLetters.every((letter) => letter === "\\_")) {
         // Generate new blanks
         genBlanks();
       } else {
@@ -95,17 +95,18 @@ module.exports = {
             interaction.channel.send(`🎉 Correct! You won ${amount} coins!`);
             // Add coins
             addCoin(interaction, client.db, interaction.user.id, interaction.guild.id, amount);
-            // Stop collector
-            collector.stop();
-          } else if (tries < 3) {
+            // end collector;
+            return collector.stop();
+          } else if (tries < 3 && correct !== true) {
             // Add to tries
             tries++;
             // Send message
-            interaction.channel.send(`❌ Incorrect! You have ${3 - tries + 1} tries left.`);
-          } else {
-            // Send message
-            interaction.channel.send(`❌ Incorrect! The correct answer was ${word}.`);
+            return interaction.channel.send(`❌ Incorrect! You have ${3 - tries + 1} tries left.`);
           }
+          // end collector
+          collector.stop();
+          // Send message
+          return interaction.channel.send(`❌ Incorrect! The correct answer was ${word}.`);
         });
         // On collector end
         collector.on("end", () => {
@@ -134,17 +135,18 @@ module.exports = {
             interaction.channel.send(`🎉 Correct! You won ${amount} coins!`);
             // Add coins
             addCoin(interaction, client.db, interaction.user.id, interaction.guild.id, amount);
-            // Stop collector
-            collector.stop();
-          } else if (tries < 3) {
+            // end collector
+            return collector.stop();
+          } else if (tries < 3 && correct !== true) {
             // Add to tries
             tries++;
             // Send message
-            interaction.channel.send(`❌ Incorrect! You have ${3 - tries + 1} tries left.`);
-          } else {
-            // Send message
-            interaction.channel.send(`❌ Incorrect! The correct answer was ${word}.`);
+            return interaction.channel.send(`❌ Incorrect! You have ${3 - tries + 1} tries left.`);
           }
+          // end collector
+          collector.stop();
+          // Send message
+          return interaction.channel.send(`❌ Incorrect! The correct answer was ${word}.`);
         });
         // On collector end
         collector.on("end", () => {
