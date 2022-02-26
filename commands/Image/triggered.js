@@ -14,14 +14,14 @@ module.exports = {
     // Set command description
     .setDescription("Generates a triggered image.")
     // Add user option
-    .addUserOption(option =>
+    .addUserOption((option) =>
       option
         // Set option name
         .setName("user")
         // Set option description
         .setDescription("The user to generate the triggered image for.")
         // Set option required
-        .setRequired(false)
+        .setRequired(false),
     ),
   // Set command category
   category: "Misc",
@@ -31,7 +31,7 @@ module.exports = {
    * @param {import("discord.js").CommandInteraction} interaction
    * @returns {Promise<void>}
    */
-  async execute (client, interaction) {
+  async execute(client, interaction) {
     // Get user
     const user = interaction.options.getUser("user") || interaction.user;
     // Generate triggered image
@@ -45,12 +45,17 @@ module.exports = {
           // Set triggered image
           .setImage("attachment://triggered.gif")
           // Set triggered image footer
-          .setFooter({ text: `Requested by ${user.tag}`, iconURL: user.displayAvatarURL({ format: "png", size: 512 }) })
+          .setFooter({
+            text: `Requested by ${user.tag}`,
+            iconURL: user.displayAvatarURL({ format: "png", size: 512 }),
+          }),
       ],
-      files: [{
-        attachment: triggered,
-        name: "triggered.gif"
-      }]
+      files: [
+        {
+          attachment: triggered,
+          name: "triggered.gif",
+        },
+      ],
     });
   },
 };

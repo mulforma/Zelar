@@ -52,7 +52,7 @@ module.exports = {
           "https://opentdb.com/api.php?amount=1&category=19&type=multiple&encode=base64",
         );
         // Get result
-        const [ results ] = data.results;
+        const [results] = data.results;
         // Get question
         const { question, correct_answer: correctAnswer } = results;
         // Get answers
