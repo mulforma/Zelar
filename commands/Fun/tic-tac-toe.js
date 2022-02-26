@@ -140,7 +140,7 @@ module.exports = {
     // Filter for answer buttons
     const filter = (i) =>
       // Check if button match "digit,digit"
-      i.customId.match(/^\d+,\d+$/) &&
+      /^\d+,\d+$/.test(i.customId) &&
       // Check if author is same as user
       (player === 2 ? i.user.id === user.id : i.user.id === interaction.user.id);
     // Start message collector
