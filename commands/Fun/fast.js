@@ -15,12 +15,12 @@ module.exports = {
     // Set command description
     .setDescription("Answers with a fast response.")
     // Add subcommand
-    .addSubcommand(subcommand =>
+    .addSubcommand((subcommand) =>
       subcommand
         // Set subcommand name
         .setName("math")
         // Set subcommand description
-        .setDescription("Answers math questions.")
+        .setDescription("Answers math questions."),
     ),
   // Set command category
   category: "Fun",
@@ -30,7 +30,7 @@ module.exports = {
    * @param {import("discord.js").CommandInteraction} interaction
    * @returns {Promise<void>}
    */
-  async execute (client, interaction) {
+  async execute(client, interaction) {
     // Set if end
     let end = false;
     // Generate random coin amount between 200 - 250
@@ -48,11 +48,15 @@ module.exports = {
       // If subcommand is math
       case "math":
         // Fetch math questions
-        const { data } = await axios.get("https://opentdb.com/api.php?amount=1&category=19&type=multiple&encode=base64");
+        const { data } = await axios.get(
+          "https://opentdb.com/api.php?amount=1&category=19&type=multiple&encode=base64",
+        );
+        // Get result
+        const [ results ] = data.results;
         // Get question
-        const { question, correct_answer: correctAnswer } = data.results[0];
+        const { question, correct_answer: correctAnswer } = results;
         // Get answers
-        const answers = data.results[0].incorrect_answers.map(answer => Buffer.from(answer, "base64").toString());
+        const answers = results.incorrect_answers.map((answer) => Buffer.from(answer, "base64").toString());
         // Add correct answer
         answers.push(Buffer.from(correctAnswer, "base64").toString());
         // Send question
@@ -64,9 +68,9 @@ module.exports = {
               .addField("Answers", answers.join("\n"))
               .setColor("#00FF00")
               .setFooter({ text: `Requested by ${interaction.user.tag}`, iconURL: interaction.user.displayAvatarURL() })
-              .setThumbnail(client.user.displayAvatarURL())
-          ]
-        })
+              .setThumbnail(client.user.displayAvatarURL()),
+          ],
+        });
         collector.on("collect", (collected) => {
           // Get message
           const guess = collected.content.toLowerCase();
@@ -80,11 +84,13 @@ module.exports = {
             addCoin(interaction, client.db, interaction.user.id, interaction.guild.id, amount);
             // End collector
             collector.stop();
-          }  else {
+          } else {
             // Set end
             end = true;
             // Send message
-            interaction.channel.send(`❌ Incorrect! The correct answer was ${Buffer.from(correctAnswer, "base64").toString()}.`);
+            interaction.channel.send(
+              `❌ Incorrect! The correct answer was ${Buffer.from(correctAnswer, "base64").toString()}.`,
+            );
           }
         });
         // On collector end
@@ -92,9 +98,14 @@ module.exports = {
           // If not correct
           if (!end) {
             // Send message
-            interaction.channel.send(`⏰ Time's up! The correct answer was **${Buffer.from(correctAnswer, "base64").toString()}**.`);
+            interaction.channel.send(
+              `⏰ Time's up! The correct answer was **${Buffer.from(correctAnswer, "base64").toString()}**.`,
+            );
           }
         });
+        break;
+      default:
+        break;
     }
   },
 };
