@@ -12,14 +12,14 @@ module.exports = {
     // Set command description
     .setDescription("Deepfries an image")
     // Add user option
-    .addUserOption(option =>
+    .addUserOption((option) =>
       option
         // Set option name
         .setName("user")
         // Set option description
         .setDescription("The user to deepfry")
         // Set option required
-        .setRequired(false)
+        .setRequired(false),
     ),
   // Set command category
   category: "Misc",
@@ -29,7 +29,7 @@ module.exports = {
    * @param {import("discord.js").CommandInteraction} interaction
    * @returns {Promise<void>}
    */
-  async execute (client, interaction) {
+  async execute(client, interaction) {
     // Defer reply
     interaction.deferReply();
     // Get user
@@ -40,11 +40,13 @@ module.exports = {
     // TODO: Instead of using the nekobot api, we just do it ourselves. Because this will affect the bots performance
     const { data } = await axios.get(`https://nekobot.xyz/api/imagegen?type=deepfry&image=${avatar}`);
     // Send deepfry avatar
-    interaction.editReply({
-      files: [{
-        attachment: data.message,
-        name: "deepfry.png"
-      }]
+    await interaction.editReply({
+      files: [
+        {
+          attachment: data.message,
+          name: "deepfry.png",
+        },
+      ],
     });
   },
 };
