@@ -38,9 +38,9 @@ module.exports = {
     // Get leaderboard scope
     const scope = interaction.options.getSubcommand() || "global";
     // Get leaderboard
-    const leaderboard = await (scope
-      ? client.db.select("*").from("user").where("serverId", interaction.guild.id).orderBy("coin", "desc")
-      : client.db.select("*").from("user").orderBy("coin", "desc"));
+    const leaderboard = await (scope === "global"
+      ? client.db.select("*").from("user").orderBy("coin", "desc").limit(100)
+      : client.db.select("*").from("user").where("serverId", interaction.guild.id).orderBy("coin", "desc").limit(100));
 
     // Set items start and end
     let itemsStart = 0;
