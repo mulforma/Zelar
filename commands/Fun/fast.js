@@ -4,7 +4,7 @@ const { SlashCommandBuilder } = require("@discordjs/builders");
 const axios = require("axios");
 // Import MessageEmbed
 const { MessageEmbed } = require("discord.js");
-const addCoin = require("../../function/addCoin");
+const addCoin = require("../../methods/addCoin");
 
 // Export command
 module.exports = {

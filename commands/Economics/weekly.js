@@ -1,9 +1,9 @@
 // Import SlashCommandBuilder
 const { SlashCommandBuilder } = require("@discordjs/builders");
 // Import getUserData
-const getUserData = require("../../function/getUserData");
+const getUserData = require("../../methods/getUserData");
 // Import addCoin
-const addCoin = require("../../function/addCoin");
+const addCoin = require("../../methods/addCoin");
 // Import ms
 const ms = require("ms");
 
