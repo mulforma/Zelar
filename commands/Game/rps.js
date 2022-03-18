@@ -3,7 +3,7 @@ const { SlashCommandBuilder } = require("@discordjs/builders");
 // Import MessageActionRow and MessageButton from discord.js
 const { MessageActionRow, MessageButton } = require("discord.js");
 // Import function 'addCoin'
-const addCoin = require("../../function/addCoin");
+const addCoin = require("../../methods/addCoin");
 
 // Export command
 module.exports = {

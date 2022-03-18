@@ -3,11 +3,11 @@ const { SlashCommandBuilder } = require("@discordjs/builders");
 // Import MessageEmbed
 const { MessageEmbed } = require("discord.js");
 // Import getUserData
-const getUserData = require("../../function/getUserData");
+const getUserData = require("../../methods/getUserData");
 // Import ms
 const ms = require("ms");
 // Import checkTimeout
-const checkTimeout = require("../../function/checkTimeout");
+const checkTimeout = require("../../methods/checkTimeout");
 
 // Export command
 module.exports = {

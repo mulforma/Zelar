@@ -3,7 +3,7 @@ const { SlashCommandBuilder } = require("@discordjs/builders");
 // Import axios
 const axios = require("axios");
 // Import addCoin
-const addCoin = require("../../function/addCoin");
+const addCoin = require("../../methods/addCoin");
 
 // Export command
 module.exports = {

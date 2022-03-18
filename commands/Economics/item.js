@@ -1,7 +1,7 @@
 // Import SlashCommandBuilder
 const { SlashCommandBuilder } = require("@discordjs/builders");
 // Import getItemData
-const getItemData = require("../../function/getItemData");
+const getItemData = require("../../methods/getItemData");
 // Import MessageEmbed
 const { MessageEmbed } = require("discord.js");
 

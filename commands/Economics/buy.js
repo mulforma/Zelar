@@ -1,7 +1,7 @@
 // Import SlashCommandBuilder
 const { SlashCommandBuilder } = require("@discordjs/builders");
 // Import getUserData
-const getUserData = require("../../function/getUserData");
+const getUserData = require("../../methods/getUserData");
 
 // Export command
 module.exports = {
