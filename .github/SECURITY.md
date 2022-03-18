@@ -13,7 +13,7 @@ The `nintod` team and community take all security bugs in `nintod` seriously. Th
 of `nintod`. We appreciate your efforts and responsible disclosure and will make every effort to acknowledge your
 contributions.
 
-Report security bugs by emailing the lead maintainer at tinvv@outlook.co.th.
+Report security bugs by emailing the lead maintainer at `contact@vvx.bar`.
 
 The lead maintainer will acknowledge your email within 48 hours, and will send a more detailed response within 48 hours
 indicating the next steps in handling your report. After the initial reply to your report, the security team will
@@ -29,7 +29,7 @@ coordinate the fix and release process, involving the following steps:
 
 - Confirm the problem and determine the affected versions.
 - Audit code to find any potential similar problems.
-- Prepare fixes for all releases still under maintenance. These fixes will be released as fast as possible to npm.
+- Prepare fixes for all releases still under maintenance. These fixes will be released as fast as possible.
 
 ## Comments on this Policy
 

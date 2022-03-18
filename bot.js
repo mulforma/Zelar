@@ -7,7 +7,7 @@ const { Client, Intents, Collection } = require("discord.js");
 // Import Player from discord-player
 const { Player } = require("discord-player");
 // Import npmlog
-const log = require("npmlog");
+const /**@type npmlog */log = require("npmlog");
 // Import knex
 const knex = require("./database/connect");
 
@@ -76,4 +76,7 @@ for (const file of playerFolder) {
 }
 
 // Login to bot
-client.login(process.env.NODE_ENV === "production" ? process.env.PROD_TOKEN : process.env.TOKEN);
+client.login(process.env.NODE_ENV === "production" ? process.env.PROD_TOKEN : process.env.TOKEN).then(() => {
+  // Log login
+  log.info("Login", "Bot logged in!");
+});
