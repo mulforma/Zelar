@@ -8,6 +8,8 @@
   <p align="center">
     A simple, open-source, and free, fast, secure, and reliable discord bot. <br>
   </p>
+
+<div style="display: flex; flex-wrap: wrap">
 <img src="https://wakatime.com/badge/user/5cb7cd14-ac7e-4fc0-9f81-6036760cb6a3/project/43c4defc-5916-4bc2-aca5-0683f99c9e2d.svg" />
 <a href="https://github.com/tinvv/Nintod/pulse"><img src="https://img.shields.io/github/commit-activity/m/badges/shields" /></a>
 <a href="https://www.codefactor.io/repository/github/thevvx/nintod"><img src="https://www.codefactor.io/repository/github/thevvx/nintod/badge" /></a>
@@ -17,6 +19,7 @@
 <a href="https://tinvv.tech/discord/"><img src="https://img.shields.io/discord/828842616442454066" /></a>
 <a href="https://deepsource.io/gh/thevvx/Nintod/?ref=repository-badge}" target="_blank"><img alt="DeepSource" title="DeepSource" src="https://deepsource.io/gh/thevvx/Nintod.svg/?label=active+issues&show_trend=true&token=QMU7qTxWjqwrQ5m1G50_SD5C"/></a>
 <a href="https://deepsource.io/gh/thevvx/Nintod/?ref=repository-badge}" target="_blank"><img alt="DeepSource" title="DeepSource" src="https://deepsource.io/gh/thevvx/Nintod.svg/?label=resolved+issues&show_trend=true&token=QMU7qTxWjqwrQ5m1G50_SD5C"/></a>
+</div>
 
 </p>
 
