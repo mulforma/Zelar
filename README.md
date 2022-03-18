@@ -8,19 +8,15 @@
   <p align="center">
     A simple, open-source, and free, fast, secure, and reliable discord bot. <br>
   </p>
-
-<center>
-
-[![wakatime](https://wakatime.com/badge/user/5cb7cd14-ac7e-4fc0-9f81-6036760cb6a3/project/43c4defc-5916-4bc2-aca5-0683f99c9e2d.svg)](https://wakatime.com/badge/user/5cb7cd14-ac7e-4fc0-9f81-6036760cb6a3/project/43c4defc-5916-4bc2-aca5-0683f99c9e2d)
-[![commit](https://img.shields.io/github/commit-activity/m/badges/shields)](https://github.com/tinvv/Nintod/pulse)
-[![CodeFactor](https://www.codefactor.io/repository/github/thevvx/nintod/badge)](https://www.codefactor.io/repository/github/thevvx/nintod)
-![version](https://img.shields.io/node/v/discord.js?style=plastic)
-![license](https://img.shields.io/github/license/thevvx/nintod)
-![toplang](https://img.shields.io/github/languages/top/thevvx/nintod)
-[![deezcord](https://img.shields.io/discord/828842616442454066)](https://x.vvx.bar/nt/sup)
-[![gitter](https://img.shields.io/gitter/room/tinvv/community)](https://gitter.im/tinvv/community)
-
-</center>
+<img src="https://wakatime.com/badge/user/5cb7cd14-ac7e-4fc0-9f81-6036760cb6a3/project/43c4defc-5916-4bc2-aca5-0683f99c9e2d.svg" />
+<a href="https://github.com/tinvv/Nintod/pulse"><img src="https://img.shields.io/github/commit-activity/m/badges/shields" /></a>
+<a href="https://www.codefactor.io/repository/github/thevvx/nintod"><img src="https://www.codefactor.io/repository/github/thevvx/nintod/badge" /></a>
+<img src="https://img.shields.io/node/v/discord.js?style=plastic" />
+<img src="https://img.shields.io/github/license/thevvx/nintod" />   
+<img src="https://img.shields.io/github/languages/top/thevvx/nintod" />
+<a href="https://tinvv.tech/discord/"><img src="https://img.shields.io/discord/828842616442454066" /></a>
+<a href="https://deepsource.io/gh/thevvx/Nintod/?ref=repository-badge}" target="_blank"><img alt="DeepSource" title="DeepSource" src="https://deepsource.io/gh/thevvx/Nintod.svg/?label=active+issues&show_trend=true&token=QMU7qTxWjqwrQ5m1G50_SD5C"/></a>
+<a href="https://deepsource.io/gh/thevvx/Nintod/?ref=repository-badge}" target="_blank"><img alt="DeepSource" title="DeepSource" src="https://deepsource.io/gh/thevvx/Nintod.svg/?label=resolved+issues&show_trend=true&token=QMU7qTxWjqwrQ5m1G50_SD5C"/></a>
 
 </p>
 
@@ -49,7 +45,7 @@ installed:
 - [Node.js (v16.6.0 or above)](https://nodejs.org/en/)
 - [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/) or [pnpm](https://pnpm.js.org/) or other node package manager
 - [Python 3.6](https://www.python.org/) or above (For `@discordjs/opus` library)
-- [Database (CockroachDB or PostgreSQL)](https://www.cockroachlabs.com/), You can get a free account on [CockroachDB](https://www.cockroachlabs.com/) choosing serverless options.
+- [Database (CockroachDB or Postgres)](https://www.cockroachlabs.com/), You can get a free account on [CockroachDB](https://www.cockroachlabs.com/) choosing serverless options.
 - [Docker](https://www.docker.com/) (Optional)
 
 Then install the required dependencies by running this:
@@ -88,4 +84,69 @@ This project is licensed under the [Apache 2.0](/LICENSE) license.
 - `work` - Work and earn money
 
 #### Fun
-- `fast` - Fast typing
+- `fast` - Answer with fast responses
+- `meme` - Get a random meme
+- `tic-tac-toe` - Play a game of tic-tac-toe
+- `word` - Play a word game!
+- `xkcd` - Get a random xkcd comic
+
+#### Game
+- `bet` - Choose a number between 1 - 10 and bet on it
+- `coin-flip` - Flip a coin
+- `fishing` - Catch a fish
+- `rob` - Rob someone
+- `rps` - Play a game of rock-paper-scissors
+- `trivia` - Play a game of trivia
+
+#### Image
+- `beautiful` - How beautiful are you in percentage?
+- `deepfry` - Deepfry an image
+- `handsome` - How handsome are you in percentage?
+- `magik` - Make an image distort
+- `triggered` - Make an image triggered
+
+#### Miscellaneous
+- `avatar` - Get your avatar
+- `bot-stats` - Get bot information and statistics
+- `help` - Get help
+- `info` - Get information about the server or user
+- `ping` - Get the bots ping
+
+#### Moderation
+- `ban` - Ban a user
+- `channel` - Create or remove a channel
+- `kick` - Kick a user
+- `role` - Add or remove a role from a user
+- `timeout` - Timeout a user
+- `unban` - Unban a user
+
+#### Music
+- `loop` - Set the loop mode
+- `now-playing` - Get the current song
+- `pause` - Pause the music
+- `play` - Play a song
+- `progress` - Get the progress of the music
+- `queue` - Get the queue
+- `remove` - Remove a song from the queue
+- `resume` - Resume the music
+- `skip` - Skip the current song
+
+#### NSFW
+- `danbooru` - Get a random image from Danbooru
+- `hentai` - Get a random hentai image
+- `rule34` - Get a random image from Rule34.xxx
+
+#### Profile
+- `inventory` - Get your inventory
+- `jobs` - Get your jobs info or apply for a job
+- `leaderboard` - Get the money leaderboard
+- `profile` - Get your profile
+
+#### Search
+- `dictionary` - Get a definition from the dictionary
+- `reddit` - Get a random post from selected subreddit
+- `search` - Search for a specific item
+
+#### Utility Tools
+- `delete` - Delete a message
+- `short` - Shorten a link (Unavailable now)

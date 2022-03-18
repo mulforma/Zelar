@@ -12,7 +12,7 @@ module.exports = {
     // Set command name
     .setName("word")
     // Set command description
-    .setDescription("Plays a word game.")
+    .setDescription("Play a word game.")
     // Add subcommands
     .addSubcommand((subcommand) =>
       subcommand
