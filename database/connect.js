@@ -1,7 +1,7 @@
 // Import dotenv
 require("dotenv").config();
 // Import npmlog
-const /**@type npmlog */log = require("npmlog");
+const /**@type npmlog */ log = require("npmlog");
 // Import knex
 const knex = require("knex")({
   client: "cockroachdb", // Change to "pg" for Postgres

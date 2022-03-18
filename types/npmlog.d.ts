@@ -5,4 +5,4 @@ export type npmlog = {
   verbose: (prefix: String, message: String) => void;
   silly: (prefix: String, message: String) => void;
   http: (prefix: String, message: String) => void;
-}
+};

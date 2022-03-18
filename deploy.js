@@ -9,7 +9,7 @@ const { REST } = require("@discordjs/rest");
 // Import Routes
 const { Routes } = require("discord-api-types/v9");
 // Import npmlog
-const /**@type npmlog */log = require("npmlog");
+const /**@type npmlog */ log = require("npmlog");
 
 // Command Array
 const commands = [];

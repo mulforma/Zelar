@@ -7,7 +7,7 @@ const { Client, Intents, Collection } = require("discord.js");
 // Import Player from discord-player
 const { Player } = require("discord-player");
 // Import npmlog
-const /**@type npmlog */log = require("npmlog");
+const /**@type npmlog */ log = require("npmlog");
 // Import knex
 const knex = require("./database/connect");
 
