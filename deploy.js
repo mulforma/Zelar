@@ -1,3 +1,5 @@
+// noinspection JSClosureCompilerSyntax
+
 // Import dotenv
 require("dotenv").config();
 // Import fs
@@ -7,7 +9,7 @@ const { REST } = require("@discordjs/rest");
 // Import Routes
 const { Routes } = require("discord-api-types/v9");
 // Import npmlog
-const log = require("npmlog");
+const /**@type npmlog */log = require("npmlog");
 
 // Command Array
 const commands = [];
