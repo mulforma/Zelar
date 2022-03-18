@@ -1,5 +1,5 @@
 // Import npmlog
-const /**@type npmlog */log = require("npmlog");
+const /**@type npmlog */ log = require("npmlog");
 
 module.exports = {
   name: "interactionCreate",
