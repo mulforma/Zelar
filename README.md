@@ -9,7 +9,7 @@
     A simple, open-source, and free, fast, secure, and reliable discord bot. <br>
   </p>
 
-<div style="display: flex; flex-wrap: wrap">
+<div style="display: flex; flex-wrap: wrap; justify-items: center; justify-content: center">
 <img src="https://wakatime.com/badge/user/5cb7cd14-ac7e-4fc0-9f81-6036760cb6a3/project/43c4defc-5916-4bc2-aca5-0683f99c9e2d.svg" />
 <a href="https://github.com/tinvv/Nintod/pulse"><img src="https://img.shields.io/github/commit-activity/m/badges/shields" /></a>
 <a href="https://www.codefactor.io/repository/github/thevvx/nintod"><img src="https://www.codefactor.io/repository/github/thevvx/nintod/badge" /></a>
