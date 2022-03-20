@@ -1,11 +1,14 @@
+import { CommandInteraction } from "discord.js";
+import { Knex } from "knex";
+
 const checkPlayerExists = require("./checkUserExists");
 
-module.exports = async (interaction, db, userId, guildId, coinAmount) => {
+exports = async (interaction: CommandInteraction, db: Knex, userId: number, guildId: number, coinAmount: number) => {
   // Make sure the user exists
   checkPlayerExists(interaction, db, userId, guildId);
 
   /// Get player's current coins
-  const coins = await db.select("coin").from("user").where("userId", userId).andWhere("serverId", guildId);
+  const coins = await db("user").select("coin").where("userId", userId).andWhere("serverId", guildId);
 
   // Add the coin amount to the user's balance
   db("user")

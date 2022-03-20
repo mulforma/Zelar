@@ -1,6 +1,7 @@
-// Array of playing games
+// Import Client from discord.js
 import { Client } from "discord.js";
 
+// Array of playing games
 const Game: Array<string> = [
   "Overwatch",
   "Minecraft",
