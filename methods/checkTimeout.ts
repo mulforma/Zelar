@@ -4,17 +4,17 @@ import ms from 'ms';
 import { CommandInteraction } from "discord.js";
 // Import Knex
 import { Knex } from "knex";
-// Import C
-import { CommandData } from "../types/CommandData";
+// Import TimeoutCommandData
+import { TimeoutCommandData } from "../types/data/UserData";
 
 exports = (interaction: CommandInteraction, db: Knex, cmdName: String, timeoutMs: number, userData: any) => {
   // Get index
-  const index = userData.timeout.commands.findIndex((i: CommandData) => i.command === cmdName);
+  const index = userData.timeout.commands.findIndex((i: TimeoutCommandData) => i.command === cmdName);
 
   // Check if index is valid
   if (index !== -1) {
     // Set timeout
-    const timeout = userData.timeout.commands.find((i) => i.command === cmdName);
+    const timeout = userData.timeout.commands.find((i: TimeoutCommandData) => i.command === cmdName);
     // Check if timeout reaches the end
     if (Number(timeout.time + timeoutMs) - Date.now() <= 0) {
       // Update timeout
@@ -45,7 +45,7 @@ exports = (interaction: CommandInteraction, db: Knex, cmdName: String, timeoutMs
     })
     .where({
       userId: interaction.user.id,
-      serverId: interaction.guild.id,
+      serverId: interaction.guild?.id,
     })
     .then();
 
