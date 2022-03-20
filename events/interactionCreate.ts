@@ -1,10 +1,11 @@
 // Import npmlog
-const /**@type npmlog */ log = require("npmlog");
+import * as log from "npmlog";
+import { Client, CommandInteraction } from "discord.js";
 
 module.exports = {
   name: "interactionCreate",
   description: "Triggered when a new interaction is created.",
-  async run(client, interaction) {
+  async run(client: Client, interaction: CommandInteraction) {
     // Check if interaction is command
     if (!interaction.isCommand()) return;
 
@@ -19,7 +20,7 @@ module.exports = {
       await command.execute(client, interaction);
     } catch (error) {
       // Log when error
-      log.error(error);
+      log.error("", error as string);
     }
   },
 };
