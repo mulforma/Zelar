@@ -15,7 +15,7 @@ const Game: Array<string> = [
 // Import npmlog
 import * as log from "npmlog";
 
-exports = {
+export default {
   name: "ready",
   description: "The ready event is fired when the bot is ready to start functioning.",
   once: true,

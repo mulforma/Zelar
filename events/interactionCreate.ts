@@ -3,7 +3,7 @@ import * as log from "npmlog";
 // Import Client and CommandInteraction from discord.js
 import { Client, CommandInteraction } from "discord.js";
 
-exports = {
+export default {
   name: "interactionCreate",
   description: "Triggered when a new interaction is created.",
   async run(client: Client, interaction: CommandInteraction) {
