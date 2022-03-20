@@ -1,16 +1,18 @@
 // Import dotenv
-require("dotenv").config();
+import "dotenv/config";
 // Import npmlog
-const /**@type npmlog */ log = require("npmlog");
+import * as log from "npmlog";
 // Import knex
-const knex = require("knex")({
+import Knex from "knex";
+
+export const knex = Knex({
   client: "cockroachdb", // Change to "pg" for Postgres
   connection: {
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
-    port: process.env.DB_PORT,
+    port: Number(process.env.DB_PORT),
     ssl: true,
   },
 });
@@ -124,9 +126,5 @@ async function initTable() {
 try {
   initTable().then();
 } catch (e) {
-  log.error(e);
-  process.exit(1);
+  log.error("", e as string);
 }
-
-// Export knex
-module.exports = knex;
