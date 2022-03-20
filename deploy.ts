@@ -1,30 +1,28 @@
-// noinspection JSClosureCompilerSyntax
-
 // Import dotenv
-require("dotenv").config();
+import "dotenv/config";
 // Import fs
-const fs = require("fs");
+import * as fs from "node:fs";
 // Import REST
-const { REST } = require("@discordjs/rest");
+import { REST } from "@discordjs/rest";
 // Import Routes
-const { Routes } = require("discord-api-types/v9");
+import { Routes } from "discord-api-types/v10";
 // Import npmlog
-const /**@type npmlog */ log = require("npmlog");
+import * as log from "npmlog";
 
 // Command Array
 const commands = [];
 // Reading ./commands folder
-const commandFolder = fs.readdirSync("./commands");
+const commandFolder: Array<String> = fs.readdirSync("./commands");
 
 // Listing folder in ./commands
 for (const folder of commandFolder) {
   // Filter file in folder to be .js
-  const commandFiles = fs.readdirSync(`./commands/${folder}`).filter((file) => file.endsWith(".js"));
+  const commandFiles: Array<String> = fs.readdirSync(`./commands/${folder}`).filter((file) => file.endsWith(".js"));
 
   // Listing file in commandFiles
   for (const file of commandFiles) {
     // Import command
-    const command = require(`./commands/${folder}/${file}`);
+    const command = await import(`./commands/${folder}/${file}`);
     // Push command in to Command Array
     commands.push(command.data.toJSON());
   }
@@ -32,19 +30,19 @@ for (const folder of commandFolder) {
 
 // REST instance
 const rest = new REST({ version: "9" }).setToken(
-  process.env.NODE_ENV === "production" ? process.env.PROD_TOKEN : process.env.TOKEN,
+  (process.env.NODE_ENV === "production" ? process.env.PROD_TOKEN : process.env.TOKEN) as string,
 );
 
 // Auto execute
 (async () => {
   try {
     // Log "Started refreshing application (/) commands."
-    log.info("Started refreshing application (/) commands.");
+    log.info("", "Started refreshing application (/) commands.");
 
     const applicationCommands =
       process.env.NODE_ENV === "production"
-        ? Routes.applicationCommands(process.env.PROD_ClientId)
-        : Routes.applicationGuildCommands(process.env.ClientId, process.env.GuildId);
+        ? Routes.applicationCommands(process.env.PROD_ClientId as string)
+        : Routes.applicationGuildCommands(process.env.ClientId as string, process.env.GuildId as string);
 
     // Request put in Discord API
     await rest.put(
@@ -59,9 +57,9 @@ const rest = new REST({ version: "9" }).setToken(
     );
 
     // Log successful response
-    log.info("Successfully reloaded application (/) commands.");
+    log.info("", "Successfully reloaded application (/) commands.");
   } catch (error) {
     // Catch error
-    log.error(error);
+    log.error("", (error as string));
   }
 })();

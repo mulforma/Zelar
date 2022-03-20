@@ -1,15 +1,17 @@
 // Import dotenv
-require("dotenv").config();
+import "dotenv/config";
 // Import fs
-const fs = require("fs");
+import * as fs from "fs";
 // Import Client, Intents, and Collection from Discord.js
-const { Client, Intents, Collection } = require("discord.js");
+import { Client, Intents, Collection } from "discord.js";
 // Import Player from discord-player
-const { Player } = require("discord-player");
+import { Player } from "discord-player";
 // Import npmlog
-const /**@type npmlog */ log = require("npmlog");
+import * as log from "npmlog";
 // Import knex
-const knex = require("./database/connect");
+import knex from "./database/connect";
+// Import CommandData
+import { CommandData } from "./types/CommandData";
 
 // Create new client instance
 const client = new Client({
@@ -31,12 +33,12 @@ const commandFolder = fs.readdirSync("./commands");
 // List all folder in files
 for (const folder of commandFolder) {
   // Filter for .js files
-  const commandFiles = fs.readdirSync(`./commands/${folder}`).filter((file) => file.endsWith(".js"));
+  const commandFiles: Array<String> = fs.readdirSync(`./commands/${folder}`).filter((file) => file.endsWith(".js"));
 
   // List all files in folder
   for (const file of commandFiles) {
     // Import command
-    const command = require(`./commands/${folder}/${file}`);
+    const command: CommandData = require(`./commands/${folder}/${file}`);
 
     // Log loaded command
     log.info("Loading commands...", `${command.data.name} loaded!`);
@@ -72,11 +74,8 @@ for (const file of playerFolder) {
   const event = require(`./player/${file}`);
 
   // Listen on
-  client.player.on(event.name, (...args) => event.run(...args));
+  client.player.on(event.name, (...args: any) => event.run(...args));
 }
 
 // Login to bot
-client.login(process.env.NODE_ENV === "production" ? process.env.PROD_TOKEN : process.env.TOKEN).then(() => {
-  // Log login
-  log.info("Login", "Bot logged in!");
-});
+client.login(process.env.NODE_ENV === "production" ? process.env.PROD_TOKEN : process.env.TOKEN).then();
