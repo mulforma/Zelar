@@ -1,7 +1,15 @@
-const ms = require("ms");
-module.exports = (interaction, db, cmdName, timeoutMs, userData) => {
+// Import ms
+import ms from 'ms';
+// Import CommandInteraction
+import { CommandInteraction } from "discord.js";
+// Import Knex
+import { Knex } from "knex";
+// Import C
+import { CommandData } from "../types/CommandData";
+
+exports = (interaction: CommandInteraction, db: Knex, cmdName: String, timeoutMs: number, userData: any) => {
   // Get index
-  const index = userData.timeout.commands.findIndex((i) => i.command === cmdName);
+  const index = userData.timeout.commands.findIndex((i: CommandData) => i.command === cmdName);
 
   // Check if index is valid
   if (index !== -1) {
