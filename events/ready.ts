@@ -1,5 +1,7 @@
 // Array of playing games
-const Game = [
+import { Client } from "discord.js";
+
+const Game: Array<string> = [
   "Overwatch",
   "Minecraft",
   "Valorant",
@@ -10,17 +12,17 @@ const Game = [
   /* Add more here */
 ];
 // Import npmlog
-const /**@type npmlog */ log = require("npmlog");
+import * as log from "npmlog";
 
-module.exports = {
+exports = {
   name: "ready",
   description: "The ready event is fired when the bot is ready to start functioning.",
   once: true,
-  run(client) {
+  run(client: Client) {
     // Interval every 10 seconds
     setInterval(() => {
       // Set bots presence
-      client.user.setPresence({
+      client.user?.setPresence({
         activities: [
           {
             // Random game name
@@ -33,6 +35,6 @@ module.exports = {
       });
     }, 10000);
     // Log when bot is ready
-    log.info("Bot is ready!");
+    log.info("", "Bot is ready!");
   },
 };
