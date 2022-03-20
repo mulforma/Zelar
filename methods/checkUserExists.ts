@@ -3,7 +3,7 @@ import { CommandInteraction } from "discord.js";
 // Import Knex
 import { Knex } from "knex";
 
-exports = (interaction: CommandInteraction, db: Knex, userId: number, guildId: number) => {
+export const checkUserExists = (interaction: CommandInteraction, db: Knex, userId: number, guildId: number): void => {
   db("user")
     .select("*")
     .where("userId", userId)

@@ -7,7 +7,7 @@ import { Knex } from "knex";
 // Import TimeoutCommandData
 import { TimeoutCommandData } from "../types/data/UserData";
 
-exports = (interaction: CommandInteraction, db: Knex, cmdName: String, timeoutMs: number, userData: any) => {
+export const checkTimeout = (interaction: CommandInteraction, db: Knex, cmdName: String, timeoutMs: number, userData: any): boolean => {
   // Get index
   const index = userData.timeout.commands.findIndex((i: TimeoutCommandData) => i.command === cmdName);
 

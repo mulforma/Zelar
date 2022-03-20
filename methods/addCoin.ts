@@ -3,7 +3,7 @@ import { Knex } from "knex";
 
 const checkPlayerExists = require("./checkUserExists");
 
-exports = async (interaction: CommandInteraction, db: Knex, userId: number, guildId: number, coinAmount: number) => {
+export const addCoin = async (interaction: CommandInteraction, db: Knex, userId: number, guildId: number, coinAmount: number): Promise<number> => {
   // Make sure the user exists
   checkPlayerExists(interaction, db, userId, guildId);
 
