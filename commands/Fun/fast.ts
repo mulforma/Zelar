@@ -3,7 +3,7 @@ import { SlashCommandBuilder } from "@discordjs/builders";
 // Import axios
 import axios from "axios";
 // Import MessageEmbed
-import { MessageEmbed } from "discord.js";
+import { Message, MessageEmbed } from "discord.js";
 // Import addCoin
 import { addCoin } from "../../methods/addCoin";
 // Import Client, CommandInteraction
@@ -34,11 +34,11 @@ export default {
     // Generate random coin amount between 200 - 250
     const amount = Math.floor(Math.random() * (250 - 200 + 1)) + 200;
     // Filter message
-    const filter = (message) => {
+    const filter = (message: Message) => {
       return !message.author.bot && message.author.id === interaction.user.id;
     };
     // Wait for message
-    const collector = await interaction.channel.createMessageCollector({ filter, time: 10000 });
+    const collector = await interaction.channel!.createMessageCollector({ filter, time: 10000 });
     // Get subcommand
     const subcommand = interaction.options.getSubcommand();
     // Switch subcommand
@@ -54,11 +54,11 @@ export default {
         // Get question
         const { question, correct_answer: correctAnswer } = results;
         // Get answers
-        const answers = results.incorrect_answers.map((answer) => Buffer.from(answer, "base64").toString());
+        const answers = results.incorrect_answers.map((answer: string) => Buffer.from(answer, "base64").toString());
         // Add correct answer
         answers.push(Buffer.from(correctAnswer, "base64").toString());
         // Send question
-        interaction.reply({
+        await interaction.reply({
           embeds: [
             new MessageEmbed()
               .setTitle(Buffer.from(question, "base64").toString())
@@ -66,7 +66,7 @@ export default {
               .addField("Answers", answers.join("\n"))
               .setColor("#00FF00")
               .setFooter({ text: `Requested by ${interaction.user.tag}`, iconURL: interaction.user.displayAvatarURL() })
-              .setThumbnail(client.user.displayAvatarURL()),
+              .setThumbnail(client.user!.displayAvatarURL()),
           ],
         });
         collector.on("collect", (collected) => {
@@ -77,16 +77,16 @@ export default {
             // Set end
             end = true;
             // Send message
-            interaction.channel.send(`🎉 Correct! You won ${amount} coins!`);
+            interaction.channel!.send(`🎉 Correct! You won ${amount} coins!`);
             // Add coins
-            addCoin(interaction, client.db, interaction.user.id, interaction.guild.id, amount);
+            addCoin(interaction, client.db, interaction.user.id, interaction.guild!.id, amount);
             // End collector
             collector.stop();
           } else {
             // Set end
             end = true;
             // Send message
-            interaction.channel.send(
+            interaction.channel!.send(
               `❌ Incorrect! The correct answer was ${Buffer.from(correctAnswer, "base64").toString()}.`,
             );
           }
@@ -96,7 +96,7 @@ export default {
           // If not correct
           if (!end) {
             // Send message
-            interaction.channel.send(
+            interaction.channel!.send(
               `⏰ Time's up! The correct answer was **${Buffer.from(correctAnswer, "base64").toString()}**.`,
             );
           }
