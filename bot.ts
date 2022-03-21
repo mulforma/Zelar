@@ -66,12 +66,12 @@ for (const file of eventFolder) {
 }
 
 // Read folder 'player'
-const playerFolder = fs.readdirSync("./player").filter((file) => file.endsWith(".js"));
+const playerFolder = fs.readdirSync("./players").filter((file) => file.endsWith(".js"));
 
 // List all folder in files
 for (const file of playerFolder) {
   // Import event
-  const event = require(`./player/${file}`);
+  const event = require(`./players/${file}`);
 
   // Listen on
   client.player.on(event.name, (...args: any) => event.run(...args));
