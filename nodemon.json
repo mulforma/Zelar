@@ -1,4 +1,4 @@
 {
   "watch": ["."],
-  "ext": "js,json,md,env"
+  "ext": "js,ts,json,md,env"
 }

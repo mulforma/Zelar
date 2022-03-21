@@ -4,8 +4,9 @@ import { SlashCommandBuilder } from "@discordjs/builders";
 import { getUserData } from "../../methods/getUserData";
 // Import Client and CommandInteraction
 import { Client, CommandInteraction } from "discord.js";
-// Import ShopItem
-import { ShopItem } from "../../types/ShopItemData";
+// Import ShopItemData
+import { ShopItemData } from "../../types/ShopItemData";
+// Import InventoryItemData
 import { InventoryItemData } from "../../types/InventoryItemData";
 
 // Export command
@@ -56,7 +57,7 @@ export default {
     }
 
     // Get item from shop
-    const shopItem: Array<ShopItem> = await client.db("officialShop").select("*").where("itemName", item);
+    const shopItem: Array<ShopItemData> = await client.db("officialShop").select("*").where("itemName", item);
 
     // Check if item exists
     if (!shopItem) {
