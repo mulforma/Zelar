@@ -35,7 +35,7 @@ module.exports = {
    * @param {import('discord.js').CommandInteraction} interaction
    * @returns {Promise<void>}
    */
-  async execute(client, interaction) {
+  async execute(client: Client, interaction: CommandInteraction): Promise<void> {
     // Go get a job
     const job = interaction.options.getString("job");
     // Get user data

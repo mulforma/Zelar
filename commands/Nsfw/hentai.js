@@ -31,7 +31,7 @@ module.exports = {
    * @param {import('discord.js').CommandInteraction} interaction
    * @returns {Promise<void>}
    */
-  async execute(client, interaction) {
+  async execute(client: Client, interaction: CommandInteraction): Promise<void> {
     // Check if channel is NSFW
     if (!interaction.channel.nsfw) {
       // Send error message

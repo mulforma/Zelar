@@ -23,7 +23,7 @@ module.exports = {
    * @param {import('discord.js').CommandInteraction} interaction
    * @returns {Promise<void>}
    */
-  async execute(client, interaction) {
+  async execute(client: Client, interaction: CommandInteraction): Promise<void> {
     // Fetch trivia from API
     const response = await axios.get("https://opentdb.com/api.php?amount=1&type=boolean&encode=base64");
     // Set random coin amount

@@ -1,7 +1,7 @@
 // Import SlashCommandBuilder
 const { SlashCommandBuilder } = require("@discordjs/builders");
 // Import MessageActionRow, MessageButton, and MessageEmbed
-const { MessageButton, MessageEmbed } = require("discord.js");
+const { Client, CommandInteraction, MessageButton, MessageEmbed } = require("discord.js");
 
 // Tic-Tac-Toe class
 class TicTacToe {
@@ -77,12 +77,7 @@ module.exports = {
   // Set command category
   category: "Fun",
   // Execute function
-  /**
-   * @param {import("discord.js").Client} client
-   * @param {import("discord.js").CommandInteraction} interaction
-   * @returns {Promise<void>}
-   */
-  async execute(client, interaction) {
+  async execute(client: Client, interaction: CommandInteraction): Promise<void> {
     // Get user if exists
     const user = interaction.options.getUser("user");
     // Player rounds

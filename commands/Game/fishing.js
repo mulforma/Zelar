@@ -23,7 +23,7 @@ module.exports = {
    * @param {import('discord.js').CommandInteraction} interaction
    * @returns {Promise<void>}
    */
-  async execute(client, interaction) {
+  async execute(client: Client, interaction: CommandInteraction): Promise<void> {
     // Get user
     const userData = await getUserData(interaction, client.db, interaction.user.id, interaction.guild.id);
     // Set timeout data to be 2 minutes

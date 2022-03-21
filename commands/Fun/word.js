@@ -4,6 +4,8 @@ const { SlashCommandBuilder } = require("@discordjs/builders");
 const axios = require("axios");
 // Import addCoin
 const addCoin = require("../../methods/addCoin");
+// Import Client, CommandInteraction
+import { Client, CommandInteraction } from "discord.js";
 
 // Export command
 module.exports = {
@@ -32,12 +34,7 @@ module.exports = {
   // Set command category
   category: "Fun",
   // Execute function
-  /**
-   * @param {import("discord.js").Client} client
-   * @param {import("discord.js").CommandInteraction} interaction
-   * @returns {Promise<void>}
-   */
-  async execute(client, interaction) {
+  async execute(client: Client, interaction: CommandInteraction): Promise<void> {
     // GenBlanks function (For filling in the blanks)
     function genBlanks(letter) {
       // Make some letters underscores

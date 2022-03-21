@@ -42,7 +42,7 @@ module.exports = {
         .setRequired(false),
     ),
   category: "Mod",
-  async execute(client, interaction) {
+  async execute(client: Client, interaction: CommandInteraction): Promise<void> {
     // Get the target and time
     const user = await interaction.options.getMember("target");
     const time = interaction.options.getNumber("time");

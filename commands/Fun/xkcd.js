@@ -1,7 +1,7 @@
 // Import SlashCommandBuilder
 const { SlashCommandBuilder } = require("@discordjs/builders");
 // Import MessageEmbed
-const { MessageEmbed } = require("discord.js");
+const { Client, CommandInteraction, MessageEmbed } = require("discord.js");
 // Import axios
 const axios = require("axios");
 
@@ -16,12 +16,7 @@ module.exports = {
   // Set command category
   category: "Fun",
   // Execute function
-  /**
-   * @param {import("discord.js").Client} client
-   * @param {import("discord.js").CommandInteraction} interaction
-   * @returns {Promise<void>}
-   */
-  async execute(client, interaction) {
+  async execute(client: Client, interaction: CommandInteraction): Promise<void> {
     // Get all possible xkcd comics
     const comics = await axios.get("https://xkcd.com/info.0.json");
     // Get random comic
