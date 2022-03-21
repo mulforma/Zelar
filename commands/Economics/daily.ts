@@ -47,7 +47,7 @@ export default {
         .db("user")
         .update("timeout", userData.timeout)
         .where("userId", interaction.user.id)
-        .where("serverId", <string>interaction.guild?.id);
+        .andWhere("serverId", <string>interaction.guild!.id);
       // Send message
       await interaction.reply(`You got ${dailyAmount} coins.\nNow you have ${Number(userData.coin) + dailyAmount} coins.`);
     }

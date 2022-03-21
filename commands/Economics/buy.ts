@@ -41,7 +41,7 @@ export default {
   // Execute function
   async execute(client: Client, interaction: CommandInteraction): Promise<void> {
     // Get user data
-    const user = await getUserData(interaction, client.db, interaction.user.id, <string>interaction.guild?.id);
+    const user = await getUserData(interaction, client.db, interaction.user.id, interaction.guild!.id);
     // Get item
     const item = interaction.options.getString("item");
     // Get amount
@@ -75,7 +75,7 @@ export default {
     await client
       .db("user")
       .where("userId", interaction.user.id)
-      .andWhere("serverId", <string>interaction.guild?.id)
+      .andWhere("serverId", <string>interaction.guild!.id)
       .update({
         coin: Number(user.coin) - Number(shopItem[0].itemPrice) * amount,
       });
@@ -99,7 +99,7 @@ export default {
     }
 
     // Save user data
-    await client.db("user").where("userId", interaction.user.id).andWhere("serverId", <string>interaction.guild?.id).update({
+    await client.db("user").where("userId", interaction.user.id).andWhere("serverId", <string>interaction.guild!.id).update({
       inventory: user.inventory,
     });
 

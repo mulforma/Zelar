@@ -1,4 +1,4 @@
-export interface ShopItem {
+export interface ShopItemData {
   itemId: number;
   itemName: string;
   itemDescription: string;
@@ -6,5 +6,7 @@ export interface ShopItem {
   itemPrice: number;
   itemRarity: number;
   itemType: number;
-  usable: boolean | undefined;
+  usable?: boolean;
+  sellable?: boolean;
+  price?: number;
 }

@@ -1,12 +1,12 @@
 // Import SlashCommandBuilder
-const { SlashCommandBuilder } = require("@discordjs/builders");
+import { SlashCommandBuilder } from "@discordjs/builders";
 // Import getItemData
-const getItemData = require("../../methods/getItemData");
-// Import MessageEmbed
-const { MessageEmbed } = require("discord.js");
+import { getItemData } from "../../methods/getItemData";
+// Import MessageEmbed, CommandInteraction and Client
+import { Client, CommandInteraction, MessageEmbed } from "discord.js";
 
 // Export command
-module.exports = {
+export default {
   // Set command data
   data: new SlashCommandBuilder()
     // Set command name
@@ -26,20 +26,15 @@ module.exports = {
   // Set command category
   category: "Economics",
   // Execute function
-  /**
-   * @param {import('discord.js').Client} client
-   * @param {import('discord.js').CommandInteraction} interaction
-   * @returns {Promise<void>}
-   */
-  async execute(client, interaction) {
+  async execute(client: Client, interaction: CommandInteraction): Promise<void> {
     // Get item name
     const itemName = interaction.options.getString("item");
     // Get item data
-    const itemData = await getItemData(client.db, "itemName", itemName);
+    const itemData = await getItemData(client.db, "itemName", itemName!);
     // Check if item data is empty array
     if (itemData.length === 0) {
       // Send error message
-      interaction.reply("Item not found.");
+      await interaction.reply("Item not found.");
       // Return
       return;
     }
@@ -48,19 +43,19 @@ module.exports = {
       // Set title
       .setTitle(`${itemData[0].itemEmoji} ${itemData[0].itemName}`)
       // Set Thumbnail
-      .setThumbnail(client.user.displayAvatarURL())
+      .setThumbnail(client.user!.displayAvatarURL())
       // Add field
       .addField("Description", itemData[0].itemDescription, true)
-      .addField("ID", itemData[0].itemId, true)
-      .addField("Type", itemData[0].itemType, true)
-      .addField("Rarity", itemData[0].itemRarity, true)
-      .addField("Price", itemData[0].price, true)
+      .addField("ID", String(itemData[0].itemId), true)
+      .addField("Type", String(itemData[0].itemType), true)
+      .addField("Rarity", String(itemData[0].itemRarity), true)
+      .addField("Price", String(itemData[0].price), true)
       .addField("Icon", itemData[0].itemEmoji, true)
-      .addField("Usable?", itemData[0].usable.toString(), true)
-      .addField("Sellable?", itemData[0].sellable.toString(), true)
+      .addField("Usable?", itemData[0].usable!.toString(), true)
+      .addField("Sellable?", itemData[0].sellable!.toString(), true)
       // Set color
       .setColor("BLUE");
     // Send embed
-    interaction.reply({ embeds: [embed] });
+    await interaction.reply({ embeds: [embed] });
   },
 };
