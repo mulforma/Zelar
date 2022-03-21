@@ -1,7 +1,7 @@
 // Import Queue and Track
 import { Queue, Track } from "discord-player";
 
-module.exports = {
+export default {
   name: "trackStart",
   description: "Triggered when a track starts playing",
   async run(queue: Queue<any>, track: Track) {
