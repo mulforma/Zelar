@@ -1,9 +1,9 @@
-// Import Queue
-import { Queue } from "discord-player";
 // Import npmlog
 import * as log from "npmlog";
+// Import Queue
+import { Queue } from "discord-player";
 
-module.exports = {
+export default {
   name: "error",
   description: "Triggered when an error occurs.",
   run(queue: Queue, error: Error): void {
