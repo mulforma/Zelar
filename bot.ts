@@ -9,7 +9,7 @@ import { Player } from "discord-player";
 // Import npmlog
 import * as log from "npmlog";
 // Import knex
-import knex from "./database/connect";
+import { knex } from "./database/connect";
 // Import CommandData
 import { CommandData } from "./types/CommandData";
 
@@ -33,7 +33,7 @@ const commandFolder = fs.readdirSync("./commands");
 // List all folder in files
 for (const folder of commandFolder) {
   // Filter for .js files
-  const commandFiles: Array<String> = fs.readdirSync(`./commands/${folder}`).filter((file) => file.endsWith(".js"));
+  const commandFiles: Array<String> = fs.readdirSync(`./commands/${folder}`).filter((file) => file.endsWith(".ts"));
 
   // List all files in folder
   for (const file of commandFiles) {

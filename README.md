@@ -46,7 +46,7 @@ You can host the bot on your own server, or you can host it on any cloud provide
 installed:
 
 - [Node.js (v16.6.0 or above)](https://nodejs.org/en/)
-- [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/) or [pnpm](https://pnpm.js.org/) or other node package manager
+- [pnpm](https://pnpm.io/) (preferred over npm) or other node package manager
 - [Python 3.6](https://www.python.org/) or above (For `@discordjs/opus` library)
 - [Database (CockroachDB or Postgres)](https://www.cockroachlabs.com/), You can get a free account on [CockroachDB](https://www.cockroachlabs.com/) choosing serverless options.
 - [Docker](https://www.docker.com/) (Optional)
@@ -54,10 +54,10 @@ installed:
 Then install the required dependencies by running this:
 
 ```bash
-$ npm install # or yarn
+$ pnpm install
 ```
 
-Also don't forget to change `.env.example` to `.env` and insert your data Then deploy the command by running
+Also don't forget to change `.env.example` to `.env` and insert your data. Then deploy the command by running
 
 ```bash
 $ node deploy
@@ -66,7 +66,7 @@ $ node deploy
 And run the bot
 
 ```bash
-$ npm start # npm run dev for nodemon
+$ pnpm start # pnpm run dev for development
 ```
 
 ## License

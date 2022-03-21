@@ -5,7 +5,7 @@ import { CommandInteraction } from "discord.js";
 // Import Knex
 import { Knex } from "knex";
 // Import TimeoutCommandData
-import { TimeoutCommandData } from "../types/data/UserData";
+import { TimeoutCommandData } from "../types/UserData";
 
 export const checkTimeout = (interaction: CommandInteraction, db: Knex, cmdName: String, timeoutMs: number, userData: any): boolean => {
   // Get index
