@@ -1,3 +1,6 @@
+// Import Queue
+import { Queue } from "discord-player";
+
 module.exports = {
   name: "trackStart",
   description: "Triggered when a track starts playing",

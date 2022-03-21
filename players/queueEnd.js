@@ -1,3 +1,6 @@
+// Import Queue
+import { Queue } from "discord-player";
+
 module.exports = {
   name: "queueEnd",
   description: "Triggered when a queue ends.",
