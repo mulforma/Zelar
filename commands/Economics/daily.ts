@@ -9,7 +9,7 @@ import ms from "ms";
 import { Client, CommandInteraction } from "discord.js";
 
 // Export command
-module.exports = {
+export default {
   // Set command data
   data: new SlashCommandBuilder()
     // Set command name
