@@ -30,7 +30,7 @@ for (const folder of commandFolder) {
 
 // REST instance
 const rest = new REST({ version: "9" }).setToken(
-  (process.env.NODE_ENV === "production" ? process.env.PROD_TOKEN : process.env.TOKEN) as string,
+  <string>(process.env.NODE_ENV === "production" ? process.env.PROD_TOKEN : process.env.TOKEN),
 );
 
 // Auto execute

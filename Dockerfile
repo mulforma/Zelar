@@ -6,8 +6,8 @@ COPY package*.json ./
 
 RUN apk --no-cache add make python3 g++ gcc
 
-RUN npm install
+RUN npm install pnpm -g
 
 COPY . .
 
-CMD ["npm", "start"]
+CMD ["pnpm", "start"]
