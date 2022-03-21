@@ -4,10 +4,10 @@ import ms from 'ms';
 import { CommandInteraction } from "discord.js";
 // Import Knex
 import { Knex } from "knex";
-// Import TimeoutCommandData
-import { TimeoutCommandData } from "../types/UserData";
+// Import TimeoutCommandData and userData
+import { TimeoutCommandData, UserData } from "../types/UserData";
 
-export const checkTimeout = (interaction: CommandInteraction, db: Knex, cmdName: String, timeoutMs: number, userData: any): boolean => {
+export const checkTimeout = async (interaction: CommandInteraction, db: Knex, cmdName: string, timeoutMs: number, userData: UserData): Promise<boolean> => {
   // Get index
   const index = userData.timeout.commands.findIndex((i: TimeoutCommandData) => i.command === cmdName);
 
@@ -16,14 +16,14 @@ export const checkTimeout = (interaction: CommandInteraction, db: Knex, cmdName:
     // Set timeout
     const timeout = userData.timeout.commands.find((i: TimeoutCommandData) => i.command === cmdName);
     // Check if timeout reaches the end
-    if (Number(timeout.time + timeoutMs) - Date.now() <= 0) {
+    if (Number(timeout!.time + timeoutMs) - Date.now() <= 0) {
       // Update timeout
       userData.timeout.commands[index].time = Date.now();
     } else {
       // Send error message
-      interaction.reply(
+      await interaction.reply(
         `<@${interaction.user.id}> You can use this command again in ${ms(
-          Number(timeout.time) + timeoutMs - Date.now(),
+          Number(timeout!.time) + timeoutMs - Date.now(),
         )}`,
       );
       return true;

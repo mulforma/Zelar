@@ -28,7 +28,7 @@ export default {
   // Set command category
   category: "Economics",
   // Execute function
-  async execute(client: Client, interaction: CommandInteraction) {
+  async execute(client: Client, interaction: CommandInteraction): Promise<void> {
     // Get user
     const user = interaction.options.getUser("target") || interaction.user;
     // Get user balance

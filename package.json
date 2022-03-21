@@ -7,11 +7,17 @@
     "dev": "nodemon",
     "start": "node index",
     "format": "prettier -w .",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "build": "tsc -p .",
+    "postbuild": "pnpm run copy",
+    "copy": "pnpm run copy:assets && pnpm run copy:dotfiles",
+    "copy:assets": "cp -r assets/* dist/assets",
+    "copy:dotfiles": "cp -r .env dist"
   },
   "keywords": [
     "discord-bot"
   ],
+  "type": "module",
   "author": "Tinnaphat \"Tin\" Somsang",
   "license": "Apache-2.0",
   "dependencies": {

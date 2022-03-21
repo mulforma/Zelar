@@ -1,10 +1,15 @@
 // Import SlashCommandBuilder
-const { SlashCommandBuilder } = require("@discordjs/builders");
+import { SlashCommandBuilder } from "@discordjs/builders";
 // Import getUserData
-const getUserData = require("../../methods/getUserData");
+import { getUserData } from "../../methods/getUserData";
+// Import Client and CommandInteraction
+import { Client, CommandInteraction } from "discord.js";
+// Import ShopItem
+import { ShopItem } from "../../types/ShopItemData";
+import { InventoryItemData } from "../../types/InventoryItemData";
 
 // Export command
-module.exports = {
+export default {
   // Set command data
   data: new SlashCommandBuilder()
     // Set command name
@@ -34,29 +39,24 @@ module.exports = {
   // Set command category
   category: "Economics",
   // Execute function
-  /**
-   * @param {import('discord.js').Client} client
-   * @param {import('discord.js').CommandInteraction} interaction
-   * @returns {Promise<void>}
-   */
-  async execute(client, interaction) {
+  async execute(client: Client, interaction: CommandInteraction): Promise<void> {
     // Get user data
-    const user = await getUserData(interaction, client.db, interaction.user.id, interaction.guild.id);
+    const user = await getUserData(interaction, client.db, interaction.user.id, <string>interaction.guild?.id);
     // Get item
     const item = interaction.options.getString("item");
     // Get amount
-    const amount = interaction.options.getInteger("amount");
+    const amount = interaction.options.getInteger("amount")!;
 
     // Check if amount is 0 or less
     if (amount <= 0) {
       // Send error message
-      interaction.reply(`You can't buy 0 ${item}s. The universe is not infinite. Get your head out of the clouds.`);
+      await interaction.reply(`You can't buy 0 ${item}s. The universe is not infinite. Get your head out of the clouds.`);
       // Return
       return;
     }
 
     // Get item from shop
-    const shopItem = await client.db.select("*").from("officialShop").where("itemName", item);
+    const shopItem: Array<ShopItem> = await client.db("officialShop").select("*").where("itemName", item);
 
     // Check if item exists
     if (!shopItem) {
@@ -75,15 +75,15 @@ module.exports = {
     await client
       .db("user")
       .where("userId", interaction.user.id)
-      .andWhere("serverId", interaction.guild.id)
+      .andWhere("serverId", <string>interaction.guild?.id)
       .update({
         coin: Number(user.coin) - Number(shopItem[0].itemPrice) * amount,
       });
 
     // Check if user has item
-    if (user.inventory.items.findIndex((i) => i.name === shopItem[0].itemName)) {
+    if (user.inventory.items.findIndex((i: InventoryItemData) => i.name === shopItem[0].itemName)) {
       // Update items amount
-      user.inventory.items[user.inventory.items.findIndex((i) => i.name === shopItem[0].itemName)].amount += amount;
+      user.inventory.items[user.inventory.items.findIndex((i: InventoryItemData) => i.name === shopItem[0].itemName)].amount += amount;
     } else {
       // Add to inventory
       user.inventory.items.push({
@@ -99,7 +99,7 @@ module.exports = {
     }
 
     // Save user data
-    await client.db("user").where("userId", interaction.user.id).andWhere("serverId", interaction.guild.id).update({
+    await client.db("user").where("userId", interaction.user.id).andWhere("serverId", <string>interaction.guild?.id).update({
       inventory: user.inventory,
     });
 
