@@ -1,10 +1,14 @@
 // Import SlashCommandBuilder
-const { SlashCommandBuilder } = require("@discordjs/builders");
+import { SlashCommandBuilder } from "@discordjs/builders";
+// Import SlashCommandUserOption
+import { SlashCommandUserOption } from "@discordjs/builders";
 // Import MessageEmbed
-const { MessageEmbed } = require("discord.js");
+import { Client, CommandInteraction, MessageEmbed } from "discord.js";
+// Import UserData
+import { UserData } from "../../types/UserData";
 
 // Export command
-module.exports = {
+export default {
   // Set command data
   data: new SlashCommandBuilder()
     // Set command name
@@ -12,7 +16,7 @@ module.exports = {
     // Set command description
     .setDescription("Check your account balance")
     // Add command options
-    .addUserOption((option) =>
+    .addUserOption((option: SlashCommandUserOption) =>
       option
         // Set option name
         .setName("target")
@@ -24,25 +28,19 @@ module.exports = {
   // Set command category
   category: "Economics",
   // Execute function
-  /**
-   * @param {import('discord.js').Client} client
-   * @param {import('discord.js').CommandInteraction} interaction
-   * @returns {Promise<void>}
-   */
-  async execute(client, interaction) {
+  async execute(client: Client, interaction: CommandInteraction) {
     // Get user
     const user = interaction.options.getUser("target") || interaction.user;
     // Get user balance
-    client.db
+    client.db("user")
       .select("coin")
-      .from("user")
       .where("userId", user.id)
-      .andWhere("serverId", interaction.guild.id)
-      .then(async (rows) => {
+      .andWhere("serverId", <string>interaction.guild!.id)
+      .then(async (rows: Array<UserData>) => {
         // Check if user has balance
         if (rows.length === 0) {
           // Send error message
-          interaction.reply(
+          await interaction.reply(
             `Oops! \`${user.username}\`'s profile is not set up yet.\nPlease use \`/profile\` to set up profile.`,
           );
           // Return
@@ -55,9 +53,9 @@ module.exports = {
               .setColor("#0099ff")
               .setTitle(`${user.username}'s balance`)
               .setColor("BLUE")
-              .setThumbnail(user.avatarURL())
-              .addField("💰 Coins", rows[0].coin)
-              .setFooter({ text: `Requested by ${interaction.user.username}`, iconURL: interaction.user.avatarURL() }),
+              .setThumbnail(<string>user.avatarURL())
+              .addField("💰 Coins", String(rows[0].coin))
+              .setFooter({ text: `Requested by ${interaction.user.username}`, iconURL: (<string>interaction.user.avatarURL()) }),
           ],
         });
       });

@@ -41,8 +41,8 @@ const rest = new REST({ version: "9" }).setToken(
 
     const applicationCommands =
       process.env.NODE_ENV === "production"
-        ? Routes.applicationCommands(process.env.PROD_ClientId as string)
-        : Routes.applicationGuildCommands(process.env.ClientId as string, process.env.GuildId as string);
+        ? Routes.applicationCommands(<string>process.env.PROD_ClientId)
+        : Routes.applicationGuildCommands(<string>process.env.ClientId, <string>process.env.GuildId);
 
     // Request put in Discord API
     await rest.put(
@@ -60,6 +60,6 @@ const rest = new REST({ version: "9" }).setToken(
     log.info("", "Successfully reloaded application (/) commands.");
   } catch (error) {
     // Catch error
-    log.error("", (error as string));
+    log.error("", <string>error);
   }
 })();
