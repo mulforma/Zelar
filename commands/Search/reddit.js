@@ -26,11 +26,6 @@ module.exports = {
   // Set command category
   category: "Search",
   // Execute function
-  /**
-   * @param {import('discord.js').Client} client
-   * @param {import('discord.js').CommandInteraction} interaction
-   * @returns {Promise<void>}
-   */
   async execute(client: Client, interaction: CommandInteraction): Promise<void> {
     // Get subreddit
     const subreddit = interaction.options.getString("subreddit");

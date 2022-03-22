@@ -34,11 +34,6 @@ module.exports = {
   // Set command category
   category: "Mod",
   // Execute function
-  /**
-   * @param {import('discord.js').Client} client
-   * @param {import('discord.js').CommandInteraction} interaction
-   * @returns {Promise<void>}
-   */
   async execute(client: Client, interaction: CommandInteraction): Promise<void> {
     // Get options value (target)
     const user = await /** @type {import('discord.js').GuildMember} */ (interaction.options.getMember("target"));

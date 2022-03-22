@@ -30,11 +30,6 @@ module.exports = {
   // Set command category
   category: "Profile",
   // Execute function
-  /**
-   * @param {import('discord.js').Client} client
-   * @param {import('discord.js').CommandInteraction} interaction
-   * @returns {Promise<void>}
-   */
   async execute(client: Client, interaction: CommandInteraction): Promise<void> {
     // Go get a job
     const job = interaction.options.getString("job");

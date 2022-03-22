@@ -16,11 +16,6 @@ module.exports = {
   // Set command category
   category: "Game",
   // Execute function
-  /**
-   * @param {import('discord.js').Client} client
-   * @param {import('discord.js').CommandInteraction} interaction
-   * @returns {Promise<void>}
-   */
   async execute(client: Client, interaction: CommandInteraction): Promise<void> {
     // Set variables
     const rps = ["rock", "paper", "scissors"];

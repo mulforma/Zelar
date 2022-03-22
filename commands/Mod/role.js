@@ -70,11 +70,6 @@ module.exports = {
   // Command category
   category: "Mod",
   // Command run function
-  /**
-   * @param {import('discord.js').Client} client
-   * @param {import('discord.js').CommandInteraction} interaction
-   * @returns {Promise<void>}
-   */
   async execute(client: Client, interaction: CommandInteraction): Promise<void> {
     // Check if user has permission to use command
     if (!interaction.member.permissions.has(Permissions.FLAGS.MANAGE_ROLES)) {

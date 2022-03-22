@@ -24,11 +24,6 @@ module.exports = {
   // Command category
   category: "Mod",
   // Command run function
-  /**
-   * @param {import('discord.js').Client} client
-   * @param {import('discord.js').CommandInteraction} interaction
-   * @returns {Promise<void>}
-   */
   async execute(client: Client, interaction: CommandInteraction): Promise<void> {
     // Check if user has permission to ban members
     if (!interaction.member.permissions.has(Permissions.FLAGS.BAN_MEMBERS)) {

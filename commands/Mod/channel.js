@@ -90,11 +90,6 @@ module.exports = {
   // Set command category
   category: "Mod",
   // Execute function
-  /**
-   * @param {import('discord.js').Client} client
-   * @param {import('discord.js').CommandInteraction} interaction
-   * @returns {Promise<void>}
-   */
   async execute(client: Client, interaction: CommandInteraction): Promise<void> {
     // Get subcommand
     const subcommand = interaction.options.getSubcommand();
