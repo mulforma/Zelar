@@ -10,7 +10,7 @@ const ms = require("ms");
 const checkTimeout = require("../../methods/checkTimeout");
 
 // Export command
-module.exports = {
+export default {
   // Set command data
   data: new SlashCommandBuilder()
     // Set command name

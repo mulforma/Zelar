@@ -4,7 +4,7 @@ const { SlashCommandBuilder } = require("@discordjs/builders");
 const Canvas = require("canvas");
 
 // Export command
-module.exports = {
+export default {
   // Set command data
   data: new SlashCommandBuilder()
     // Set command name

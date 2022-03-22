@@ -10,7 +10,7 @@ const os = require("os");
 const ipInfo = require("ipinfo");
 
 // Export command
-module.exports = {
+export default {
   // Set command data
   data: new SlashCommandBuilder()
     // Set command name

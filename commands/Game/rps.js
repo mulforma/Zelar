@@ -6,7 +6,7 @@ const { MessageActionRow, MessageButton } = require("discord.js");
 const addCoin = require("../../methods/addCoin");
 
 // Export command
-module.exports = {
+export default {
   // Set command data
   data: new SlashCommandBuilder()
     // Set command name

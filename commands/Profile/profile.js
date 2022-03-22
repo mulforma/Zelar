@@ -6,7 +6,7 @@ const { MessageEmbed } = require("discord.js");
 const getItemData = require("../../methods/getItemData");
 
 // Export command
-module.exports = {
+export default {
   // Set command data
   data: new SlashCommandBuilder()
     // Set command name

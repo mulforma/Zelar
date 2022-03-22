@@ -14,7 +14,7 @@ const rating = {
 };
 
 // Export command
-module.exports = {
+export default {
   // Set command data
   data: new SlashCommandBuilder()
     // Set command name

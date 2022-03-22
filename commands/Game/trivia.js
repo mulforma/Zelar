@@ -8,7 +8,7 @@ const { MessageEmbed, MessageActionRow, MessageButton } = require("discord.js");
 const log = require("npmlog");
 
 // Export command
-module.exports = {
+export default {
   // Command data
   data: new SlashCommandBuilder()
     // Command name

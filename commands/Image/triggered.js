@@ -6,7 +6,7 @@ const { MessageEmbed } = require("discord.js");
 const DIG = require("discord-image-generation");
 
 // Export command
-module.exports = {
+export default {
   // Set command data
   data: new SlashCommandBuilder()
     // Set command name

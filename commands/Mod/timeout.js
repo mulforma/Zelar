@@ -4,7 +4,7 @@ const { SlashCommandBuilder } = require("@discordjs/builders");
 const { Permissions, MessageActionRow, MessageButton } = require("discord.js");
 
 // Export command
-module.exports = {
+export default {
   // Command name
   data: new SlashCommandBuilder()
     // Command name

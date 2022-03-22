@@ -3,7 +3,7 @@ const { SlashCommandBuilder } = require("@discordjs/builders");
 const { MessageActionRow, MessageButton, MessageEmbed } = require("discord.js");
 
 // Export command
-module.exports = {
+export default {
   // Set command data
   data: new SlashCommandBuilder()
     // Set command name
