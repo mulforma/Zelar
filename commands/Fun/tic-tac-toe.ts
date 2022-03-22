@@ -1,7 +1,14 @@
 // Import SlashCommandBuilder
 import { SlashCommandBuilder, SlashCommandUserOption } from "@discordjs/builders";
 // Import MessageActionRow, MessageButton, and MessageEmbed
-import { Client, CommandInteraction, MessageButton, MessageComponentInteraction, MessageEmbed } from "discord.js";
+import {
+  CacheType,
+  Client,
+  CommandInteraction,
+  MessageButton,
+  MessageComponentInteraction,
+  MessageEmbed,
+} from "discord.js";
 
 // Tic-Tac-Toe class
 class TicTacToe {
@@ -49,17 +56,10 @@ class TicTacToe {
     // If player is not finished
     return 0;
   }
-  reset() {
-    this.board = [
-      [0, 0, 0],
-      [0, 0, 0],
-      [0, 0, 0],
-    ];
-  }
 }
 
 // Export command
-module.exports = {
+export default {
   // Set command data
   data: new SlashCommandBuilder()
     // Set command name
@@ -148,8 +148,9 @@ module.exports = {
       time: 30000,
     });
     // On collect
+
     // @ts-ignore
-    collector.on("collect", async (i: MessageComponentInteraction) => {
+    collector.on("collect", async (i: MessageComponentInteraction<CacheType>) => {
       // Defer update
       await i.deferUpdate();
       // Get button id
