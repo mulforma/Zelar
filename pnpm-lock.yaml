@@ -18,7 +18,6 @@ specifiers:
   dotenv: ^16.0.0
   eslint: ^8.11.0
   ffmpeg-static: ^4.4.1
-  ipinfo: ^1.5.1
   jimp: ^0.16.1
   knex: ^1.0.3
   ms: ^2.1.3
@@ -44,7 +43,6 @@ dependencies:
   discord.js: 13.6.0
   dotenv: 16.0.0
   ffmpeg-static: 4.4.1
-  ipinfo: 1.5.1
   jimp: 0.16.1
   knex: 1.0.4_pg@8.7.3
   ms: 2.1.3
@@ -899,13 +897,6 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /assured/1.0.15:
-    resolution: {integrity: sha512-EVb4T+6m5VdlTJ6gbv4WjBM1rHfzXP2BspsQ6VLswcnIQSabjJy7A9YEuG4/KmfF+9OEuT5xhqVJ+V1tClD5ww==}
-    dependencies:
-      noop6: 1.0.9
-      sliced: 1.0.1
-    dev: false
-
   /asynckit/0.4.0:
     resolution: {integrity: sha1-x57Zf380y48robyXkLzDZkdLS3k=}
     dev: false
@@ -1244,12 +1235,6 @@ packages:
 
   /defer-to-connect/1.1.3:
     resolution: {integrity: sha512-0ISdNousHvZT2EiFlZeZAHBUvSxmKswVCEf8hW7KWgG4a8MVEu/3Vb6uWYozkjylyCxe0JBIiRB1jV45S70WVQ==}
-    dev: false
-
-  /deffy/2.2.4:
-    resolution: {integrity: sha512-pLc9lsbsWjr6RxmJ2OLyvm+9l4j1yK69h+TML/gUit/t3vTijpkNGh8LioaJYTGO7F25m6HZndADcUOo2PsiUg==}
-    dependencies:
-      typpy: 2.3.13
     dev: false
 
   /delayed-stream/1.0.0:
@@ -1682,12 +1667,6 @@ packages:
     resolution: {integrity: sha512-yIovAzMX49sF8Yl58fSCWJ5svSLuaibPxXQJFLmBObTuCr0Mf1KiPopGM9NiFjiYBCbfaa2Fh6breQ6ANVTI0A==}
     dev: false
 
-  /function.name/1.0.13:
-    resolution: {integrity: sha512-mVrqdoy5npWZyoXl4DxCeuVF6delDcQjVS9aPdvLYlBxtMTZDR2B5GVEQEoM1jJyspCqg3C0v4ABkLE7tp9xFA==}
-    dependencies:
-      noop6: 1.0.9
-    dev: false
-
   /functional-red-black-tree/1.0.1:
     resolution: {integrity: sha1-GwqzvVU7Kg1jmdKcDj6gslIHgyc=}
     dev: true
@@ -1949,15 +1928,6 @@ packages:
     engines: {node: '>= 0.10'}
     dev: false
 
-  /ipinfo/1.5.1:
-    resolution: {integrity: sha512-nFAmVk3l14MojQ2nn22Tb8v5eaB5xqWdMICzNK+Kui4e0PfixQAmLbdcI1R1AF1pgKkwn0VMylmks6I/Cj2Kvw==}
-    engines: {node: '>=4'}
-    dependencies:
-      jsonrequest: 4.2.6
-    transitivePeerDependencies:
-      - debug
-    dev: false
-
   /is-binary-path/2.1.0:
     resolution: {integrity: sha512-ZMERYes6pDydyuGidse7OsHxtbI7WVeUEozgR/g7rd0xUimYNlvZRE/K2MgZTjWy725IfelLeVcEM97mmtRGXw==}
     engines: {node: '>=8'}
@@ -2072,16 +2042,6 @@ packages:
   /json-stable-stringify-without-jsonify/1.0.1:
     resolution: {integrity: sha1-nbe1lJatPzz+8wp1FC0tkwrXJlE=}
     dev: true
-
-  /jsonrequest/4.2.6:
-    resolution: {integrity: sha512-/icyab0LIq9158C/djgV4bxbqGKDoGjsZ1UqhI6WMEYHRk4sbAlsgsiUltoMZi66Ea6iogIpy32qqkkdLtswPg==}
-    dependencies:
-      noop6: 1.0.9
-      tinyreq: 3.4.2
-      ul: 5.2.15
-    transitivePeerDependencies:
-      - debug
-    dev: false
 
   /keyv/3.1.0:
     resolution: {integrity: sha512-9ykJ/46SN/9KPM/sichzQ7OvXyGDYKGTaDlKMGCAlg2UK8KRy4jb0d8sFc+0Tt0YYnThq8X2RZgCg74RPxgcVA==}
@@ -2348,10 +2308,6 @@ packages:
       touch: 3.1.0
       undefsafe: 2.0.5
       update-notifier: 5.1.0
-    dev: false
-
-  /noop6/1.0.9:
-    resolution: {integrity: sha512-DB3Hwyd89dPr5HqEPg3YHjzvwh/mCqizC1zZ8vyofqc+TQRyPDnT4wgXXbLGF4z9YAzwwTLi8pNLhGqcbSjgkA==}
     dev: false
 
   /nopt/1.0.10:
@@ -2870,10 +2826,6 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /sliced/1.0.1:
-    resolution: {integrity: sha1-CzpmK10Ewxd7GSa+qCsD+Dei70E=}
-    dev: false
-
   /soundcloud-scraper/5.0.2:
     resolution: {integrity: sha512-QAPvRIG4eefc7JdmCQCG/QEhm4D90XgHbe9lJMHmKIxU0INdAD2LycUR1m0mCIKF3F2dk4NvGEkxGfVLI8Af+A==}
     dependencies:
@@ -2998,17 +2950,6 @@ packages:
     resolution: {integrity: sha512-vJhccZPs965sV/L2sU4oRQVAos0pQXwsvTLkWYdqJ+a8Q5kPFzJTuOFwy7UniPli44NKQGAglksjvOcpo95aZA==}
     dev: false
 
-  /tinyreq/3.4.2:
-    resolution: {integrity: sha512-VHl9n2w2t1HD9ftvbmYMA99g/yeioIRhpxT5cazb/jo2Vld5ZtPEVW4PhBFgNXjdL2ch8j6z0cawDCF7eIFZsQ==}
-    dependencies:
-      assured: 1.0.15
-      follow-redirects: 1.14.9
-      noop6: 1.0.9
-      ul: 5.2.15
-    transitivePeerDependencies:
-      - debug
-    dev: false
-
   /tinyurl/1.1.7:
     resolution: {integrity: sha512-NCnyDkBTByS/pLH/Vrx/DPL8EciAUDoAvruaM/WnQLfX6Uame3D1nuWNy2Z9CXw7rcsok0tjuonRLolhmyz5rg==}
     deprecated: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
@@ -3084,19 +3025,6 @@ packages:
     engines: {node: '>=4.2.0'}
     hasBin: true
     dev: true
-
-  /typpy/2.3.13:
-    resolution: {integrity: sha512-vOxIcQz9sxHi+rT09SJ5aDgVgrPppQjwnnayTrMye1ODaU8gIZTDM19t9TxmEElbMihx2Nq/0/b/MtyKfayRqA==}
-    dependencies:
-      function.name: 1.0.13
-    dev: false
-
-  /ul/5.2.15:
-    resolution: {integrity: sha512-svLEUy8xSCip5IWnsRa0UOg+2zP0Wsj4qlbjTmX6GJSmvKMHADBuHOm1dpNkWqWPIGuVSqzUkV3Cris5JrlTRQ==}
-    dependencies:
-      deffy: 2.2.4
-      typpy: 2.3.13
-    dev: false
 
   /undefsafe/2.0.5:
     resolution: {integrity: sha512-WxONCrssBM8TSPRqN5EmsjVrsv4A8X12J4ArBiiayv3DyyG3ZlIg6yysuuSYdZsVz3TKcTg2fd//Ujd4CHV1iA==}
