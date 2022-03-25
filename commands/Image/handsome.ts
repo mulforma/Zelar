@@ -5,7 +5,6 @@ import Canvas from "canvas";
 // Import Client and CommandInteraction
 import { Client, CommandInteraction } from "discord.js";
 
-
 // Export command
 export default {
   // Set command data

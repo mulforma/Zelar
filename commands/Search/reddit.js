@@ -26,17 +26,17 @@ export default {
   // Set command category
   category: "Search",
   // Execute function
-  async execute (client : Client, interaction : CommandInteraction) : Promise<void> {
+  async execute(client: Client, interaction: CommandInteraction): Promise<void> {
     // Get subreddit
     const subreddit = interaction.options.getString("subreddit");
-    
+
     // Fetches the subreddit
     try {
       const { data } = await axios.get(`https://www.reddit.com/r/${subreddit}.json`);
-      
+
       // Get random post
       const post = data.data.children[Math.floor(Math.random() * data.data.children.length)].data;
-      
+
       // Create embed
       const embed = new MessageEmbed()
         // Set title
@@ -51,15 +51,13 @@ export default {
         .setTimestamp(new Date(post.created_utc * 1000))
         // Set image
         .setImage(post.url || post.thumbnail);
-      
+
       // Send embed
       await interaction.reply({ embeds: [embed] });
     } catch (e) {
       // Send error message
       return interaction.reply({
-        embeds: [new MessageEmbed().setColor("#ff0000")
-          .setTitle("Error")
-          .setDescription("Subreddit not found")],
+        embeds: [new MessageEmbed().setColor("#ff0000").setTitle("Error").setDescription("Subreddit not found")],
       });
     }
   },

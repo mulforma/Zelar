@@ -5,6 +5,6 @@ export interface InventoryItemData {
   id: number;
   name: string;
   rarity: "Common" | "Uncommon" | "Rare" | "Very Rare" | "Epic" | "Legendary";
-  type: string,
+  type: string;
   usable: boolean;
 }

@@ -49,7 +49,9 @@ export default {
       // Check if user has this fish in inventory, If yes, add 1 to amount
       if (userData.inventory.items.findIndex((i: InventoryItemData) => i.id === fish[0].id) !== -1) {
         // Add 1 to amount
-        userData.inventory.items[userData.inventory.items.findIndex((i: InventoryItemData) => i.id === fish[0].id)].amount += 1;
+        userData.inventory.items[
+          userData.inventory.items.findIndex((i: InventoryItemData) => i.id === fish[0].id)
+        ].amount += 1;
       } else {
         // Add fish to inventory
         userData.inventory.items.push({

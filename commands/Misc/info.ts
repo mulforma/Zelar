@@ -42,19 +42,18 @@ export default {
   // Set command category
   category: "Misc",
   // Execute command function
-  async execute (client: Client, interaction : CommandInteraction) : Promise<void> {
+  async execute(client: Client, interaction: CommandInteraction): Promise<void> {
     // Function getUserBannerUrl
-    async function getUserBannerUrl (userId: string) {
+    async function getUserBannerUrl(userId: string) {
       // Get user from userId
-      const user = await client.users.cache.get(userId)!
-        .fetch();
+      const user = await client.users.cache.get(userId)!.fetch();
       // Return user banner
       return user.banner
         ? // Check if there is banner, if not, return default image
-        `https://cdn.discordapp.com/banners/${userId}/${user.banner}?size=512`
+          `https://cdn.discordapp.com/banners/${userId}/${user.banner}?size=512`
         : "https://i.redd.it/pyeuy7iyfw961.png";
     }
-    
+
     // If user call subcommand 'member'
     if (interaction.options.getSubcommand() === "member") {
       // Get GuildMember from target user
@@ -78,10 +77,10 @@ export default {
         .setThumbnail(<string>member.user.avatarURL({ dynamic: false }))
         // Set image as user banner
         .setImage(await getUserBannerUrl(member.user.id.toString()));
-      
+
       // Reply message with embed
       await interaction.reply({ embeds: [embed] });
-      
+
       // If user call subcommand 'server'
     } else if (interaction.options.getSubcommand() === "server") {
       // Fetch this server data

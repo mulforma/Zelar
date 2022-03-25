@@ -9,11 +9,11 @@ export interface UserData {
   jobs: string;
   timeout: {
     commands: Array<TimeoutCommandData>;
-  },
+  };
   inventory: {
     items: Array<InventoryItemData>;
-  },
-  id: number
+  };
+  id: number;
 }
 
 export interface TimeoutCommandData {

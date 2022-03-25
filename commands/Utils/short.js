@@ -24,14 +24,14 @@ export default {
   // Set command category
   category: "Utils",
   // Execute function
-  async execute (client : Client, interaction : CommandInteraction) : Promise<void> {
+  async execute(client: Client, interaction: CommandInteraction): Promise<void> {
     // Get url
     const url = interaction.options.getString("url");
-    
+
     // Shorten url
     const shortUrl = await tinyURL.shorten(url);
-    
+
     // Send message
-    await interaction.reply({ content: /**@type String*/ ( shortUrl === "Error" ? "Something went wrong" : shortUrl ) });
+    await interaction.reply({ content: /**@type String*/ (shortUrl === "Error" ? "Something went wrong" : shortUrl) });
   },
 };

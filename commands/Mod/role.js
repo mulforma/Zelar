@@ -70,7 +70,7 @@ export default {
   // Command category
   category: "Mod",
   // Command run function
-  async execute (client : Client, interaction : CommandInteraction) : Promise<void> {
+  async execute(client: Client, interaction: CommandInteraction): Promise<void> {
     // Check if user has permission to use command
     if (!interaction.member.permissions.has(Permissions.FLAGS.MANAGE_ROLES)) {
       // Send error message
@@ -82,7 +82,7 @@ export default {
     // Get role and target
     const role = interaction.options.getRole("role");
     const member = interaction.options.getMember("target");
-    
+
     // If subcommand is give
     if (interaction.options.getSubcommand() === "give") {
       // Add role to member

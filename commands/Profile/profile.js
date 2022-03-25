@@ -26,7 +26,7 @@ export default {
   // Set command category
   category: "Profile",
   // Execute function
-  async execute (client : Client, interaction : CommandInteraction) : Promise<void> {
+  async execute(client: Client, interaction: CommandInteraction): Promise<void> {
     // Get user
     const { user } = interaction;
     // Get target
@@ -35,7 +35,7 @@ export default {
     const profile = await client.db
       .select("*")
       .from("user")
-      .where("userId", ( target || user ).id)
+      .where("userId", (target || user).id)
       .andWhere("serverId", interaction.guild.id);
     // Check if profile exists
     if (!profile.length) {
@@ -43,29 +43,28 @@ export default {
         return interaction.reply("This user has not set up a profile yet.");
       }
       // Create profile
-      await client.db("user")
-        .insert({
-          userId: user.id,
-          serverId: interaction.guild.id,
-          level: 1,
-          xp: 0,
-          coin: 0,
-          inventory: {
-            items: [
-              {
-                amount: 1,
-                description: "Redeem this for 1,000 coins",
-                emoji: "<:wumpcoin:889984011865292800>",
-                id: "738262744737972226",
-                name: "$2000 Coupon",
-                rarity: "Very rare",
-                type: "Collectable.Coupon",
-                usable: true,
-              },
-            ],
-          },
-          timeout: { commands: [], daily: 0, weekly: 0 },
-        });
+      await client.db("user").insert({
+        userId: user.id,
+        serverId: interaction.guild.id,
+        level: 1,
+        xp: 0,
+        coin: 0,
+        inventory: {
+          items: [
+            {
+              amount: 1,
+              description: "Redeem this for 1,000 coins",
+              emoji: "<:wumpcoin:889984011865292800>",
+              id: "738262744737972226",
+              name: "$2000 Coupon",
+              rarity: "Very rare",
+              type: "Collectable.Coupon",
+              usable: true,
+            },
+          ],
+        },
+        timeout: { commands: [], daily: 0, weekly: 0 },
+      });
       // Send message
       interaction.reply("Your profile has been created.");
     } else {
@@ -85,9 +84,9 @@ export default {
       interaction.reply({
         embeds: [
           new MessageEmbed()
-            .setTitle(`${( target || user ).username}'s profile`)
+            .setTitle(`${(target || user).username}'s profile`)
             .setColor("BLUE")
-            .setThumbnail(( target || user ).displayAvatarURL({ dynamic: true }))
+            .setThumbnail((target || user).displayAvatarURL({ dynamic: true }))
             .addField("🔼 Levels", profile[0].level)
             .addField("✨ XPs", profile[0].xp)
             .addField("💰 Coins", profile[0].coin)

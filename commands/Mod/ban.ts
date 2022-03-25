@@ -6,7 +6,8 @@ import {
   CommandInteraction,
   GuildMember,
   MessageActionRow,
-  MessageButton, MessageComponentInteraction,
+  MessageButton,
+  MessageComponentInteraction,
   Permissions,
 } from "discord.js";
 
@@ -41,7 +42,7 @@ export default {
   // Set command category
   category: "Mod",
   // Execute function
-  async execute (client: Client, interaction: CommandInteraction) : Promise<void> {
+  async execute(client: Client, interaction: CommandInteraction): Promise<void> {
     // Get options value (target)
     const user = <GuildMember>await interaction.options.getMember("target");
     // Interaction member

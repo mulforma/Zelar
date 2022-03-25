@@ -22,12 +22,12 @@ export default {
   // Set command category
   category: "Music",
   // Execute function
-  async execute (client : Client, interaction : CommandInteraction) : Promise<void> {
+  async execute(client: Client, interaction: CommandInteraction): Promise<void> {
     // Get queue
     const queue = client.player.getQueue(interaction.guild.id);
     // Get track number
     const trackNumber = interaction.options.getNumber("track-number") - 1;
-    
+
     // Check if queue is empty
     if (!queue) {
       // Send error message
@@ -35,10 +35,10 @@ export default {
         content: "There is no song playing.",
       });
     }
-    
+
     // Remove song
     const success = queue.remove(trackNumber);
-    
+
     // Check if skip was successful
     if (success) {
       // Send success message

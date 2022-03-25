@@ -29,25 +29,18 @@ export default {
   // Set command category
   category: "Profile",
   // Execute function
-  async execute (client : Client, interaction : CommandInteraction) : Promise<void> {
+  async execute(client: Client, interaction: CommandInteraction): Promise<void> {
     // Get leaderboard scope
     const scope = interaction.options.getSubcommand() || "global";
     // Get leaderboard
-    const leaderboard = await ( scope === "global"
-      ? client.db.select("*")
-        .from("user")
-        .orderBy("coin", "desc")
-        .limit(100)
-      : client.db.select("*")
-        .from("user")
-        .where("serverId", interaction.guild.id)
-        .orderBy("coin", "desc")
-        .limit(100) );
-    
+    const leaderboard = await (scope === "global"
+      ? client.db.select("*").from("user").orderBy("coin", "desc").limit(100)
+      : client.db.select("*").from("user").where("serverId", interaction.guild.id).orderBy("coin", "desc").limit(100));
+
     // Set items start and end
     let itemsStart = 0;
     let itemsEnd = 5;
-    
+
     // Add message components
     const arrowButtons = new MessageActionRow().addComponents(
       // Add button
@@ -96,12 +89,12 @@ export default {
       embeds: [embed],
       components: [arrowButtons],
     });
-    
+
     // Filter for answer buttons
     const filter = (i) =>
       // Check if id is Confirm and if it is the same user
-      ( i.customId === "Next" || i.customId === "Previous" ) && i.user.id === interaction.user.id;
-    
+      (i.customId === "Next" || i.customId === "Previous") && i.user.id === interaction.user.id;
+
     // Start message collector
     const collector = interaction.channel.createMessageComponentCollector({
       // Add filter
@@ -109,7 +102,7 @@ export default {
       // Set collector timeout (60 seconds)
       time: 60000,
     });
-    
+
     // On collector start
     collector.on("collect", async (/** @type {import("discord.js").MessageComponentInteraction}*/ i) => {
       // Defer Update

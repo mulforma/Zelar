@@ -50,7 +50,9 @@ export default {
         .where("userId", interaction.user.id)
         .where("serverId", <string>interaction.guild!.id);
       // Send message
-      await interaction.reply(`You got ${weeklyAmount} coins.\nNow you have ${Number(userData.coin) + weeklyAmount} coins.`);
+      await interaction.reply(
+        `You got ${weeklyAmount} coins.\nNow you have ${Number(userData.coin) + weeklyAmount} coins.`,
+      );
     }
   },
 };

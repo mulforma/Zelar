@@ -14,10 +14,10 @@ export default {
   // Set command category
   category: "Music",
   // Execute function
-  async execute (client : Client, interaction : CommandInteraction) : Promise<void> {
+  async execute(client: Client, interaction: CommandInteraction): Promise<void> {
     // Get queue
     const queue = client.player.getQueue(interaction.guild.id);
-    
+
     // If queue is empty
     if (!queue) {
       // Send error message
@@ -25,10 +25,10 @@ export default {
         content: "There is no song playing.",
       });
     }
-    
+
     // Loop methods
     const loopMethods = ["None", "Track", "Queue"];
-    
+
     // Create embed
     const embed = new MessageEmbed()
       // Set title
@@ -41,7 +41,7 @@ export default {
       .setDescription(`${queue.current.author} - ${queue.current.duration} (Loop ${loopMethods[queue.repeatMode]})`)
       // Set footer
       .setFooter({ text: `Requested by ${queue.current.requestedBy.tag}` });
-    
+
     // Send embed
     await interaction.reply({ embeds: [embed] });
   },

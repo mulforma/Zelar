@@ -51,7 +51,9 @@ export default {
     // Check if amount is 0 or less
     if (amount <= 0) {
       // Send error message
-      await interaction.reply(`You can't buy 0 ${item}s. The universe is not infinite. Get your head out of the clouds.`);
+      await interaction.reply(
+        `You can't buy 0 ${item}s. The universe is not infinite. Get your head out of the clouds.`,
+      );
       // Return
       return;
     }
@@ -84,7 +86,9 @@ export default {
     // Check if user has item
     if (user.inventory.items.findIndex((i: InventoryItemData) => i.name === shopItem[0].itemName)) {
       // Update items amount
-      user.inventory.items[user.inventory.items.findIndex((i: InventoryItemData) => i.name === shopItem[0].itemName)].amount += amount;
+      user.inventory.items[
+        user.inventory.items.findIndex((i: InventoryItemData) => i.name === shopItem[0].itemName)
+      ].amount += amount;
     } else {
       // Add to inventory
       user.inventory.items.push({
@@ -100,9 +104,13 @@ export default {
     }
 
     // Save user data
-    await client.db("user").where("userId", interaction.user.id).andWhere("serverId", <string>interaction.guild!.id).update({
-      inventory: user.inventory,
-    });
+    await client
+      .db("user")
+      .where("userId", interaction.user.id)
+      .andWhere("serverId", <string>interaction.guild!.id)
+      .update({
+        inventory: user.inventory,
+      });
 
     // Reply with success
     return interaction.reply(`You bought ${shopItem[0].itemName} for ${Number(shopItem[0].itemPrice) * amount} coins.`);

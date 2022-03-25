@@ -50,7 +50,9 @@ export default {
     // Check if user already has a timeout
     if (userData.timeout.commands.findIndex((i: TimeoutCommandData) => i.command === "work") !== -1) {
       // Update timeout
-      userData.timeout.commands[userData.timeout.commands.findIndex((i: TimeoutCommandData) => i.command === "work")].timeout = Date.now();
+      userData.timeout.commands[
+        userData.timeout.commands.findIndex((i: TimeoutCommandData) => i.command === "work")
+      ].timeout = Date.now();
     }
 
     // Add timeout

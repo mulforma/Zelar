@@ -24,7 +24,7 @@ export default {
   // Command category
   category: "Utils",
   // Command run function
-  async execute (client : Client, interaction : CommandInteraction) : Promise<void> {
+  async execute(client: Client, interaction: CommandInteraction): Promise<void> {
     // Check if user has permission to use command
     if (!interaction.member.permissions.has(Permissions.FLAGS.MANAGE_MESSAGES)) {
       // Send error message
@@ -35,7 +35,7 @@ export default {
     }
     // Get amount from option
     const amount = interaction.options.getNumber("amount");
-    
+
     // Check if amount is more than 100
     if (amount > 100) {
       // Send error message
@@ -52,15 +52,14 @@ export default {
         ephemeral: true,
       });
     }
-    
+
     // Delete message
-    await interaction.channel.bulkDelete(amount)
-      .then(async () => {
-        // Send success message
-        await interaction.reply({
-          content: `Successfully deleted ${amount} messages`,
-          ephemeral: true,
-        });
+    await interaction.channel.bulkDelete(amount).then(async () => {
+      // Send success message
+      await interaction.reply({
+        content: `Successfully deleted ${amount} messages`,
+        ephemeral: true,
       });
+    });
   },
 };

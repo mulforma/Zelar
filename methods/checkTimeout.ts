@@ -1,5 +1,5 @@
 // Import ms
-import ms from 'ms';
+import ms from "ms";
 // Import CommandInteraction
 import { CommandInteraction } from "discord.js";
 // Import Knex
@@ -7,7 +7,13 @@ import { Knex } from "knex";
 // Import TimeoutCommandData and userData
 import { TimeoutCommandData, UserData } from "../types/UserData";
 
-export const checkTimeout = async (interaction: CommandInteraction, db: Knex, cmdName: string, timeoutMs: number, userData: UserData): Promise<boolean> => {
+export const checkTimeout = async (
+  interaction: CommandInteraction,
+  db: Knex,
+  cmdName: string,
+  timeoutMs: number,
+  userData: UserData,
+): Promise<boolean> => {
   // Get index
   const index = userData.timeout.commands.findIndex((i: TimeoutCommandData) => i.command === cmdName);
 

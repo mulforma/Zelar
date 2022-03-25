@@ -30,7 +30,8 @@ export default {
     // Get user
     const user = interaction.options.getUser("target") || interaction.user;
     // Get user balance
-    client.db("user")
+    client
+      .db("user")
       .select("coin")
       .where("userId", user.id)
       .andWhere("serverId", <string>interaction.guild!.id)
@@ -55,7 +56,7 @@ export default {
               .addField("💰 Coins", String(rows[0].coin))
               .setFooter({
                 text: `Requested by ${interaction.user.username}`,
-                iconURL: (<string>interaction.user.avatarURL()),
+                iconURL: <string>interaction.user.avatarURL(),
               }),
           ],
         });
