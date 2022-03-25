@@ -1,5 +1,5 @@
 // Import SlashCommandBuilder
-const { SlashCommandBuilder } = require("@discordjs/builders");
+import { SlashCommandBuilder } from "@discordjs/builders";
 // Import Client and CommandInteraction
 import { Client, CommandInteraction, Message } from "discord.js";
 
