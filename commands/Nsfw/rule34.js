@@ -26,30 +26,33 @@ export default {
   // Set command category
   category: "Nsfw",
   // Execute function
-  async execute(client: Client, interaction: CommandInteraction): Promise<void> {
+  async execute (client : Client, interaction : CommandInteraction) : Promise<void> {
     // Check if channel is NSFW
     if (!interaction.channel.nsfw) {
       // Send error message
       await interaction.reply({
-        embeds: [new MessageEmbed().setColor("#ff0000").setDescription("This channel is not NSFW")],
+        embeds: [new MessageEmbed().setColor("#ff0000")
+          .setDescription("This channel is not NSFW")],
       });
       // Return
       return;
     }
-
+    
     // Get tags
     const tags = interaction.options.getString("tag")
       ? // If tag is undefined
-        interaction.options.getString("tag").split(",").join("+")
+      interaction.options.getString("tag")
+        .split(",")
+        .join("+")
       : // Else
-        "";
-
+      "";
+    
     // Fetch random image
     const { data } = await axios.get(`https://rule34.xxx/index.php?page=dapi&s=post&q=index&tags=${tags}&json=1`);
-
+    
     // Get random image
     const image = data[Math.floor(Math.random() * data.length)];
-
+    
     // Send image
     await interaction.reply({
       embeds: [

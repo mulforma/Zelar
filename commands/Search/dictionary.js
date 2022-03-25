@@ -1,5 +1,6 @@
 // Load env
-require("dotenv").config();
+require("dotenv")
+  .config();
 // Import SlashCommandBuilder
 const { SlashCommandBuilder } = require("@discordjs/builders");
 // Import MessageEmbed from discord.js
@@ -55,10 +56,10 @@ export default {
   // Set command category
   category: "Search",
   // Execute function
-  async execute(client: Client, interaction: CommandInteraction): Promise<void> {
+  async execute (client : Client, interaction : CommandInteraction) : Promise<void> {
     // Get query
     const query = interaction.options.getString("query");
-
+    
     // Get subcommand
     switch (interaction.options.getSubcommand()) {
       // If subcommand is urban
@@ -103,7 +104,7 @@ export default {
             const [word] = response.data;
             // Get word definition
             const [wordDefinition] = word.meanings[0].definitions;
-
+            
             // Return word
             return new MessageEmbed()
               .setTitle(query)
@@ -125,7 +126,7 @@ export default {
             log.error(error);
             interaction.reply("Word not found");
           });
-
+        
         return interaction.reply({ embeds: [dictionary] });
       }
       default:

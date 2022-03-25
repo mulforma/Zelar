@@ -12,10 +12,10 @@ export default {
   // Set command category
   category: "Music",
   // Execute function
-  async execute(client: Client, interaction: CommandInteraction): Promise<void> {
+  async execute (client : Client, interaction : CommandInteraction) : Promise<void> {
     // Get queue
     const queue = client.player.getQueue(interaction.guild.id);
-
+    
     // Check if queue is empty
     if (!queue) {
       // Send error message
@@ -23,10 +23,10 @@ export default {
         content: "There is no song playing.",
       });
     }
-
+    
     // Pause queue
     const success = queue.setPaused(true);
-
+    
     // Check if queue was paused
     if (success) {
       // Send success message

@@ -34,40 +34,44 @@ export default {
   // Set command category
   category: "Nsfw",
   // Execute function
-  async execute(client: Client, interaction: CommandInteraction): Promise<void> {
+  async execute (client : Client, interaction : CommandInteraction) : Promise<void> {
     // Check if channel is NSFW
     if (!interaction.channel.nsfw) {
       // Send error message
       await interaction.reply({
-        embeds: [new MessageEmbed().setColor("#ff0000").setDescription("This channel is not NSFW")],
+        embeds: [new MessageEmbed().setColor("#ff0000")
+          .setDescription("This channel is not NSFW")],
       });
       // Return
       return;
     }
-
+    
     // Get tags
     const tags = interaction.options.getString("tag")
       ? // If tag is undefined
-        interaction.options.getString("tag").split(",").join("+")
+      interaction.options.getString("tag")
+        .split(",")
+        .join("+")
       : // Else
-        "";
-
+      "";
+    
     // Get random page
     const page = Math.floor(Math.random() * 100) + 1;
-
+    
     // Get random image
-    axios.get(`https://danbooru.donmai.us/posts.json?tags=${tags ? tags : ""}&page=${page}&limit=1`).then((res) => {
-      // Send image
-      interaction.reply({
-        embeds: [
-          new MessageEmbed()
-            .setTitle(`Image from ${res.data[0].tag_string_artist}`)
-            .setImage(res.data[0].file_url)
-            .setColor("GREEN")
-            .setURL(`https://danbooru.donmai.us/posts/${res.data[0].id}`)
-            .setFooter({ text: `rating: ${rating[res.data[0].rating]} | score: ${res.data[0].score}` }),
-        ],
+    axios.get(`https://danbooru.donmai.us/posts.json?tags=${tags ? tags : ""}&page=${page}&limit=1`)
+      .then((res) => {
+        // Send image
+        interaction.reply({
+          embeds: [
+            new MessageEmbed()
+              .setTitle(`Image from ${res.data[0].tag_string_artist}`)
+              .setImage(res.data[0].file_url)
+              .setColor("GREEN")
+              .setURL(`https://danbooru.donmai.us/posts/${res.data[0].id}`)
+              .setFooter({ text: `rating: ${rating[res.data[0].rating]} | score: ${res.data[0].score}` }),
+          ],
+        });
       });
-    });
   },
 };

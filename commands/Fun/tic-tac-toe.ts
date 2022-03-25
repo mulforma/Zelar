@@ -21,12 +21,14 @@ class TicTacToe {
       [0, 0, 0],
     ];
   }
+
   tick(side: number, x: number, y: number) {
     // Check if the board is already ticked
     if (this.board[x][y] !== 0) return false;
     this.board[x][y] = side;
     return true;
   }
+
   checkIfWin() {
     // Check rows
     for (let i = 0; i < 3; i++) {

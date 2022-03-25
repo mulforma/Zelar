@@ -24,27 +24,27 @@ export default {
   // Set command category
   category: "Music",
   // Execute function
-  async execute(client: Client, interaction: CommandInteraction): Promise<void> {
+  async execute (client : Client, interaction : CommandInteraction) : Promise<void> {
     // Get queue
     const queue = client.player.getQueue(interaction.guild.id);
-
+    
     // Check if queue is not playing
     if (!queue) {
       // Send error message
       return interaction.reply({ content: "There is no song playing." });
     }
-
+    
     // Get mode
     const mode = interaction.options.getString("mode");
-
+    
     if (!["off", "track", "queue"].includes(mode.toLowerCase())) {
       // Send error message
       return interaction.reply({ content: "Invalid loop mode." });
     }
-
+    
     // Set loop mode
     const success = queue.setRepeatMode(QueueRepeatMode[mode.toUpperCase()]);
-
+    
     // Check if setting loop mode was successful
     if (!success) {
       // Send error message

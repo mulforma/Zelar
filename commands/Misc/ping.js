@@ -12,17 +12,17 @@ export default {
   // Set command category
   category: "Misc",
   // Execute function
-  async execute(client: Client, interaction: CommandInteraction): Promise<void> {
+  async execute (client : Client, interaction : CommandInteraction) : Promise<void> {
     // Wait for message to send
-    const sent = await /** @type {import('discord.js').CommandInteraction}*/ interaction.reply({
+    const sent = await /** @type {import("discord.js").CommandInteraction}*/ interaction.reply({
       content: "Pinging...",
       fetchReply: true,
     });
-
+    
     // Round-trip latency
     const time =
-      /** @type {import('discord.js').Message} */
-      (sent).createdTimestamp - interaction.createdTimestamp;
+      /** @type {import("discord.js").Message} */
+      ( sent ).createdTimestamp - interaction.createdTimestamp;
     // Reply with latency
     await interaction.editReply(`
       Round trip latency : ${time}ms\nWebsocket heartbeat : ${client.ws.ping}ms

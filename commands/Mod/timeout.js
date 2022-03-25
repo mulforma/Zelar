@@ -42,13 +42,13 @@ export default {
         .setRequired(false),
     ),
   category: "Mod",
-  async execute(client: Client, interaction: CommandInteraction): Promise<void> {
+  async execute (client : Client, interaction : CommandInteraction) : Promise<void> {
     // Get the target and time
     const user = await interaction.options.getMember("target");
     const time = interaction.options.getNumber("time");
     // Convert time to milliseconds
     const timeInMilliseconds = time * 60000;
-
+    
     // Check if user has permission to timeout
     if (!interaction.member.permissions.has(Permissions.FLAGS.MODERATE_MEMBERS)) {
       // Send error message
@@ -57,7 +57,7 @@ export default {
         ephemeral: true,
       });
     }
-
+    
     // Check if user can be timed out
     if (!user.moderatable) {
       // Send error message
@@ -66,7 +66,7 @@ export default {
         ephemeral: true,
       });
     }
-
+    
     // Check if user timeout themselves
     if (user.id === interaction.user.id) {
       // Send error message
@@ -75,28 +75,30 @@ export default {
         ephemeral: true,
       });
     }
-
+    
     // Add confirm button
     const confirm = new MessageActionRow().addComponents(
       /** @type any */
-      (new MessageButton().setCustomId("Confirm").setLabel("Confirm").setStyle("DANGER")),
+      ( new MessageButton().setCustomId("Confirm")
+        .setLabel("Confirm")
+        .setStyle("DANGER") ),
     );
-
+    
     // Get reason
     const reason = await interaction.options.getString("reason");
-
+    
     // Send confirmation message
     await interaction.reply({
       content: `Are you sure you want to timeout <@${user.id}>?`,
       components: [confirm],
       ephemeral: true,
     });
-
+    
     // Filter confirm button
     const filter = (i) =>
       // Check if user is the same as interaction user
       i.customId === "Confirm" && i.user.id === interaction.user.id;
-
+    
     // Wait for confirm button
     const collector = interaction.channel.createMessageComponentCollector({
       // Filter confirm button
@@ -104,7 +106,7 @@ export default {
       // Timeout after 15 seconds
       time: 15000,
     });
-
+    
     // On button is pressed
     collector.on("collect", async (i) => {
       // Check if button id is Confirm

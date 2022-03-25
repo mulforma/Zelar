@@ -1,7 +1,5 @@
-// Import SlashCommandBuilder
-import { SlashCommandBuilder } from "@discordjs/builders";
-// Import SlashCommandUserOption
-import { SlashCommandUserOption } from "@discordjs/builders";
+// Import SlashCommandBuilder and SlashCommandUserOption
+import { SlashCommandBuilder, SlashCommandUserOption } from "@discordjs/builders";
 // Import MessageEmbed
 import { Client, CommandInteraction, MessageEmbed } from "discord.js";
 // Import UserData
@@ -55,7 +53,10 @@ export default {
               .setColor("BLUE")
               .setThumbnail(<string>user.avatarURL())
               .addField("💰 Coins", String(rows[0].coin))
-              .setFooter({ text: `Requested by ${interaction.user.username}`, iconURL: (<string>interaction.user.avatarURL()) }),
+              .setFooter({
+                text: `Requested by ${interaction.user.username}`,
+                iconURL: (<string>interaction.user.avatarURL()),
+              }),
           ],
         });
       });

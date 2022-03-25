@@ -1,5 +1,6 @@
 // Load env
-require("dotenv").config();
+require("dotenv")
+  .config();
 // Import SlashCommandBuilder
 const { SlashCommandBuilder } = require("@discordjs/builders");
 // Import cheerio
@@ -122,27 +123,31 @@ export default {
   // Set command category
   category: "Search",
   // Execute function
-  async execute(client: Client, interaction: CommandInteraction): Promise<void> {
+  async execute (client : Client, interaction : CommandInteraction) : Promise<void> {
     // Get query
     const query = interaction.options.getString("query");
-
+    
     // Get subcommand
     switch (interaction.options.getSubcommand()) {
       // If subcommand is image
       case "image":
         // Search for image
-        searchImage(query).then((img) => {
-          // If image is not found
-          if (!img) {
-            interaction.reply({
-              embeds: [new MessageEmbed().setTitle("No image found!").setColor("#ff0000")],
-            });
-          } else {
-            interaction.reply({
-              embeds: [new MessageEmbed().setTitle(query).setImage(img).setColor(0x00ae86)],
-            });
-          }
-        });
+        searchImage(query)
+          .then((img) => {
+            // If image is not found
+            if (!img) {
+              interaction.reply({
+                embeds: [new MessageEmbed().setTitle("No image found!")
+                  .setColor("#ff0000")],
+              });
+            } else {
+              interaction.reply({
+                embeds: [new MessageEmbed().setTitle(query)
+                  .setImage(img)
+                  .setColor(0x00ae86)],
+              });
+            }
+          });
         break;
       // If subcommand is Wiki
       case "wiki":
@@ -157,7 +162,8 @@ export default {
             // If no results
             if (!pages[Object.keys(pages)[0]].extract) {
               interaction.reply({
-                embeds: [new MessageEmbed().setTitle("No results found!").setColor("#ff0000")],
+                embeds: [new MessageEmbed().setTitle("No results found!")
+                  .setColor("#ff0000")],
               });
             } else {
               // Get the first result
@@ -190,7 +196,8 @@ export default {
             // If no results
             if (!data.AbstractText) {
               interaction.reply({
-                embeds: [new MessageEmbed().setTitle("No results found!").setColor("#ff0000")],
+                embeds: [new MessageEmbed().setTitle("No results found!")
+                  .setColor("#ff0000")],
               });
             } else {
               // Send the result
@@ -208,7 +215,8 @@ export default {
           .catch((error) => {
             log.error(error);
             interaction.reply({
-              embeds: [new MessageEmbed().setTitle("Error!").setColor("#ff0000")],
+              embeds: [new MessageEmbed().setTitle("Error!")
+                .setColor("#ff0000")],
             });
           });
         break;
@@ -224,7 +232,8 @@ export default {
             // If no results
             if (!data.search) {
               interaction.reply({
-                embeds: [new MessageEmbed().setTitle("No results found!").setColor("#ff0000")],
+                embeds: [new MessageEmbed().setTitle("No results found!")
+                  .setColor("#ff0000")],
               });
             } else {
               // Send the result
@@ -242,7 +251,8 @@ export default {
           .catch((error) => {
             log.error(error);
             interaction.reply({
-              embeds: [new MessageEmbed().setTitle("Error!").setColor("#ff0000")],
+              embeds: [new MessageEmbed().setTitle("Error!")
+                .setColor("#ff0000")],
             });
           });
         break;

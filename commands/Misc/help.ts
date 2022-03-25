@@ -2,6 +2,7 @@
 import { SlashCommandBuilder } from "@discordjs/builders";
 // Import MessageEmbed from discord.js
 import { Client, CommandInteraction, MessageEmbed } from "discord.js";
+// Import CommandData
 import { CommandData } from "../../types/CommandData";
 
 // Export command

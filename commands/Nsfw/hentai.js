@@ -26,43 +26,45 @@ export default {
   // Set command category
   category: "Nsfw",
   // Execute function
-  async execute(client: Client, interaction: CommandInteraction): Promise<void> {
+  async execute (client : Client, interaction : CommandInteraction) : Promise<void> {
     // Check if channel is NSFW
     if (!interaction.channel.nsfw) {
       // Send error message
       await interaction.reply({
-        embeds: [new MessageEmbed().setColor("#ff0000").setDescription("This channel is not NSFW")],
+        embeds: [new MessageEmbed().setColor("#ff0000")
+          .setDescription("This channel is not NSFW")],
       });
       // Return
       return;
     }
-
+    
     // Get tags
     const tags = interaction.options.getString("tag")
       ? // If tag is undefined
-        interaction.options.getString("tag")
+      interaction.options.getString("tag")
       : // Else
-        "";
-
+      "";
+    
     // Get random page
     const page = Math.floor(Math.random() * 100) + 1;
-
+    
     // Get random image
     const image = await axios.get(
       `https://gelbooru.com/index.php?page=dapi&s=post&q=index&json=1&limit=1&pid=${page}${
         tags ? `&tags=${tags.join("+")}` : ""
       }`,
     );
-
+    
     // If no image
     if (!image.data.post[0]) {
       // Send error message
       await interaction.reply({
-        embeds: [new MessageEmbed().setColor("#ff0000").setDescription("No image found")],
+        embeds: [new MessageEmbed().setColor("#ff0000")
+          .setDescription("No image found")],
       });
       return;
     }
-
+    
     // Send image
     await interaction.reply({
       embeds: [

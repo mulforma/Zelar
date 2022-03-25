@@ -90,16 +90,16 @@ export default {
   // Set command category
   category: "Mod",
   // Execute function
-  async execute(client: Client, interaction: CommandInteraction): Promise<void> {
+  async execute (client : Client, interaction : CommandInteraction) : Promise<void> {
     // Get subcommand
     const subcommand = interaction.options.getSubcommand();
-
+    
     // Channel type
     const channelType = {
       text: "GUILD_TEXT",
       voice: "GUILD_VOICE",
     };
-
+    
     // Check if user has permission
     if (!interaction.member.permissions.has(Permissions.FLAGS.MANAGE_CHANNELS)) {
       // Reply user
@@ -110,7 +110,7 @@ export default {
         ephemeral: true,
       });
     }
-
+    
     switch (subcommand) {
       case "create": {
         // Get all options
@@ -119,10 +119,10 @@ export default {
         const category = interaction.options.getString("category");
         const topic = interaction.options.getString("topic");
         const nsfw = interaction.options.getBoolean("nsfw");
-
+        
         // Check channel type
         const channelTypeElement = channelType[type];
-
+        
         // Check if channel type is valid
         if (!channelTypeElement) {
           // Reply user
@@ -133,10 +133,10 @@ export default {
             ephemeral: true,
           });
         }
-
+        
         // Fetch guild channel
         const guildChannel = await interaction.guild.channels.fetch();
-
+        
         // Create channel
         const channel = await interaction.guild.channels.create(name, {
           type: channelTypeElement,
@@ -150,13 +150,13 @@ export default {
       case "delete": {
         // Get all options
         const channelName = interaction.options.getString("name");
-
+        
         // Fetch guild channel
         const guildChannel2 = await interaction.guild.channels.fetch();
-
+        
         // Fetch channel
         const fetchedChannel = guildChannel2.find((c) => c.name === channelName);
-
+        
         // Check if channel exists
         if (!fetchedChannel) {
           // Reply user
@@ -167,7 +167,7 @@ export default {
             ephemeral: true,
           });
         }
-
+        
         // Delete channel
         await fetchedChannel.delete();
         interaction.reply(`Deleted channel ${fetchedChannel.name}`);

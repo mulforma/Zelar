@@ -3,7 +3,7 @@ import { SlashCommandBuilder } from "@discordjs/builders";
 // Import getUserData
 import { getUserData } from "../../methods/getUserData";
 // Import addCoin
-import { addCoin } from"../../methods/addCoin";
+import { addCoin } from "../../methods/addCoin";
 // Import ms
 import ms from "ms";
 import { Client, CommandInteraction } from "discord.js";

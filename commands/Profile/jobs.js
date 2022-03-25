@@ -30,13 +30,14 @@ export default {
   // Set command category
   category: "Profile",
   // Execute function
-  async execute(client: Client, interaction: CommandInteraction): Promise<void> {
+  async execute (client : Client, interaction : CommandInteraction) : Promise<void> {
     // Go get a job
     const job = interaction.options.getString("job");
     // Get user data
     const user = await getUserData(interaction, client.db, interaction.user.id, interaction.guild.id);
     // Get all jobs
-    const jobs = await client.db.select("*").from("jobs");
+    const jobs = await client.db.select("*")
+      .from("jobs");
     // Check if job is exists
     if (!job) {
       // Create embed
@@ -108,7 +109,9 @@ export default {
             return;
           }
           // Update user job
-          await client.db("user").update({ jobs: job }).where({ userId: interaction.user.id });
+          await client.db("user")
+            .update({ jobs: job })
+            .where({ userId: interaction.user.id });
           // Create embed
           const embed = new MessageEmbed()
             // Set title
@@ -119,18 +122,20 @@ export default {
             .setColor("RED");
           // Send embed
           interaction.reply({ embeds: [embed] });
-
+          
           // Check if user already has timeout
-          if (user.timeout.findIndex((x) => x.command === "jobs") !== -1) {
+          if (user.timeout.findIndex((x) => x.command === "jobs") !== - 1) {
             // Update timeout
             user.timeout[user.timeout.findIndex((x) => x.command === "jobs")].time = Date.now();
           } else {
             // Add timeout
             user.timeout.push({ command: "jobs", time: Date.now() });
           }
-
+          
           // Update user timeout
-          await client.db("user").update({ timeout: user.timeout }).where({ userId: interaction.user.id });
+          await client.db("user")
+            .update({ timeout: user.timeout })
+            .where({ userId: interaction.user.id });
         }
       }
     }

@@ -3,11 +3,10 @@ import { SlashCommandBuilder } from "@discordjs/builders";
 // Import axios
 import axios from "axios";
 // Import MessageEmbed
-import { Message, MessageEmbed } from "discord.js";
+// Import Client, CommandInteraction
+import { Client, CommandInteraction, Message, MessageEmbed } from "discord.js";
 // Import addCoin
 import { addCoin } from "../../methods/addCoin";
-// Import Client, CommandInteraction
-import { Client, CommandInteraction } from "discord.js";
 
 // Export command
 export default {

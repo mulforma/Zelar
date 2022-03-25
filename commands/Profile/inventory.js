@@ -14,7 +14,7 @@ export default {
   // Set command category
   category: "Profile",
   // Execute function
-  async execute(client: Client, interaction: CommandInteraction): Promise<void> {
+  async execute (client : Client, interaction : CommandInteraction) : Promise<void> {
     // Get user inventory
     client.db
       .select("inventory")

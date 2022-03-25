@@ -34,11 +34,11 @@ export default {
   // Set command category
   category: "Mod",
   // Execute function
-  async execute(client: Client, interaction: CommandInteraction): Promise<void> {
+  async execute (client : Client, interaction : CommandInteraction) : Promise<void> {
     // Get options value (target)
-    const user = await /** @type {import('discord.js').GuildMember} */ (interaction.options.getMember("target"));
+    const user = await /** @type {import("discord.js").GuildMember} */ ( interaction.options.getMember("target") );
     // Interaction member
-    const { member } = /** @type {import('discord.js').GuildMember} */ (interaction);
+    const { member } = /** @type {import("discord.js").GuildMember} */ ( interaction );
     // Check if user who called command has permissions 'KICK_MEMBERS'
     // More about Permission.FLAGS, see (https://discord.js.org/#/docs/main/stable/class/Permissions?scrollTo=s-FLAGS)
     if (!member.permissions.has(Permissions.FLAGS.KICK_MEMBERS)) {
@@ -50,7 +50,7 @@ export default {
         ephemeral: true,
       });
     }
-
+    
     // If target user has higher roles than called user
     if (!user.kickable) {
       // Set message content
@@ -61,7 +61,7 @@ export default {
         ephemeral: true,
       });
     }
-
+    
     // Check if user want to kick yourself
     if (user.id === interaction.user.id) {
       // Set message content
@@ -72,7 +72,7 @@ export default {
         ephemeral: true,
       });
     }
-
+    
     // Add message components
     const confirm = new MessageActionRow().addComponents(
       // Add button
@@ -84,22 +84,22 @@ export default {
         // Set button style, see more (https://discord.js.org/#/docs/main/stable/typedef/MessageButtonStyle)
         .setStyle("DANGER"),
     );
-
+    
     // Get reason string
     const reason = interaction.options.getString("reason");
-
+    
     // Wait user to confirm
     await interaction.reply({
       content: `Are you sure you want to kick <@${user.id}>?`,
       components: [confirm],
       ephemeral: true,
     });
-
+    
     // Filter for answer buttons
     const filter = (i) =>
       // Check if id is Confirm and if it is the same user
       i.customId === "Confirm" && i.user.id === interaction.user.id;
-
+    
     // Start message collector
     const collector = interaction.channel.createMessageComponentCollector({
       // Add filter
@@ -107,9 +107,9 @@ export default {
       // Set collector timeout (15 seconds)
       time: 15000,
     });
-
+    
     // On collector start
-    collector.on("collect", async (/** @type {import('discord.js').MessageComponentInteraction}*/ i) => {
+    collector.on("collect", async (/** @type {import("discord.js").MessageComponentInteraction}*/ i) => {
       // If button id equal to 'Confirm'
       if (i.customId === "Confirm") {
         // Kick user
@@ -117,7 +117,7 @@ export default {
           // Check if there is reason text, if not, reason equal to 'Unspecified'
           !reason ? "Unspecified" : reason,
         );
-
+        
         // Update message
         await i.update({
           // Set message content

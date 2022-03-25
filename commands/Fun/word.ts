@@ -48,6 +48,7 @@ export default {
         return blankLetters;
       }
     }
+
     // Set tries
     let tries = 0;
     // Set if correct
