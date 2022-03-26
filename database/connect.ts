@@ -121,7 +121,7 @@ async function initTable() {
 }
 
 try {
-  initTable().then();
+  await initTable();
 } catch (e) {
   log.error("", e as string);
 }

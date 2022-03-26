@@ -50,7 +50,7 @@ export default {
               .setThumbnail(client.user!.displayAvatarURL()),
           ],
         });
-        collector.on("collect", (collected) => {
+        collector.on("collect", async (collected) => {
           // Get message
           const guess = collected.content.toLowerCase();
           // If guess is correct
@@ -60,7 +60,7 @@ export default {
             // Send message
             interaction.channel!.send(`🎉 Correct! You won ${amount} coins!`);
             // Add coins
-            addCoin(interaction, client.db, interaction.user.id, interaction.guild!.id, amount);
+            await addCoin(interaction, client.db, interaction.user.id, interaction.guild!.id, amount);
             // End collector
             collector.stop();
           } else {

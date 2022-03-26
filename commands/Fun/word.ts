@@ -1,5 +1,5 @@
 import { SlashCommandBuilder } from "@discordjs/builders";
-import { Awaitable, Client, CommandInteraction, Message } from "discord.js";
+import { Client, CommandInteraction, Message } from "discord.js";
 import axios from "axios";
 import { addCoin } from "../../methods/addCoin.js";
 
@@ -58,7 +58,7 @@ export default {
         // Send message
         await interaction.reply(`Fill in the blanks!\n\n${blanks!.join(" ")}`);
         // On collected message
-        collector.on("collect", (collected: Message): Awaitable<void> => {
+        collector.on("collect", async (collected: Message) => {
           // Get message
           const guess = collected.content.toLowerCase();
           // If guess is correct
@@ -68,7 +68,7 @@ export default {
             // Send message
             interaction.channel!.send(`🎉 Correct! You won ${amount} coins!`);
             // Add coins
-            addCoin(interaction, client.db, interaction.user.id, interaction.guild!.id, amount);
+            await addCoin(interaction, client.db, interaction.user.id, interaction.guild!.id, amount);
             // end collector
             return collector.stop();
           } else if (tries < 3 && !correct) {
@@ -98,7 +98,7 @@ export default {
         // Send message
         await interaction.reply(`Sort the letters!\n\n${letters}`);
         // On collected message
-        collector.on("collect", (collected: Message): Awaitable<void> => {
+        collector.on("collect", async (collected: Message) => {
           // Get message
           const guess = collected.content.toLowerCase();
           // If guess is correct
@@ -108,7 +108,7 @@ export default {
             // Send message
             interaction.channel!.send(`🎉 Correct! You won ${amount} coins!`);
             // Add coins
-            addCoin(interaction, client.db, interaction.user.id, interaction.guild!.id, amount);
+            await addCoin(interaction, client.db, interaction.user.id, interaction.guild!.id, amount);
             // end collector
             return collector.stop();
           } else if (tries < 3 && !correct) {

@@ -78,11 +78,15 @@ export default {
             .addField(
               "🤑 Net Worth",
               (
-                Number(profile[0].coin) + Number(profile[0].inventory.items.reduce((a: number, b: ShopItemData) => a + Number(b.price), 0))
+                Number(profile[0].coin) +
+                Number(profile[0].inventory.items.reduce((a: number, b: ShopItemData) => a + Number(b.price), 0))
               ).toString(),
             )
             .addField("💼 Jobs", profile[0].jobs || "None")
-            .setFooter({ text: `Requested by ${interaction.user.username}`, iconURL: interaction.user.avatarURL() ?? undefined }),
+            .setFooter({
+              text: `Requested by ${interaction.user.username}`,
+              iconURL: interaction.user.avatarURL() ?? undefined,
+            }),
         ],
       });
     }
