@@ -4,6 +4,7 @@ import { Client, Intents, Collection } from "discord.js";
 import { Player } from "discord-player";
 import log from "npmlog";
 import { knex } from "./database/connect.js";
+import { Knex } from "knex";
 
 // Create new client instance
 const client = new Client({
@@ -17,8 +18,7 @@ client.commands = new Collection();
 client.player = new Player(client);
 
 // Set db
-// @ts-ignore
-client.db = knex;
+client.db = <Knex<any, Record<string, any>[]>>knex;
 
 // Read folder 'commands'
 const commandFolder = fs.readdirSync("./commands");

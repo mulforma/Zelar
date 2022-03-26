@@ -1,6 +1,5 @@
 import { SlashCommandBuilder, SlashCommandUserOption } from "@discordjs/builders";
 import {
-  CacheType,
   Client,
   CommandInteraction,
   MessageButton,
@@ -136,8 +135,7 @@ export default {
     });
     // On collect
 
-    // @ts-ignore
-    collector.on("collect", async (i: MessageComponentInteraction<CacheType>) => {
+    collector.on("collect", async (i: MessageComponentInteraction) => {
       // Defer update
       await i.deferUpdate();
       // Get button id
@@ -146,7 +144,7 @@ export default {
       const [x, y] = id.split(",");
       // Check cell is taken
       if (!game.tick(player, Number(x) - 1, Number(y) - 1)) {
-        return interaction.editReply({
+        await interaction.editReply({
           content: "That cell is already taken!",
         });
       }
@@ -168,7 +166,7 @@ export default {
       // Check if game is over
       if (game.checkIfWin() > 0) {
         // Send congratulations message
-        return interaction.editReply({
+        await interaction.editReply({
           content: `🎉 Congratulations ${
             game.checkIfWin() === 1 ? interaction.user.username : user!.username
           }! You won!`,
@@ -177,7 +175,7 @@ export default {
         });
       } else if (game.checkIfWin() === -1) {
         // Send draw message
-        return interaction.editReply({
+        await interaction.editReply({
           content: "😢 It's a draw!",
           embeds: [embed],
           components: [],
