@@ -5,7 +5,7 @@ import { InventoryItemData } from "../../types/InventoryItemData";
 export default {
   data: new SlashCommandBuilder().setName("inventory").setDescription("View your current inventory."),
   category: "Profile",
-  async execute(client: Client, interaction: CommandInteraction): Promise<void> {
+  execute(client: Client, interaction: CommandInteraction): void {
     // Get user inventory
     client.db
       .select("inventory")

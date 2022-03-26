@@ -64,7 +64,7 @@ export default {
         ),
     ),
   category: "Search",
-  async execute(client: Client, interaction: CommandInteraction): Promise<void> {
+  execute(client: Client, interaction: CommandInteraction): void {
     // Get query
     const query = interaction.options.getString("query") ?? "";
 

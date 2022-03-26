@@ -11,16 +11,16 @@ export default {
   async execute(client: Client, interaction: CommandInteraction): Promise<void> {
     // Get url
     const URL = interaction.options.getString("url");
+    // Deferred reply
+    await interaction.deferReply();
 
     // Shorten url with x.vvx.bar
-    axios.post("http://x.vvx.bar/create/url", { URL }).then((res) => {
-      // Check response status
-      if (res.status !== 200) {
-        interaction.reply("An error occurred while shortening your url.");
-      } else {
-        // Send response
-        interaction.reply(`${URL} -> ${res.data.short_url}`);
-      }
+    axios.post("https://xurlshortener.herokuapp.com/create/url", { URL }).then(async (res) => {
+      // Send response
+      await interaction.editReply(`${URL} -> https://x.vvx.bar/${res.data.short_url}/`);
+    }).catch(async (reason) => {
+      // Send error
+      await interaction.editReply(`An error occurred while shortening your url.\nReason: ${reason}`);
     });
   },
 };
