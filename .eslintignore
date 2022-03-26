@@ -1,0 +1,26 @@
+# Config file
+.editorconfig
+*.toml
+
+# Git files
+.gitignore
+.gitattributes
+
+# Lock files
+pnpm-lock.yaml
+*.lock
+package-lock.json
+
+# Logs
+pnpm-debug.log
+
+# Node.js
+package.json
+node_modules/
+
+# Documention
+LICENSE
+README.md
+
+# Build artifacts
+dist/

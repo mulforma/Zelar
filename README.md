@@ -6,7 +6,7 @@
     </h2>
   </a>
   <p align="center">
-    A simple, open-source, and free, fast, secure, and reliable discord bot. <br>
+    A simple, open-source, free, fast, secure, and reliable discord bot. <br>
   </p>
 
 <div style="display: flex; flex-wrap: wrap; justify-items: center; justify-content: center">
@@ -46,7 +46,7 @@ You can host the bot on your own server, or you can host it on any cloud provide
 installed:
 
 - [Node.js (v16.6.0 or above)](https://nodejs.org/en/)
-- [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/) or [pnpm](https://pnpm.js.org/) or other node package manager
+- [pnpm](https://pnpm.io/) (preferred over npm) or other node package manager
 - [Python 3.6](https://www.python.org/) or above (For `@discordjs/opus` library)
 - [Database (CockroachDB or Postgres)](https://www.cockroachlabs.com/), You can get a free account on [CockroachDB](https://www.cockroachlabs.com/) choosing serverless options.
 - [Docker](https://www.docker.com/) (Optional)
@@ -54,10 +54,27 @@ installed:
 Then install the required dependencies by running this:
 
 ```bash
-$ npm install # or yarn
+$ pnpm install
 ```
 
-Also don't forget to change `.env.example` to `.env` and insert your data Then deploy the command by running
+Then you have to build the typescript files first
+
+```bash
+$ pnpm run build && pnpm run postbuild
+```
+
+If you don't want to run script every time you make a change, you could run this instead
+```bash
+$ pnpm run build:watch
+```
+
+After that, you could cd to the `dist` directory
+
+```bash
+$ cd dist
+```
+
+Also don't forget to change `.env.example` to `.env` and insert your data. Then deploy the command by running
 
 ```bash
 $ node deploy
@@ -66,7 +83,7 @@ $ node deploy
 And run the bot
 
 ```bash
-$ npm start # npm run dev for nodemon
+$ pnpm start # pnpm dev for development
 ```
 
 ## License

@@ -2,22 +2,31 @@
   "name": "nintod",
   "version": "1.0.0",
   "description": "A simple, open-source, and free, fast, secure, and reliable discord bot.",
-  "main": "bot.js",
+  "main": "bot.ts",
   "scripts": {
     "dev": "nodemon",
-    "start": "node index",
+    "start": "node dist/index",
     "format": "prettier -w .",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "build": "tsc -p .",
+    "build:watch": "tsc -p . --watch",
+    "postbuild": "pnpm run copy",
+    "copy": "pnpm run copy:dotfiles && pnpm run copy:assets",
+    "copy:assets": "md .\\dist\\assets\\ && copy -r .\\assets\\* .\\dist\\assets\\",
+    "copy:dotfiles": "copy .\\.* .\\dist\\"
   },
   "keywords": [
     "discord-bot"
   ],
+  "type": "module",
   "author": "Tinnaphat \"Tin\" Somsang",
   "license": "Apache-2.0",
   "dependencies": {
     "@discordjs/builders": "^0.12.0",
     "@discordjs/opus": "^0.7.0",
     "@discordjs/rest": "^0.3.0",
+    "@types/ms": "^0.7.31",
+    "@types/npmlog": "^4.1.4",
     "axios": "^0.26.0",
     "canvas": "^2.9.0",
     "cheerio": "^1.0.0-rc.10",
@@ -26,19 +35,22 @@
     "discord-player": "^5.2.2",
     "discord.js": "^13.6.0",
     "dotenv": "^16.0.0",
-    "eslint": "^8.10.0",
     "ffmpeg-static": "^4.4.1",
-    "ipinfo": "^1.5.1",
     "jimp": "^0.16.1",
     "knex": "^1.0.3",
     "ms": "^2.1.3",
     "nodemon": "^2.0.15",
     "npmlog": "^6.0.1",
     "pg": "^8.7.3",
-    "prettier": "^2.5.1",
-    "tinyurl": "^1.1.7"
+    "prettier": "^2.5.1"
   },
   "engines": {
     "node": ">=16.13.2"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.16.0",
+    "@typescript-eslint/parser": "^5.16.0",
+    "eslint": "^8.11.0",
+    "typescript": "^4.6.2"
   }
 }
