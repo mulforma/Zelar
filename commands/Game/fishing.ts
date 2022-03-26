@@ -1,7 +1,7 @@
 import { SlashCommandBuilder } from "@discordjs/builders";
-import { getUserData } from "../../methods/getUserData";
+import { getUserData } from "../../methods/getUserData.js";
 import ms from "ms";
-import { checkTimeout } from "../../methods/checkTimeout";
+import { checkTimeout } from "../../methods/checkTimeout.js";
 import { Client, CommandInteraction } from "discord.js";
 import { InventoryItemData } from "../../types/InventoryItemData";
 

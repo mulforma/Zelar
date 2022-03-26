@@ -1,5 +1,5 @@
 import { CommandInteraction } from "discord.js";
-import { checkUserExists } from "./checkUserExists";
+import { checkUserExists } from "./checkUserExists.js";
 import { Knex } from "knex";
 
 export const getUserData = (interaction: CommandInteraction, db: Knex, userId: string, guildId: string): any => {

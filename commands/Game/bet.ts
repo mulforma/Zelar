@@ -1,6 +1,6 @@
 import { SlashCommandBuilder } from "@discordjs/builders";
-import { getUserData } from "../../methods/getUserData";
-import { addCoin } from "../../methods/addCoin";
+import { getUserData } from "../../methods/getUserData.js";
+import { addCoin } from "../../methods/addCoin.js";
 import { Client, CommandInteraction } from "discord.js";
 
 export default {

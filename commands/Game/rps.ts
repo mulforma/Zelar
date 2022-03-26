@@ -1,4 +1,4 @@
-import { addCoin } from "../../methods/addCoin";
+import { addCoin } from "../../methods/addCoin.js";
 import { SlashCommandBuilder } from "@discordjs/builders";
 import { Client, CommandInteraction, MessageActionRow, MessageButton, MessageComponentInteraction } from "discord.js";
 

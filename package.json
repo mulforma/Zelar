@@ -9,9 +9,10 @@
     "format": "prettier -w .",
     "lint": "eslint .",
     "build": "tsc -p .",
+    "build:watch": "tsc -p . --watch",
     "postbuild": "pnpm run copy",
     "copy": "pnpm run copy:assets && pnpm run copy:dotfiles",
-    "copy:assets": "cp -r assets/* dist/assets",
+    "copy:assets": "mkdir .\\dist\\assets && cp -r assets/* dist/assets",
     "copy:dotfiles": "cp -r .env dist"
   },
   "keywords": [

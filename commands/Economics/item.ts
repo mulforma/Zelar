@@ -1,5 +1,5 @@
 import { SlashCommandBuilder } from "@discordjs/builders";
-import { getItemData } from "../../methods/getItemData";
+import { getItemData } from "../../methods/getItemData.js";
 import { Client, CommandInteraction, MessageEmbed } from "discord.js";
 
 export default {

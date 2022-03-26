@@ -1,7 +1,7 @@
 import { SlashCommandBuilder } from "@discordjs/builders";
 import axios from "axios";
 import { Client, CommandInteraction, Message, MessageEmbed } from "discord.js";
-import { addCoin } from "../../methods/addCoin";
+import { addCoin } from "../../methods/addCoin.js";
 
 export default {
   data: new SlashCommandBuilder()

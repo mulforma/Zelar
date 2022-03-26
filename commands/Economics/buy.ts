@@ -1,5 +1,5 @@
 import { SlashCommandBuilder } from "@discordjs/builders";
-import { getUserData } from "../../methods/getUserData";
+import { getUserData } from "../../methods/getUserData.js";
 import { Client, CommandInteraction } from "discord.js";
 import { ShopItemData } from "../../types/ShopItemData";
 import { InventoryItemData } from "../../types/InventoryItemData";

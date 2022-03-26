@@ -57,6 +57,12 @@ Then install the required dependencies by running this:
 $ pnpm install
 ```
 
+Then you have to build the typescript files first
+
+```bash
+$ pnpm run build && pnpm run postbuild
+```
+
 Also don't forget to change `.env.example` to `.env` and insert your data. Then deploy the command by running
 
 ```bash
