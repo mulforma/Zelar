@@ -57,7 +57,7 @@ export default {
           .slice(itemsStart, itemsEnd)
           .map(
             // Map leaderboard items
-            (item, index) =>
+            (item, index: number) =>
               // Return leaderboard item
               `${index + 1}. <@${item.userId}> - ${item.coin} coins`,
           )
@@ -105,7 +105,7 @@ export default {
         embed.setDescription(
           leaderboard
             .slice(itemsStart, itemsEnd)
-            .map((item, idx) => `${idx + 1}. <@${item.userId}> - ${item.coin} coins`)
+            .map((item, idx: number) => `${idx + 1}. <@${item.userId}> - ${item.coin} coins`)
             .join("\n\n"),
         );
         // Send embed
@@ -124,7 +124,7 @@ export default {
         embed.setDescription(
           leaderboard
             .slice(itemsStart, itemsEnd)
-            .map((item, idx) => `${idx + 1}. <@${item.userId}> - ${item.coin} coins`)
+            .map((item, idx: number) => `${idx + 1}. <@${item.userId}> - ${item.coin} coins`)
             .join("\n\n"),
         );
         // Send embed

@@ -1,5 +1,5 @@
 import { SlashCommandBuilder, SlashCommandSubcommandBuilder } from "@discordjs/builders";
-import { Client, CommandInteraction, MessageEmbed, version } from "discord.js";
+import { Client, CommandInteraction, Guild, MessageEmbed, version } from "discord.js";
 import os from "os";
 import ms from "ms";
 
@@ -20,7 +20,7 @@ export default {
     // Promises
     const promises = [
       await client.shard!.fetchClientValues("guilds.cache.size"),
-      await client.shard!.broadcastEval((c) => c.guilds.cache.reduce((acc, guild) => acc + guild.memberCount, 0)),
+      await client.shard!.broadcastEval((c) => c.guilds.cache.reduce((acc: number, guild: Guild) => acc + guild.memberCount, 0)),
     ];
 
     switch (subcommand) {

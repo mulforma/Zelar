@@ -1,5 +1,6 @@
 import { SlashCommandBuilder } from "@discordjs/builders";
 import { Client, CommandInteraction, MessageEmbed } from "discord.js";
+import { Track } from "discord-player";
 
 export default {
   data: new SlashCommandBuilder().setName("queue").setDescription("Shows the current queue."),
@@ -29,7 +30,7 @@ export default {
       .setColor("#00ff00")
       .setTitle("Queue")
       .setDescription(
-        `${queue.tracks.map((track, index) => `${index + 1}. [${track.title}](${track.url})`).join("\n")}`,
+        `${queue.tracks.map((track: Track, index: number) => `${index + 1}. [${track.title}](${track.url})`).join("\n")}`,
       )
       .setThumbnail(client.user!.displayAvatarURL());
 

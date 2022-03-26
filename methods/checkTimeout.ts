@@ -18,14 +18,14 @@ export const checkTimeout = async (
     // Set timeout
     const timeout = userData.timeout.commands.find((i: TimeoutCommandData) => i.command === cmdName);
     // Check if timeout reaches the end
-    if (Number(timeout!.time + timeoutMs) - Date.now() <= 0) {
+    if (Number((timeout?.time ?? 0) + timeoutMs) - Date.now() <= 0) {
       // Update timeout
       userData.timeout.commands[index].time = Date.now();
     } else {
       // Send error message
       await interaction.reply(
         `<@${interaction.user.id}> You can use this command again in ${ms(
-          Number(timeout!.time) + timeoutMs - Date.now(),
+          Number(timeout?.time) + timeoutMs - Date.now(),
         )}`,
       );
       return true;

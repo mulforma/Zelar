@@ -72,7 +72,7 @@ export default {
     });
 
     // When answer is received
-    await collector.on("collect", async (i) => {
+    collector.on("collect", async (i) => {
       try {
         // Check if answer is true or false
         await i.deferUpdate();
@@ -103,7 +103,7 @@ export default {
               return;
             }
             // Set coins
-            const coins = (row[0].coin || 0) + randCoin;
+            const coins = Number(row[0].coin || 0) + randCoin;
 
             // Update coins
             await client
@@ -113,6 +113,7 @@ export default {
               .update({ coin: coins });
           });
       }
+
       // If answer is incorrect
       else if (i.customId.toLowerCase() !== correctAnswer.toLowerCase()) {
         // Send sorry message
