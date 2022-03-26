@@ -32,7 +32,7 @@ export default {
     // Get user avatar
     const avatar = user.displayAvatarURL({ format: "png", size: 1024 });
     // Load card image
-    const card = await Canvas.loadImage(fs.realpathSync("./assets/beautiful.png"));
+    const card = await Canvas.loadImage(fs.realpathSync("./assets/handsome.png"));
     // Load avatar
     const avatarImg = await Canvas.loadImage(avatar);
 
