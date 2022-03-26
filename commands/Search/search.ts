@@ -3,7 +3,7 @@ import { SlashCommandBuilder } from "@discordjs/builders";
 import cheerio from "cheerio";
 import { Client, CommandInteraction, MessageEmbed } from "discord.js";
 import axios from "axios";
-import * as log from "npmlog";
+import log from "npmlog";
 
 // Search for image
 const searchImage = (query: string) => {

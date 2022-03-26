@@ -1,7 +1,5 @@
 import { CommandInteraction } from "discord.js";
-
 import { Knex } from "knex";
-
 import { checkUserExists } from "./checkUserExists";
 
 export const addCoin = async (

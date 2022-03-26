@@ -12,7 +12,7 @@ const Game: Array<string> = [
   /* Add more here */
 ];
 
-import * as log from "npmlog";
+import log from "npmlog";
 
 export default {
   name: "ready",

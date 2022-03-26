@@ -2,7 +2,7 @@ import "dotenv/config";
 import { SlashCommandBuilder } from "@discordjs/builders";
 import { Client, CommandInteraction, GuildMember, MessageEmbed } from "discord.js";
 import axios from "axios";
-import * as log from "npmlog";
+import log from "npmlog";
 
 export default {
   data: new SlashCommandBuilder()

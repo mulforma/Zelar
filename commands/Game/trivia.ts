@@ -8,7 +8,7 @@ import {
   MessageComponentInteraction,
   MessageEmbed,
 } from "discord.js";
-import * as log from "npmlog";
+import log from "npmlog";
 
 export default {
   data: new SlashCommandBuilder().setName("trivia").setDescription("You have 30 seconds to think, Quick!"),

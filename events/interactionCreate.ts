@@ -1,5 +1,4 @@
-import * as log from "npmlog";
-
+import log from "npmlog";
 import { Client, CommandInteraction } from "discord.js";
 
 export default {

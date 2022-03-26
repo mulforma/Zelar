@@ -2,7 +2,7 @@ import "dotenv/config";
 import * as fs from "node:fs";
 import { REST } from "@discordjs/rest";
 import { Routes } from "discord-api-types/v10";
-import * as log from "npmlog";
+import log from "npmlog";
 
 // Command Array
 const commands = [];
