@@ -1,6 +1,7 @@
 import { SlashCommandBuilder } from "@discordjs/builders";
 import Canvas from "canvas";
 import { Client, CommandInteraction } from "discord.js";
+import * as fs from "fs";
 
 export default {
   data: new SlashCommandBuilder()
@@ -31,7 +32,7 @@ export default {
     // Get user avatar
     const avatar = user.displayAvatarURL({ format: "png", size: 1024 });
     // Load card image
-    const card = await Canvas.loadImage("./assets/beautiful.png");
+    const card = await Canvas.loadImage(fs.realpathSync("./assets/beautiful.png"));
     // Load avatar
     const avatarImg = await Canvas.loadImage(avatar);
 

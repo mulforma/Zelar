@@ -12,8 +12,8 @@
     "build:watch": "tsc -p . --watch",
     "postbuild": "pnpm run copy",
     "copy": "pnpm run copy:dotfiles && pnpm run copy:assets",
-    "copy:assets": "md .\\dist\\assets\\ && copy -r .\\assets\\* .\\dist\\assets\\",
-    "copy:dotfiles": "copy .\\.* .\\dist\\"
+    "copy:assets": "cp -r assets/* ./dist/assets",
+    "copy:dotfiles": "cp .env dist"
   },
   "keywords": [
     "discord-bot"
