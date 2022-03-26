@@ -1,5 +1,5 @@
 import { SlashCommandBuilder, SlashCommandSubcommandBuilder } from "@discordjs/builders";
-import { Client, CommandInteraction, MessageEmbed } from "discord.js";
+import { Client, CommandInteraction, MessageEmbed, version } from "discord.js";
 import os from "os";
 import ms from "ms";
 
@@ -53,7 +53,7 @@ export default {
         // Get location
         await interaction.reply({
           embeds: [
-            await new MessageEmbed()
+            new MessageEmbed()
               .setTitle("Bots server info")
               .setThumbnail(client.user!.displayAvatarURL())
               .addField("Platform", `${os.platform()} ${os.release()}`)
@@ -64,7 +64,7 @@ export default {
               .addField("RAM Free", `${(os.freemem() / 1024 / 1024).toFixed(2)} MB`)
               .addField("RAM Total", `${(os.totalmem() / 1024 / 1024).toFixed(2)} MB`)
               .addField("RAM Usage", `${((1 - os.freemem() / os.totalmem()) * 100).toFixed(2)}%`)
-              .addField("Discord.js Version", `${require("discord.js").version}`)
+              .addField("Discord.js Version", `${version}`)
               .addField("Node.js Version", `${process.version}`)
               .setColor("#0099ff")
               .setFooter({
