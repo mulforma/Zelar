@@ -63,7 +63,16 @@ Then you have to build the typescript files first
 $ pnpm run build && pnpm run postbuild
 ```
 
-If you don'
+If you don't want to run script every time you make a change, you could run this instead
+```bash
+$ pnpm run build:watch
+```
+
+After that, you could cd to the `dist` directory
+
+```bash
+$ cd dist
+```
 
 Also don't forget to change `.env.example` to `.env` and insert your data. Then deploy the command by running
 
@@ -74,7 +83,7 @@ $ node deploy
 And run the bot
 
 ```bash
-$ pnpm start # pnpm run dev for development
+$ pnpm start # pnpm dev for development
 ```
 
 ## License

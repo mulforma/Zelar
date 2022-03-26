@@ -5,7 +5,7 @@
   "main": "bot.ts",
   "scripts": {
     "dev": "nodemon",
-    "start": "node index",
+    "start": "node dist/index",
     "format": "prettier -w .",
     "lint": "eslint .",
     "build": "tsc -p .",
