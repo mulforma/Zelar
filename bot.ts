@@ -27,7 +27,7 @@ const commandFolder = fs.readdirSync("./commands");
 for (const folder of commandFolder) {
   try {
     // Filter for .js files
-    const commandFiles: Array<String> = fs.readdirSync(`./commands/${folder}`).filter((file) => file.endsWith(".js"));
+    const commandFiles: Array<string> = fs.readdirSync(`./commands/${folder}`).filter((file) => file.endsWith(".js"));
     // List all files in folder
     for (const file of commandFiles) {
       const { default: command } = await import(`./commands/${folder}/${file}`);

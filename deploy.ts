@@ -7,12 +7,12 @@ import log from "npmlog";
 // Command Array
 const commands = [];
 // Reading ./commands folder
-const commandFolder: Array<String> = fs.readdirSync("./commands");
+const commandFolder: Array<string> = fs.readdirSync("./commands");
 
 // Listing folder in ./commands
 for (const folder of commandFolder) {
   // Filter file in folder to be .js
-  const commandFiles: Array<String> = fs.readdirSync(`./commands/${folder}`).filter((file) => file.endsWith(".js"));
+  const commandFiles: Array<string> = fs.readdirSync(`./commands/${folder}`).filter((file) => file.endsWith(".js"));
 
   // Listing file in commandFiles
   for (const file of commandFiles) {
