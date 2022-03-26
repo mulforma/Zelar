@@ -82,7 +82,7 @@ export default {
               ).toString(),
             )
             .addField("💼 Jobs", profile[0].jobs || "None")
-            .setFooter({ text: `Requested by ${interaction.user.username}`, iconURL: interaction.user.avatarURL() ?? "" }),
+            .setFooter({ text: `Requested by ${interaction.user.username}`, iconURL: interaction.user.avatarURL() ?? undefined }),
         ],
       });
     }
