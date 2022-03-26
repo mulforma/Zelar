@@ -45,7 +45,7 @@ it is not safe to send a security issue to the server. You would have to send a 
 You can contribute to the project by [fork](https://github.com/thevvx/Nintod/fork) the repository, and make a [pull request](https://github.com/thevvx/Nintod/pulls).
 Major and minor changes are welcome! It is our goal to make the bot better and more stable. No matter who you are, you can help us!
 But make sure you follow the [Code of Conduct](/.github/CODE_OF_CONDUCT.md) and [Contributing](/.github/CONTRIBUTING.md) guidelines.
-Please don't send any security issue to the server as stated above. We use `DeepSource` and `CodeFactor` to monitor the quality of the code.
+Please don't send any security issue to the server as stated above. We use [DeepSource](https://deepsource.io/) and [CodeFactor](https://codefactor.io/) to monitor the quality of the code.
 If all the test is pass, it is more likely your pull request will get merge to the main branch first.
 
 ## How can I host the bot?
@@ -58,13 +58,13 @@ and [Heroku](https://www.heroku.com/).
 Amazon has a free instance (t2.micro) for a year that is enough for the bot.
 Google Cloud Platform also has a free forever instance (f1-micro) that you can use for hosting the bot. However, you need
 to add billing to your Google Cloud account.
-And Microsoft Azure that we are using, offers a free credits ($100 for students, $300 for users). And students pack
+And Microsoft Azure that we are using, offers a free credits ($100 for students, $300 for users that have verified with their credit card). And students pack
 has free B1s instance for a year.
 
 - [Node.js (v16.6.0 or above)](https://nodejs.org/en/)
 - [pnpm](https://pnpm.io/) (preferred over npm) or other node package manager
-- [Python 3.6](https://www.python.org/) or above. This will usually come with node installer for windows if you accept to install `Tools for native modules` (For `@discordjs/opus` library)
-- [Visual Studio C++ Build Tools](https://www.visualstudio.com/en-us/products/visual-studio-code) This will usually come with node installer for windows if you accept to install `Tools for native modules` (For `@discord/opus` library) 
+- [Python 3.6](https://www.python.org/) or above. This will usually come with node installer for windows if you accept to install **Tools for native modules** (For `@discordjs/opus` library)
+- [Visual Studio C++ Build Tools](https://www.visualstudio.com/en-us/products/visual-studio-code) This will usually come with node installer for windows if you accept to install **Tools for native modules** (For `@discordjs/opus` library)
 - [Database (CockroachDB or Postgres)](https://www.cockroachlabs.com/), You can get a free account on [CockroachDB](https://www.cockroachlabs.com/) choosing serverless options.
 - [Docker](https://www.docker.com/) (This is purely optional, but recommended for those who already have Docker installed)
 
