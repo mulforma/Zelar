@@ -40,7 +40,7 @@ If you want to join the server, you can join it at [HERE](https://x.vvx.bar/XVlB
 `#bug-report` channel, but don't send a serious security issue to the server. Because it is a public server, and
 it is not safe to send a security issue to the server. You would have to send a mail to `contact@vvx.bar` ASAP to not impact any servers or users that use the bot. 
 
-# How can I contribute?
+## How can I contribute?
 
 You can contribute to the project by [fork](https://github.com/thevvx/Nintod/fork) the repository, and make a [pull request](https://github.com/thevvx/Nintod/pulls).
 Major and minor changes are welcome! It is our goal to make the bot better and more stable. No matter who you are, you can help us!
