@@ -1,31 +1,13 @@
-// Import SlashCommandBuilder
 import { SlashCommandBuilder } from "@discordjs/builders";
-// Import axios
 import axios from "axios";
-// Import Client and CommandInteraction
 import { Client, CommandInteraction } from "discord.js";
 
-// Export command
 export default {
-  // Set command data
   data: new SlashCommandBuilder()
-    // Set command name
     .setName("deepfry")
-    // Set command description
     .setDescription("Deepfries an image")
-    // Add user option
-    .addUserOption((option) =>
-      option
-        // Set option name
-        .setName("user")
-        // Set option description
-        .setDescription("The user to deepfry")
-        // Set option required
-        .setRequired(false),
-    ),
-  // Set command category
+    .addUserOption((option) => option.setName("user").setDescription("The user to deepfry").setRequired(false)),
   category: "Misc",
-  // Execute function
   async execute(client: Client, interaction: CommandInteraction): Promise<void> {
     // Defer reply
     await interaction.deferReply();

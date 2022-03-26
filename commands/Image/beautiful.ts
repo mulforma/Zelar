@@ -1,31 +1,13 @@
-// Import SlashCommandBuilder
 import { SlashCommandBuilder } from "@discordjs/builders";
-// Import canvas
 import Canvas from "canvas";
-// Import Client and CommandInteraction
 import { Client, CommandInteraction } from "discord.js";
 
-// Export command
 export default {
-  // Set command data
   data: new SlashCommandBuilder()
-    // Set command name
     .setName("beautiful")
-    // Set command description
     .setDescription("How beautiful you are?")
-    // Add user option
-    .addUserOption((option) =>
-      option
-        // Set option name
-        .setName("target")
-        // Set option description
-        .setDescription("Target user")
-        // Set option required
-        .setRequired(false),
-    ),
-  // Set command category
+    .addUserOption((option) => option.setName("target").setDescription("Target user").setRequired(false)),
   category: "Image",
-  // Execute function
   async execute(client: Client, interaction: CommandInteraction): Promise<void> {
     // Apply text
     const applyText = (canvas: Canvas.Canvas, text: string) => {

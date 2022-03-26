@@ -1,19 +1,9 @@
-// Import SlashCommandBuilder
 import { SlashCommandBuilder } from "@discordjs/builders";
-// Import Client and CommandInteraction
 import { Client, CommandInteraction, MessageEmbed } from "discord.js";
 
-// Export command
 export default {
-  // Set command data
-  data: new SlashCommandBuilder()
-    // Set command name
-    .setName("now-playing")
-    // Set command description
-    .setDescription("Shows the current song playing."),
-  // Set command category
+  data: new SlashCommandBuilder().setName("now-playing").setDescription("Shows the current song playing."),
   category: "Music",
-  // Execute function
   async execute(client: Client, interaction: CommandInteraction): Promise<void> {
     // Get queue
     const queue = client.player.getQueue(interaction.guild!.id);

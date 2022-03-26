@@ -1,6 +1,5 @@
-// Import npmlog
 import * as log from "npmlog";
-// Import Queue
+
 import { Queue } from "discord-player";
 
 export default {

@@ -1,4 +1,3 @@
-// Import Queue
 import { Queue } from "discord-player";
 
 export default {

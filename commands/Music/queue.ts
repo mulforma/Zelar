@@ -1,21 +1,9 @@
-// Import SlashCommandBuilder
 import { SlashCommandBuilder } from "@discordjs/builders";
-// Import MessageEmbed from Discord.js
-import { MessageEmbed } from "discord.js";
-// Import Client and CommandInteraction
-import { Client, CommandInteraction } from "discord.js";
+import { Client, CommandInteraction, MessageEmbed } from "discord.js";
 
-// Export command
 export default {
-  // Set command data
-  data: new SlashCommandBuilder()
-    // Set command name
-    .setName("queue")
-    // Set command description
-    .setDescription("Shows the current queue."),
-  // Set command category
+  data: new SlashCommandBuilder().setName("queue").setDescription("Shows the current queue."),
   category: "Music",
-  // Execute function
   async execute(client: Client, interaction: CommandInteraction): Promise<void> {
     // Get queue
     const queue = client.player.getQueue(interaction.guild!.id);
@@ -24,9 +12,7 @@ export default {
     if (!queue) {
       // Send error message
       return interaction.reply({
-        embeds: [
-          new MessageEmbed().setColor("#ff0000").setDescription("There is no queue.")
-        ],
+        embeds: [new MessageEmbed().setColor("#ff0000").setDescription("There is no queue.")],
       });
     }
 
@@ -34,9 +20,7 @@ export default {
     if (!queue.tracks[0]) {
       // Send error message
       return interaction.reply({
-        embeds: [
-          new MessageEmbed().setColor("#ff0000").setDescription("There is no queue after this song.")]
-        ,
+        embeds: [new MessageEmbed().setColor("#ff0000").setDescription("There is no queue after this song.")],
       });
     }
 

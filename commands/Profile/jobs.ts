@@ -1,37 +1,16 @@
-// Import SlashCommandBuilder
 import { SlashCommandBuilder } from "@discordjs/builders";
-// Import MessageEmbed
 import { Client, CommandInteraction, MessageEmbed } from "discord.js";
-// Import getUserData
 import { getUserData } from "../../methods/getUserData";
-// Import checkTimeout
 import { checkTimeout } from "../../methods/checkTimeout";
-// Import ms
 import ms from "ms";
-// Import TimeoutCommandData
 import { TimeoutCommandData } from "../../types/UserData";
 
-// Export command
 export default {
-  // Set command data
   data: new SlashCommandBuilder()
-    // Set command name
     .setName("jobs")
-    // Set command description
     .setDescription("Choose a job")
-    // Add string option
-    .addStringOption((option) =>
-      option
-        // Set option name
-        .setName("job")
-        // Set option description
-        .setDescription("The job you want to choose")
-        // Set option required
-        .setRequired(false),
-    ),
-  // Set command category
+    .addStringOption((option) => option.setName("job").setDescription("The job you want to choose").setRequired(false)),
   category: "Profile",
-  // Execute function
   async execute(client: Client, interaction: CommandInteraction): Promise<void> {
     // Go get a job
     const job = interaction.options.getString("job");
@@ -45,7 +24,6 @@ export default {
       const embed = new MessageEmbed()
         // Set title
         .setTitle("Jobs")
-        // Set description
         .setDescription(
           jobs
             .map(
@@ -67,7 +45,6 @@ export default {
         const embed = new MessageEmbed()
           // Set title
           .setTitle("Jobs")
-          // Set description
           .setDescription(`The job **${job}** does not exist!`)
           // Set color
           .setColor("RED");
@@ -80,7 +57,6 @@ export default {
           const embed = new MessageEmbed()
             // Set title
             .setTitle("Jobs")
-            // Set description
             .setDescription(
               `You need to be at least level ${
                 jobs.find((j) => j.name.toLowerCase() === job.toLowerCase()).minimumLevel
@@ -96,7 +72,6 @@ export default {
           const embed = new MessageEmbed()
             // Set title
             .setTitle("Jobs")
-            // Set description
             .setDescription("You already choose this job!")
             // Set color
             .setColor("RED");
@@ -115,7 +90,6 @@ export default {
           const embed = new MessageEmbed()
             // Set title
             .setTitle("Jobs")
-            // Set description
             .setDescription(`You have chosen the job **${job}**!`)
             // Set color
             .setColor("RED");

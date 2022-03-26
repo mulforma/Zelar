@@ -1,16 +1,9 @@
-// Import dotenv
 import "dotenv/config";
-// Import fs
 import * as fs from "fs";
-// Import Client, Intents, and Collection from Discord.js
 import { Client, Intents, Collection } from "discord.js";
-// Import Player from discord-player
 import { Player } from "discord-player";
-// Import npmlog
 import * as log from "npmlog";
-// Import knex
 import { knex } from "./database/connect";
-// Import CommandData
 import { CommandData } from "./types/CommandData";
 
 // Create new client instance
@@ -37,7 +30,6 @@ for (const folder of commandFolder) {
 
   // List all files in folder
   for (const file of commandFiles) {
-    // Import command
     const command: CommandData = require(`./commands/${folder}/${file}`);
 
     // Log loaded command
@@ -52,7 +44,6 @@ const eventFolder = fs.readdirSync("./events").filter((file) => file.endsWith(".
 
 // List all folder in files
 for (const file of eventFolder) {
-  // Import event
   const event = require(`./events/${file}`);
 
   // Check if event is once
@@ -70,7 +61,6 @@ const playerFolder = fs.readdirSync("./players").filter((file) => file.endsWith(
 
 // List all folder in files
 for (const file of playerFolder) {
-  // Import event
   const event = require(`./players/${file}`);
 
   // Listen on

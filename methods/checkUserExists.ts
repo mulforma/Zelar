@@ -1,6 +1,5 @@
-// Import CommandInteraction
 import { CommandInteraction } from "discord.js";
-// Import Knex
+
 import { Knex } from "knex";
 
 export const checkUserExists = (interaction: CommandInteraction, db: Knex, userId: string, guildId: string): void => {

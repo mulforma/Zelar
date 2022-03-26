@@ -1,23 +1,10 @@
-// Import SlashCommandBuilder
 import { SlashCommandBuilder } from "@discordjs/builders";
-// Import MessageEmbed
-import { MessageEmbed } from "discord.js";
-// Import Client and CommandInteraction
-import { Client, CommandInteraction } from "discord.js";
-// Import InventoryItemData
+import { Client, CommandInteraction, MessageEmbed } from "discord.js";
 import { InventoryItemData } from "../../types/InventoryItemData";
 
-// Export command
 export default {
-  // Set command data
-  data: new SlashCommandBuilder()
-    // Set command name
-    .setName("inventory")
-    // Set command description
-    .setDescription("View your current inventory."),
-  // Set command category
+  data: new SlashCommandBuilder().setName("inventory").setDescription("View your current inventory."),
   category: "Profile",
-  // Execute function
   async execute(client: Client, interaction: CommandInteraction): Promise<void> {
     // Get user inventory
     client.db

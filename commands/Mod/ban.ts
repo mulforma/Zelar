@@ -1,6 +1,4 @@
-// Import SlashCommandBuilder
 import { SlashCommandBuilder } from "@discordjs/builders";
-// Import Permissions, MessageActionRow, MessageButton
 import {
   Client,
   CommandInteraction,
@@ -11,37 +9,13 @@ import {
   Permissions,
 } from "discord.js";
 
-// Export command
 export default {
-  // Set command data
   data: new SlashCommandBuilder()
-    // Set command name
     .setName("ban")
-    // Set command description
     .setDescription("ban a user")
-    // Add command options
-    .addUserOption((option) =>
-      option
-        // Set option name
-        .setName("target")
-        // Set option description
-        .setDescription("Select a user to ban")
-        // Set if option is required
-        .setRequired(true),
-    )
-    // Add string option
-    .addStringOption((option) =>
-      option
-        // Set option name
-        .setName("reason")
-        // Set option description
-        .setDescription("Reason for ban")
-        // Set if option is required
-        .setRequired(false),
-    ),
-  // Set command category
+    .addUserOption((option) => option.setName("target").setDescription("Select a user to ban").setRequired(true))
+    .addStringOption((option) => option.setName("reason").setDescription("Reason for ban").setRequired(false)),
   category: "Mod",
-  // Execute function
   async execute(client: Client, interaction: CommandInteraction): Promise<void> {
     // Get options value (target)
     const user = <GuildMember>await interaction.options.getMember("target");

@@ -1,21 +1,10 @@
-// Import function 'addCoin'
 import { addCoin } from "../../methods/addCoin";
-// Import SlashCommandBuilder
 import { SlashCommandBuilder } from "@discordjs/builders";
-// Import MessageActionRow and MessageButton from discord.js
 import { Client, CommandInteraction, MessageActionRow, MessageButton, MessageComponentInteraction } from "discord.js";
 
-// Export command
 export default {
-  // Set command data
-  data: new SlashCommandBuilder()
-    // Set command name
-    .setName("rps")
-    // Set command description
-    .setDescription("Play rock paper scissors with the bot."),
-  // Set command category
+  data: new SlashCommandBuilder().setName("rps").setDescription("Play rock paper scissors with the bot."),
   category: "Game",
-  // Execute function
   async execute(client: Client, interaction: CommandInteraction): Promise<void> {
     // Set variables
     const rps = ["rock", "paper", "scissors"];

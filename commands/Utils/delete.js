@@ -1,29 +1,18 @@
-// Import SlashCommandBuilder
 const { SlashCommandBuilder } = require("@discordjs/builders");
-// Import Permissions from discord.js
 const { Permissions } = require("discord.js");
 
-// Export command
 export default {
-  // Command data
   data: new SlashCommandBuilder()
-    // Command name
     .setName("delete")
-    // Command description
     .setDescription("Delete message within 2 weeks old")
-    // Add number option
     .addNumberOption((option) =>
       option
-        // Set option name
         .setName("amount")
-        // Set option description
         .setDescription("Amount of message to  delete, limit 100 message")
         // Set option is required
         .setRequired(true),
     ),
-  // Command category
   category: "Utils",
-  // Command run function
   async execute(client: Client, interaction: CommandInteraction): Promise<void> {
     // Check if user has permission to use command
     if (!interaction.member.permissions.has(Permissions.FLAGS.MANAGE_MESSAGES)) {

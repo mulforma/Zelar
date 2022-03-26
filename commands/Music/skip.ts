@@ -1,19 +1,9 @@
-// Import SlashCommandBuilder
 import { SlashCommandBuilder } from "@discordjs/builders";
-// Import Client and CommandInteraction
 import { Client, CommandInteraction } from "discord.js";
 
-// Export command
 export default {
-  // Set command data
-  data: new SlashCommandBuilder()
-    // Set command name
-    .setName("skip")
-    // Set command description
-    .setDescription("Skips the current song."),
-  // Set command category
+  data: new SlashCommandBuilder().setName("skip").setDescription("Skips the current song."),
   category: "Music",
-  // Execute function
   async execute(client: Client, interaction: CommandInteraction): Promise<void> {
     // Get queue
     const queue = client.player.getQueue(interaction.guild!.id);

@@ -1,43 +1,17 @@
-// Import SlashCommandBuilder
 import { SlashCommandBuilder } from "@discordjs/builders";
-// Import getUserData
 import { getUserData } from "../../methods/getUserData";
-// Import addCoin
 import { addCoin } from "../../methods/addCoin";
-// Import Client and CommandInteraction
 import { Client, CommandInteraction } from "discord.js";
 
-// Export command
 export default {
-  // Set command data
   data: new SlashCommandBuilder()
-    // Set command name
     .setName("bet")
-    // Set command description
     .setDescription("Bet on a game.")
-    // Add integer option
+    .addIntegerOption((option) => option.setName("amount").setDescription("The amount to bet.").setRequired(true))
     .addIntegerOption((option) =>
-      option
-        // Set option name
-        .setName("amount")
-        // Set option description
-        .setDescription("The amount to bet.")
-        // Set option required
-        .setRequired(true),
-    )
-    // Add integer option
-    .addIntegerOption((option) =>
-      option
-        // Set option name
-        .setName("number")
-        // Set option description
-        .setDescription("The number to bet (1-10).")
-        // Set option required
-        .setRequired(true),
+      option.setName("number").setDescription("The number to bet (1-10).").setRequired(true),
     ),
-  // Set command category
   category: "Game",
-  // Execute function
   async execute(client: Client, interaction: CommandInteraction): Promise<void> {
     // Get random number
     const number = Math.floor(Math.random() * 10) + 1;

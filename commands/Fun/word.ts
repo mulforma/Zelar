@@ -1,39 +1,15 @@
-// Import SlashCommandBuilder
 import { SlashCommandBuilder } from "@discordjs/builders";
-// Import Client, CommandInteraction
 import { Awaitable, Client, CommandInteraction, Message } from "discord.js";
-// Import axios
 import axios from "axios";
-// Import addCoin
 import { addCoin } from "../../methods/addCoin";
 
-// Export command
 export default {
-  // Set command data
   data: new SlashCommandBuilder()
-    // Set command name
     .setName("word")
-    // Set command description
     .setDescription("Play a word game.")
-    // Add subcommands
-    .addSubcommand((subcommand) =>
-      subcommand
-        // Set subcommand name
-        .setName("fill")
-        // Set subcommand description
-        .setDescription("Fills in the blanks in a word."),
-    )
-    // Add subcommands
-    .addSubcommand((subcommand) =>
-      subcommand
-        // Set subcommand name
-        .setName("sort")
-        // Set subcommand description
-        .setDescription("Sorts a shuffled word."),
-    ),
-  // Set command category
+    .addSubcommand((subcommand) => subcommand.setName("fill").setDescription("Fills in the blanks in a word."))
+    .addSubcommand((subcommand) => subcommand.setName("sort").setDescription("Sorts a shuffled word.")),
   category: "Fun",
-  // Execute function
   async execute(client: Client, interaction: CommandInteraction): Promise<void> {
     // GenBlanks function (For filling in the blanks)
     function genBlanks(letter: Array<string>) {

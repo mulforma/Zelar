@@ -1,8 +1,5 @@
-// Import SlashCommandBuilder
 import { SlashCommandBuilder } from "@discordjs/builders";
-// Import axios
 import axios from "axios";
-// Import MessageEmbed, MessageActionRow and MessageButton from discord.js
 import {
   Client,
   CommandInteraction,
@@ -11,20 +8,11 @@ import {
   MessageComponentInteraction,
   MessageEmbed,
 } from "discord.js";
-// Import npmlog
-import log from "npmlog";
+import * as log from "npmlog";
 
-// Export command
 export default {
-  // Command data
-  data: new SlashCommandBuilder()
-    // Command name
-    .setName("trivia")
-    // Command description
-    .setDescription("You have 30 seconds to think, Quick!"),
-  // Command category
+  data: new SlashCommandBuilder().setName("trivia").setDescription("You have 30 seconds to think, Quick!"),
   category: "Game",
-  // Command run function
   async execute(client: Client, interaction: CommandInteraction): Promise<void> {
     // Fetch trivia from API
     const response = await axios.get("https://opentdb.com/api.php?amount=1&type=boolean&encode=base64");

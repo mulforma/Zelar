@@ -1,27 +1,13 @@
-// Import SlashCommandBuilder
 import { SlashCommandBuilder } from "@discordjs/builders";
-// Import getUserData
 import { getUserData } from "../../methods/getUserData";
-// Import ms
 import ms from "ms";
-// Import checkTimeout
 import { checkTimeout } from "../../methods/checkTimeout";
-// Import Client and CommandInteraction
 import { Client, CommandInteraction } from "discord.js";
-// Import InventoryItemData
 import { InventoryItemData } from "../../types/InventoryItemData";
 
-// Export command
 export default {
-  // Set command data
-  data: new SlashCommandBuilder()
-    // Set command name
-    .setName("fishing")
-    // Set command description
-    .setDescription("Go fishing!"),
-  // Set command category
+  data: new SlashCommandBuilder().setName("fishing").setDescription("Go fishing!"),
   category: "Game",
-  // Execute function
   async execute(client: Client, interaction: CommandInteraction): Promise<void> {
     // Get user
     const userData = await getUserData(interaction, client.db, interaction.user.id, interaction.guild!.id);

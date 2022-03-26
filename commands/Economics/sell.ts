@@ -1,45 +1,18 @@
-// Import SlashCommandBuilder
 import { SlashCommandBuilder } from "@discordjs/builders";
-// Import getPlayerData
 import { getUserData } from "../../methods/getUserData";
-// Import getItemData
 import { getItemData } from "../../methods/getItemData";
-// Import Client, CommandInteraction
 import { Client, CommandInteraction } from "discord.js";
-// Import InventoryItemData
 import { InventoryItemData } from "../../types/InventoryItemData";
 
-// Export command
 export default {
-  // Set command data
   data: new SlashCommandBuilder()
-    // Set command name
     .setName("sell")
-    // Set command description
     .setDescription("Sell an item")
-    // Add string option
-    .addStringOption((option) =>
-      option
-        // Set option name
-        .setName("item")
-        // Set option description
-        .setDescription("The item to sell")
-        // Set require
-        .setRequired(true),
-    )
-    // Add integer option
+    .addStringOption((option) => option.setName("item").setDescription("The item to sell").setRequired(true))
     .addIntegerOption((option) =>
-      option
-        // Set option name
-        .setName("amount")
-        // Set option description
-        .setDescription("The amount of the item to sell")
-        // Set require
-        .setRequired(true),
+      option.setName("amount").setDescription("The amount of the item to sell").setRequired(true),
     ),
-  // Set command category
   category: "Economics",
-  // Execute function
   async execute(client: Client, interaction: CommandInteraction): Promise<void> {
     // Get item
     const item = interaction.options.getString("item");

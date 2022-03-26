@@ -1,29 +1,14 @@
-// Import SlashCommandBuilder
 import { SlashCommandBuilder } from "@discordjs/builders";
-// Import Client and CommandInteraction
 import { Client, CommandInteraction } from "discord.js";
 
-// Export command
 export default {
-  // Set command data
   data: new SlashCommandBuilder()
-    // Set command name
     .setName("remove")
-    // Set command description
     .setDescription("Remove the song from the queue.")
-    // Add number option
     .addNumberOption((option) =>
-      option
-        // Set option name
-        .setName("track-number")
-        // Set option description
-        .setDescription("The track number to remove.")
-        // Set option required
-        .setRequired(true),
+      option.setName("track-number").setDescription("The track number to remove.").setRequired(true),
     ),
-  // Set command category
   category: "Music",
-  // Execute function
   async execute(client: Client, interaction: CommandInteraction): Promise<void> {
     // Get queue
     const queue = client.player.getQueue(interaction.guild!.id);

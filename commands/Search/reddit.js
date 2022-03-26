@@ -1,31 +1,16 @@
-// Import SlashCommandBuilder
 const { SlashCommandBuilder } = require("@discordjs/builders");
-// Import axios
 const axios = require("axios");
-// Import MessageEmbed from Discord.js
 const { MessageEmbed } = require("discord.js");
 
-// Export command
 export default {
-  // Set command data
   data: new SlashCommandBuilder()
-    // Set command name
     .setName("reddit")
-    // Set command description
     .setDescription("Search for a subreddit")
-    // Add string option
     .addStringOption((option) =>
       // Set option name
-      option
-        .setName("subreddit")
-        // Set option description
-        .setDescription("The subreddit to search")
-        // Set option required
-        .setRequired(true),
+      option.setName("subreddit").setDescription("The subreddit to search").setRequired(true),
     ),
-  // Set command category
   category: "Search",
-  // Execute function
   async execute(client: Client, interaction: CommandInteraction): Promise<void> {
     // Get subreddit
     const subreddit = interaction.options.getString("subreddit");
@@ -41,7 +26,6 @@ export default {
       const embed = new MessageEmbed()
         // Set title
         .setTitle(`${post.title}`)
-        // Set description
         .setDescription(`${post.selftext}`)
         // Set footer
         .setFooter({ text: post.subreddit_name_prefixed })

@@ -1,29 +1,14 @@
-// Import SlashCommandBuilder
 import { SlashCommandBuilder } from "@discordjs/builders";
-// Import Client and CommandInteraction
 import { Client, CommandInteraction, MessageEmbed } from "discord.js";
 
-// Export command
 export default {
-  // Set command data
   data: new SlashCommandBuilder()
-    // Set command name
     .setName("avatar")
-    // Set command description
     .setDescription("Get a user's avatar")
-    // Add user option
     .addUserOption((option) =>
-      option
-        // Set name
-        .setName("target")
-        // Set description
-        .setDescription("The user to get the avatar of")
-        // Set required
-        .setRequired(false),
+      option.setName("target").setDescription("The user to get the avatar of").setRequired(false),
     ),
-  // Set command category
   category: "Misc",
-  // Execute function
   async execute(client: Client, interaction: CommandInteraction): Promise<void> {
     // Get target
     const target = interaction.options.getUser("target") || interaction.user;

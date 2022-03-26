@@ -1,31 +1,15 @@
-// Import SlashCommandBuilder
 import { SlashCommandBuilder } from "@discordjs/builders";
-// Import QueueRepeatMode from discord-player
 import { QueueRepeatMode } from "discord-player";
-// Import Client and CommandInteraction
 import { Client, CommandInteraction } from "discord.js";
 
-// Export command
 export default {
-  // Set command data
   data: new SlashCommandBuilder()
-    // Set command name
     .setName("loop")
-    // Set command description
     .setDescription("Loop the current song.")
-    // Add string option
     .addStringOption((option) =>
-      option
-        // Set option name
-        .setName("mode")
-        // Set option description
-        .setDescription("Loop mode. (Off, Track and Queue)")
-        // Set option required
-        .setRequired(true),
+      option.setName("mode").setDescription("Loop mode. (Off, Track and Queue)").setRequired(true),
     ),
-  // Set command category
   category: "Music",
-  // Execute function
   async execute(client: Client, interaction: CommandInteraction): Promise<void> {
     // Get queue
     const queue = client.player.getQueue(interaction.guild!.id);

@@ -1,8 +1,7 @@
-// Import dotenv
 import "dotenv/config";
-// Import npmlog
+
 import * as log from "npmlog";
-// Import knex
+
 import Knex from "knex";
 
 export const knex = Knex({

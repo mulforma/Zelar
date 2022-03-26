@@ -1,39 +1,20 @@
-// Import SlashCommandBuilder
 import { SlashCommandSubcommandBuilder } from "@discordjs/builders";
-// Import MessageEmbed from Discord.js
 import { Client, CommandInteraction, MessageEmbed } from "discord.js";
-// Import os
 import os from "os";
-// Import ms
 import ms from "ms";
 
 const { SlashCommandBuilder } = require("@discordjs/builders");
 
-// Export command
 export default {
-  // Set command data
   data: new SlashCommandBuilder()
-    // Set command name
     .setName("bot-stats")
-    // Set command description
     .setDescription("Check the bots stats.")
-    // Add subcommands
     .addSubcommand((subcommand: SlashCommandSubcommandBuilder) =>
-      subcommand
-        // Set subcommand name
-        .setName("bot")
-        // Set subcommand description
-        .setDescription("Check bot stats"),
+      subcommand.setName("bot").setDescription("Check bot stats"),
     )
-    // Add subcommands
     .addSubcommand((subcommand: SlashCommandSubcommandBuilder) =>
-      subcommand
-        // Set subcommand name
-        .setName("server")
-        // Set subcommand description
-        .setDescription("Check server stats"),
+      subcommand.setName("server").setDescription("Check server stats"),
     ),
-  // Set command category
   category: "Misc",
   async execute(client: Client, interaction: CommandInteraction): Promise<void> {
     // Get subcommand

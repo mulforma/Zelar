@@ -1,8 +1,5 @@
-// Import SlashCommandBuilder
 import { SlashCommandBuilder } from "@discordjs/builders";
-// Import axios
 import axios from "axios";
-// Import MessageEmbed, MessageButton and MessageActionRow from Discord.js
 import {
   Client,
   CommandInteraction,
@@ -12,17 +9,9 @@ import {
   MessageEmbed,
 } from "discord.js";
 
-// Export command
 export default {
-  // Set command data
-  data: new SlashCommandBuilder()
-    // Set command name
-    .setName("meme")
-    // Set command description
-    .setDescription("Send a meme"),
-  // Set command category
+  data: new SlashCommandBuilder().setName("meme").setDescription("Send a meme"),
   category: "Fun",
-  // Execute function
   async execute(client: Client, interaction: CommandInteraction): Promise<void> {
     // Fetch meme by axios
     const { data } = await axios.get("https://meme-api.herokuapp.com/gimme");

@@ -1,45 +1,18 @@
-// Import SlashCommandBuilder
 import { SlashCommandBuilder } from "@discordjs/builders";
-// Import getUserData
 import { getUserData } from "../../methods/getUserData";
-// Import Client and CommandInteraction
 import { Client, CommandInteraction } from "discord.js";
-// Import ShopItemData
 import { ShopItemData } from "../../types/ShopItemData";
-// Import InventoryItemData
 import { InventoryItemData } from "../../types/InventoryItemData";
 
-// Export command
 export default {
-  // Set command data
   data: new SlashCommandBuilder()
-    // Set command name
     .setName("buy")
-    // Set command description
     .setDescription("Buy an item from the shop.")
-    // Add string option
-    .addStringOption((option) =>
-      option
-        // Set option name
-        .setName("item")
-        // Set option description
-        .setDescription("The item you want to buy.")
-        // Set option required
-        .setRequired(true),
-    )
-    // Add integer option
+    .addStringOption((option) => option.setName("item").setDescription("The item you want to buy.").setRequired(true))
     .addIntegerOption((option) =>
-      option
-        // Set option name
-        .setName("amount")
-        // Set option description
-        .setDescription("The amount of the item you want to buy.")
-        // Set option required
-        .setRequired(true),
+      option.setName("amount").setDescription("The amount of the item you want to buy.").setRequired(true),
     ),
-  // Set command category
   category: "Economics",
-  // Execute function
   async execute(client: Client, interaction: CommandInteraction): Promise<void> {
     // Get user data
     const user = await getUserData(interaction, client.db, interaction.user.id, interaction.guild!.id);

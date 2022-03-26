@@ -1,31 +1,15 @@
-// Import SlashCommandBuilder
 import { SlashCommandBuilder } from "@discordjs/builders";
-// Import axios
 import axios from "axios";
-// Import MessageEmbed
 import { Client, CommandInteraction, MessageEmbed, TextChannel } from "discord.js";
 
-// Export command
 export default {
-  // Set command data
   data: new SlashCommandBuilder()
-    // Set command name
     .setName("hentai")
-    // Set command description
     .setDescription("Sends a random hentai image (from gelbooru)")
-    // Add string option
     .addStringOption((option) =>
-      option
-        // Set option name
-        .setName("tag")
-        // Set option description
-        .setDescription("The tag to search for (Separate with commas)")
-        // Set option required
-        .setRequired(false),
+      option.setName("tag").setDescription("The tag to search for (Separate with commas)").setRequired(false),
     ),
-  // Set command category
   category: "Nsfw",
-  // Execute function
   async execute(client: Client, interaction: CommandInteraction): Promise<void> {
     // Check if channel is NSFW
     if (!(<TextChannel>interaction.channel)!.nsfw) {

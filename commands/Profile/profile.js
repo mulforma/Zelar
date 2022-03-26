@@ -1,31 +1,15 @@
-// Import SlashCommandBuilder
 const { SlashCommandBuilder } = require("@discordjs/builders");
-// Import MessageEmbed
 const { MessageEmbed } = require("discord.js");
-// Import getItemData
 const getItemData = require("../../methods/getItemData");
 
-// Export command
 export default {
-  // Set command data
   data: new SlashCommandBuilder()
-    // Set command name
     .setName("profile")
-    // Set command description
     .setDescription("Set up or view your profile.")
-    // Add user option
     .addUserOption((option) =>
-      option
-        // Set option name
-        .setName("target")
-        // Set option description
-        .setDescription("The target user to view the profile of.")
-        // Set option required
-        .setRequired(false),
+      option.setName("target").setDescription("The target user to view the profile of.").setRequired(false),
     ),
-  // Set command category
   category: "Profile",
-  // Execute function
   async execute(client: Client, interaction: CommandInteraction): Promise<void> {
     // Get user
     const { user } = interaction;

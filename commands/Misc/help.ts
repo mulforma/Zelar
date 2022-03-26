@@ -1,47 +1,21 @@
-// Import SlashCommandBuilder
 import { SlashCommandBuilder } from "@discordjs/builders";
-// Import MessageEmbed from discord.js
 import { Client, CommandInteraction, MessageEmbed } from "discord.js";
-// Import CommandData
 import { CommandData } from "../../types/CommandData";
 
-// Export command
 export default {
-  // Set command data
   data: new SlashCommandBuilder()
-    // Set command name
     .setName("help")
-    // Set command description
     .setDescription("Shows a list of commands.")
-    // Add subcommands
+    .addSubcommand((subcommand) => subcommand.setName("all").setDescription("Shows a list of all commands."))
     .addSubcommand((subcommand) =>
       subcommand
-        // Set subcommand name
-        .setName("all")
-        // Set subcommand description
-        .setDescription("Shows a list of all commands."),
-    )
-    // Add subcommands
-    .addSubcommand((subcommand) =>
-      subcommand
-        // Set subcommand name
         .setName("command")
-        // Set subcommand description
         .setDescription("Shows specific command information.")
-        // Add string option
         .addStringOption((command) =>
-          command
-            // Set option name
-            .setName("command")
-            // Set option description
-            .setDescription("The command to show information for.")
-            // Set option required
-            .setRequired(true),
+          command.setName("command").setDescription("The command to show information for.").setRequired(true),
         ),
     ),
-  // Set command category
   category: "Misc",
-  // Execute function
   async execute(client: Client, interaction: CommandInteraction): Promise<void> {
     // Get all command categories
     const categories = new Set(client.commands.map((c) => c.category));

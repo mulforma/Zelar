@@ -1,24 +1,12 @@
-// Import SlashCommandBuilder
 import { SlashCommandBuilder } from "@discordjs/builders";
-// Import getUserData
 import { getUserData } from "../../methods/getUserData";
-// Import addCoin
 import { addCoin } from "../../methods/addCoin";
-// Import ms
 import ms from "ms";
 import { Client, CommandInteraction } from "discord.js";
 
-// Export command
 export default {
-  // Set command data
-  data: new SlashCommandBuilder()
-    // Set command name
-    .setName("daily")
-    // Set command description
-    .setDescription("Get your daily coin."),
-  // Set command category
+  data: new SlashCommandBuilder().setName("daily").setDescription("Get your daily coin."),
   category: "Economics",
-  // Execute function
   async execute(client: Client, interaction: CommandInteraction): Promise<void> {
     // Get user data
     const userData = await getUserData(interaction, client.db, interaction.user.id, interaction.guild!.id);

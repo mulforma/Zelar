@@ -1,31 +1,13 @@
-// Import SlashCommandBuilder
 import { SlashCommandBuilder } from "@discordjs/builders";
-// Import QueryType from discord-player
-import { QueryType, Track } from "discord-player";
-// Import Client and CommandInteraction
+import { QueryType } from "discord-player";
 import { Client, CommandInteraction, GuildMember } from "discord.js";
 
-// Export command
 export default {
-  // Set command data
   data: new SlashCommandBuilder()
-    // Set command name
     .setName("play")
-    // Set command description
     .setDescription("Add a song to the queue.")
-    // Add string option
-    .addStringOption((option) =>
-      option
-        // Set option name
-        .setName("song")
-        // Set option description
-        .setDescription("The song to play.")
-        // Set option required
-        .setRequired(true),
-    ),
-  // Set command category
+    .addStringOption((option) => option.setName("song").setDescription("The song to play.").setRequired(true)),
   category: "Music",
-  // Execute function
   async execute(client: Client, interaction: CommandInteraction): Promise<void> {
     // Get query
     const query = interaction.options.getString("song")!;

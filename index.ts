@@ -1,8 +1,5 @@
-// Import dotenv
 import "dotenv/config";
-// Import ShardingManager from discord.js
 import { ShardingManager } from "discord.js";
-// Import npmlog
 import * as log from "npmlog";
 
 // Create a new ShardingManager

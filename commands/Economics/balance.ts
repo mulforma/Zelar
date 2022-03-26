@@ -1,31 +1,15 @@
-// Import SlashCommandBuilder and SlashCommandUserOption
 import { SlashCommandBuilder, SlashCommandUserOption } from "@discordjs/builders";
-// Import MessageEmbed
 import { Client, CommandInteraction, MessageEmbed } from "discord.js";
-// Import UserData
 import { UserData } from "../../types/UserData";
 
-// Export command
 export default {
-  // Set command data
   data: new SlashCommandBuilder()
-    // Set command name
     .setName("balance")
-    // Set command description
     .setDescription("Check your account balance")
-    // Add command options
     .addUserOption((option: SlashCommandUserOption) =>
-      option
-        // Set option name
-        .setName("target")
-        // Set option description
-        .setDescription("Select a user to check their balance")
-        // Set if option is required
-        .setRequired(false),
+      option.setName("target").setDescription("Select a user to check their balance").setRequired(false),
     ),
-  // Set command category
   category: "Economics",
-  // Execute function
   async execute(client: Client, interaction: CommandInteraction): Promise<void> {
     // Get user
     const user = interaction.options.getUser("target") || interaction.user;

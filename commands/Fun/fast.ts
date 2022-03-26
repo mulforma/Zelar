@@ -1,32 +1,14 @@
-// Import SlashCommandBuilder
 import { SlashCommandBuilder } from "@discordjs/builders";
-// Import axios
 import axios from "axios";
-// Import MessageEmbed
-// Import Client, CommandInteraction
 import { Client, CommandInteraction, Message, MessageEmbed } from "discord.js";
-// Import addCoin
 import { addCoin } from "../../methods/addCoin";
 
-// Export command
 export default {
-  // Set command data
   data: new SlashCommandBuilder()
-    // Set command name
     .setName("fast")
-    // Set command description
     .setDescription("Answers with a fast response.")
-    // Add subcommand
-    .addSubcommand((subcommand) =>
-      subcommand
-        // Set subcommand name
-        .setName("math")
-        // Set subcommand description
-        .setDescription("Answers math questions."),
-    ),
-  // Set command category
+    .addSubcommand((subcommand) => subcommand.setName("math").setDescription("Answers math questions.")),
   category: "Fun",
-  // Execute function
   async execute(client: Client, interaction: CommandInteraction): Promise<void> {
     // Set if end
     let end = false;

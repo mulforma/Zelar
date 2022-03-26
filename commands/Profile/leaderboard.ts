@@ -1,6 +1,4 @@
-// Import SlashCommandBuilder
 import { SlashCommandBuilder } from "@discordjs/builders";
-// Import MessageActionRow, MessageButton and MessageEmbed
 import {
   Client,
   CommandInteraction,
@@ -10,33 +8,13 @@ import {
   MessageEmbed,
 } from "discord.js";
 
-// Export command
 export default {
-  // Set command data
   data: new SlashCommandBuilder()
-    // Set command name
     .setName("leaderboard")
-    // Set command description
     .setDescription("Shows the leaderboard")
-    // Add subcommand
-    .addSubcommand((subcommand) =>
-      subcommand
-        // Set subcommand name
-        .setName("global")
-        // Set subcommand description
-        .setDescription("Shows the global leaderboard"),
-    )
-    // Add subcommand
-    .addSubcommand((subcommand) =>
-      subcommand
-        // Set subcommand name
-        .setName("local")
-        // Set subcommand description
-        .setDescription("Shows the local leaderboard"),
-    ),
-  // Set command category
+    .addSubcommand((subcommand) => subcommand.setName("global").setDescription("Shows the global leaderboard"))
+    .addSubcommand((subcommand) => subcommand.setName("local").setDescription("Shows the local leaderboard")),
   category: "Profile",
-  // Execute function
   async execute(client: Client, interaction: CommandInteraction): Promise<void> {
     // Get leaderboard scope
     const scope = interaction.options.getSubcommand() || "global";
@@ -124,7 +102,6 @@ export default {
         // Set items start and end
         itemsStart += 5;
         itemsEnd += 5;
-        // Set description
         embed.setDescription(
           leaderboard
             .slice(itemsStart, itemsEnd)
@@ -144,7 +121,6 @@ export default {
         // Set items start and end
         itemsStart -= 5;
         itemsEnd -= 5;
-        // Set description
         embed.setDescription(
           leaderboard
             .slice(itemsStart, itemsEnd)

@@ -1,95 +1,27 @@
-// Import SlashCommandBuilder
 import { SlashCommandBuilder } from "@discordjs/builders";
-// Import Permission from discord.js
 import { Client, CommandInteraction, GuildChannelCreateOptions, Permissions } from "discord.js";
 
-// Export command
 export default {
-  // Set command data
   data: new SlashCommandBuilder()
-    // Set command name
     .setName("channel")
-    // Set command description
     .setDescription("Create or delete channel")
-    // Set subcommands
     .addSubcommand((subcommand) =>
       subcommand
-        // Set subcommand name
         .setName("create")
-        // Set subcommand description
         .setDescription("Create channel")
-        // Add string option
-        .addStringOption((option) =>
-          option
-            // Set option name
-            .setName("name")
-            // Set option description
-            .setDescription("Channel name")
-            // Set option required
-            .setRequired(true),
-        )
-        // Add string option
-        .addStringOption((option) =>
-          option
-            // Set option name
-            .setName("type")
-            // Set option description
-            .setDescription("Channel type")
-            // Set option required
-            .setRequired(true),
-        )
-        // Add string option
-        .addStringOption((option) =>
-          option
-            // Set option name
-            .setName("category")
-            // Set option description
-            .setDescription("Channel category")
-            // Set option required
-            .setRequired(false),
-        )
-        // Add string option
-        .addStringOption((option) =>
-          option
-            // Set option name
-            .setName("topic")
-            // Set option description
-            .setDescription("Channel topic")
-            // Set option required
-            .setRequired(false),
-        )
-        // Add boolean option
-        .addBooleanOption((option) =>
-          option
-            // Set option name
-            .setName("nsfw")
-            // Set option description
-            .setDescription("Channel nsfw")
-            // Set option required
-            .setRequired(false),
-        ),
+        .addStringOption((option) => option.setName("name").setDescription("Channel name").setRequired(true))
+        .addStringOption((option) => option.setName("type").setDescription("Channel type").setRequired(true))
+        .addStringOption((option) => option.setName("category").setDescription("Channel category").setRequired(false))
+        .addStringOption((option) => option.setName("topic").setDescription("Channel topic").setRequired(false))
+        .addBooleanOption((option) => option.setName("nsfw").setDescription("Channel nsfw").setRequired(false)),
     )
-    // Add subcommand
     .addSubcommand((subcommand) =>
       subcommand
-        // Set subcommand name
         .setName("delete")
-        // Set subcommand description
         .setDescription("Delete channel")
-        // Add string option
-        .addStringOption((option) =>
-          option
-            // Set option name
-            .setName("name")
-            // Set option description
-            .setDescription("Channel name")
-            // Set option required
-            .setRequired(true),
-        ),
+        .addStringOption((option) => option.setName("name").setDescription("Channel name").setRequired(true)),
     ),
-  // Set command category
   category: "Mod",
-  // Execute function
   async execute(client: Client, interaction: CommandInteraction): Promise<void> {
     // Get subcommand
     const subcommand = interaction.options.getSubcommand();

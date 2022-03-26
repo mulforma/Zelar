@@ -1,31 +1,15 @@
-// Import SlashCommandBuilder
 import { SlashCommandBuilder } from "@discordjs/builders";
-// Import MessageEmbed
 import { Client, CommandInteraction, MessageEmbed } from "discord.js";
-// Import DIG
 import DIG from "discord-image-generation";
 
-// Export command
 export default {
-  // Set command data
   data: new SlashCommandBuilder()
-    // Set command name
     .setName("triggered")
-    // Set command description
     .setDescription("Generates a triggered image.")
-    // Add user option
     .addUserOption((option) =>
-      option
-        // Set option name
-        .setName("user")
-        // Set option description
-        .setDescription("The user to generate the triggered image for.")
-        // Set option required
-        .setRequired(false),
+      option.setName("user").setDescription("The user to generate the triggered image for.").setRequired(false),
     ),
-  // Set command category
   category: "Misc",
-  // Execute function
   async execute(client: Client, interaction: CommandInteraction): Promise<void> {
     // Get user
     const user = interaction.options.getUser("user") || interaction.user;

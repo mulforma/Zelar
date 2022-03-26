@@ -1,14 +1,10 @@
 // Load env
 require("dotenv").config();
-// Import SlashCommandBuilder
+
 const { SlashCommandBuilder } = require("@discordjs/builders");
-// Import cheerio
 const cheerio = require("cheerio");
-// Import MessageEmbed from discord.js
 const { MessageEmbed } = require("discord.js");
-// Import axios
 const axios = require("axios");
-// Import npmlog
 const log = require("npmlog");
 
 // Search for image
@@ -25,103 +21,51 @@ const searchImage = (query) => {
     });
 };
 
-// Export command
 export default {
-  // Set command data
   data: new SlashCommandBuilder()
-    // Set command name
     .setName("search")
-    // Set command description
     .setDescription("Search anything!")
-    // Add string option
     .addSubcommand((subcommand) =>
       subcommand
-        // Set subcommand name
         .setName("image")
-        // Set subcommand description
         .setDescription("Search for an image")
-        // Add string option
         .addStringOption((option) =>
-          option
-            // Set name
-            .setName("query")
-            // Set description
-            .setDescription("The query to search for")
-            // Set required
-            .setRequired(true),
+          option.setName("query").setDescription("The query to search for").setRequired(true),
         ),
     )
     .addSubcommand((subcommand) =>
       subcommand
-        // Set subcommand name
         .setName("wiki")
-        // Set subcommand description
         .setDescription("Search wikipedia!")
-        // Add string option
         .addStringOption((option) =>
-          option
-            // Set name
-            .setName("query")
-            // Set description
-            .setDescription("The query to search for")
-            // Set required
-            .setRequired(true),
+          option.setName("query").setDescription("The query to search for").setRequired(true),
         ),
     )
     .addSubcommand((subcommand) =>
       subcommand
-        // Set subcommand name
         .setName("duck")
-        // Set subcommand description
         .setDescription("Search duckduckgo!")
-        // Add string option
         .addStringOption((option) =>
-          option
-            // Set name
-            .setName("query")
-            // Set description
-            .setDescription("The query to search for")
-            // Set required
-            .setRequired(true),
+          option.setName("query").setDescription("The query to search for").setRequired(true),
         ),
     )
     .addSubcommand((subcommand) =>
       subcommand
-        // Set subcommand name
         .setName("wikidata")
-        // Set subcommand description
         .setDescription("Search wikidata!")
-        // Add string option
         .addStringOption((option) =>
-          option
-            // Set name
-            .setName("query")
-            // Set description
-            .setDescription("The query to search for")
-            // Set required
-            .setRequired(true),
+          option.setName("query").setDescription("The query to search for").setRequired(true),
         ),
     )
     .addSubcommand((subcommand) =>
       subcommand
-        // Set subcommand name
         .setName("quotes")
-        // Set subcommand description
         .setDescription("Search wikiquotes!")
-        // Add string option
         .addStringOption((option) =>
-          option
-            // Set name
-            .setName("query")
-            // Set description
-            .setDescription("The query to search for")
-            // Set required
-            .setRequired(true),
+          option.setName("query").setDescription("The query to search for").setRequired(true),
         ),
     ),
-  // Set command category
   category: "Search",
-  // Execute function
   async execute(client: Client, interaction: CommandInteraction): Promise<void> {
     // Get query
     const query = interaction.options.getString("query");

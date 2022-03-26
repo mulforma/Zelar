@@ -1,37 +1,18 @@
-// Import SlashCommandBuilder
 import { SlashCommandBuilder } from "@discordjs/builders";
-// Import getUserData
 import { getUserData } from "../../methods/getUserData";
-// Import addCoin
 import { addCoin } from "../../methods/addCoin";
-// Import checkTimeout
 import { checkTimeout } from "../../methods/checkTimeout";
-// Import ms
 import ms from "ms";
-// Import Client and CommandInteraction
 import { Client, CommandInteraction } from "discord.js";
 
-// Export command
 export default {
-  // Set command data
   data: new SlashCommandBuilder()
-    // Set command name
     .setName("rob")
-    // Set command description
     .setDescription("Rob someone")
-    // Add user option
     .addUserOption((option) =>
-      option
-        // Set option name
-        .setName("target")
-        // Set option description
-        .setDescription("The target user you want to rob")
-        // Set option required
-        .setRequired(true),
+      option.setName("target").setDescription("The target user you want to rob").setRequired(true),
     ),
-  // Set command category
   category: "Game",
-  // Execute function
   async execute(client: Client, interaction: CommandInteraction): Promise<void> {
     // Get target user
     const target = interaction.options.getUser("target")!;

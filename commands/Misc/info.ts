@@ -1,45 +1,19 @@
-// Import SlashCommandBuilder
 import { SlashCommandBuilder } from "@discordjs/builders";
-// Import MessageEmbed
 import { Client, CommandInteraction, GuildMember, MessageEmbed } from "discord.js";
-// Import ms
 import ms from "ms";
 
 // Export commands
 export default {
-  // Set command data
   data: new SlashCommandBuilder()
-    // Set command name
     .setName("info")
-    // Set command description
     .setDescription("Give you information")
-    // Add subcommand
     .addSubcommand((subcommand) =>
       subcommand
-        // Set subcommand name
         .setName("member")
-        // Set subcommand description
         .setDescription("Give guild member's information")
-        // Add user options
-        .addUserOption((option) =>
-          option
-            // Set option name
-            .setName("target")
-            // Set option description
-            .setDescription("Select a member")
-            // Set if command is required
-            .setRequired(true),
-        ),
+        .addUserOption((option) => option.setName("target").setDescription("Select a member").setRequired(true)),
     )
-    // Add subcommand
-    .addSubcommand((subcommand) =>
-      subcommand
-        // Set subcommand name
-        .setName("server")
-        // Set subcommand description
-        .setDescription("Give server's information"),
-    ),
-  // Set command category
+    .addSubcommand((subcommand) => subcommand.setName("server").setDescription("Give server's information")),
   category: "Misc",
   // Execute command function
   async execute(client: Client, interaction: CommandInteraction): Promise<void> {

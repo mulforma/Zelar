@@ -1,57 +1,22 @@
-// Import SlashCommandBuilder
 import { SlashCommandBuilder } from "@discordjs/builders";
-// Import getUserData
 import { getUserData } from "../../methods/getUserData";
-// Import checkTimeout
 import { checkTimeout } from "../../methods/checkTimeout";
-// Import ms
 import ms from "ms";
-// Import Client, CommandInteraction
 import { Client, CommandInteraction } from "discord.js";
-// Import InventoryItemData
 import { InventoryItemData } from "../../types/InventoryItemData";
 
-// Export command
 export default {
-  // Set command data
   data: new SlashCommandBuilder()
-    // Set command name
     .setName("send")
-    // Set command description
     .setDescription("Send user an item, Even if they want it or not.")
-    // Add user option
     .addUserOption((option) =>
-      option
-        // Set option name
-        .setName("target")
-        // Set option description
-        .setDescription("The target user you want to send an item")
-        // Set option required
-        .setRequired(true),
+      option.setName("target").setDescription("The target user you want to send an item").setRequired(true),
     )
-    // Add string option
-    .addStringOption((option) =>
-      option
-        // Set option name
-        .setName("item")
-        // Set option description
-        .setDescription("The item you want to send")
-        // Set option required
-        .setRequired(true),
-    )
-    // Add integer option
+    .addStringOption((option) => option.setName("item").setDescription("The item you want to send").setRequired(true))
     .addIntegerOption((option) =>
-      option
-        // Set option name
-        .setName("amount")
-        // Set option description
-        .setDescription("The amount of the item you want to send")
-        // Set option required
-        .setRequired(true),
+      option.setName("amount").setDescription("The amount of the item you want to send").setRequired(true),
     ),
-  // Set command category
   category: "Economics",
-  // Execute function
   async execute(client: Client, interaction: CommandInteraction): Promise<void> {
     // Get target user
     const target = interaction.options.getUser("target");

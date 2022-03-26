@@ -1,4 +1,3 @@
-// Import Queue and Track
 import { Queue, Track } from "discord-player";
 
 export default {

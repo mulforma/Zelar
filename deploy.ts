@@ -1,12 +1,7 @@
-// Import dotenv
 import "dotenv/config";
-// Import fs
 import * as fs from "node:fs";
-// Import REST
 import { REST } from "@discordjs/rest";
-// Import Routes
 import { Routes } from "discord-api-types/v10";
-// Import npmlog
 import * as log from "npmlog";
 
 // Command Array
@@ -21,7 +16,6 @@ for (const folder of commandFolder) {
 
   // Listing file in commandFiles
   for (const file of commandFiles) {
-    // Import command
     const command = await import(`./commands/${folder}/${file}`);
     // Push command in to Command Array
     commands.push(command.data.toJSON());

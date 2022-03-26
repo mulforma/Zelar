@@ -1,27 +1,12 @@
-// Import SlashCommandBuilder
 import { SlashCommandBuilder } from "@discordjs/builders";
-// Import MessageEmbed
 import { Client, CommandInteraction, MessageEmbed } from "discord.js";
 
-// Export command
 export default {
-  // Set command data
   data: new SlashCommandBuilder()
-    // Set command name
     .setName("coin-flip")
-    // Set command description
     .setDescription("Flips a coin and returns the result")
-    // Add string option
-    .addIntegerOption((option) =>
-      option
-        // Set name
-        .setName("seed")
-        // Set description
-        .setDescription("Seed for the coin flip generated value"),
-    ),
-  // Set command category
+    .addIntegerOption((option) => option.setName("seed").setDescription("Seed for the coin flip generated value")),
   category: "Game",
-  // Execute function
   async execute(client: Client, interaction: CommandInteraction): Promise<void> {
     // Get seed
     const seed = interaction.options.getInteger("seed") || new Date().getTime();

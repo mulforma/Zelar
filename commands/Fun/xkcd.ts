@@ -1,21 +1,10 @@
-// Import SlashCommandBuilder
 import { SlashCommandBuilder } from "@discordjs/builders";
-// Import MessageEmbed
 import { Client, CommandInteraction, MessageEmbed } from "discord.js";
-// Import axios
 import axios from "axios";
 
-// Export command
 export default {
-  // Set command data
-  data: new SlashCommandBuilder()
-    // Set command name
-    .setName("xkcd")
-    // Set command description
-    .setDescription("Get a random xkcd comic"),
-  // Set command category
+  data: new SlashCommandBuilder().setName("xkcd").setDescription("Get a random xkcd comic"),
   category: "Fun",
-  // Execute function
   async execute(client: Client, interaction: CommandInteraction): Promise<void> {
     // Get all possible xkcd comics
     const comics = await axios.get("https://xkcd.com/info.0.json");

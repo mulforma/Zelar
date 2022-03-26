@@ -1,4 +1,3 @@
-// Import Client from discord.js
 import { Client } from "discord.js";
 
 // Array of playing games
@@ -12,7 +11,7 @@ const Game: Array<string> = [
   "Call of Duty Mobile",
   /* Add more here */
 ];
-// Import npmlog
+
 import * as log from "npmlog";
 
 export default {

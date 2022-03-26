@@ -1,6 +1,4 @@
-// Import SlashCommandBuilder
 import { SlashCommandBuilder } from "@discordjs/builders";
-// Import Client, CommandInteraction, MessageEmbed, MessageButton and MessageActionRow from Discord.js
 import {
   Client,
   CommandInteraction,
@@ -10,17 +8,9 @@ import {
   MessageEmbed,
 } from "discord.js";
 
-// Export command
 export default {
-  // Set command data
-  data: new SlashCommandBuilder()
-    // Set command name
-    .setName("shop")
-    // Set command description
-    .setDescription("Shows the shop."),
-  // Set command category
+  data: new SlashCommandBuilder().setName("shop").setDescription("Shows the shop."),
   category: "Economics",
-  // Execute function
   async execute(client: Client, interaction: CommandInteraction): Promise<void> {
     // Get shop
     const shop = await client.db.select("*").from("officialShop");
@@ -98,7 +88,6 @@ export default {
         // Set items start and end
         itemsStart += 5;
         itemsEnd += 5;
-        // Set description
         embed.setDescription(
           shop
             .slice(itemsStart, itemsEnd)
@@ -121,7 +110,6 @@ export default {
         // Set items start and end
         itemsStart -= 5;
         itemsEnd -= 5;
-        // Set description
         embed.setDescription(
           shop
             .slice(itemsStart, itemsEnd)

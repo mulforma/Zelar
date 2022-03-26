@@ -1,10 +1,9 @@
-// Import ms
 import ms from "ms";
-// Import CommandInteraction
+
 import { CommandInteraction } from "discord.js";
-// Import Knex
+
 import { Knex } from "knex";
-// Import TimeoutCommandData and userData
+
 import { TimeoutCommandData, UserData } from "../types/UserData";
 
 export const checkTimeout = async (

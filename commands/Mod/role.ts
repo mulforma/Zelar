@@ -1,81 +1,34 @@
-// Import SlashCommandBuilder
 import { SlashCommandBuilder } from "@discordjs/builders";
-// Import Permission from discord.js
-import {
-  Client,
-  CommandInteraction,
-  GuildMember,
-  GuildMemberRoleManager,
-  Permissions,
-} from "discord.js";
 
-// Export command
+import { Client, CommandInteraction, GuildMember, GuildMemberRoleManager, Permissions } from "discord.js";
+
 export default {
-  // Command data
   data: new SlashCommandBuilder()
-    // Set name
     .setName("role")
-    // Set description
     .setDescription("Give or remove roles from member")
-    // Add subcommands
     .addSubcommand((subcommand) =>
       subcommand
-        // Set name
         .setName("give")
-        // Set description
         .setDescription("Give role to member")
-        // Add user option
         .addUserOption((option) =>
-          option
-            // Set name
-            .setName("target")
-            // Set description
-            .setDescription("Select a member to give role")
-            // Set required
-            .setRequired(true),
+          option.setName("target").setDescription("Select a member to give role").setRequired(true),
         )
-        // Add role option
         .addRoleOption((option) =>
-          option
-            // Set name
-            .setName("role")
-            // Set description
-            .setDescription("Select a role to give member")
-            // Set required
-            .setRequired(false),
+          option.setName("role").setDescription("Select a role to give member").setRequired(false),
         ),
     )
-    // Add subcommands
     .addSubcommand((subcommand) =>
       subcommand
-        // Set name
         .setName("remove")
-        // Set description
         .setDescription("Remove role from member")
-        // Add user option
         .addUserOption((option) =>
-          option
-            // Set name
-            .setName("target")
-            // Set description
-            .setDescription("Select a member to remove role")
-            // Set required
-            .setRequired(true),
+          option.setName("target").setDescription("Select a member to remove role").setRequired(true),
         )
-        // Add role option
         .addRoleOption((option) =>
-          option
-            // Set name
-            .setName("role")
-            // Set description
-            .setDescription("Select a role to remove from member")
-            // Set required
-            .setRequired(true),
+          option.setName("role").setDescription("Select a role to remove from member").setRequired(true),
         ),
     ),
-  // Command category
   category: "Mod",
-  // Command run function
   async execute(client: Client, interaction: CommandInteraction): Promise<void> {
     // Check if user has permission to use command
     if (!(interaction.member!.permissions as Readonly<Permissions>).has(Permissions.FLAGS.MANAGE_ROLES)) {

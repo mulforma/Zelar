@@ -1,6 +1,4 @@
-// Import SlashCommandBuilder
 import { SlashCommandBuilder, SlashCommandUserOption } from "@discordjs/builders";
-// Import MessageActionRow, MessageButton, and MessageEmbed
 import {
   CacheType,
   Client,
@@ -60,27 +58,14 @@ class TicTacToe {
   }
 }
 
-// Export command
 export default {
-  // Set command data
   data: new SlashCommandBuilder()
-    // Set command name
     .setName("tic-tac-toe")
-    // Set command description
     .setDescription("Play a game of tic-tac-toe with the another player.")
-    // Add user option
     .addUserOption((option: SlashCommandUserOption) =>
-      option
-        // Set option name
-        .setName("user")
-        // Set option description
-        .setDescription("The user to play the game with.")
-        // Set option required
-        .setRequired(true),
+      option.setName("user").setDescription("The user to play the game with.").setRequired(true),
     ),
-  // Set command category
   category: "Fun",
-  // Execute function
   async execute(client: Client, interaction: CommandInteraction): Promise<void> {
     // Get user if exists
     const user = interaction.options.getUser("user");

@@ -1,6 +1,4 @@
-// Import SlashCommandBuilder
 import { SlashCommandBuilder } from "@discordjs/builders";
-// Import Permissions, MessageActionRow, MessageButton
 import {
   Client,
   CommandInteraction,
@@ -11,42 +9,18 @@ import {
   Permissions,
 } from "discord.js";
 
-// Export command
 export default {
-  // Set command data
   data: new SlashCommandBuilder()
-    // Set command name
     .setName("kick")
-    // Set command description
     .setDescription("Kick a user")
-    // Add command options
-    .addUserOption((option) =>
-      option
-        // Set option name
-        .setName("target")
-        // Set option description
-        .setDescription("Select a user to kick")
-        // Set if option is required
-        .setRequired(true),
-    )
-    // Add string option
-    .addStringOption((option) =>
-      option
-        // Set option name
-        .setName("reason")
-        // Set option description
-        .setDescription("Reason for kick")
-        // Set if option is required
-        .setRequired(false),
-    ),
-  // Set command category
+    .addUserOption((option) => option.setName("target").setDescription("Select a user to kick").setRequired(true))
+    .addStringOption((option) => option.setName("reason").setDescription("Reason for kick").setRequired(false)),
   category: "Mod",
-  // Execute function
   async execute(client: Client, interaction: CommandInteraction): Promise<void> {
     // Get options value (target)
     const user = <GuildMember>await interaction.options.getMember("target")!;
     // Interaction member
-    const { member } = (interaction);
+    const { member } = interaction;
     // Check if user who called command has permissions 'KICK_MEMBERS'
     // More about Permission.FLAGS, see (https://discord.js.org/#/docs/main/stable/class/Permissions?scrollTo=s-FLAGS)
     if (!(member!.permissions as Readonly<Permissions>).has(Permissions.FLAGS.KICK_MEMBERS)) {

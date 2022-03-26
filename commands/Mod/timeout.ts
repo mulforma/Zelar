@@ -1,6 +1,4 @@
-// Import SlashCommandBuilder
 import { SlashCommandBuilder } from "@discordjs/builders";
-// Import Permission, MessageActionRow and MessageButton from discord.js
 import {
   Client,
   CommandInteraction,
@@ -11,43 +9,15 @@ import {
   Permissions,
 } from "discord.js";
 
-// Export command
 export default {
   // Command name
   data: new SlashCommandBuilder()
-    // Command name
     .setName("timeout")
-    // Command description
     .setDescription("Timeout a user")
-    // Add user option
-    .addUserOption((option) =>
-      option
-        // Set the option name
-        .setName("target")
-        // Set the option description
-        .setDescription("Select a user to timeout")
-        // Set the option type
-        .setRequired(true),
-    )
-    // Add string option
-    .addStringOption((option) =>
-      option
-        // Set the option name
-        .setName("reason")
-        // Set the option description
-        .setDescription("Reason for timeout")
-        // Set the option type
-        .setRequired(false),
-    )
-    // Add integer option
+    .addUserOption((option) => option.setName("target").setDescription("Select a user to timeout").setRequired(true))
+    .addStringOption((option) => option.setName("reason").setDescription("Reason for timeout").setRequired(false))
     .addNumberOption((option) =>
-      option
-        // Set the option name
-        .setName("time")
-        // Set the option description
-        .setDescription("Time to timeout in minutes (0 for clear)")
-        // Set the option type
-        .setRequired(false),
+      option.setName("time").setDescription("Time to timeout in minutes (0 for clear)").setRequired(false),
     ),
   category: "Mod",
   async execute(client: Client, interaction: CommandInteraction): Promise<void> {
@@ -87,7 +57,7 @@ export default {
     // Add confirm button
     const confirm = new MessageActionRow().addComponents(
       /** @type any */
-      (new MessageButton().setCustomId("Confirm").setLabel("Confirm").setStyle("DANGER")),
+      new MessageButton().setCustomId("Confirm").setLabel("Confirm").setStyle("DANGER"),
     );
 
     // Get reason

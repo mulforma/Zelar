@@ -1,31 +1,13 @@
-// Import SlashCommandBuilder
 import { SlashCommandBuilder } from "@discordjs/builders";
-// Import getItemData
 import { getItemData } from "../../methods/getItemData";
-// Import MessageEmbed, CommandInteraction and Client
 import { Client, CommandInteraction, MessageEmbed } from "discord.js";
 
-// Export command
 export default {
-  // Set command data
   data: new SlashCommandBuilder()
-    // Set command name
     .setName("item")
-    // Set command description
     .setDescription("Get information about an item.")
-    // Add string option
-    .addStringOption((option) =>
-      option
-        // Set option name
-        .setName("item")
-        // Set option description
-        .setDescription("The name of the item.")
-        // Set option required
-        .setRequired(true),
-    ),
-  // Set command category
+    .addStringOption((option) => option.setName("item").setDescription("The name of the item.").setRequired(true)),
   category: "Economics",
-  // Execute function
   async execute(client: Client, interaction: CommandInteraction): Promise<void> {
     // Get item name
     const itemName = interaction.options.getString("item");
