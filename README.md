@@ -6,7 +6,7 @@
     </h2>
   </a>
   <p align="center">
-    A simple, open-source, and free, fast, secure, and reliable discord bot. <br>
+    A simple, open-source, free, fast, secure, and reliable discord bot. <br>
   </p>
 
 <div style="display: flex; flex-wrap: wrap; justify-items: center; justify-content: center">
