@@ -29,7 +29,7 @@ The source code is well-documented and easy to understand (Because we write comm
 Because of Nintod is community driven, people like **You** can help us to improve the bot or even make up your own commands!
 And giving that Nintod is **Open Source**, that means, more functionality and commands can be added in the future! 
 It's just like killing two birds with one stone! You can help us by contributing to the project. Because we love open-source, isn't that right?
-Some command uses vvx services like `short` command that use [XURLShortener](github.com/thevvx/x.vvx.bar) which is also **Open Source**. 
+Some command uses vvx services like `short` command that use [XURLShortener](https://github.com/thevvx/x.vvx.bar) which is also **Open Source**. 
 What that means is that you can also edit the 3rd party code and it *may* improve the bot performance.
 
 ## Is there a community or support server?
