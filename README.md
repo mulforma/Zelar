@@ -63,6 +63,8 @@ Then you have to build the typescript files first
 $ pnpm run build && pnpm run postbuild
 ```
 
+If you don'
+
 Also don't forget to change `.env.example` to `.env` and insert your data. Then deploy the command by running
 
 ```bash
