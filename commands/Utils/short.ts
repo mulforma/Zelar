@@ -15,9 +15,9 @@ export default {
     await interaction.deferReply();
 
     // Shorten url with x.vvx.bar
-    axios.post("https://xurlshortener.herokuapp.com/create/url", { URL }).then(async (res) => {
+    axios.post("https://x.vvx.bar/create/url", { URL }).then(async (res) => {
       // Send response
-      await interaction.editReply(`${URL} -> https://x.vvx.bar/${res.data.short_url}/`);
+      await interaction.editReply(`${URL} -> https://x.vvx.bar/${res.data.short_url}`);
     }).catch(async (reason) => {
       // Send error
       await interaction.editReply(`An error occurred while shortening your url.\nReason: ${reason}`);
