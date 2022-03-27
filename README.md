@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://x.vvx.bar/XVlBzg/">
-    <img src="/docs/logo.png" height="96" width="96" style="border-radius: 9999px" />
+    <img src="/docs/nintod.png" height="96" width="96" style="border-radius: 9999px" />
     <h2 align="center">
       𝗧𝗛𝗘 𝗡𝗜𝗡𝗧𝗢𝗗 𝗣𝗥𝗢𝗝𝗘𝗖𝗧
     </h2>
