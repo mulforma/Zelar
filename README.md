@@ -23,13 +23,13 @@
 
 ## Why should I use it?
 
-Because it's open-source! And it has **a lot** of functionality and commands. We are currently working on a lot of features (but we are also working on a lot of bugs too).
+It has **a lot** of functionality and commands! We are currently working on a lot of features (but we are also working on a lot of bugs too).
 Not only that, Nintod is also **Free** and also **Open Source**. Who still have to pay for a bot? It's also **Easy To Use**. with a simple command.
 The source code is well-documented and easy to understand (Because we write comments in the code, all lines).
 Because of Nintod is community driven, people like **You** can help us to improve the bot or even make up your own commands!
 And giving that Nintod is **Open Source**, that means, more functionality and commands can be added in the future! 
 It's just like killing two birds with one stone! You can help us by contributing to the project. Because we love open-source, isn't that right?
-Some command uses vvx services like `short` command that use [XURLShortener](https://github.com/thevvx/x.vvx.bar) which is also **Open Source**. 
+Some command uses vvx services like `short` command that use [XURLShortener](https://github.com/thevvx/xurlsh) which is also **Open Source**. 
 What that means is that you can also edit the 3rd party code and it *may* improve the bot performance.
 
 ## Is there a community or support server?
