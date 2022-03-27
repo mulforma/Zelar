@@ -6,7 +6,7 @@
     </h2>
   </a>
   <p align="center">
-    A simple, open-source, free, fast, secure, and reliable discord bot. <br>
+    A general purpose discord bot with a lot of commands and utilities, without paying a single penny!
   </p>
   <div style="display: flex; flex-wrap: wrap; justify-items: center; justify-content: center">
     <img src="https://wakatime.com/badge/user/5cb7cd14-ac7e-4fc0-9f81-6036760cb6a3/project/43c4defc-5916-4bc2-aca5-0683f99c9e2d.svg" />
@@ -32,7 +32,7 @@ It's just like killing two birds with one stone! You can help us by contributing
 Some command uses vvx services like `short` command that use [XURLShortener](https://github.com/thevvx/xurlsh) which is also **Open Source**. 
 What that means is that you can also edit the 3rd party code and it *may* improve the bot performance.
 
-## Is there a community or support server?
+## Is there a community or a support server?
 
 Surely the community is the most important thing in **Open Source** thingy. If we don't have a community, the Open Source thing will be useless.
 That's why we have a Discord server! You can join it and ask questions, share your ideas, and help us to improve the bot.
