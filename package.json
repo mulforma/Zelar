@@ -1,11 +1,11 @@
 {
   "name": "nintod",
-  "version": "1.0.0",
+  "version": "1.3.2",
   "description": "A simple, open-source, and free, fast, secure, and reliable discord bot.",
   "main": "bot.ts",
   "scripts": {
     "dev": "nodemon",
-    "start": "node dist/index",
+    "start": "cd dist && node --experimental-json-modules index",
     "format": "prettier -w .",
     "lint": "eslint .",
     "build": "tsc -p .",

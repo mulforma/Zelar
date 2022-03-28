@@ -1,7 +1,12 @@
 import { SlashCommandBuilder, SlashCommandSubcommandBuilder } from "@discordjs/builders";
-import { Client, CommandInteraction, Guild, MessageEmbed, version } from "discord.js";
+import { Client, CommandInteraction, Guild, MessageEmbed } from "discord.js";
 import os from "os";
 import ms from "ms";
+import { createRequire } from "module";
+import { version as discordVersion } from "discord.js";
+
+const require = createRequire(import.meta.url);
+const { version } = require("../../package.json");
 
 export default {
   data: new SlashCommandBuilder()
@@ -56,16 +61,18 @@ export default {
             new MessageEmbed()
               .setTitle("Bots server info")
               .setThumbnail(client.user!.displayAvatarURL())
-              .addField("Platform", `${os.platform()} ${os.release()}`)
-              .addField("Architecture", os.arch())
-              .addField("System Uptime", ms(ms(`${os.uptime()}s`)))
-              .addField("CPUs", `${[...new Set(os.cpus().map((x) => x.model))].join("\n")}`)
-              .addField("CPU Cores", `${os.cpus().length}`)
-              .addField("RAM Free", `${(os.freemem() / 1024 / 1024).toFixed(2)} MB`)
-              .addField("RAM Total", `${(os.totalmem() / 1024 / 1024).toFixed(2)} MB`)
-              .addField("RAM Usage", `${((1 - os.freemem() / os.totalmem()) * 100).toFixed(2)}%`)
-              .addField("Discord.js Version", `${version}`)
-              .addField("Node.js Version", `${process.version}`)
+              .addField("Platform", `${os.platform()} ${os.release()}`, true)
+              .addField("Architecture", os.arch(), true)
+              .addField("System Uptime", ms(ms(`${os.uptime()}s`)), true)
+              .addField("System Hostname", os.hostname(), true)
+              .addField("CPUs", [...new Set(os.cpus().map((x) => x.model))].join("\n"), true)
+              .addField("CPU Cores", os.cpus().length.toString(), true)
+              .addField("RAM Free", `${(os.freemem() / 1024 / 1024).toFixed(2)} MB`, true)
+              .addField("RAM Total", `${(os.totalmem() / 1024 / 1024).toFixed(2)} MB`, true)
+              .addField("RAM Usage", `${((1 - os.freemem() / os.totalmem()) * 100).toFixed(2)}%`, true)
+              .addField("Discord.js Version", `v${discordVersion}`, true)
+              .addField("Node.js Version", process.version, true)
+              .addField("Bots Version", `v${version}`, true)
               .setColor("#0099ff")
               .setFooter({
                 text: `Requested by ${interaction.user.tag}`,
