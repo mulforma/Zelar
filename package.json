@@ -7,7 +7,7 @@
     "dev": "nodemon",
     "start": "cd dist && node --experimental-json-modules index",
     "format": "prettier -w .",
-    "lint": "eslint .",
+    "lint": "eslint . --no-error-on-unmatched-pattern",
     "build": "tsc -p .",
     "build:watch": "tsc -p . --watch",
     "postbuild": "pnpm run copy",
