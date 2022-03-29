@@ -11,8 +11,9 @@
     "build": "tsc -p .",
     "build:watch": "tsc -p . --watch",
     "postbuild": "pnpm run copy",
-    "copy": "pnpm run copy:dotfiles && pnpm run copy:assets",
+    "copy": "pnpm run copy:files && pnpm run copy:assets && pnpm run copy:dotfiles",
     "copy:assets": "cp -r assets/* ./dist/assets",
+    "copy:files": "cp *.{json} dist",
     "copy:dotfiles": "cp .env dist"
   },
   "keywords": [

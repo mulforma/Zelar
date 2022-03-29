@@ -1,9 +1,9 @@
 import { SlashCommandBuilder, SlashCommandSubcommandBuilder } from "@discordjs/builders";
 import { Client, CommandInteraction, Guild, MessageEmbed } from "discord.js";
-import os from "os";
-import ms from "ms";
 import { createRequire } from "module";
 import { version as discordVersion } from "discord.js";
+import os from "os";
+import ms from "ms";
 
 const require = createRequire(import.meta.url);
 const { version } = require("../../package.json");
