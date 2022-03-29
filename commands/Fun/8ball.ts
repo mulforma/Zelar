@@ -18,7 +18,7 @@ export default {
     const result = answer[Math.ceil(Math.random() * answer.length)];
     // Send the message
     await interaction.reply({
-      content: `:crystal_ball: ${question}\nAnswer: ${result}`,
+      content: `:crystal_ball: Question: ${question}\n:comet: Answer: ${result}`,
     });
   },
 };
