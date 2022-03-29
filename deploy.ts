@@ -18,7 +18,9 @@ for (const folder of commandFolder) {
   for (const file of commandFiles) {
     const command = await import(`./commands/${folder}/${file}`);
     // Push command in to Command Array
-    commands.push(command.data.toJSON());
+    if (command.default) {
+      commands.push(await command.default.data.toJSON());
+    }
   }
 }
 
