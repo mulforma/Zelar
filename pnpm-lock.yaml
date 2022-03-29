@@ -2,6 +2,7 @@ lockfileVersion: 5.3
 
 specifiers:
   '@discordjs/builders': ^0.12.0
+  '@discordjs/collection': ^0.5.0
   '@discordjs/opus': ^0.7.0
   '@discordjs/rest': ^0.3.0
   '@types/ms': ^0.7.31
@@ -9,7 +10,7 @@ specifiers:
   '@typescript-eslint/eslint-plugin': ^5.16.0
   '@typescript-eslint/parser': ^5.16.0
   axios: ^0.26.0
-  canvas: ^2.9.0
+  canvas: ^2.9.1
   cheerio: ^1.0.0-rc.10
   discord-api-types: ^0.27.3
   discord-image-generation: ^1.4.12
@@ -29,6 +30,7 @@ specifiers:
 
 dependencies:
   '@discordjs/builders': 0.12.0
+  '@discordjs/collection': 0.5.0
   '@discordjs/opus': 0.7.0
   '@discordjs/rest': 0.3.0
   '@types/ms': 0.7.31
@@ -100,6 +102,11 @@ packages:
   /@discordjs/collection/0.4.0:
     resolution: {integrity: sha512-zmjq+l/rV35kE6zRrwe8BHqV78JvIh2ybJeZavBi5NySjWXqN3hmmAKg7kYMMXSeiWtSsMoZ/+MQi0DiQWy2lw==}
     engines: {node: '>=16.0.0', npm: '>=7.0.0'}
+    dev: false
+
+  /@discordjs/collection/0.5.0:
+    resolution: {integrity: sha512-3Vr3y4/Kl6ThOsD/cbXkK4JmjawQahbM3ojHpD6XyTEOG4fwZFMYH/NTWKFd5WZUw38iQsvGC4Kt4VkL++1hFQ==}
+    engines: {node: '>=16.9.0'}
     dev: false
 
   /@discordjs/node-pre-gyp/0.4.2:

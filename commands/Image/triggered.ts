@@ -9,7 +9,7 @@ export default {
     .addUserOption((option) =>
       option.setName("user").setDescription("The user to generate the triggered image for.").setRequired(false),
     ),
-  category: "Misc",
+  category: "Image",
   async execute(client: Client, interaction: CommandInteraction): Promise<void> {
     // Get user
     const user = interaction.options.getUser("user") || interaction.user;
