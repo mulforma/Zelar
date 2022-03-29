@@ -121,6 +121,7 @@ This project is licensed under the [Apache 2.0](/LICENSE) license.
 - `work` - Work and earn money
 
 #### Fun
+- `8ball` - Ask 8ball a question!
 - `fast` - Answer with fast responses
 - `meme` - Get a random meme
 - `tic-tac-toe` - Play a game of tic-tac-toe

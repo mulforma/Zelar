@@ -45,18 +45,14 @@ const eventFolder = fs.readdirSync("./events").filter((file) => file.endsWith(".
 
 // List all folder in files
 for (const file of eventFolder) {
-  try {
-    const { default: event } = await import(`./events/${file}`);
-    // Check if event is once
-    if (event.once) {
-      // Listen once
-      client.once(event.name, async (...args) => event.run(client, ...args));
-    } else {
-      // Listen on
-      client.on(event.name, (...args) => event.run(client, ...args));
-    }
-  } catch (error: unknown) {
-    log.error("Error loading events...", error as string);
+  const { default: event } = await import(`./events/${file}`);
+  // Check if event is once
+  if (event.once) {
+    // Listen once
+    client.once(event.name, async (...args) => event.run(client, ...args));
+  } else {
+    // Listen on
+    client.on(event.name, (...args) => event.run(client, ...args));
   }
 }
 
@@ -65,13 +61,9 @@ const playerFolder = fs.readdirSync("./players").filter((file) => file.endsWith(
 
 // List all folder in files
 for (const file of playerFolder) {
-  try {
-    const { default: player } = await import(`./players/${file}`);
-    // Listen on
-    client.player.on(player.name, (...args: any) => player.run(...args));
-  } catch (error: unknown) {
-    log.error("Error loading players...", error as string);
-  }
+  const { default: player } = await import(`./players/${file}`);
+  // Listen on
+  client.player.on(player.name, (...args: any) => player.run(...args));
 }
 
 // Login to bot
