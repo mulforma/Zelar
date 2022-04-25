@@ -20,7 +20,7 @@ export default {
     axios.post("https://x.vvx.bar/create/url", { url }).then(async (res) => {
       // Send response
       await interaction.editReply({
-        content: `https://x.vvx.bar/${res.data.short_url}`
+        content: `${res.data.short_url}`
       });
     }).catch(async (reason) => {
       // Send error
