@@ -1,5 +1,5 @@
 import { SlashCommandBuilder } from "@discordjs/builders";
-import { Client, CommandInteraction, MessageEmbed } from "discord.js";
+import { Client, CommandInteraction } from "discord.js";
 
 export default {
   data: new SlashCommandBuilder()
