@@ -1,11 +1,10 @@
 import ms from "ms";
 import { CommandInteraction } from "discord.js";
-import { Knex } from "knex";
 import { TimeoutCommandData, UserData } from "../types/UserData";
+import { prisma } from "../database/connect";
 
 export const checkTimeout = async (
   interaction: CommandInteraction,
-  db: Knex,
   cmdName: string,
   timeoutMs: number,
   userData: UserData,
@@ -41,15 +40,15 @@ export const checkTimeout = async (
   }
 
   // Save timeout
-  db("user")
-    .update({
-      timeout: userData.timeout,
-    })
-    .where({
+  prisma.user.update({
+    where: {
       userId: interaction.user.id,
       serverId: interaction.guild?.id,
-    })
-    .then();
+    },
+    data: {
+      timeout: userData.timeout,
+    }
+  });
 
   return false;
 };

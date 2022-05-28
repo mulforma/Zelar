@@ -1,11 +1,5 @@
 import { SlashCommandBuilder, SlashCommandUserOption } from "@discordjs/builders";
-import {
-  Client,
-  CommandInteraction,
-  MessageButton,
-  MessageComponentInteraction,
-  MessageEmbed,
-} from "discord.js";
+import { Client, CommandInteraction, MessageButton, MessageComponentInteraction, MessageEmbed } from "discord.js";
 
 // Tic-Tac-Toe class
 class TicTacToe {

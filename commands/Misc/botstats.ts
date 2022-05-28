@@ -5,8 +5,8 @@ import { version as discordVersion } from "discord.js";
 import os from "os";
 import ms from "ms";
 
-const require = createRequire(import.meta.url);
-const { version } = require("../../package.json");
+const req = createRequire(import.meta.url);
+const { version } = req("../../package.json");
 
 export default {
   data: new SlashCommandBuilder()
@@ -25,7 +25,9 @@ export default {
     // Promises
     const promises = [
       await client.shard!.fetchClientValues("guilds.cache.size"),
-      await client.shard!.broadcastEval((c) => c.guilds.cache.reduce((acc: number, guild: Guild) => acc + guild.memberCount, 0)),
+      await client.shard!.broadcastEval((c) =>
+        c.guilds.cache.reduce((acc: number, guild: Guild) => acc + guild.memberCount, 0),
+      ),
     ];
 
     switch (subcommand) {

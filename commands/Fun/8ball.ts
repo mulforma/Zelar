@@ -5,8 +5,8 @@ export default {
   data: new SlashCommandBuilder()
     .setName("8ball")
     .setDescription("Ask the magic 8ball a question!")
-    .addStringOption(option =>
-      option.setName("question").setRequired(true).setDescription("The question to ask the 8ball")
+    .addStringOption((option) =>
+      option.setName("question").setRequired(true).setDescription("The question to ask the 8ball"),
     ),
   category: "Fun",
   async execute(client: Client, interaction: CommandInteraction): Promise<void> {

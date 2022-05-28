@@ -6,6 +6,7 @@ We're glad that you want to contribute to our project! So let's get started!
 # 📝 What can I contribute?
 
 You can contribute this project in a variety of ways:
+
 - 📝 Being a developer: Just write the code
 - 📝 Being a bug hunter: Haha, This is my favorite thing... well in my mind.
 - 📝 Being a typo hunter: Yup another common mistake in the code.
@@ -19,9 +20,8 @@ We already have a configuration files for all of Eslint and Prettier, so you can
 We also have GitHub Actions tools like DeepSource and CodeFactor to check the quality of the code. If the test is passed, more likely the code to be
 merged into the main branch first.
 
-
 # 🖊 Writing an issues
 
 We've provided some of the issues templates to use in various situations.
-It'll make the process of writing an issue easier. But if none of the suit your fit, 
+It'll make the process of writing an issue easier. But if none of the suit your fit,
 You could write it by yourself.

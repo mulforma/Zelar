@@ -35,9 +35,9 @@ try {
   log.info("", "Started refreshing application (/) commands.");
 
   const applicationCommands =
-      process.env.NODE_ENV === "production"
-        ? Routes.applicationCommands(<string>process.env.PROD_ClientId)
-        : Routes.applicationGuildCommands(<string>process.env.ClientId, <string>process.env.GuildId);
+    process.env.NODE_ENV === "production"
+      ? Routes.applicationCommands(<string>process.env.PROD_ClientId)
+      : Routes.applicationGuildCommands(<string>process.env.ClientId, <string>process.env.GuildId);
 
   // Request put in Discord API
   await rest.put(

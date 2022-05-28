@@ -1,10 +1,10 @@
 import { CommandInteraction } from "discord.js";
 import { checkUserExists } from "./checkUserExists.js";
-import { Knex } from "knex";
+import { prisma } from "../database/connect";
 
-export const getUserData = (interaction: CommandInteraction, db: Knex, userId: string, guildId: string): any => {
+export const getUserData = (interaction: CommandInteraction, userId: string, guildId: string): any => {
   // Check if user exists
-  checkUserExists(interaction, db, userId, guildId);
+  checkUserExists(interaction, userId, guildId);
   // Get user data
-  return db.select("*").from("user").where("userId", userId).andWhere("serverId", guildId).first();
+  return prisma.user.findOne({ where: { userId, serverId: guildId } });
 };

@@ -1,30 +1,29 @@
 import { CommandInteraction } from "discord.js";
-import { Knex } from "knex";
+import { prisma } from "../database/connect";
 import { checkUserExists } from "./checkUserExists.js";
 
 export const addCoin = async (
   interaction: CommandInteraction,
-  db: Knex,
   userId: string,
-  guildId: string,
+  serverId: string,
   coinAmount: number,
 ): Promise<number> => {
   // Make sure the user exists
-  checkUserExists(interaction, db, userId, guildId);
-
-  /// Get player's current coins
-  const coins: Array<{ coin: number }> = await db("user")
-    .select("coin")
-    .where("userId", userId)
-    .andWhere("serverId", guildId);
+  checkUserExists(interaction, userId, serverId);
 
   // Add the coin amount to the user's balance
-  db("user")
-    .update("coin", Number(coins[0].coin) + coinAmount)
-    .where("userId", userId)
-    .andWhere("serverId", guildId)
-    .then();
+  const user = prisma.user.update({
+    where: {
+      userId,
+      serverId,
+    },
+    data: {
+      coins: {
+        add: coinAmount,
+      }
+    }
+  });
 
   // Return the new balance
-  return coins[0].coin + coinAmount;
+  return user.coins;
 };

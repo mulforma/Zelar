@@ -1,6 +1,6 @@
-import { Knex } from "knex";
 import { ShopItemData } from "../types/ShopItemData";
+import { prisma } from "../database/connect";
 
-export const getItemData = (db: Knex, selector: string, value: string): Promise<Array<ShopItemData>> => {
-  return db("globalItems").select("*").where(selector, value);
+export const getItemData = (selector: string, value: string): Promise<Array<ShopItemData>> => {
+  return prisma.globalItems.findOne({ where: { [selector]: value } });
 };

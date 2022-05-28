@@ -30,7 +30,9 @@ export default {
       .setColor("#00ff00")
       .setTitle("Queue")
       .setDescription(
-        `${queue.tracks.map((track: Track, index: number) => `${index + 1}. [${track.title}](${track.url})`).join("\n")}`,
+        `${queue.tracks
+          .map((track: Track, index: number) => `${index + 1}. [${track.title}](${track.url})`)
+          .join("\n")}`,
       )
       .setThumbnail(client.user!.displayAvatarURL());
 

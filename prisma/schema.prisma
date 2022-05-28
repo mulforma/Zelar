@@ -1,0 +1,79 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "cockroachdb"
+  url      = env("DATABASE_URL")
+}
+
+model globalItems {
+  itemId          BigInt   @id(map: "primary") @default(autoincrement())
+  itemName        String?  @db.String(255)
+  itemEmoji       String?  @db.String(255)
+  itemDescription String?  @db.String(255)
+  itemType        String?  @db.String(255)
+  itemRarity      String?  @db.String(255)
+  usable          Boolean?
+  sellable        Boolean?
+  price           BigInt?
+}
+
+model jobs {
+  name         String  @unique(map: "jobs_name_uindex") @db.String(255)
+  description  String? @unique(map: "jobs_description_uindex") @db.String(255)
+  income       BigInt
+  minimumLevel BigInt?
+}
+
+model officialShop {
+  itemId          BigInt  @id(map: "primary")
+  itemName        String? @db.String(255)
+  itemEmoji       String? @db.String(255)
+  itemDescription String? @db.String(255)
+  itemPrice       BigInt?
+  itemRarity      String? @db.String(255)
+  itemType        String? @db.String(255)
+}
+
+model server {
+  serverId        BigInt @id(map: "primary") @default(autoincrement())
+  commandSettings Json?
+  roomSettings    Json?
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+model toddsbinConfig {
+  settingsName  String?
+  settingsValue String?
+
+  @@ignore
+}
+
+model toddsbinCoupon {
+  code      String  @unique(map: "toddsbincoupon_code_uindex")
+  amount    BigInt  @default(0)
+  limit     BigInt?
+  redeem_by Json?
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+model toddsbinUser {
+  username     String? @unique(map: "toddsbinuser_username_uindex") @db.String(255)
+  coins        BigInt  @default(0)
+  farmCooldown BigInt? @default(0)
+
+  @@ignore
+}
+
+model user {
+  serverId  BigInt?
+  userId    BigInt
+  coin      BigInt?
+  xp        BigInt?
+  level     BigInt?
+  jobs      String? @db.String(255)
+  timeout   Json?
+  inventory Json?
+  id        BigInt  @id(map: "primary") @default(autoincrement())
+}
