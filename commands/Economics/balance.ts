@@ -18,9 +18,7 @@ export default {
     // Check if user has balance
     if (!coin) {
       // Send error message
-      await interaction.reply(
-        `Oops! \`${user.username}\` has no coin!`,
-      );
+      await interaction.reply(`Oops! \`${user.username}\` has no coin!`);
       // Return
       return;
     }

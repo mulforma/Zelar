@@ -8,7 +8,7 @@ export const getUserData = async (interaction: CommandInteraction, userId: strin
   // Get user data
   const user = (await prisma.user.findFirst({ where: { userId: BigInt(userId), serverId: BigInt(guildId) } }))!;
   // Parse user inventory
-  user.inventory = typeof (user.inventory) !== "object" ? JSON.parse(String(user.inventory)) : user.inventory;
+  user.inventory = typeof user.inventory !== "object" ? JSON.parse(String(user.inventory)) : user.inventory;
   // Return user
   return user;
 };

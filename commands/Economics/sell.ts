@@ -40,7 +40,7 @@ export default {
     }
 
     // Get market price
-    const marketPrice = await getItemData("itemName", (itemsJson.name));
+    const marketPrice = await getItemData("itemName", itemsJson.name);
 
     // Check if market has item
     if (!marketPrice?.price) {
