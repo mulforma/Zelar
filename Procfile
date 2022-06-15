@@ -1,0 +1,1 @@
+worker: npm run build && cp *.{json} dist && cp -r assets/* ./dist/assets && cp .env dist && cd dist && node --experimental-json-modules index
