@@ -17,6 +17,7 @@ export default {
     });
 
     // Shorten url with x.vvx.bar
+<<<<<<< HEAD
     axios
       .post("https://x.vvx.bar/create/url", { url })
       .then(async (res) => {
@@ -28,6 +29,12 @@ export default {
       .catch(async (reason) => {
         // Send error
         await interaction.editReply(`An error occurred while shortening your url.\nReason: ${reason}`);
+=======
+    axios.post("https://x.vvx.bar/create/url", { url }).then(async (res) => {
+      // Send response
+      await interaction.editReply({
+        content: `${res.data.short_url}`
+>>>>>>> 0a7ea2f1413d53ec8102ced3ee6926d8bef6989e
       });
   },
 };
