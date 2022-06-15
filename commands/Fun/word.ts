@@ -68,7 +68,7 @@ export default {
             // Send message
             interaction.channel!.send(`🎉 Correct! You won ${amount} coins!`);
             // Add coins
-            await addCoin(interaction, client.db, interaction.user.id, interaction.guild!.id, amount);
+            await addCoin(interaction, interaction.user.id, interaction.guild!.id, amount);
             // end collector
             return collector.stop();
           } else if (tries < 3 && !correct) {
@@ -108,7 +108,7 @@ export default {
             // Send message
             interaction.channel!.send(`🎉 Correct! You won ${amount} coins!`);
             // Add coins
-            await addCoin(interaction, client.db, interaction.user.id, interaction.guild!.id, amount);
+            await addCoin(interaction, interaction.user.id, interaction.guild!.id, amount);
             // end collector
             return collector.stop();
           } else if (tries < 3 && !correct) {

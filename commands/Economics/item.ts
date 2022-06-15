@@ -12,9 +12,9 @@ export default {
     // Get item name
     const itemName = interaction.options.getString("item");
     // Get item data
-    const itemData = await getItemData(client.db, "itemName", itemName!);
+    const itemData = await getItemData("itemName", itemName!);
     // Check if item data is empty array
-    if (itemData.length === 0) {
+    if (!itemData) {
       // Send error message
       await interaction.reply("Item not found.");
       // Return
@@ -23,18 +23,18 @@ export default {
     // Create embed
     const embed = new MessageEmbed()
       // Set title
-      .setTitle(`${itemData[0].itemEmoji} ${itemData[0].itemName}`)
+      .setTitle(`${itemData.itemEmoji} ${itemData.itemName}`)
       // Set Thumbnail
       .setThumbnail(client.user!.displayAvatarURL())
       // Add field
-      .addField("Description", itemData[0].itemDescription, true)
-      .addField("ID", String(itemData[0].itemId), true)
-      .addField("Type", String(itemData[0].itemType), true)
-      .addField("Rarity", String(itemData[0].itemRarity), true)
-      .addField("Price", String(itemData[0].price), true)
-      .addField("Icon", itemData[0].itemEmoji, true)
-      .addField("Usable?", itemData[0].usable!.toString(), true)
-      .addField("Sellable?", itemData[0].sellable!.toString(), true)
+      .addField("Description", itemData.itemDescription!, true)
+      .addField("ID", String(itemData.itemId), true)
+      .addField("Type", String(itemData.itemType), true)
+      .addField("Rarity", String(itemData.itemRarity), true)
+      .addField("Price", String(itemData.price), true)
+      .addField("Icon", itemData.itemEmoji!, true)
+      .addField("Usable?", itemData.usable!.toString(), true)
+      .addField("Sellable?", itemData.sellable!.toString(), true)
       // Set color
       .setColor("BLUE");
     // Send embed

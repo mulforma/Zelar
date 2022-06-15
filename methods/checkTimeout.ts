@@ -1,7 +1,7 @@
-import ms from "ms";
 import { CommandInteraction } from "discord.js";
 import { TimeoutCommandData, UserData } from "../types/UserData";
-import { prisma } from "../database/connect";
+import { prisma } from "../database/connect.js";
+import ms from "ms";
 
 export const checkTimeout = async (
   interaction: CommandInteraction,
@@ -40,14 +40,14 @@ export const checkTimeout = async (
   }
 
   // Save timeout
-  prisma.user.update({
+  prisma.user.updateMany({
     where: {
-      userId: interaction.user.id,
-      serverId: interaction.guild?.id,
+      userId: BigInt(interaction.user.id),
+      serverId: BigInt(interaction.guild?.id!),
     },
     data: {
-      timeout: userData.timeout,
-    }
+      timeout: Number(userData.timeout),
+    },
   });
 
   return false;

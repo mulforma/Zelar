@@ -1,9 +1,10 @@
 import { SlashCommandBuilder } from "@discordjs/builders";
 import { getUserData } from "../../methods/getUserData.js";
 import { checkTimeout } from "../../methods/checkTimeout.js";
-import ms from "ms";
 import { Client, CommandInteraction } from "discord.js";
 import { InventoryItemData } from "../../types/InventoryItemData";
+import { prisma } from "../../database/connect.js";
+import ms from "ms";
 
 export default {
   data: new SlashCommandBuilder()
@@ -33,9 +34,9 @@ export default {
     }
 
     // Get user data
-    const userData = await getUserData(interaction, client.db, interaction.user.id, interaction.guild!.id);
+    const userData = await getUserData(interaction, interaction.user.id, interaction.guild!.id);
     // Get target user data
-    const targetData = await getUserData(interaction, client.db, target!.id, interaction.guild!.id);
+    const targetData = await getUserData(interaction, target!.id, interaction.guild!.id);
     // Find user items
     const userItems = userData.inventory.items.find((x: InventoryItemData) => x.name === item);
     // Check if user has items
@@ -57,7 +58,7 @@ export default {
     const timeout = ms("1m");
 
     // Check timeout
-    if (await checkTimeout(interaction, client.db, "send", timeout, userData)) {
+    if (await checkTimeout(interaction, "send", timeout, userData)) {
       return;
     }
 
@@ -82,15 +83,25 @@ export default {
       userData.inventory.items.splice(userData.inventory.items.indexOf(userItems), 1);
     }
     // Update user data
-    await client.db("user").update("inventory", userData.inventory).where({
-      userId: interaction.user.id,
-      serverId: interaction.guild!.id,
+    await prisma.user.updateMany({
+      where: {
+        userId: BigInt(interaction.user.id),
+        serverId: BigInt(interaction.guild!.id),
+      },
+      data: {
+        inventory: userData.inventory,
+      },
     });
 
     // Update target data
-    await client.db("user").update("inventory", targetData.inventory).where({
-      userId: target!.id,
-      serverId: interaction.guild!.id,
+    await prisma.user.updateMany({
+      where: {
+        userId: BigInt(target!.id),
+        serverId: BigInt(interaction.guild!.id),
+      },
+      data: {
+        inventory: targetData.inventory,
+      },
     });
 
     // Send success message

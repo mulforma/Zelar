@@ -1,6 +1,5 @@
-import { ShopItemData } from "../types/ShopItemData";
-import { prisma } from "../database/connect";
+import { prisma } from "../database/connect.js";
 
-export const getItemData = (selector: string, value: string): Promise<Array<ShopItemData>> => {
-  return prisma.globalItems.findOne({ where: { [selector]: value } });
+export const getItemData = (selector: string, value: any) => {
+  return prisma.globalItems.findFirst({ where: { [selector]: value } });
 };

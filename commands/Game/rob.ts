@@ -24,13 +24,13 @@ export default {
       return;
     }
     // Get user data
-    const userData = await getUserData(interaction, client.db, interaction.user.id, interaction.guild!.id);
+    const userData = await getUserData(interaction, interaction.user.id, interaction.guild!.id);
     // Get target user data
-    const targetData = await getUserData(interaction, client.db, target.id, interaction.guild!.id);
+    const targetData = await getUserData(interaction, target.id, interaction.guild!.id);
     // Set timeout data to be 5 minutes
     const timeout = ms("5m");
 
-    await checkTimeout(interaction, client.db, "rob", timeout, userData);
+    await checkTimeout(interaction, "rob", timeout, userData);
 
     // Check if target user has enough coins
     if (Number(targetData.coin) < 100) {
@@ -45,9 +45,9 @@ export default {
       // Calculate amount of coins to rob
       const amount = Math.floor(targetData.coin * (percentage / 100));
       // Add coins to user
-      await addCoin(interaction, client.db, interaction.user.id, interaction.guild!.id, amount);
+      await addCoin(interaction, interaction.user.id, interaction.guild!.id, amount);
       // Remove coins from target
-      await addCoin(interaction, client.db, target.id, interaction.guild!.id, amount * -1);
+      await addCoin(interaction, target.id, interaction.guild!.id, amount * -1);
       // Send success message
       return interaction.reply(`You robbed ${target.username} for ${amount} coins!`);
     }
@@ -56,7 +56,7 @@ export default {
     // Calculate amount of coins to rob
     const amount = Math.floor(targetData.coin * (percentage / 100));
     // Remove coins from user
-    await addCoin(interaction, client.db, interaction.user.id, interaction.guild!.id, amount * -1);
+    await addCoin(interaction, interaction.user.id, interaction.guild!.id, amount * -1);
     // Send fail message
     return interaction.reply(`Oh no! You got caught! You lost ${amount} coins!`);
   },

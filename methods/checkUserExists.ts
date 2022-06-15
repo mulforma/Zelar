@@ -1,12 +1,12 @@
 import { CommandInteraction } from "discord.js";
-import { prisma } from "../database/connect";
+import { prisma } from "../database/connect.js";
 
 export const checkUserExists = (interaction: CommandInteraction, userId: string, guildId: string): void => {
-  const user = prisma.user.findOne({
+  const user = prisma.user.findFirst({
     where: {
-      userId,
-      serverId: guildId,
-    }
+      userId: BigInt(userId),
+      serverId: BigInt(guildId),
+    },
   });
 
   if (!user) {

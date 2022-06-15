@@ -7,6 +7,7 @@ import {
   MessageComponentInteraction,
   MessageEmbed,
 } from "discord.js";
+import { prisma } from "../../database/connect.js";
 
 export default {
   data: new SlashCommandBuilder()
@@ -20,8 +21,19 @@ export default {
     const scope = interaction.options.getSubcommand() || "global";
     // Get leaderboard
     const leaderboard = await (scope === "global"
-      ? client.db.select("*").from("user").orderBy("coin", "desc").limit(100)
-      : client.db.select("*").from("user").where("serverId", interaction.guild?.id).orderBy("coin", "desc").limit(100));
+      ? prisma.user.findMany({
+          orderBy: { coin: "desc" },
+          take: 100,
+        })
+      : prisma.user.findMany({
+          where: {
+            serverId: BigInt(interaction.guild!.id),
+          },
+          orderBy: {
+            coin: "desc",
+          },
+          take: 100,
+        }));
 
     // Set items start and end
     let itemsStart = 0;

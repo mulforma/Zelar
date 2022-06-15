@@ -9,6 +9,7 @@ import {
   MessageEmbed,
 } from "discord.js";
 import log from "npmlog";
+import { addCoin } from "../../methods/addCoin.js";
 
 export default {
   data: new SlashCommandBuilder().setName("trivia").setDescription("You have 30 seconds to think, Quick!"),
@@ -93,25 +94,7 @@ export default {
           embeds: [],
         });
         // Add coins
-        client.db
-          .select("coin")
-          .from("user")
-          .where("userId", interaction.user.id)
-          .andWhere("serverId", <string>interaction.guild!.id)
-          .then(async (row) => {
-            if (!row[0]) {
-              return;
-            }
-            // Set coins
-            const coins = Number(row[0].coin || 0) + randCoin;
-
-            // Update coins
-            await client
-              .db("user")
-              .where("userId", interaction.user.id)
-              .andWhere("serverId", <string>interaction.guild!.id)
-              .update({ coin: coins });
-          });
+        await addCoin(interaction, interaction.user.id, interaction.guild!.id, randCoin);
       }
 
       // If answer is incorrect

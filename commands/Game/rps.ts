@@ -62,7 +62,7 @@ export default {
         });
 
         // Add coins
-        await addCoin(interaction, client.db, interaction.user.id, interaction.guild!.id, randCoin);
+        await addCoin(interaction, interaction.user.id, interaction.guild!.id, randCoin);
       } else {
         // Reply
         await interaction.editReply({

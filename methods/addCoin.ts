@@ -1,5 +1,5 @@
 import { CommandInteraction } from "discord.js";
-import { prisma } from "../database/connect";
+import { prisma } from "../database/connect.js";
 import { checkUserExists } from "./checkUserExists.js";
 
 export const addCoin = async (
@@ -12,18 +12,16 @@ export const addCoin = async (
   checkUserExists(interaction, userId, serverId);
 
   // Add the coin amount to the user's balance
-  const user = prisma.user.update({
+  prisma.user.updateMany({
     where: {
-      userId,
-      serverId,
+      userId: BigInt(userId),
+      serverId: BigInt(serverId),
     },
     data: {
-      coins: {
-        add: coinAmount,
-      }
-    }
+      coin: Number(coinAmount),
+    },
   });
 
-  // Return the new balance
-  return user.coins;
+  // Return the balance
+  return Number(coinAmount);
 };

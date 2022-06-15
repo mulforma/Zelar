@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://x.vvx.bar/XVlBzg/">
+  <a href="https://nintod.vvx.bar/">
     <img src="/docs/nintod.png" height="96" width="96" style="border-radius: 9999px" />
     <h2 align="center">
       𝗧𝗛𝗘 𝗡𝗜𝗡𝗧𝗢𝗗 𝗣𝗥𝗢𝗝𝗘𝗖𝗧
@@ -21,7 +21,7 @@
   </div>
 </p>
 
-## Why should I use it?
+## Why should I contribute?
 
 It has **a lot** of functionality and commands! We are currently working on a lot of features (but we are also working on a lot of bugs too).
 Not only that, Nintod is also **Free** and also **Open Source**. Who still have to pay for a bot? It's also **Easy To Use**. with a simple command.
@@ -29,8 +29,7 @@ The source code is well-documented and easy to understand (Because we write comm
 Because of Nintod is community driven, people like **You** can help us to improve the bot or even make up your own commands!
 And giving that Nintod is **Open Source**, that means, more functionality and commands can be added in the future! 
 It's just like killing two birds with one stone! You can help us by contributing to the project. Because we love open-source, isn't that right?
-Some command uses vvx services like `short` command that use [XURLShortener](https://github.com/thevvx/xurlsh) which is also **Open Source**. 
-What that means is that you can also edit the 3rd party code and it *may* improve the bot performance.
+Some command uses vvx services like `short` command that use [XURLShortener](https://github.com/thevvx/xurlsh) which is also **Open Source**.
 
 ## Is there a community or a support server?
 
@@ -105,7 +104,7 @@ $ pnpm start # You can use pnpm dev for development (Recommended if you also use
 
 ## License
 
-This project is licensed under the [Apache 2.0](/LICENSE) license.
+See [here](/LICENSE)
 
 ## Commands
  

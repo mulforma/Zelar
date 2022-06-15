@@ -7,13 +7,14 @@ import {
   MessageComponentInteraction,
   MessageEmbed,
 } from "discord.js";
+import { prisma } from "../../database/connect.js";
 
 export default {
   data: new SlashCommandBuilder().setName("shop").setDescription("Shows the shop."),
   category: "Economics",
   async execute(client: Client, interaction: CommandInteraction): Promise<void> {
     // Get shop
-    const shop = await client.db.select("*").from("officialShop");
+    const shop = await prisma.officialShop.findMany();
     // Set items start and end
     let itemsStart = 0,
       itemsEnd = 5;
@@ -47,7 +48,7 @@ export default {
         shop
           .slice(itemsStart, itemsEnd)
           .map(
-            (item) =>
+            (item: any) =>
               `${item.itemEmoji} **${item.itemName}** - ${item.itemPrice} coins\n**Item ID** \`${item.itemId}\`\n**Item Type** \`${item.itemType}\`\n**Item Description**: \`${item.itemDescription}\``,
           )
           .join("\n\n"),
@@ -92,7 +93,7 @@ export default {
           shop
             .slice(itemsStart, itemsEnd)
             .map(
-              (item) =>
+              (item: any) =>
                 `${item.itemEmoji} **${item.itemName}** - ${item.itemPrice} coins\n**Item ID** \`${item.itemId}\`\n**Item Type** \`${item.itemType}\`\n**Item Description**: \`${item.itemDescription}\``,
             )
             .join("\n\n"),
@@ -114,7 +115,7 @@ export default {
           shop
             .slice(itemsStart, itemsEnd)
             .map(
-              (item) =>
+              (item: any) =>
                 `${item.itemEmoji} **${item.itemName}** - ${item.itemPrice} coins\n**Item ID** \`${item.itemId}\`\n**Item Type** \`${item.itemType}\`\n**Item Description**: \`${item.itemDescription}\``,
             )
             .join("\n\n"),

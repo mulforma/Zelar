@@ -4,18 +4,19 @@ import ms from "ms";
 import { checkTimeout } from "../../methods/checkTimeout.js";
 import { Client, CommandInteraction } from "discord.js";
 import { InventoryItemData } from "../../types/InventoryItemData";
+import { prisma } from "../../database/connect.js";
 
 export default {
   data: new SlashCommandBuilder().setName("fishing").setDescription("Go fishing!"),
   category: "Game",
   async execute(client: Client, interaction: CommandInteraction): Promise<void> {
     // Get user
-    const userData = await getUserData(interaction, client.db, interaction.user.id, interaction.guild!.id);
+    const userData = await getUserData(interaction, interaction.user.id, interaction.guild!.id);
     // Set timeout data to be 2 minutes
     const timeout = ms("2m");
 
     // Check if user is in timeout
-    if (await checkTimeout(interaction, client.db, "fishing", timeout, userData)) {
+    if (await checkTimeout(interaction, "fishing", timeout, userData)) {
       return;
     }
 
@@ -24,40 +25,48 @@ export default {
       Math.floor(Math.random() * 100) <=
       (userData.inventory.items.findIndex((i: InventoryItemData) => i.name === "Fishing Rod") === -1 ? 45 : 15)
     ) {
+      // Get fish
+      const allFish = await prisma.globalItems.findMany({
+        where: {
+          itemType: "Collectable.Fish",
+        },
+      });
       // Get random fish
-      const fish = await client.db
-        .select("*")
-        .from("globalItems")
-        .where("itemType", "Collectable.Fish")
-        .orderByRaw("RANDOM()");
+      const fish = allFish[~~(Math.random() * allFish.length)];
       // Send message
-      await interaction.reply(`🎉 You caught a ${fish[0].itemName}!`);
+      await interaction.reply(`🎉 You caught a ${fish.itemName}!`);
       // Check if user has this fish in inventory, If yes, add 1 to amount
-      if (userData.inventory.items.findIndex((i: InventoryItemData) => i.id === fish[0].id) !== -1) {
+      if (
+        userData.inventory.items.findIndex((i: InventoryItemData) => i.id.toString() === fish.itemId.toString()) !== -1
+      ) {
         // Add 1 to amount
         userData.inventory.items[
-          userData.inventory.items.findIndex((i: InventoryItemData) => i.id === fish[0].id)
+          userData.inventory.items.findIndex((i: InventoryItemData) => i.id.toString() === fish.itemId.toString())
         ].amount += 1;
       } else {
         // Add fish to inventory
         userData.inventory.items.push({
-          id: fish[0].id,
+          id: fish.itemId,
           amount: 1,
-          name: fish[0].itemName,
-          type: fish[0].itemType,
-          description: fish[0].itemDescription,
-          emoji: fish[0].itemEmoji,
-          rarity: fish[0].itemRarity,
-          usable: fish[0].usable,
+          name: fish.itemName,
+          type: fish.itemType,
+          description: fish.itemDescription,
+          emoji: fish.itemEmoji,
+          rarity: fish.itemRarity,
+          usable: fish.usable,
         });
       }
 
       // Save user data
-      await client
-        .db("user")
-        .update("inventory", userData.inventory)
-        .where("userId", interaction.user.id)
-        .andWhere("serverId", <string>interaction.guild!.id);
+      await prisma.user.updateMany({
+        where: {
+          userId: BigInt(interaction.user.id),
+          serverId: BigInt(interaction.guild!.id),
+        },
+        data: {
+          inventory: userData.inventory,
+        },
+      });
     } else {
       // Send message
       await interaction.reply(

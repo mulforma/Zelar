@@ -1,8 +1,8 @@
 import { SlashCommandBuilder } from "@discordjs/builders";
 import { getUserData } from "../../methods/getUserData.js";
 import { Client, CommandInteraction } from "discord.js";
-import { ShopItemData } from "../../types/ShopItemData";
 import { InventoryItemData } from "../../types/InventoryItemData";
+import { prisma } from "../../database/connect.js";
 
 export default {
   data: new SlashCommandBuilder()
@@ -15,7 +15,7 @@ export default {
   category: "Economics",
   async execute(client: Client, interaction: CommandInteraction): Promise<void> {
     // Get user data
-    const user = await getUserData(interaction, client.db, interaction.user.id, interaction.guild!.id);
+    const user = await getUserData(interaction, interaction.user.id, interaction.guild!.id);
     // Get item
     const item = interaction.options.getString("item");
     // Get amount
@@ -32,7 +32,11 @@ export default {
     }
 
     // Get item from shop
-    const shopItem: Array<ShopItemData> = await client.db("officialShop").select("*").where("itemName", item);
+    const shopItem = await prisma.officialShop.findFirst({
+      where: {
+        itemName: item,
+      },
+    });
 
     // Check if item exists
     if (!shopItem) {
@@ -40,52 +44,58 @@ export default {
       return interaction.reply("That item doesn't exist in the shop.\nUse `/shop` to see all items.");
     }
     // Check if user has enough money
-    if (Number(user.coin) < Number(shopItem[0].itemPrice * amount)) {
+    if (Number(user.coin) < Number(Number(shopItem.itemPrice) * amount)) {
       // Reply with error
       return interaction.reply(
-        `You need more ${Number(shopItem[0].itemPrice) - Number(user.coin)} coins to buy this item.`,
+        `You need more ${Number(shopItem.itemPrice) - Number(user.coin)} coins to buy this item.`,
       );
     }
 
     // Update user data
-    await client
-      .db("user")
-      .where("userId", interaction.user.id)
-      .andWhere("serverId", <string>interaction.guild!.id)
-      .update({
-        coin: Number(user.coin) - Number(shopItem[0].itemPrice) * amount,
-      });
+    prisma.user.updateMany({
+      where: {
+        userId: BigInt(interaction.user.id),
+        serverId: BigInt(interaction.guild!.id),
+      },
+      data: {
+        coin: Number(user.coin) - Number(Number(shopItem.itemPrice) * amount),
+      },
+    });
 
     // Check if user has item
-    if (user.inventory.items.findIndex((i: InventoryItemData) => i.name === shopItem[0].itemName)) {
+    if (user.inventory.items.findIndex((i: InventoryItemData) => i.name === shopItem.itemName) !== -1) {
       // Update items amount
       user.inventory.items[
-        user.inventory.items.findIndex((i: InventoryItemData) => i.name === shopItem[0].itemName)
+        user.inventory.items.findIndex((i: InventoryItemData) => i.name === shopItem.itemName)
       ].amount += amount;
     } else {
       // Add to inventory
       user.inventory.items.push({
         amount,
-        description: shopItem[0].itemDescription,
-        emoji: shopItem[0].itemEmoji,
-        id: shopItem[0].itemId,
-        name: shopItem[0].itemName,
-        rarity: shopItem[0].itemRarity,
-        type: shopItem[0].itemType,
-        usable: shopItem[0].usable,
+        description: shopItem.itemDescription,
+        emoji: shopItem.itemEmoji,
+        id: shopItem.itemId,
+        name: shopItem.itemName,
+        rarity: shopItem.itemRarity,
+        type: shopItem.itemType,
       });
     }
 
     // Save user data
-    await client
-      .db("user")
-      .where("userId", interaction.user.id)
-      .andWhere("serverId", <string>interaction.guild!.id)
-      .update({
-        inventory: user.inventory,
-      });
+    await prisma.user.updateMany({
+      where: {
+        userId: BigInt(interaction.user.id),
+        serverId: BigInt(interaction.guild!.id),
+      },
+      data: {
+        inventory: JSON.stringify(user.inventory, (_, v) => (typeof v === "bigint" ? `${v}n` : v)).replace(
+          /"(-?\d+)n"/g,
+          (_, a) => a,
+        ),
+      },
+    });
 
     // Reply with success
-    return interaction.reply(`You bought ${shopItem[0].itemName} for ${Number(shopItem[0].itemPrice) * amount} coins.`);
+    return interaction.reply(`You bought ${shopItem.itemName} for ${Number(shopItem.itemPrice) * amount} coins.`);
   },
 };
