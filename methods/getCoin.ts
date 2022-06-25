@@ -6,7 +6,7 @@ export const getCoin = async (
   interaction: CommandInteraction,
   userId: string,
   serverId: string,
-): Promise<BigInt | null> => {
+): Promise<bigint | null> => {
   // Make sure the user exists
   checkUserExists(interaction, userId, serverId);
 
