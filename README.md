@@ -16,8 +16,8 @@
     <img src="https://img.shields.io/github/license/vvxfriends/nintod" />   
     <img src="https://img.shields.io/github/languages/top/vvxfriends/nintod" />
     <a href="https://tinvv.tech/discord/"><img src="https://img.shields.io/discord/828842616442454066" /></a>
-    <a href="https://deepsource.io/gh/thevvx/Nintod/?ref=repository-badge}" target="_blank"><img alt="DeepSource" title="DeepSource" src="https://deepsource.io/gh/vvxfriends/Nintod.svg/?label=active+issues&show_trend=true&token=QMU7qTxWjqwrQ5m1G50_SD5C"/></a>
-    <a href="https://deepsource.io/gh/thevvx/Nintod/?ref=repository-badge}" target="_blank"><img alt="DeepSource" title="DeepSource" src="https://deepsource.io/gh/vvxfriends/Nintod.svg/?label=resolved+issues&show_trend=true&token=QMU7qTxWjqwrQ5m1G50_SD5C"/></a>
+    <a href="https://deepsource.io/gh/vvxfriends/Nintod/?ref=repository-badge}" target="_blank"><img alt="DeepSource" title="DeepSource" src="https://deepsource.io/gh/vvxfriends/Nintod.svg/?label=active+issues&show_trend=true&token=QMU7qTxWjqwrQ5m1G50_SD5C"/></a>
+    <a href="https://deepsource.io/gh/vvxfriends/Nintod/?ref=repository-badge}" target="_blank"><img alt="DeepSource" title="DeepSource" src="https://deepsource.io/gh/vvxfriends/Nintod.svg/?label=resolved+issues&show_trend=true&token=QMU7qTxWjqwrQ5m1G50_SD5C"/></a>
   </div>
 </p>
 
