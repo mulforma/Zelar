@@ -11,7 +11,7 @@
   <div style="display: flex; flex-wrap: wrap; justify-items: center; justify-content: center">
     <img src="https://wakatime.com/badge/user/5cb7cd14-ac7e-4fc0-9f81-6036760cb6a3/project/43c4defc-5916-4bc2-aca5-0683f99c9e2d.svg" />
     <a href="https://github.com/vvxfriends/zelar/pulse"><img src="https://img.shields.io/github/commit-activity/m/badges/shields" /></a>
-    <a href="https://www.codefactor.io/repository/github/thevvx/zelar"><img src="https://www.codefactor.io/repository/github/vvxfriends/zelar/badge" /></a>
+    <a href="https://www.codefactor.io/repository/github/vvxfriends/zelar"><img src="https://www.codefactor.io/repository/github/vvxfriends/zelar/badge" /></a>
     <img src="https://img.shields.io/node/v/discord.js?style=plastic" />
     <img src="https://img.shields.io/github/license/vvxfriends/zelar" />   
     <img src="https://img.shields.io/github/languages/top/vvxfriends/zelar" />
@@ -29,7 +29,7 @@ The source code is well-documented and easy to understand (Because we write comm
 Because of Zelar is community driven, people like **You** can help us to improve the bot or even make up your own commands!
 And giving that Zelar is **Open Source**, that means, more functionality and commands can be added in the future! 
 It's just like killing two birds with one stone! You can help us by contributing to the project. Because we love open-source, isn't that right?
-Some command uses vvx services like `short` command that use [XURLShortener](https://github.com/thevvx/xurlsh) which is also **Open Source**.
+Some command uses vvx services like `short` command that use [XURLShortener](https://github.com/vvxfriends/xurlsh) which is also **Open Source**.
 
 ## Is there a community or a support server?
 
@@ -41,7 +41,7 @@ it is not safe to send a security issue to the server. You would have to send a 
 
 ## How can I contribute?
 
-You can contribute to the project by [fork](https://github.com/thevvx/Zelar/fork) the repository, and make a [pull request](https://github.com/thevvx/Zelar/pulls).
+You can contribute to the project by [fork](https://github.com/vvxfriends/Zelar/fork) the repository, and make a [pull request](https://github.com/vvxfriends/Zelar/pulls).
 Major and minor changes are welcome! It is our goal to make the bot better and more stable. No matter who you are, you can help us!
 But make sure you follow the [Code of Conduct](/.github/CODE_OF_CONDUCT.md) and [Contributing](/.github/CONTRIBUTING.md) guidelines.
 Please don't send any security issue to the server as stated above. We use [DeepSource](https://deepsource.io/) and [CodeFactor](https://codefactor.io/) to monitor the quality of the code.
