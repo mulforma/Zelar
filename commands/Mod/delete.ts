@@ -12,7 +12,7 @@ export default {
         // Set option is required
         .setRequired(true),
     ),
-  category: "Utils",
+  category: "Mod",
   async execute(client: Client, interaction: CommandInteraction): Promise<void> {
     // Check if user has permission to use command
     if (!(interaction.member?.permissions as Readonly<Permissions>).has(Permissions.FLAGS.MANAGE_MESSAGES)) {

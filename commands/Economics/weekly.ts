@@ -3,7 +3,7 @@ import { getUserData } from "../../methods/getUserData.js";
 import { addCoin } from "../../methods/addCoin.js";
 import { Client, CommandInteraction } from "discord.js";
 import ms from "ms";
-import { prisma } from "../../database/connect.js";
+import { prisma } from "../../prisma/connect.js";
 
 export default {
   data: new SlashCommandBuilder().setName("weekly").setDescription("Get your weekly coin."),

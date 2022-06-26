@@ -4,7 +4,7 @@ import { checkTimeout } from "../../methods/checkTimeout.js";
 import ms from "ms";
 import { Client, CommandInteraction } from "discord.js";
 import { TimeoutCommandData } from "../../types/UserData";
-import { prisma } from "../../database/connect.js";
+import { prisma } from "../../prisma/connect.js";
 
 export default {
   data: new SlashCommandBuilder().setName("work").setDescription("Work to earn ez money"),

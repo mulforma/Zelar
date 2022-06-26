@@ -3,7 +3,7 @@ import { getUserData } from "../../methods/getUserData.js";
 import { checkTimeout } from "../../methods/checkTimeout.js";
 import { Client, CommandInteraction } from "discord.js";
 import { InventoryItemData } from "../../types/InventoryItemData";
-import { prisma } from "../../database/connect.js";
+import { prisma } from "../../prisma/connect.js";
 import ms from "ms";
 
 export default {

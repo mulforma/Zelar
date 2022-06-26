@@ -1,12 +1,12 @@
 <p align="center">
   <a href="https://nintod.vvx.bar/">
-    <img src="/docs/nintod.png" height="96" width="96" style="border-radius: 9999px" />
+    <img src="./docs/Vincent.png" height="96" width="96" style="border-radius: 9999px" />
     <h2 align="center">
-      𝗧𝗛𝗘 𝗡𝗜𝗡𝗧𝗢𝗗 𝗣𝗥𝗢𝗝𝗘𝗖𝗧
+      Zelar
     </h2>
   </a>
   <p align="center">
-    A general purpose discord bot with a lot of commands and utilities, without paying a single penny!
+    An open-source, general purpose discord bot with a lot of commands and utilities
   </p>
   <div style="display: flex; flex-wrap: wrap; justify-items: center; justify-content: center">
     <img src="https://wakatime.com/badge/user/5cb7cd14-ac7e-4fc0-9f81-6036760cb6a3/project/43c4defc-5916-4bc2-aca5-0683f99c9e2d.svg" />
@@ -109,81 +109,100 @@ See [here](/LICENSE)
 ## Commands
  
 #### Economics
-- `balance` - Check your balance
-- `buy` - Buy a item
-- `daily` - Get your daily reward
-- `item` - Get item information
-- `sell` - Sell an item
-- `send` - Send an item to someone
-- `shop` - Get shop information
-- `weekly` - Get your weekly reward
-- `work` - Work and earn money
+
+| Commands | Description             | 
+|----------|-------------------------|
+| Balance  | Check your balance      |
+| Buy      | Buy an item             |
+| daily    | Get your daily reward   |
+| item     | Get item information    |
+| sell     | Sell an item            |
+| send     | Send an item to someone |
+| shop     | Get shop information    |
+| weekly   | Get your weekly reward  |
+| work     | Work and earn money     |
 
 #### Fun
-- `8ball` - Ask 8ball a question!
-- `fast` - Answer with fast responses
-- `meme` - Get a random meme
-- `tic-tac-toe` - Play a game of tic-tac-toe
-- `word` - Play a word game!
-- `xkcd` - Get a random xkcd comic
+| Commands    | Description                | 
+|-------------|----------------------------|
+| 8ball       | Ask 8ball a question!      |
+| fast        | Answer with fast responses |
+| meme        | Get a random meme          |
+| tic-tac-toe | Play a game of tic-tac-toe |
+| word        | Play a word game!          |
+| xkcd        | Get a random xkcd comic    |
 
 #### Game
-- `bet` - Choose a number between 1 - 10 and bet on it
-- `coin-flip` - Flip a coin
-- `fishing` - Catch a fish
-- `rob` - Rob someone
-- `rps` - Play a game of rock-paper-scissors
-- `trivia` - Play a game of trivia
+| Commands  | Description                                  | 
+|-----------|----------------------------------------------|
+| bet       | Choose a number between 1 - 10 and bet on it |
+| coin-flip | Flip a coin                                  |
+| fishing   | Catch a fish                                 |
+| rob       | Rob someone                                  |
+| rps       | Play a game of rock-paper-scissors           |
+| trivia    | Play a game of trivia                        |
 
 #### Image
-- `beautiful` - How beautiful are you in percentage?
-- `deepfry` - Deepfry an image
-- `handsome` - How handsome are you in percentage?
-- `magik` - Make an image distort
-- `triggered` - Make an image triggered
+| Commands  | Description                          | 
+|-----------|--------------------------------------|
+| beautiful | How beautiful are you in percentage? |
+| deepfry   | Deepfry an image                     |
+| handsome  | How handsome are you in percentage?  |
+| magik     | Make an image distort                |
+| triggered | Make an image triggered              |
 
 #### Miscellaneous
-- `avatar` - Get your avatar
-- `bot-stats` - Get bot information and statistics
-- `help` - Get help
-- `info` - Get information about the server or user
-- `ping` - Get the bots ping
+| Commands  | Description                              | 
+|-----------|------------------------------------------|
+| avatar    | Get your avatar                          |
+| bot-stats | Get bot information and statistics       |
+| help      | Get help                                 |
+| info      | Get information about the server or user |
+| ping      | Get the bots ping                        |
+| short     | Get a shorten link                       |
 
 #### Moderation
-- `ban` - Ban a user
-- `channel` - Create or remove a channel
-- `kick` - Kick a user
-- `role` - Add or remove a role from a user
-- `timeout` - Timeout a user
-- `unban` - Unban a user
+| Commands | Description                      | 
+|----------|----------------------------------|
+| ban      | Ban a user                       |
+| channel  | Create or remove a channel       |
+| kick     | Kick a user                      |
+| role     | Add or remove a role from a user |
+| timeout  | Timeout a user                   |
+| unban    | Unban a user                     |
+| delete   | Delete a message                 |
 
 #### Music
-- `loop` - Set the loop mode
-- `now-playing` - Get the current song
-- `pause` - Pause the music
-- `play` - Play a song
-- `progress` - Get the progress of the music
-- `queue` - Get the queue
-- `remove` - Remove a song from the queue
-- `resume` - Resume the music
-- `skip` - Skip the current song
+| Commands    | Description                   | 
+|-------------|-------------------------------|
+| loop        | Set the loop mode             |
+| now-playing | Get the current song          |
+| pause       | Pause the music               |
+| play        | Play a song                   |
+| progress    | Get the progress of the music |
+| queue       | Get the queue                 |
+| remove      | Remove a song from the queue  |
+| resume      | Resume the music              |
+| skip        | Skip the current song         |
 
 #### NSFW
-- `danbooru` - Get a random image from Danbooru
-- `hentai` - Get a random hentai image
-- `rule34` - Get a random image from Rule34.xxx
+| Commands | Description                        | 
+|----------|------------------------------------|
+| danbooru | Get a random image from Danbooru   |
+| hentai   | Get a random hentai image          |
+| rule34   | Get a random image from Rule34.xxx |
 
 #### Profile
-- `inventory` - Get your inventory
-- `jobs` - Get your jobs info or apply for a job
-- `leaderboard` - Get the money leaderboard
-- `profile` - Get your profile
+| Commands    | Description                           | 
+|-------------|---------------------------------------|
+| inventory   | Get your inventory                    |
+| jobs        | Get your jobs info or apply for a job |
+| leaderboard | Get the money leaderboard             |
+| profile     | Get your profile                      |
 
 #### Search
-- `dictionary` - Get a definition from the dictionary
-- `reddit` - Get a random post from selected subreddit
-- `search` - Search for a specific item
-
-#### Utility Tools
-- `delete` - Delete a message
-- `short` - Shorten a link
+| Commands   | Description                               | 
+|------------|-------------------------------------------|
+| dictionary | Get a definition from the dictionary      |
+| reddit     | Get a random post from selected subreddit |
+| search     | Search for a specific item                |

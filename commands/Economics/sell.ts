@@ -2,7 +2,7 @@ import { SlashCommandBuilder } from "@discordjs/builders";
 import { getItemData } from "../../methods/getItemData.js";
 import { Client, CommandInteraction } from "discord.js";
 import { InventoryItemData } from "../../types/InventoryItemData";
-import { prisma } from "../../database/connect.js";
+import { prisma } from "../../prisma/connect.js";
 import { getInventory } from "../../methods/getInventory.js";
 
 export default {

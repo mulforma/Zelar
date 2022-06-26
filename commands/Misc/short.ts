@@ -7,7 +7,7 @@ export default {
     .setName("short")
     .setDescription("Shorten a url")
     .addStringOption((option) => option.setName("url").setDescription("The url to shorten").setRequired(true)),
-  category: "Utils",
+  category: "Misc",
   async execute(client: Client, interaction: CommandInteraction): Promise<void> {
     // Get url
     const url = interaction.options.getString("url");

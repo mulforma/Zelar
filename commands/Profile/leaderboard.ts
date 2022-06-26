@@ -7,7 +7,7 @@ import {
   MessageComponentInteraction,
   MessageEmbed,
 } from "discord.js";
-import { prisma } from "../../database/connect.js";
+import { prisma } from "../../prisma/connect.js";
 
 export default {
   data: new SlashCommandBuilder()

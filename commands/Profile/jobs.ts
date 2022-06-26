@@ -3,7 +3,7 @@ import { Client, CommandInteraction, MessageEmbed } from "discord.js";
 import { getUserData } from "../../methods/getUserData.js";
 import { checkTimeout } from "../../methods/checkTimeout.js";
 import { TimeoutCommandData } from "../../types/UserData";
-import { prisma } from "../../database/connect.js";
+import { prisma } from "../../prisma/connect.js";
 import ms from "ms";
 
 export default {

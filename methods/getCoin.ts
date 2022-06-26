@@ -1,5 +1,5 @@
 import { CommandInteraction } from "discord.js";
-import { prisma } from "../database/connect.js";
+import { prisma } from "../prisma/connect.js";
 import { checkUserExists } from "./checkUserExists.js";
 
 export const getCoin = async (
