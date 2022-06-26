@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://nintod.vvx.bar/">
+  <a href="https://Zelar.vvx.bar/">
     <img src="./docs/Vincent.png" height="96" width="96" style="border-radius: 9999px" />
     <h2 align="center">
       Zelar
@@ -16,18 +16,18 @@
     <img src="https://img.shields.io/github/license/vvxfriends/zelar" />   
     <img src="https://img.shields.io/github/languages/top/vvxfriends/zelar" />
     <a href="https://tinvv.tech/discord/"><img src="https://img.shields.io/discord/828842616442454066" /></a>
-    <a href="https://deepsource.io/gh/vvxfriends/Nintod/?ref=repository-badge}" target="_blank"><img alt="DeepSource" title="DeepSource" src="https://deepsource.io/gh/vvxfriends/Zelar.svg/?label=active+issues&show_trend=true&token=QMU7qTxWjqwrQ5m1G50_SD5C"/></a>
-    <a href="https://deepsource.io/gh/vvxfriends/Nintod/?ref=repository-badge}" target="_blank"><img alt="DeepSource" title="DeepSource" src="https://deepsource.io/gh/vvxfriends/Zelar.svg/?label=resolved+issues&show_trend=true&token=QMU7qTxWjqwrQ5m1G50_SD5C"/></a>
+    <a href="https://deepsource.io/gh/vvxfriends/Zelar/?ref=repository-badge}" target="_blank"><img alt="DeepSource" title="DeepSource" src="https://deepsource.io/gh/vvxfriends/Zelar.svg/?label=active+issues&show_trend=true&token=QMU7qTxWjqwrQ5m1G50_SD5C"/></a>
+    <a href="https://deepsource.io/gh/vvxfriends/Zelar/?ref=repository-badge}" target="_blank"><img alt="DeepSource" title="DeepSource" src="https://deepsource.io/gh/vvxfriends/Zelar.svg/?label=resolved+issues&show_trend=true&token=QMU7qTxWjqwrQ5m1G50_SD5C"/></a>
   </div>
 </p>
 
 ## Why should I contribute?
 
 It has **a lot** of functionality and commands! We are currently working on a lot of features (but we are also working on a lot of bugs too).
-Not only that, Nintod is also **Free** and also **Open Source**. Who still have to pay for a bot? It's also **Easy To Use**. with a simple command.
+Not only that, Zelar is also **Free** and also **Open Source**. Who still have to pay for a bot? It's also **Easy To Use**. with a simple command.
 The source code is well-documented and easy to understand (Because we write comments in the code, all lines).
-Because of Nintod is community driven, people like **You** can help us to improve the bot or even make up your own commands!
-And giving that Nintod is **Open Source**, that means, more functionality and commands can be added in the future! 
+Because of Zelar is community driven, people like **You** can help us to improve the bot or even make up your own commands!
+And giving that Zelar is **Open Source**, that means, more functionality and commands can be added in the future! 
 It's just like killing two birds with one stone! You can help us by contributing to the project. Because we love open-source, isn't that right?
 Some command uses vvx services like `short` command that use [XURLShortener](https://github.com/thevvx/xurlsh) which is also **Open Source**.
 
@@ -41,7 +41,7 @@ it is not safe to send a security issue to the server. You would have to send a 
 
 ## How can I contribute?
 
-You can contribute to the project by [fork](https://github.com/thevvx/Nintod/fork) the repository, and make a [pull request](https://github.com/thevvx/Nintod/pulls).
+You can contribute to the project by [fork](https://github.com/thevvx/Zelar/fork) the repository, and make a [pull request](https://github.com/thevvx/Zelar/pulls).
 Major and minor changes are welcome! It is our goal to make the bot better and more stable. No matter who you are, you can help us!
 But make sure you follow the [Code of Conduct](/.github/CODE_OF_CONDUCT.md) and [Contributing](/.github/CONTRIBUTING.md) guidelines.
 Please don't send any security issue to the server as stated above. We use [DeepSource](https://deepsource.io/) and [CodeFactor](https://codefactor.io/) to monitor the quality of the code.
