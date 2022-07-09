@@ -1,6 +1,6 @@
 # Security Policies and Procedures
 
-This document outlines security procedures and general policies for the `nintod`
+This document outlines security procedures and general policies for the `zelar`
 project.
 
 - [Reporting a Bug](#reporting-a-bug)
@@ -9,11 +9,11 @@ project.
 
 ## Reporting a Bug
 
-The `nintod` team and community take all security bugs in `nintod` seriously. Thank you for improving the security
-of `nintod`. We appreciate your efforts and responsible disclosure and will make every effort to acknowledge your
+The `zelar` team and community take all security bugs in `zelar` seriously. Thank you for improving the security
+of `zelar`. We appreciate your efforts and responsible disclosure and will make every effort to acknowledge your
 contributions.
 
-Report security bugs by emailing the lead maintainer at `contact@vvx.bar`.
+Report security bugs by emailing the lead maintainer at `tinvv@outlook.co.th`.
 
 The lead maintainer will acknowledge your email within 48 hours, and will send a more detailed response within 48 hours
 indicating the next steps in handling your report. After the initial reply to your report, the security team will
