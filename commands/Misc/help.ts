@@ -25,7 +25,7 @@ export default {
     // Create embed
     const embed = new MessageEmbed()
       .setColor("BLUE")
-      .setTitle("𝗧𝗛𝗘 𝗡𝗜𝗡𝗧𝗢𝗗 𝗣𝗥𝗢𝗝𝗘𝗖𝗧")
+      .setTitle("Zelar")
       .setDescription("A simple, open-source, and free, fast,\nsecure and reliable discord bot.")
       .setFooter({
         text:
