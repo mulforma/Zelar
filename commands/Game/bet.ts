@@ -2,7 +2,7 @@ import { SlashCommandBuilder } from "@discordjs/builders";
 import { getUserData } from "../../methods/getUserData.js";
 import { addCoin } from "../../methods/addCoin.js";
 import { Client, CommandInteraction } from "discord.js";
-import * as crypto from "crypto";
+import { randomBytes } from "crypto";
 
 export default {
   data: new SlashCommandBuilder()
@@ -15,7 +15,7 @@ export default {
   category: "Game",
   async execute(client: Client, interaction: CommandInteraction): Promise<void> {
     // Get random number
-    const number = (crypto.randomBytes(1)[0] % 10) + 1;
+    const number = (randomBytes(1)[0] % 10) + 1;
     // Timestamp
     const timestamp = Date.now();
     // Get amount
