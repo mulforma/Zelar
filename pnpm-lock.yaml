@@ -10,10 +10,8 @@ specifiers:
   '@typescript-eslint/eslint-plugin': ^5.16.0
   '@typescript-eslint/parser': ^5.16.0
   axios: ^0.26.0
-  canvas: ^2.9.1
   cheerio: ^1.0.0-rc.10
   discord-api-types: ^0.27.3
-  discord-image-generation: ^1.4.12
   discord-player: ^5.2.2
   discord.js: ^13.6.0
   dotenv: ^16.0.0
@@ -36,10 +34,8 @@ dependencies:
   '@types/ms': 0.7.31
   '@types/npmlog': 4.1.4
   axios: 0.26.1
-  canvas: 2.9.1
   cheerio: 1.0.0-rc.10
   discord-api-types: 0.27.3
-  discord-image-generation: 1.4.12
   discord-player: 5.2.2_9765f935dad003c4428adcfeefec9f90
   discord.js: 13.6.0
   dotenv: 16.0.0
@@ -575,24 +571,6 @@ packages:
       regenerator-runtime: 0.13.9
     dev: false
 
-  /@mapbox/node-pre-gyp/1.0.8:
-    resolution: {integrity: sha512-CMGKi28CF+qlbXh26hDe6NxCd7amqeAzEqnS6IHeO6LoaKyM/n+Xw3HT1COdq8cuioOdlKdqn/hCmqPUOMOywg==}
-    hasBin: true
-    dependencies:
-      detect-libc: 1.0.3
-      https-proxy-agent: 5.0.0
-      make-dir: 3.1.0
-      node-fetch: 2.6.7
-      nopt: 5.0.0
-      npmlog: 5.0.1
-      rimraf: 3.0.2
-      semver: 7.3.5
-      tar: 6.1.11
-    transitivePeerDependencies:
-      - encoding
-      - supports-color
-    dev: false
-
   /@nodelib/fs.scandir/2.1.5:
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
     engines: {node: '>= 8'}
@@ -1017,19 +995,6 @@ packages:
     engines: {node: '>=10'}
     dev: false
 
-  /canvas/2.9.1:
-    resolution: {integrity: sha512-vSQti1uG/2gjv3x6QLOZw7TctfufaerTWbVe+NSduHxxLGB+qf3kFgQ6n66DSnuoINtVUjrLLIK2R+lxrBG07A==}
-    engines: {node: '>=6'}
-    requiresBuild: true
-    dependencies:
-      '@mapbox/node-pre-gyp': 1.0.8
-      nan: 2.15.0
-      simple-get: 3.1.1
-    transitivePeerDependencies:
-      - encoding
-      - supports-color
-    dev: false
-
   /caseless/0.12.0:
     resolution: {integrity: sha512-4tYFyifaFfGacoiObjJegolkwSU4xQNGbVgUiNYVUxbQ2x2lUsFvY4hVgVzGiIe6WLOPqycWXA40l+PWsxthUw==}
     dev: false
@@ -1214,13 +1179,6 @@ packages:
       mimic-response: 1.0.1
     dev: false
 
-  /decompress-response/4.2.1:
-    resolution: {integrity: sha512-jOSne2qbyE+/r8G1VU+G/82LBs2Fs4LAsTiLSHOCOMZQl2OKZ6i8i4IyHemTe+/yIXOtTcRQMzPcgyhoFlqPkw==}
-    engines: {node: '>=8'}
-    dependencies:
-      mimic-response: 2.1.0
-    dev: false
-
   /deep-extend/0.6.0:
     resolution: {integrity: sha512-LOHxIOaPYdHlJRtCQfDIVZtfw/ufM8+rVj649RIHzcm/vGwQRXFt6OPqIFWsm2XEMrNIEtWR64sY1LEKD2vAOA==}
     engines: {node: '>=4.0.0'}
@@ -1263,17 +1221,6 @@ packages:
 
   /discord-api-types/0.27.3:
     resolution: {integrity: sha512-HOG64DTpZ7CB5EU9eKbjHD50H5qG1pxKG8pmFfHUMKjKvEWeLBHfw0c9xF1cruiYLnBb3+n7m3jBWxZ3H1hcgQ==}
-    dev: false
-
-  /discord-image-generation/1.4.12:
-    resolution: {integrity: sha512-qSQZlAPPgPD3Pz41j3Z6r8fJUo/EnPxTEqlA/7JZzT8aMhqoFYqT+NOpOW3IG1sKbVV1tJCDir7lvrzyrJYQ7g==}
-    dependencies:
-      canvas: 2.9.1
-      gifencoder: 2.0.1
-      jimp: 0.16.1
-    transitivePeerDependencies:
-      - encoding
-      - supports-color
     dev: false
 
   /discord-player/5.2.2_9765f935dad003c4428adcfeefec9f90:
@@ -1697,15 +1644,6 @@ packages:
       pump: 3.0.0
     dev: false
 
-  /gifencoder/2.0.1:
-    resolution: {integrity: sha512-x19DcyWY10SkshBpokqFOo/HBht9GB75evRYvaLMbez9p+yB/o+kt0fK9AwW59nFiAMs2UUQsjv1lX/hvu9Ong==}
-    dependencies:
-      canvas: 2.9.1
-    transitivePeerDependencies:
-      - encoding
-      - supports-color
-    dev: false
-
   /gifwrap/0.9.4:
     resolution: {integrity: sha512-MDMwbhASQuVeD4JKd1fKgNgCRL3fGqMM4WaqpNhWO0JiMOAjbQdumbs4BbBZEy9/M00EHEjKN3HieVhCUlwjeQ==}
     dependencies:
@@ -2125,11 +2063,6 @@ packages:
     engines: {node: '>=4'}
     dev: false
 
-  /mimic-response/2.1.0:
-    resolution: {integrity: sha512-wXqjST+SLt7R009ySCglWBCFpjUygmCIfD790/kVbiGmUgfYGuB14PiTd5DwVxSV4NcYHjzMkoj5LjQZwTQLEA==}
-    engines: {node: '>=8'}
-    dev: false
-
   /min-document/2.19.0:
     resolution: {integrity: sha1-e9KC4/WELtKVu3SM3Z8f+iyCRoU=}
     dependencies:
@@ -2183,10 +2116,6 @@ packages:
 
   /ms/2.1.3:
     resolution: {integrity: sha512-6FlzubTLZG3J2a/NVCAleEhjzq5oxgHyaCU9yYXvcLsvoVaHJq/s5xXI6/XXP6tz7R9xAOtHnSO/tXtF3WRTlA==}
-    dev: false
-
-  /nan/2.15.0:
-    resolution: {integrity: sha512-8ZtvEnA2c5aYCZYd1cvgdnU6cqwixRoYg70xPLWUws5ORTa/lnw+u4amixRS/Ac5U5mQVgp9pnlSUnbNWFaWZQ==}
     dev: false
 
   /natural-compare/1.4.0:
@@ -2626,18 +2555,6 @@ packages:
 
   /signal-exit/3.0.7:
     resolution: {integrity: sha512-wnD2ZE+l+SPC/uoS0vXeE9L1+0wuaMqKlfz9AMUo38JsyLSBWSFcHR1Rri62LZc12vLr1gb3jl7iwQhgwpAbGQ==}
-    dev: false
-
-  /simple-concat/1.0.1:
-    resolution: {integrity: sha512-cSFtAPtRhljv69IK0hTVZQ+OfE9nePi/rtJmw5UjHeVyVroEqJXP1sFztKUy1qU+xvz3u/sfYJLa947b7nAN2Q==}
-    dev: false
-
-  /simple-get/3.1.1:
-    resolution: {integrity: sha512-CQ5LTKGfCpvE1K0n2us+kuMPbk/q0EKl82s4aheV9oXjFEz6W/Y7oQFVJuU6QG77hRT4Ghb5RURteF5vnWjupA==}
-    dependencies:
-      decompress-response: 4.2.1
-      once: 1.4.0
-      simple-concat: 1.0.1
     dev: false
 
   /slash/3.0.0:

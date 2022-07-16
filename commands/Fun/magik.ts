@@ -9,7 +9,7 @@ export default {
     .addUserOption((option: SlashCommandUserOption) =>
       option.setName("user").setDescription("The user to get the avatar of").setRequired(false),
     ),
-  category: "Image",
+  category: "Fun",
   async execute(client: Client, interaction: CommandInteraction): Promise<void> {
     // Defer reply
     await interaction.deferReply();

@@ -7,7 +7,7 @@ export default {
     .setName("deepfry")
     .setDescription("Deepfries an image")
     .addUserOption((option) => option.setName("user").setDescription("The user to deepfry").setRequired(false)),
-  category: "Image",
+  category: "Fun",
   async execute(client: Client, interaction: CommandInteraction): Promise<void> {
     // Defer reply
     await interaction.deferReply();
