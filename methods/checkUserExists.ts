@@ -9,8 +9,8 @@ export const checkUserExists = async (
 ): Promise<void> => {
   const user = await prisma.user.findFirst({
     where: {
-      userId: BigInt(userId),
-      serverId: BigInt(guildId),
+      userId: userId,
+      serverId: guildId,
     },
   });
 

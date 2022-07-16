@@ -13,8 +13,8 @@ export const addCoin = async (
   // Add the coin amount to the user's balance
   prisma.user.updateMany({
     where: {
-      userId: BigInt(userId),
-      serverId: BigInt(guildId),
+      userId: userId,
+      serverId: guildId,
     },
     data: {
       coin: Number(coinAmount),

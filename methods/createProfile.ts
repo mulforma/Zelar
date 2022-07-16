@@ -9,8 +9,8 @@ export const createProfile = async (
   // Create profile
   await prisma.user.create({
     data: {
-      userId: BigInt(userId),
-      serverId: BigInt(guildId),
+      userId: userId,
+      serverId: guildId,
       level: 1,
       xp: 0,
       coin: 0,

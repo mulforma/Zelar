@@ -6,7 +6,7 @@ export const getUserData = async (interaction: CommandInteraction, userId: strin
   // Make sure the user exists
   await checkUserExists(interaction, userId, guildId);
   // Get user data
-  const user = (await prisma.user.findFirst({ where: { userId: BigInt(userId), serverId: BigInt(guildId) } }))!;
+  const user = (await prisma.user.findFirst({ where: { userId: userId, serverId: guildId } }))!;
   // Parse user inventory
   user.inventory = typeof user.inventory !== "object" ? JSON.parse(String(user.inventory)) : user.inventory;
   // Return user
