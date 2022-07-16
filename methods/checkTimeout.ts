@@ -46,7 +46,7 @@ export const checkTimeout = async (
       serverId: interaction.guild?.id!,
     },
     data: {
-      timeout: Number(userData.timeout),
+      timeout: userData.timeout,
     },
   });
 

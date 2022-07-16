@@ -52,13 +52,15 @@ export default {
     }
 
     // Update user data
-    prisma.user.updateMany({
+    await prisma.user.updateMany({
       where: {
         userId: interaction.user.id,
         serverId: interaction.guild!.id,
       },
       data: {
-        coin: Number(user.coin) - Number(Number(shopItem.itemPrice) * amount),
+        coin: {
+          decrement: Number(Number(shopItem.itemPrice) * amount),
+        },
       },
     });
 
@@ -88,10 +90,7 @@ export default {
         serverId: interaction.guild!.id,
       },
       data: {
-        inventory: JSON.stringify(user.inventory, (_, v) => (typeof v === "bigint" ? `${v}n` : v)).replace(
-          /"(-?\d+)n"/g,
-          (_, a) => a,
-        ),
+        inventory: user.inventory,
       },
     });
 

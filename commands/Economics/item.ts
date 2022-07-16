@@ -24,8 +24,6 @@ export default {
     const embed = new MessageEmbed()
       // Set title
       .setTitle(`${itemData.itemEmoji} ${itemData.itemName}`)
-      // Set Thumbnail
-      .setThumbnail(client.user!.displayAvatarURL())
       // Add field
       .addField("Description", itemData.itemDescription!, true)
       .addField("ID", String(itemData.itemId), true)
