@@ -63,14 +63,11 @@ export default {
     prisma.user
       .updateMany({
         where: {
-          userId: BigInt(interaction.user.id),
-          serverId: BigInt(interaction.guild!.id),
+          userId: interaction.user.id,
+          serverId: interaction.guild!.id,
         },
         data: {
-          inventory: JSON.stringify(inventory, (_, v) => (typeof v === "bigint" ? `${v}n` : v)).replace(
-            /"(-?\d+)n"/g,
-            (_, a) => a,
-          ),
+          inventory: inventory,
           coin: {
             increment: Number(Number(marketPrice.price) * amount!),
           },

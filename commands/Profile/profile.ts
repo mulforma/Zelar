@@ -21,8 +21,8 @@ export default {
     // Get user profile
     const profile = await prisma.user.findFirst({
       where: {
-        userId: BigInt(target ? target.id : user.id),
-        serverId: BigInt(interaction.guild!.id),
+        userId: target ? target.id : user.id,
+        serverId: interaction.guild!.id,
       },
     });
 

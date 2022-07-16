@@ -90,7 +90,7 @@ export default {
           // Update user job
           await prisma.user.updateMany({
             where: {
-              userId: BigInt(interaction.user.id),
+              userId: interaction.user.id,
             },
             data: {
               jobs: job,
@@ -120,7 +120,7 @@ export default {
           // Update user timeout
           await prisma.user.updateMany({
             where: {
-              userId: BigInt(interaction.user.id),
+              userId: interaction.user.id,
             },
             data: {
               timeout: user.timeout,

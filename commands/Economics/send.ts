@@ -85,8 +85,8 @@ export default {
     // Update user data
     await prisma.user.updateMany({
       where: {
-        userId: BigInt(interaction.user.id),
-        serverId: BigInt(interaction.guild!.id),
+        userId: interaction.user.id,
+        serverId: interaction.guild!.id,
       },
       data: {
         inventory: userData.inventory,
@@ -96,8 +96,8 @@ export default {
     // Update target data
     await prisma.user.updateMany({
       where: {
-        userId: BigInt(target!.id),
-        serverId: BigInt(interaction.guild!.id),
+        userId: target!.id,
+        serverId: interaction.guild!.id,
       },
       data: {
         inventory: targetData.inventory,

@@ -54,8 +54,8 @@ export default {
     // Update user data
     prisma.user.updateMany({
       where: {
-        userId: BigInt(interaction.user.id),
-        serverId: BigInt(interaction.guild!.id),
+        userId: interaction.user.id,
+        serverId: interaction.guild!.id,
       },
       data: {
         coin: Number(user.coin) - Number(Number(shopItem.itemPrice) * amount),
@@ -84,8 +84,8 @@ export default {
     // Save user data
     await prisma.user.updateMany({
       where: {
-        userId: BigInt(interaction.user.id),
-        serverId: BigInt(interaction.guild!.id),
+        userId: interaction.user.id,
+        serverId: interaction.guild!.id,
       },
       data: {
         inventory: JSON.stringify(user.inventory, (_, v) => (typeof v === "bigint" ? `${v}n` : v)).replace(

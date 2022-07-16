@@ -27,7 +27,7 @@ export default {
         })
       : prisma.user.findMany({
           where: {
-            serverId: BigInt(interaction.guild!.id),
+            serverId: interaction.guild!.id,
           },
           orderBy: {
             coin: "desc",
