@@ -14,7 +14,7 @@ export default {
     // Get user
     const user = interaction.options.getUser("target") || interaction.user;
     // Get user balance
-    const coin = await getCoin(interaction, interaction.user.id, interaction.guild!.id);
+    const coin = await getCoin(interaction, user.id, interaction.guild!.id);
     // Check if user has balance
     if (!coin) {
       // Send error message

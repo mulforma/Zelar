@@ -1,5 +1,5 @@
 {
   "watch": ["."],
   "ext": "js,ts,json,md,env",
-  "exec": "cd dist && node --experimental-json-modules index.js"
+  "exec": "node --experimental-json-modules index.js"
 }

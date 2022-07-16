@@ -3,8 +3,8 @@ import { checkUserExists } from "./checkUserExists.js";
 import { prisma } from "../prisma/connect.js";
 
 export const getUserData = async (interaction: CommandInteraction, userId: string, guildId: string): Promise<any> => {
-  // Check if user exists
-  checkUserExists(interaction, userId, guildId);
+  // Make sure the user exists
+  await checkUserExists(interaction, userId, guildId);
   // Get user data
   const user = (await prisma.user.findFirst({ where: { userId: BigInt(userId), serverId: BigInt(guildId) } }))!;
   // Parse user inventory

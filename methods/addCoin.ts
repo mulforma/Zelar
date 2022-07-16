@@ -5,17 +5,16 @@ import { checkUserExists } from "./checkUserExists.js";
 export const addCoin = async (
   interaction: CommandInteraction,
   userId: string,
-  serverId: string,
+  guildId: string,
   coinAmount: number,
 ): Promise<number> => {
   // Make sure the user exists
-  checkUserExists(interaction, userId, serverId);
-
+  await checkUserExists(interaction, userId, guildId);
   // Add the coin amount to the user's balance
   prisma.user.updateMany({
     where: {
       userId: BigInt(userId),
-      serverId: BigInt(serverId),
+      serverId: BigInt(guildId),
     },
     data: {
       coin: Number(coinAmount),
