@@ -56,7 +56,7 @@ export default {
     // Check if item amount is 0
     if (inventory.items[itemIndex].amount === 0) {
       // Remove item
-      inventory.items.splice(item, 1);
+      inventory.items.splice(itemIndex, 1);
     }
 
     // Update inventory anc calculate new balance
