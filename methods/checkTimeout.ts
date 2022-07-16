@@ -40,7 +40,7 @@ export const checkTimeout = async (
   }
 
   // Save timeout
-  prisma.user.updateMany({
+  await prisma.user.updateMany({
     where: {
       userId: interaction.user.id,
       serverId: interaction.guild?.id!,

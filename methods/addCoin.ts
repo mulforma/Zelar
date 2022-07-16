@@ -11,16 +11,18 @@ export const addCoin = async (
   // Make sure the user exists
   await checkUserExists(interaction, userId, guildId);
   // Add the coin amount to the user's balance
-  prisma.user.updateMany({
+  await prisma.user.updateMany({
     where: {
       userId: userId,
       serverId: guildId,
     },
     data: {
-      coin: Number(coinAmount),
+      coin: {
+        increment: coinAmount,
+      },
     },
   });
 
   // Return the balance
-  return Number(coinAmount);
+  return coinAmount;
 };
