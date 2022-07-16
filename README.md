@@ -25,7 +25,7 @@
 
 It has **a lot** of functionality and commands! We are currently working on a lot of features (but we are also working on a lot of bugs too).
 Not only that, Zelar is also **Free** and also **Open Source**. Who still have to pay for a bot? It's also **Easy To Use**. with a simple command.
-The source code is well-documented and easy to understand (Because we write comments in the code, all lines).
+The source code is (well-documented?) and easy to understand (Because we write comments in the code, all lines).
 Because of Zelar is community driven, people like **You** can help us to improve the bot or even make up your own commands!
 And giving that Zelar is **Open Source**, that means, more functionality and commands can be added in the future! 
 It's just like killing two birds with one stone! You can help us by contributing to the project. Because we love open-source, isn't that right?
@@ -34,9 +34,9 @@ It's just like killing two birds with one stone! You can help us by contributing
 
 Surely the community is the most important thing in **Open Source** thingy. If we don't have a community, the Open Source thing will be useless.
 That's why we have a Discord server! You can join it and ask questions, share your ideas, and help us to improve the bot.
-If you want to join the server, you can join it at [HERE](https://x.vvx.bar/XVlBzg/). You can send a bug issues or report in 
+If you want to join the server, you can join it at [HERE](https://discord.gg/PbFhFQeUEt/). You can send a bug issues or report in 
 `#bug-report` channel, but don't send a serious security issue to the server. Because it is a public server, and
-it is not safe to send a security issue to the server. You would have to send a mail to `contact@vvx.bar` ASAP to not impact any servers or users that use the bot. 
+it is not safe to send a security issue to the server. You would have to send a mail to `tinvv@outlook.co.th` ASAP to not impact any servers or users that use the bot. 
 
 ## How can I contribute?
 
@@ -48,7 +48,7 @@ If all the test is pass, it is more likely your pull request will get merge to t
 
 ## How can I host the bot?
 
-You can host the bot on your own server. You can host it on your own server, and it will be free to host. But
+You can host the bot on your own server. You can host it on your own server like Raspberry Pi, and it will be free to hosting. But
 if you don't want to open your server 24/7, you can host it on a cloud services. Just like us! We use [Microsoft Azure](https://azure.microsoft.com/en-us/services/app-service/).
 for hosting the current version of the bot. You also have another options rather than azure, too. There are many major
 cloud services provider like [Amazon Web Services](https://aws.amazon.com/), [Google Cloud](https://cloud.google.com/), [Digital Ocean](https://www.digitalocean.com/),
@@ -75,12 +75,12 @@ $ pnpm install # It will install all the dependencies
 Then you have to build the typescript files first
 
 ```bash
-$ pnpm run build && pnpm run postbuild # This will build the typescript file and copy the files to the `dist` folder
+$ pnpm build && pnpm postbuild # This will build the typescript file and copy the files to the `dist` folder
 ```
 
 If you don't want to run script every time you make a change, you could run this instead
 ```bash
-$ pnpm run build:watch # It will watch for changes and build the typescript file
+$ pnpm build:watch # It will watch for changes and build the typescript file
 ```
 
 After that, you could cd to the `dist` directory
@@ -103,7 +103,7 @@ $ pnpm start # You can use pnpm dev for development (Recommended if you also use
 
 ## License
 
-See [here](/LICENSE)
+This project uses Apache-2.0 License, see more [here](/LICENSE)
 
 ## Commands
  
