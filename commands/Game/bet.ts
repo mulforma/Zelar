@@ -2,6 +2,7 @@ import { SlashCommandBuilder } from "@discordjs/builders";
 import { getUserData } from "../../methods/getUserData.js";
 import { addCoin } from "../../methods/addCoin.js";
 import { Client, CommandInteraction } from "discord.js";
+import * as crypto from "crypto";
 
 export default {
   data: new SlashCommandBuilder()
@@ -14,7 +15,9 @@ export default {
   category: "Game",
   async execute(client: Client, interaction: CommandInteraction): Promise<void> {
     // Get random number
-    const number = Math.floor(Math.random() * 10) + 1;
+    const number = (crypto.randomBytes(1)[0] % 10) + 1;
+    // Timestamp
+    const timestamp = Date.now();
     // Get amount
     const amount = interaction.options.getInteger("amount")!;
     // Get user
@@ -42,6 +45,8 @@ export default {
     // Subtract money from user
     await addCoin(interaction, interaction.user.id, interaction.guild!.id, amount * -1);
     // Send error message
-    return interaction.reply(`😭 You lost ${amount} coins.`);
+    return interaction.reply(
+      `😭 You lost ${amount} coins.\n🔢 The number was: ${number}\n🕐 Generated timestamp: \`${timestamp}\``,
+    );
   },
 };
