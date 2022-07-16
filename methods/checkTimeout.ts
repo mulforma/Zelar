@@ -1,5 +1,5 @@
 import { CommandInteraction } from "discord.js";
-import { TimeoutCommandData, UserData } from "../types/UserData";
+import { TimeoutCommandData } from "../types/UserData";
 import { prisma } from "../prisma/connect.js";
 import ms from "ms";
 
@@ -7,7 +7,7 @@ export const checkTimeout = async (
   interaction: CommandInteraction,
   cmdName: string,
   timeoutMs: number,
-  userData: UserData,
+  userData: any,
 ): Promise<boolean> => {
   // Get index
   const index = userData.timeout.commands.findIndex((i: TimeoutCommandData) => i.command === cmdName);

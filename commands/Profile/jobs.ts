@@ -38,7 +38,7 @@ export default {
         // Set color
         .setColor("RED");
       // Send embed
-      await interaction.reply({ embeds: [embed] });
+      return interaction.reply({ embeds: [embed] });
     } else {
       // Check if job is valid
       if (!jobs.find((j: any) => j.name.toLowerCase() === job.toLowerCase())) {
