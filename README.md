@@ -130,6 +130,9 @@ See [here](/LICENSE)
 | tic-tac-toe | Play a game of tic-tac-toe |
 | word        | Play a word game!          |
 | xkcd        | Get a random xkcd comic    |
+| magik       | Make an image distort      |
+| triggered   | Make an image triggered    |
+
 
 #### Game
 | Commands  | Description                                  | 
@@ -140,15 +143,6 @@ See [here](/LICENSE)
 | rob       | Rob someone                                  |
 | rps       | Play a game of rock-paper-scissors           |
 | trivia    | Play a game of trivia                        |
-
-#### Image
-| Commands  | Description                          | 
-|-----------|--------------------------------------|
-| beautiful | How beautiful are you in percentage? |
-| deepfry   | Deepfry an image                     |
-| handsome  | How handsome are you in percentage?  |
-| magik     | Make an image distort                |
-| triggered | Make an image triggered              |
 
 #### Miscellaneous
 | Commands  | Description                              | 
