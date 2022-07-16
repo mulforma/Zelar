@@ -46,8 +46,10 @@ export default {
               .setDescription("You have 10 seconds to answer.")
               .addField("Answers", answers.join("\n"))
               .setColor("#00FF00")
-              .setFooter({ text: `Requested by ${interaction.user.tag}`, iconURL: interaction.user.displayAvatarURL() })
-              .setThumbnail(client.user!.displayAvatarURL()),
+              .setFooter({
+                text: `Requested by ${interaction.user.tag}`,
+                iconURL: interaction.user.displayAvatarURL(),
+              }),
           ],
         });
         collector.on("collect", async (collected) => {
