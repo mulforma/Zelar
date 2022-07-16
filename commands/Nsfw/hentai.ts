@@ -24,7 +24,7 @@ export default {
     // Get tags
     const tags = <Array<string> | string>(interaction.options.getString("tag")
       ? // If tag is undefined
-        interaction.options.getString("tag")
+        interaction.options.getString("tag")!.split(",").join("+")
       : // Else
         "");
 
