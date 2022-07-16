@@ -117,11 +117,12 @@ export default {
             tries++;
             // Send message
             interaction.channel!.send(`❌ Incorrect! You have ${3 - tries + 1} tries left.`);
+          } else {
+            // end collector
+            collector.stop();
+            // Send message
+            interaction.channel!.send(`❌ Incorrect! The correct answer was ${word}.`);
           }
-          // end collector
-          collector.stop();
-          // Send message
-          interaction.channel!.send(`❌ Incorrect! The correct answer was ${word}.`);
         });
         // On collector end
         collector.on("end", () => {
