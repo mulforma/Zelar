@@ -22,11 +22,11 @@ export default {
     }
 
     // Get tags
-    const tags = <Array<string> | string>(interaction.options.getString("tag")
+    const tags = <Array<string> | null>(interaction.options.getString("tag")
       ? // If tag is undefined
         interaction.options.getString("tag")!.split(",").join("+")
       : // Else
-        "");
+        null);
 
     // Fetch random image
     const { data } = await axios.get(`https://rule34.xxx/index.php?page=dapi&s=post&q=index&tags=${tags}&json=1`);

@@ -30,11 +30,11 @@ export default {
     }
 
     // Get tags
-    const tags = interaction.options.getString("tag")
+    const tags = <Array<string> | null>(interaction.options.getString("tag")
       ? // If tag is undefined
         interaction.options.getString("tag")!.split(",").join("+")
       : // Else
-        "";
+        null);
 
     // Get random page
     const page = Math.floor(Math.random() * 100) + 1;
