@@ -1,9 +1,9 @@
-import { CommandInteraction } from "discord.js";
+import { ChatInputCommandInteraction } from "discord.js";
 import { checkUserExists } from "./checkUserExists.js";
 import { getUserData } from "./getUserData.js";
 
 export const getCoin = async (
-  interaction: CommandInteraction,
+  interaction: ChatInputCommandInteraction,
   userId: string,
   guildId: string,
 ): Promise<bigint | number> => {

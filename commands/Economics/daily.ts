@@ -1,14 +1,14 @@
-import { SlashCommandBuilder } from "@discordjs/builders";
+import { SlashCommandBuilder } from "discord.js";
 import { getUserData } from "../../methods/getUserData.js";
 import { addCoin } from "../../methods/addCoin.js";
-import { Client, CommandInteraction } from "discord.js";
+import { Client, ChatInputCommandInteraction } from "discord.js";
 import { prisma } from "../../prisma/connect.js";
 import ms from "ms";
 
 export default {
   data: new SlashCommandBuilder().setName("daily").setDescription("Get your daily coin."),
   category: "Economics",
-  async execute(client: Client, interaction: CommandInteraction): Promise<void> {
+  async execute(client: Client, interaction: ChatInputCommandInteraction): Promise<any> {
     // Get user data
     const userData = await getUserData(interaction, interaction.user.id, interaction.guild!.id);
     // Get user daily coins time

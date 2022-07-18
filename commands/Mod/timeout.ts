@@ -1,13 +1,14 @@
-import { SlashCommandBuilder } from "@discordjs/builders";
+import { SlashCommandBuilder } from "discord.js";
 import {
   Client,
-  CommandInteraction,
+  ChatInputCommandInteraction,
   GuildMember,
-  MessageActionRow,
-  MessageButton,
+  ActionRowBuilder,
+  ButtonBuilder,
   MessageComponentInteraction,
-  Permissions,
+  PermissionsBitField,
 } from "discord.js";
+import { ButtonStyle } from "discord-api-types/v10";
 
 export default {
   // Command name
@@ -20,7 +21,7 @@ export default {
       option.setName("time").setDescription("Time to timeout in minutes (0 for clear)").setRequired(false),
     ),
   category: "Mod",
-  async execute(client: Client, interaction: CommandInteraction): Promise<void> {
+  async execute(client: Client, interaction: ChatInputCommandInteraction): Promise<any> {
     // Get the target and time
     const user = <GuildMember>await interaction.options.getMember("target")!;
     const time = interaction.options.getNumber("time")!;
@@ -28,7 +29,9 @@ export default {
     const timeInMilliseconds = time * 60000;
 
     // Check if user has permission to timeout
-    if (!(interaction.member!.permissions as Readonly<Permissions>).has(Permissions.FLAGS.MODERATE_MEMBERS)) {
+    if (
+      !(interaction.member!.permissions as Readonly<PermissionsBitField>).has(PermissionsBitField.Flags.ModerateMembers)
+    ) {
       // Send error message
       return interaction.reply({
         content: "You can't timeout member because you have no permissions to moderate members.",
@@ -55,9 +58,9 @@ export default {
     }
 
     // Add confirm button
-    const confirm = new MessageActionRow().addComponents(
+    const confirm = new ActionRowBuilder<ButtonBuilder>().addComponents(
       /** @type any */
-      new MessageButton().setCustomId("Confirm").setLabel("Confirm").setStyle("DANGER"),
+      new ButtonBuilder().setCustomId("Confirm").setLabel("Confirm").setStyle(ButtonStyle.Danger),
     );
 
     // Get reason

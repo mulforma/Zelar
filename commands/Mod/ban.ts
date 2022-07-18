@@ -1,13 +1,14 @@
-import { SlashCommandBuilder } from "@discordjs/builders";
+import { SlashCommandBuilder } from "discord.js";
 import {
   Client,
-  CommandInteraction,
+  ChatInputCommandInteraction,
   GuildMember,
-  MessageActionRow,
-  MessageButton,
+  ActionRowBuilder,
+  ButtonBuilder,
   MessageComponentInteraction,
-  Permissions,
+  PermissionsBitField,
 } from "discord.js";
+import { ButtonStyle } from "discord-api-types/v10";
 
 export default {
   data: new SlashCommandBuilder()
@@ -16,14 +17,14 @@ export default {
     .addUserOption((option) => option.setName("target").setDescription("Select a user to ban").setRequired(true))
     .addStringOption((option) => option.setName("reason").setDescription("Reason for ban").setRequired(false)),
   category: "Mod",
-  async execute(client: Client, interaction: CommandInteraction): Promise<void> {
+  async execute(client: Client, interaction: ChatInputCommandInteraction): Promise<any> {
     // Get options value (target)
     const user = <GuildMember>await interaction.options.getMember("target");
     // Interaction member
     const { member } = interaction;
     // Check if user who called command has permissions 'BAN_MEMBERS'
     // More about Permission.FLAGS, see (https://discord.js.org/#/docs/main/stable/class/Permissions?scrollTo=s-FLAGS)
-    if (!(member!.permissions as Readonly<Permissions>).has(Permissions.FLAGS.BAN_MEMBERS)) {
+    if (!(member!.permissions as Readonly<PermissionsBitField>).has(PermissionsBitField.Flags.BanMembers)) {
       // Reply user
       return interaction.reply({
         // Set message content
@@ -56,15 +57,15 @@ export default {
     }
 
     // Add message components
-    const confirm = new MessageActionRow().addComponents(
+    const confirm = new ActionRowBuilder<ButtonBuilder>().addComponents(
       // Add button
-      new MessageButton()
+      new ButtonBuilder()
         // Set button id
         .setCustomId("Confirm")
         // Set button message
         .setLabel("Confirm")
-        // Set button style, see more (https://discord.js.org/#/docs/main/stable/typedef/MessageButtonStyle)
-        .setStyle("DANGER"),
+        // Set button style, see more (https://discord.js.org/#/docs/main/stable/typedef/ButtonBuilderStyle)
+        .setStyle(ButtonStyle.Danger),
     );
 
     // Get reason string

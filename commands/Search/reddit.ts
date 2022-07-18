@@ -1,6 +1,6 @@
-import { SlashCommandBuilder } from "@discordjs/builders";
+import { SlashCommandBuilder } from "discord.js";
 import axios from "axios";
-import { Client, CommandInteraction, MessageEmbed } from "discord.js";
+import { Client, ChatInputCommandInteraction, EmbedBuilder } from "discord.js";
 
 export default {
   data: new SlashCommandBuilder()
@@ -11,7 +11,7 @@ export default {
       option.setName("subreddit").setDescription("The subreddit to search").setRequired(true),
     ),
   category: "Search",
-  async execute(client: Client, interaction: CommandInteraction): Promise<void> {
+  async execute(client: Client, interaction: ChatInputCommandInteraction): Promise<any> {
     // Get subreddit
     const subreddit = interaction.options.getString("subreddit");
 
@@ -23,7 +23,7 @@ export default {
       const post = data.data.children[Math.floor(Math.random() * data.data.children.length)].data;
 
       // Create embed
-      const embed = new MessageEmbed()
+      const embed = new EmbedBuilder()
         // Set title
         .setTitle(`${post.title}`)
         .setDescription(`${post.selftext}`)
@@ -41,7 +41,7 @@ export default {
     } catch (e) {
       // Send error message
       return interaction.reply({
-        embeds: [new MessageEmbed().setColor("#ff0000").setTitle("Error").setDescription("Subreddit not found")],
+        embeds: [new EmbedBuilder().setColor("#ff0000").setTitle("Error").setDescription("Subreddit not found")],
       });
     }
   },

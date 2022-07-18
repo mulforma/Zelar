@@ -1,6 +1,6 @@
 import "dotenv/config";
-import { SlashCommandBuilder } from "@discordjs/builders";
-import { Client, CommandInteraction, GuildMember, MessageEmbed } from "discord.js";
+import { SlashCommandBuilder } from "discord.js";
+import { Client, ChatInputCommandInteraction, GuildMember, EmbedBuilder } from "discord.js";
 import axios from "axios";
 import log from "npmlog";
 
@@ -25,7 +25,7 @@ export default {
         ),
     ),
   category: "Search",
-  async execute(client: Client, interaction: CommandInteraction): Promise<void> {
+  async execute(client: Client, interaction: ChatInputCommandInteraction): Promise<any> {
     // Get query
     const query = interaction.options.getString("query");
 
@@ -44,10 +44,10 @@ export default {
             // Get word example
             const wordExample = word.example;
             // Return word
-            return new MessageEmbed()
+            return new EmbedBuilder()
               .setTitle(`Urban Dictionary: ${word.word}`)
               .setDescription(wordDefinition)
-              .addField("Example", wordExample)
+              .addFields([{ name: "Example", value: wordExample }])
               .setColor("#00ff00")
               .setFooter({
                 text: `Requested by ${interaction.user.tag}`,
@@ -59,7 +59,7 @@ export default {
             interaction.reply("Something went wrong");
           });
         // Send message
-        await interaction.reply({ embeds: [urban as MessageEmbed] });
+        await interaction.reply({ embeds: [urban as EmbedBuilder] });
         break;
       }
       case "search": {
@@ -75,14 +75,16 @@ export default {
             const [wordDefinition] = word.meanings[0].definitions;
 
             // Return word
-            return new MessageEmbed()
+            return new EmbedBuilder()
               .setTitle(query ?? "")
               .setDescription(wordDefinition.definition)
-              .addField("Origin", wordDefinition.origin || "Unknown")
-              .addField("Example", wordDefinition.example || "-")
-              .addField("Phonetic", word.phonetic || "-")
-              .addField("Synonyms", wordDefinition.synonyms.join(", ") || "-")
-              .addField("Antonyms", wordDefinition.antonyms.join(", ") || "-")
+              .addFields([
+                { name: "Origin", value: wordDefinition.origin || "Unknown" },
+                { name: "Example", value: wordDefinition.example || "-" },
+                { name: "Phonetic", value: word.phonetic || "-" },
+                { name: "Synonyms", value: wordDefinition.synonyms.join(", ") || "-" },
+                { name: "Antonyms", value: wordDefinition.antonyms.join(", ") || "-" },
+              ])
               .setURL(word.phonetics[0].audio.replace("//", "https://"))
               .setColor("#0099ff")
               .setFooter({
@@ -96,7 +98,7 @@ export default {
             interaction.reply("Word not found");
           });
 
-        return interaction.reply({ embeds: [dictionary as MessageEmbed] });
+        return interaction.reply({ embeds: [dictionary as EmbedBuilder] });
       }
       default:
     }

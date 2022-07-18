@@ -1,10 +1,10 @@
-import { CommandInteraction } from "discord.js";
+import { ChatInputCommandInteraction } from "discord.js";
 import { TimeoutCommandData } from "../types/UserData";
 import { prisma } from "../prisma/connect.js";
 import ms from "ms";
 
 export const checkTimeout = async (
-  interaction: CommandInteraction,
+  interaction: ChatInputCommandInteraction,
   cmdName: string,
   timeoutMs: number,
   userData: any,

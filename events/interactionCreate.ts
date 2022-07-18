@@ -6,7 +6,7 @@ export default {
   description: "Triggered when a new interaction is created.",
   async run(client: Client, interaction: CommandInteraction) {
     // Check if interaction is command
-    if (!interaction.isCommand()) return;
+    if (!interaction.isContextMenuCommand()) return;
 
     // Search for existing commands
     const command = client.commands.get(interaction.commandName);

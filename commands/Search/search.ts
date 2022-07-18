@@ -1,7 +1,7 @@
 import "dotenv/config";
-import { SlashCommandBuilder } from "@discordjs/builders";
+import { SlashCommandBuilder } from "discord.js";
 import cheerio from "cheerio";
-import { Client, CommandInteraction, MessageEmbed } from "discord.js";
+import { Client, ChatInputCommandInteraction, EmbedBuilder } from "discord.js";
 import axios from "axios";
 import log from "npmlog";
 
@@ -64,7 +64,7 @@ export default {
         ),
     ),
   category: "Search",
-  execute(client: Client, interaction: CommandInteraction): void {
+  execute(client: Client, interaction: ChatInputCommandInteraction): void {
     // Get query
     const query = interaction.options.getString("query") ?? "";
 
@@ -77,11 +77,11 @@ export default {
           // If image is not found
           if (!img) {
             interaction.reply({
-              embeds: [new MessageEmbed().setTitle("No image found!").setColor("#ff0000")],
+              embeds: [new EmbedBuilder().setTitle("No image found!").setColor("#ff0000")],
             });
           } else {
             interaction.reply({
-              embeds: [new MessageEmbed().setTitle(query).setImage(img).setColor(0x00ae86)],
+              embeds: [new EmbedBuilder().setTitle(query).setImage(img).setColor(0x00ae86)],
             });
           }
         });
@@ -99,7 +99,7 @@ export default {
             // If no results
             if (!pages[Object.keys(pages)[0]].extract) {
               interaction.reply({
-                embeds: [new MessageEmbed().setTitle("No results found!").setColor("#ff0000")],
+                embeds: [new EmbedBuilder().setTitle("No results found!").setColor("#ff0000")],
               });
             } else {
               // Get the first result
@@ -107,7 +107,7 @@ export default {
               // Send the result
               interaction.reply({
                 embeds: [
-                  new MessageEmbed()
+                  new EmbedBuilder()
                     .setTitle(result.title)
                     .setDescription(
                       `${result.extract.substr(0, result.extract.length >= 500 ? 497 : result.extract.length)}...`,
@@ -132,13 +132,13 @@ export default {
             // If no results
             if (!data.AbstractText) {
               interaction.reply({
-                embeds: [new MessageEmbed().setTitle("No results found!").setColor("#ff0000")],
+                embeds: [new EmbedBuilder().setTitle("No results found!").setColor("#ff0000")],
               });
             } else {
               // Send the result
               interaction.reply({
                 embeds: [
-                  new MessageEmbed()
+                  new EmbedBuilder()
                     .setTitle(data.Heading)
                     .setDescription(data.AbstractText)
                     .setColor(0x00ae86)
@@ -150,7 +150,7 @@ export default {
           .catch((error) => {
             log.error("", error);
             interaction.reply({
-              embeds: [new MessageEmbed().setTitle("Error!").setColor("#ff0000")],
+              embeds: [new EmbedBuilder().setTitle("Error!").setColor("#ff0000")],
             });
           });
         break;
@@ -166,13 +166,13 @@ export default {
             // If no results
             if (!data.search) {
               interaction.reply({
-                embeds: [new MessageEmbed().setTitle("No results found!").setColor("#ff0000")],
+                embeds: [new EmbedBuilder().setTitle("No results found!").setColor("#ff0000")],
               });
             } else {
               // Send the result
               interaction.reply({
                 embeds: [
-                  new MessageEmbed()
+                  new EmbedBuilder()
                     .setTitle(data.search[0].label)
                     .setDescription(data.search[0].description)
                     .setColor(0x00ae86)
@@ -184,7 +184,7 @@ export default {
           .catch((error) => {
             log.error("", error);
             interaction.reply({
-              embeds: [new MessageEmbed().setTitle("Error!").setColor("#ff0000")],
+              embeds: [new EmbedBuilder().setTitle("Error!").setColor("#ff0000")],
             });
           });
         break;

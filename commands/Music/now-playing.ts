@@ -1,10 +1,10 @@
-import { SlashCommandBuilder } from "@discordjs/builders";
-import { Client, CommandInteraction, MessageEmbed } from "discord.js";
+import { SlashCommandBuilder } from "discord.js";
+import { Client, CommandInteraction, EmbedBuilder } from "discord.js";
 
 export default {
   data: new SlashCommandBuilder().setName("now-playing").setDescription("Shows the current song playing."),
   category: "Music",
-  async execute(client: Client, interaction: CommandInteraction): Promise<void> {
+  async execute(client: Client, interaction: CommandInteraction): Promise<any> {
     // Get queue
     const queue = client.player.getQueue(interaction.guild!.id);
 
@@ -20,7 +20,7 @@ export default {
     const loopMethods = ["None", "Track", "Queue"];
 
     // Create embed
-    const embed = new MessageEmbed()
+    const embed = new EmbedBuilder()
       // Set title
       .setTitle(queue.current.title)
       // Set URLs

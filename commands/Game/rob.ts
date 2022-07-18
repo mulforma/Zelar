@@ -1,9 +1,9 @@
-import { SlashCommandBuilder } from "@discordjs/builders";
+import { SlashCommandBuilder } from "discord.js";
 import { getUserData } from "../../methods/getUserData.js";
 import { addCoin } from "../../methods/addCoin.js";
 import { checkTimeout } from "../../methods/checkTimeout.js";
 import ms from "ms";
-import { Client, CommandInteraction } from "discord.js";
+import { Client, ChatInputCommandInteraction } from "discord.js";
 
 export default {
   data: new SlashCommandBuilder()
@@ -13,7 +13,7 @@ export default {
       option.setName("target").setDescription("The target user you want to rob").setRequired(true),
     ),
   category: "Game",
-  async execute(client: Client, interaction: CommandInteraction): Promise<void> {
+  async execute(client: Client, interaction: ChatInputCommandInteraction): Promise<any> {
     // Get target user
     const target = interaction.options.getUser("target")!;
     // Check if target is not command author

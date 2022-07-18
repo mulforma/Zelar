@@ -1,21 +1,28 @@
 import { addCoin } from "../../methods/addCoin.js";
-import { SlashCommandBuilder } from "@discordjs/builders";
-import { Client, CommandInteraction, MessageActionRow, MessageButton, MessageComponentInteraction } from "discord.js";
+import { SlashCommandBuilder } from "discord.js";
+import {
+  Client,
+  ChatInputCommandInteraction,
+  ActionRowBuilder,
+  ButtonBuilder,
+  MessageComponentInteraction,
+} from "discord.js";
+import { ButtonStyle } from "discord-api-types/v10";
 
 export default {
   data: new SlashCommandBuilder().setName("rps").setDescription("Play rock paper scissors with the bot."),
   category: "Game",
-  async execute(client: Client, interaction: CommandInteraction): Promise<void> {
+  async execute(client: Client, interaction: ChatInputCommandInteraction): Promise<any> {
     // Set variables
     const rps = ["rock", "paper", "scissors"];
     // Set random coin amount
     const randCoin = Math.floor(Math.random() * 15) + 1;
 
     // Set button
-    const rpsButton = new MessageActionRow().addComponents(
-      new MessageButton().setCustomId("rock").setLabel("✊").setStyle("PRIMARY"),
-      new MessageButton().setCustomId("paper").setLabel("✋").setStyle("PRIMARY"),
-      new MessageButton().setCustomId("scissors").setLabel("✌").setStyle("PRIMARY"),
+    const rpsButton = new ActionRowBuilder<ButtonBuilder>().addComponents(
+      new ButtonBuilder().setCustomId("rock").setLabel("✊").setStyle(ButtonStyle.Primary),
+      new ButtonBuilder().setCustomId("paper").setLabel("✋").setStyle(ButtonStyle.Primary),
+      new ButtonBuilder().setCustomId("scissors").setLabel("✌").setStyle(ButtonStyle.Primary),
     );
 
     // RPS result

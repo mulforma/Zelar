@@ -1,13 +1,14 @@
-import { SlashCommandBuilder } from "@discordjs/builders";
+import { SlashCommandBuilder } from "discord.js";
 import {
   Client,
-  CommandInteraction,
-  MessageActionRow,
-  MessageButton,
+  ChatInputCommandInteraction,
+  ActionRowBuilder,
+  ButtonBuilder,
   MessageComponentInteraction,
-  MessageEmbed,
+  EmbedBuilder,
 } from "discord.js";
 import { prisma } from "../../prisma/connect.js";
+import { ButtonStyle } from "discord-api-types/v10";
 
 export default {
   data: new SlashCommandBuilder()
@@ -16,50 +17,44 @@ export default {
     .addSubcommand((subcommand) => subcommand.setName("global").setDescription("Shows the global leaderboard"))
     .addSubcommand((subcommand) => subcommand.setName("local").setDescription("Shows the local leaderboard")),
   category: "Profile",
-  async execute(client: Client, interaction: CommandInteraction): Promise<void> {
+  async execute(client: Client, interaction: ChatInputCommandInteraction): Promise<any> {
     // Get leaderboard scope
     const scope = interaction.options.getSubcommand() || "global";
     // Get leaderboard
-    const leaderboard = await (scope === "global"
-      ? prisma.user.findMany({
+    const leaderboard = await (scope !== "global"
+      ? //@eslint-disable-next-line
+        prisma.user.findMany({
+          where: { serverId: interaction.guild!.id },
           orderBy: { coin: "desc" },
           take: 100,
         })
-      : prisma.user.findMany({
-          where: {
-            serverId: interaction.guild!.id,
-          },
-          orderBy: {
-            coin: "desc",
-          },
-          take: 100,
-        }));
+      : prisma.user.findMany({ orderBy: { coin: "desc" }, take: 100 }));
 
     // Set items start and end
     let itemsStart = 0;
     let itemsEnd = 5;
 
     // Add message components
-    const arrowButtons = new MessageActionRow().addComponents(
+    const arrowButtons = new ActionRowBuilder<ButtonBuilder>().addComponents(
       // Add button
-      new MessageButton()
+      new ButtonBuilder()
         // Set button id
         .setCustomId("Previous")
         // Set button message
         .setLabel("⬅")
-        // Set button style, see more (https://discord.js.org/#/docs/main/stable/typedef/MessageButtonStyle)
-        .setStyle("PRIMARY"),
+        // Set button style, see more (https://discord.js.org/#/docs/main/stable/typedef/ButtonBuilderStyle)
+        .setStyle(ButtonStyle.Primary),
       // Add button
-      new MessageButton()
+      new ButtonBuilder()
         // Set button id
         .setCustomId("Next")
         // Set button message
         .setLabel("➡")
-        // Set button style, see more (https://discord.js.org/#/docs/main/stable/typedef/MessageButtonStyle)
-        .setStyle("PRIMARY"),
+        // Set button style, see more (https://discord.js.org/#/docs/main/stable/typedef/ButtonBuilderStyle)
+        .setStyle(ButtonStyle.Primary),
     );
     // Create embed
-    const embed = new MessageEmbed()
+    const embed = new EmbedBuilder()
       // Set title
       .setTitle("🏆 Leaderboard")
       // Set description that show latest 10 items
@@ -76,11 +71,11 @@ export default {
           .join("\n"),
       )
       // Set thumbnail
-      .setThumbnail(client.user?.displayAvatarURL({ format: "png", size: 1024 }) ?? "")
+      .setThumbnail(client.user?.displayAvatarURL({ size: 1024 }) ?? "")
       // Set footer
       .setFooter({
         text: `Requested by ${interaction.user.tag}`,
-        iconURL: interaction.user.displayAvatarURL({ format: "png", size: 1024 }),
+        iconURL: interaction.user.displayAvatarURL({ size: 1024 }),
       });
     // Send embed
     await interaction.reply({

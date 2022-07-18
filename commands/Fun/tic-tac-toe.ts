@@ -1,5 +1,12 @@
-import { SlashCommandBuilder, SlashCommandUserOption } from "@discordjs/builders";
-import { Client, CommandInteraction, MessageButton, MessageComponentInteraction, MessageEmbed } from "discord.js";
+import { SlashCommandBuilder, SlashCommandUserOption } from "discord.js";
+import {
+  Client,
+  ChatInputCommandInteraction,
+  ButtonBuilder,
+  MessageComponentInteraction,
+  EmbedBuilder,
+} from "discord.js";
+import { ButtonStyle } from "discord-api-types/v10";
 
 // Tic-Tac-Toe class
 class TicTacToe {
@@ -59,7 +66,7 @@ export default {
       option.setName("user").setDescription("The user to play the game with.").setRequired(true),
     ),
   category: "Fun",
-  async execute(client: Client, interaction: CommandInteraction): Promise<void> {
+  async execute(client: Client, interaction: ChatInputCommandInteraction): Promise<any> {
     // Get user if exists
     const user = interaction.options.getUser("user");
     // Player rounds
@@ -67,25 +74,25 @@ export default {
     // Define board
     const board = [
       [
-        new MessageButton().setCustomId("1,1").setStyle("PRIMARY").setLabel("1"),
-        new MessageButton().setCustomId("1,2").setStyle("PRIMARY").setLabel("2"),
-        new MessageButton().setCustomId("1,3").setStyle("PRIMARY").setLabel("3"),
+        new ButtonBuilder().setCustomId("1,1").setStyle(ButtonStyle.Primary).setLabel("1"),
+        new ButtonBuilder().setCustomId("1,2").setStyle(ButtonStyle.Primary).setLabel("2"),
+        new ButtonBuilder().setCustomId("1,3").setStyle(ButtonStyle.Primary).setLabel("3"),
       ],
       [
-        new MessageButton().setCustomId("2,1").setStyle("PRIMARY").setLabel("4"),
-        new MessageButton().setCustomId("2,2").setStyle("PRIMARY").setLabel("5"),
-        new MessageButton().setCustomId("2,3").setStyle("PRIMARY").setLabel("6"),
+        new ButtonBuilder().setCustomId("2,1").setStyle(ButtonStyle.Primary).setLabel("4"),
+        new ButtonBuilder().setCustomId("2,2").setStyle(ButtonStyle.Primary).setLabel("5"),
+        new ButtonBuilder().setCustomId("2,3").setStyle(ButtonStyle.Primary).setLabel("6"),
       ],
       [
-        new MessageButton().setCustomId("3,1").setStyle("PRIMARY").setLabel("7"),
-        new MessageButton().setCustomId("3,2").setStyle("PRIMARY").setLabel("8"),
-        new MessageButton().setCustomId("3,3").setStyle("PRIMARY").setLabel("9"),
+        new ButtonBuilder().setCustomId("3,1").setStyle(ButtonStyle.Primary).setLabel("7"),
+        new ButtonBuilder().setCustomId("3,2").setStyle(ButtonStyle.Primary).setLabel("8"),
+        new ButtonBuilder().setCustomId("3,3").setStyle(ButtonStyle.Primary).setLabel("9"),
       ],
     ];
     // Define game
     const game = new TicTacToe();
     // Set message embed
-    const embed = new MessageEmbed()
+    const embed = new EmbedBuilder()
       .setTitle("Tic-Tac-Toe")
       .setDescription(
         `Welcome to Tic-Tac-Toe!\n${user!.username} is playing with you.\n\n${game.board

@@ -1,11 +1,11 @@
-import { SlashCommandBuilder } from "@discordjs/builders";
-import { Client, CommandInteraction, MessageEmbed } from "discord.js";
+import { SlashCommandBuilder } from "discord.js";
+import { Client, CommandInteraction, EmbedBuilder } from "discord.js";
 import { Track } from "discord-player";
 
 export default {
   data: new SlashCommandBuilder().setName("queue").setDescription("Shows the current queue."),
   category: "Music",
-  async execute(client: Client, interaction: CommandInteraction): Promise<void> {
+  async execute(client: Client, interaction: CommandInteraction): Promise<any> {
     // Get queue
     const queue = client.player.getQueue(interaction.guild!.id);
 
@@ -13,7 +13,7 @@ export default {
     if (!queue) {
       // Send error message
       return interaction.reply({
-        embeds: [new MessageEmbed().setColor("#ff0000").setDescription("There is no queue.")],
+        embeds: [new EmbedBuilder().setColor("#ff0000").setDescription("There is no queue.")],
       });
     }
 
@@ -21,12 +21,12 @@ export default {
     if (!queue.tracks[0]) {
       // Send error message
       return interaction.reply({
-        embeds: [new MessageEmbed().setColor("#ff0000").setDescription("There is no queue after this song.")],
+        embeds: [new EmbedBuilder().setColor("#ff0000").setDescription("There is no queue after this song.")],
       });
     }
 
     // Create embed
-    const embed = new MessageEmbed()
+    const embed = new EmbedBuilder()
       .setColor("#00ff00")
       .setTitle("Queue")
       .setDescription(

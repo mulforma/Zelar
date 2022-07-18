@@ -1,5 +1,5 @@
-import { SlashCommandBuilder } from "@discordjs/builders";
-import { Client, CommandInteraction, Permissions, UserResolvable } from "discord.js";
+import { SlashCommandBuilder } from "discord.js";
+import { Client, ChatInputCommandInteraction, PermissionsBitField, UserResolvable } from "discord.js";
 
 export default {
   data: new SlashCommandBuilder()
@@ -7,9 +7,9 @@ export default {
     .setDescription("Unban a user")
     .addStringOption((option) => option.setName("id").setDescription("Select a user to unban").setRequired(true)),
   category: "Mod",
-  async execute(client: Client, interaction: CommandInteraction): Promise<void> {
+  async execute(client: Client, interaction: ChatInputCommandInteraction): Promise<any> {
     // Check if user has permission to ban members
-    if (!(interaction.member!.permissions as Readonly<Permissions>).has(Permissions.FLAGS.BAN_MEMBERS)) {
+    if (!(interaction.member!.permissions as Readonly<PermissionsBitField>).has(PermissionsBitField.Flags.BanMembers)) {
       // Send error message
       return interaction.reply({
         content: "You can't unban member because you have no permissions to ban.",

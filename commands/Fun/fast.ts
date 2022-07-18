@@ -1,6 +1,6 @@
-import { SlashCommandBuilder } from "@discordjs/builders";
+import { SlashCommandBuilder } from "discord.js";
 import axios from "axios";
-import { Client, CommandInteraction, Message, MessageEmbed } from "discord.js";
+import { Client, ChatInputCommandInteraction, Message, EmbedBuilder } from "discord.js";
 import { addCoin } from "../../methods/addCoin.js";
 
 export default {
@@ -9,7 +9,7 @@ export default {
     .setDescription("Answers with a fast response.")
     .addSubcommand((subcommand) => subcommand.setName("math").setDescription("Answers math questions.")),
   category: "Fun",
-  async execute(client: Client, interaction: CommandInteraction): Promise<void> {
+  async execute(client: Client, interaction: ChatInputCommandInteraction): Promise<any> {
     // Set if end
     let end = false;
     // Generate random coin amount between 200 - 250
@@ -41,10 +41,10 @@ export default {
         // Send question
         await interaction.reply({
           embeds: [
-            new MessageEmbed()
+            new EmbedBuilder()
               .setTitle(Buffer.from(question, "base64").toString())
               .setDescription("You have 10 seconds to answer.")
-              .addField("Answers", answers.join("\n"))
+              .addFields([{ name: "Answers", value: answers.join("\n") }])
               .setColor("#00FF00")
               .setFooter({
                 text: `Requested by ${interaction.user.tag}`,

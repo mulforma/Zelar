@@ -1,5 +1,5 @@
-import { SlashCommandBuilder } from "@discordjs/builders";
-import { Client, CommandInteraction } from "discord.js";
+import { SlashCommandBuilder } from "discord.js";
+import { Client, ChatInputCommandInteraction } from "discord.js";
 
 export default {
   data: new SlashCommandBuilder()
@@ -9,7 +9,7 @@ export default {
       option.setName("question").setRequired(true).setDescription("The question to ask the 8ball"),
     ),
   category: "Fun",
-  async execute(client: Client, interaction: CommandInteraction): Promise<void> {
+  async execute(client: Client, interaction: ChatInputCommandInteraction): Promise<any> {
     // Define answer array
     const answer = ["No way", "No", "Maybe", "Yes", "Definitely"];
     // Get the question

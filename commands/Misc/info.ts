@@ -1,5 +1,5 @@
-import { SlashCommandBuilder } from "@discordjs/builders";
-import { Client, CommandInteraction, GuildMember, MessageEmbed } from "discord.js";
+import { Colors, SlashCommandBuilder } from "discord.js";
+import { Client, ChatInputCommandInteraction, GuildMember, EmbedBuilder } from "discord.js";
 import ms from "ms";
 
 // Export commands
@@ -16,7 +16,7 @@ export default {
     .addSubcommand((subcommand) => subcommand.setName("server").setDescription("Give server's information")),
   category: "Misc",
   // Execute command function
-  async execute(client: Client, interaction: CommandInteraction): Promise<void> {
+  async execute(client: Client, interaction: ChatInputCommandInteraction): Promise<any> {
     // Function getUserBannerUrl
     async function getUserBannerUrl(userId: string) {
       // Get user from userId
@@ -33,22 +33,30 @@ export default {
       // Get GuildMember from target user
       const member = <GuildMember>interaction.options.getMember("target")!;
       // Create new embed
-      const embed = new MessageEmbed()
+      const embed = new EmbedBuilder()
         // Set embed title
         .setTitle(`🙍‍♂️ Member ${member.user.username}`)
-        // Set embed color
-        .setColor("RANDOM")
         // Add embed fields
         // More about GuildMember, see (https://discord.js.org/#/docs/main/stable/class/GuildMember)
         // More about User, see (https://discord.js.org/#/docs/main/stable/class/User)
-        .addField("💳 Username", member.user.username, true)
-        .addField("✏ Nickname", member.nickname ? member.nickname : "No nickname", true)
-        .addField("🆔 UserID", member.user.id.toString(), true)
-        .addField("#️⃣ Discriminator", member.user.discriminator, true)
-        .addField("🕐 Joined Discord", `${ms(Date.now() - member.user.createdTimestamp, { long: true })} ago`, true)
-        .addField("👋 Joined Server", `${ms(Date.now() - member.joinedTimestamp!, { long: true })} ago`, true)
+        .addFields([
+          { name: "💳 Username", value: member.user.username, inline: true },
+          { name: "✏ Nickname", value: member.nickname ? member.nickname : "No nickname", inline: true },
+          { name: "🆔 UserID", value: member.user.id.toString(), inline: true },
+          { name: "#️⃣ Discriminator", value: member.user.discriminator, inline: true },
+          {
+            name: "🕐 Joined Discord",
+            value: `${ms(Date.now() - member.user.createdTimestamp, { long: true })} ago`,
+            inline: true,
+          },
+          {
+            name: "👋 Joined Server",
+            value: `${ms(Date.now() - member.joinedTimestamp!, { long: true })} ago`,
+            inline: true,
+          },
+        ])
         // Set thumbnail as target user avatar
-        .setThumbnail(<string>member.user.avatarURL({ dynamic: false }))
+        .setThumbnail(<string>member.user.avatarURL())
         // Set image as user banner
         .setImage(await getUserBannerUrl(member.user.id.toString()));
 
@@ -59,22 +67,24 @@ export default {
     } else if (interaction.options.getSubcommand() === "server") {
       // Fetch this server data
       const server = await interaction.guild!;
-      // Create MessageEmbed
-      const embed = new MessageEmbed()
+      // Create EmbedBuilder
+      const embed = new EmbedBuilder()
         // Set embed title
         .setTitle(`🚀 Server ${server.name}`)
         // Set embed color
-        .setColor("RANDOM")
+        .setColor(Colors.Blurple)
         // Add embed fields
         // More about Guild, see (https://discord.js.org/#/docs/main/stable/class/Guild)
-        .addField("👋 Server name", server.name, true)
-        .addField("📃 Server ID", server.id.toString(), true)
-        .addField("🙍‍♂️ Server Owner", `<@${server.ownerId}>`, true)
-        .addField("👪 All member", `${server.memberCount} members`, true)
-        .addField("🚫 NSFW Level", server.nsfwLevel, true)
-        .addField("👮‍♀️ Verification level", server.verificationLevel, true)
-        .addField("✅ isVerified", server.verified.toString(), true)
-        .addField("🚨 mfaLevel", server.mfaLevel, true)
+        .addFields([
+          { name: "👋 Server name", value: server.name, inline: true },
+          { name: "📃 Server ID", value: server.id.toString(), inline: true },
+          { name: "🙍‍♂️ Server Owner", value: `<@${server.ownerId}>`, inline: true },
+          { name: "👪 All member", value: `${server.memberCount} members`, inline: true },
+          { name: "🚫 NSFW Level", value: server.nsfwLevel.toString(), inline: true },
+          { name: "👮‍♀️ Verification level", value: server.verificationLevel.toString(), inline: true },
+          { name: "✅ isVerified", value: server.verified.toString(), inline: true },
+          { name: "🚨 mfaLevel", value: server.mfaLevel.toString(), inline: true },
+        ])
         // Set thumbnail as server icon
         .setThumbnail(<string>server.iconURL());
       // Reply with embed

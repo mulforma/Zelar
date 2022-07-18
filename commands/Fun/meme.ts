@@ -1,33 +1,34 @@
-import { SlashCommandBuilder } from "@discordjs/builders";
+import { Colors, SlashCommandBuilder } from "discord.js";
 import axios from "axios";
 import {
   Client,
-  CommandInteraction,
-  MessageActionRow,
-  MessageButton,
+  ChatInputCommandInteraction,
+  ActionRowBuilder,
+  ButtonBuilder,
   MessageComponentInteraction,
-  MessageEmbed,
+  EmbedBuilder,
 } from "discord.js";
+import { ButtonStyle } from "discord-api-types/v10";
 
 export default {
   data: new SlashCommandBuilder().setName("meme").setDescription("Send a meme"),
   category: "Fun",
-  async execute(client: Client, interaction: CommandInteraction): Promise<void> {
+  async execute(client: Client, interaction: ChatInputCommandInteraction): Promise<any> {
     // Fetch meme by axios
     const { data } = await axios.get("https://meme-api.herokuapp.com/gimme");
     // Create new button
-    const button = new MessageActionRow().addComponents(
-      new MessageButton()
+    const button = new ActionRowBuilder<ButtonBuilder>().addComponents(
+      new ButtonBuilder()
         // Set button label
         .setLabel("Next")
         // Set button id
         .setCustomId("next")
         // Set button styles
-        .setStyle("PRIMARY"),
+        .setStyle(ButtonStyle.Primary),
     );
     // Send meme
     await interaction.reply({
-      embeds: [new MessageEmbed().setTitle(data.title).setImage(data.url).setURL(data.postLink).setColor("GREEN")],
+      embeds: [new EmbedBuilder().setTitle(data.title).setImage(data.url).setURL(data.postLink).setColor(Colors.Green)],
       components: [button],
     });
 
@@ -49,7 +50,9 @@ export default {
         const { data } = await axios.get("https://meme-api.herokuapp.com/gimme");
         // Send meme
         await interaction.editReply({
-          embeds: [new MessageEmbed().setTitle(data.title).setImage(data.url).setURL(data.postLink).setColor("GREEN")],
+          embeds: [
+            new EmbedBuilder().setTitle(data.title).setImage(data.url).setURL(data.postLink).setColor(Colors.Green),
+          ],
           components: [button],
         });
       }

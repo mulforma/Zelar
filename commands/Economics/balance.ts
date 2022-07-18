@@ -1,5 +1,5 @@
-import { SlashCommandBuilder, SlashCommandUserOption } from "@discordjs/builders";
-import { Client, CommandInteraction, MessageEmbed } from "discord.js";
+import { Colors, SlashCommandBuilder, SlashCommandUserOption } from "discord.js";
+import { Client, ChatInputCommandInteraction, EmbedBuilder } from "discord.js";
 import { getCoin } from "../../methods/getCoin.js";
 
 export default {
@@ -10,7 +10,7 @@ export default {
       option.setName("target").setDescription("Select a user to check their balance").setRequired(false),
     ),
   category: "Economics",
-  async execute(client: Client, interaction: CommandInteraction): Promise<void> {
+  async execute(client: Client, interaction: ChatInputCommandInteraction): Promise<any> {
     // Get user
     const user = interaction.options.getUser("target") || interaction.user;
     // Get user balance
@@ -25,12 +25,12 @@ export default {
     // Send balance message
     await interaction.reply({
       embeds: [
-        new MessageEmbed()
-          .setColor("#0099ff")
+        new EmbedBuilder()
+          .setColor(Colors.Aqua)
           .setTitle(`${user.username}'s balance`)
-          .setColor("BLUE")
+          .setColor(Colors.Blue)
           .setThumbnail(<string>user.avatarURL())
-          .addField("💰 Coins", String(coin))
+          .addFields([{ name: "💰 Coins", value: String(coin) }])
           .setFooter({
             text: `Requested by ${interaction.user.username}`,
             iconURL: <string>interaction.user.avatarURL(),

@@ -1,5 +1,5 @@
-import { SlashCommandBuilder } from "@discordjs/builders";
-import { Client, CommandInteraction, MessageEmbed } from "discord.js";
+import { Colors, SlashCommandBuilder } from "discord.js";
+import { Client, ChatInputCommandInteraction, EmbedBuilder } from "discord.js";
 import { CommandData } from "../../types/CommandData";
 
 export default {
@@ -16,15 +16,15 @@ export default {
         ),
     ),
   category: "Misc",
-  async execute(client: Client, interaction: CommandInteraction): Promise<void> {
+  async execute(client: Client, interaction: ChatInputCommandInteraction): Promise<any> {
     // Get all command categories
     const categories = new Set(client.commands.map((c) => c.category));
     // Get subcommand
     const subcommand = interaction.options.getSubcommand();
 
     // Create embed
-    const embed = new MessageEmbed()
-      .setColor("BLUE")
+    const embed = new EmbedBuilder()
+      .setColor(Colors.Blue)
       .setTitle("Zelar")
       .setDescription("A simple, open-source, and free, fast,\nsecure and reliable discord bot.")
       .setFooter({
@@ -47,7 +47,7 @@ export default {
           const commands = client.commands.filter((c) => c.category === category);
 
           // Add category to embed
-          embed.addField(`${category}`, `${commands.map((c) => `\`${c.data.name}\``).join(" ")}`);
+          embed.addFields([{ name: `${category}`, value: `${commands.map((c) => `\`${c.data.name}\``).join(" ")}` }]);
         }
         break;
       case "command": {
@@ -63,12 +63,12 @@ export default {
           return;
         }
         // Add command to embed
-        embed.addField(
-          `${commandData.data.name.toUpperCase()}`,
-          `**Description:** ${commandData.data.description}\n**Category:** ${
+        embed.addFields({
+          name: `${commandData.data.name.toUpperCase()}`,
+          value: `**Description:** ${commandData.data.description}\n**Category:** ${
             commandData.category
           }\n**Options:** ${commandData.data.options.map((o: CommandData) => `\`${o.name}\``).join(" ")}`,
-        );
+        });
         break;
       }
       default:

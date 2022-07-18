@@ -1,5 +1,6 @@
-import { SlashCommandBuilder } from "@discordjs/builders";
-import { Client, CommandInteraction, GuildChannelCreateOptions, Permissions } from "discord.js";
+import { CategoryChannelResolvable, PermissionsBitField, SlashCommandBuilder } from "discord.js";
+import { Client, ChatInputCommandInteraction } from "discord.js";
+import { ChannelType } from "discord-api-types/v10";
 
 export default {
   data: new SlashCommandBuilder()
@@ -22,18 +23,14 @@ export default {
         .addStringOption((option) => option.setName("name").setDescription("Channel name").setRequired(true)),
     ),
   category: "Mod",
-  async execute(client: Client, interaction: CommandInteraction): Promise<void> {
+  async execute(client: Client, interaction: ChatInputCommandInteraction): Promise<any> {
     // Get subcommand
     const subcommand = interaction.options.getSubcommand();
 
-    // Channel type
-    const channelType = {
-      text: "GUILD_TEXT",
-      voice: "GUILD_VOICE",
-    };
-
     // Check if user has permission
-    if (!(interaction.member!.permissions as Readonly<Permissions>).has(Permissions.FLAGS.MANAGE_CHANNELS)) {
+    if (
+      !(interaction.member!.permissions as Readonly<PermissionsBitField>).has(PermissionsBitField.Flags.ManageChannels)
+    ) {
       // Reply user
       return interaction.reply({
         // Set message content
@@ -52,11 +49,8 @@ export default {
         const topic = interaction.options.getString("topic")!;
         const nsfw = interaction.options.getBoolean("nsfw")!;
 
-        // Check channel type
-        const channelTypeElement = channelType[type];
-
         // Check if channel type is valid
-        if (!channelTypeElement) {
+        if (!["text", "voice"].includes(type)) {
           // Reply user
           return interaction.reply({
             // Set message content
@@ -66,15 +60,16 @@ export default {
           });
         }
 
-        // Fetch guild channel
+        // Fetch guild category
         const guildChannel = await interaction.guild!.channels.fetch();
 
         // Create channel
-        const channel = await interaction.guild!.channels.create(name, <GuildChannelCreateOptions>{
-          type: channelTypeElement,
+        const channel = await interaction.guild!.channels.create({
+          name,
+          type: type === "text" ? ChannelType.GuildText : ChannelType.GuildVoice,
           topic: topic,
           nsfw: nsfw,
-          parent: guildChannel.find((c) => c.name === category),
+          parent: guildChannel.find((c) => c.name === category) as CategoryChannelResolvable,
         });
         await interaction.reply(`Created channel ${channel.name}`);
         break;

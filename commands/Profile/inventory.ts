@@ -1,12 +1,12 @@
-import { SlashCommandBuilder } from "@discordjs/builders";
-import { Client, CommandInteraction, MessageEmbed } from "discord.js";
+import { Colors, SlashCommandBuilder } from "discord.js";
+import { Client, ChatInputCommandInteraction, EmbedBuilder } from "discord.js";
 import { InventoryItemData } from "../../types/InventoryItemData";
 import { getInventory } from "../../methods/getInventory.js";
 
 export default {
   data: new SlashCommandBuilder().setName("inventory").setDescription("View your current inventory."),
   category: "Profile",
-  async execute(client: Client, interaction: CommandInteraction): Promise<void> {
+  async execute(client: Client, interaction: ChatInputCommandInteraction): Promise<any> {
     // Get user inventory
     const result = await getInventory(interaction, interaction.user.id, interaction.guild!.id);
     // If there is no inventory
@@ -17,7 +17,7 @@ export default {
       // Reply with embeds whose show the inventory items
       await interaction.reply({
         embeds: [
-          new MessageEmbed()
+          new EmbedBuilder()
             .setAuthor({
               iconURL: interaction.user.displayAvatarURL(),
               name: `${interaction.user.username}'s inventory`,
@@ -32,7 +32,7 @@ export default {
                 )
                 .join("\n\n"),
             )
-            .setColor("GREEN")
+            .setColor(Colors.Green)
             .setFooter({ text: "Use `/use <item>` to use an item." }),
         ],
       });

@@ -1,5 +1,5 @@
-import { SlashCommandBuilder } from "@discordjs/builders";
-import { Client, CommandInteraction, MessageEmbed } from "discord.js";
+import { SlashCommandBuilder } from "discord.js";
+import { Client, ChatInputCommandInteraction, EmbedBuilder } from "discord.js";
 import { getItemData } from "../../methods/getItemData.js";
 import { ShopItemData } from "../../types/ShopItemData";
 import { prisma } from "../../prisma/connect.js";
@@ -13,7 +13,7 @@ export default {
       option.setName("target").setDescription("The target user to view the profile of.").setRequired(false),
     ),
   category: "Profile",
-  async execute(client: Client, interaction: CommandInteraction): Promise<void> {
+  async execute(client: Client, interaction: ChatInputCommandInteraction): Promise<any> {
     // Get user
     const { user } = interaction;
     // Get target
@@ -48,26 +48,28 @@ export default {
       // Send message
       await interaction.reply({
         embeds: [
-          new MessageEmbed()
+          new EmbedBuilder()
             .setTitle(`${(target || user).username}'s profile`)
-            .setColor("BLUE")
-            .setThumbnail((target || user).displayAvatarURL({ dynamic: true }))
-            .addField("🔼 Levels", String(profile.level))
-            .addField("✨ XPs", String(profile.xp))
-            .addField("💰 Coins", String(profile.coin))
-            .addField(
-              "🤑 Net Worth",
-              (
-                Number(profile.coin) +
-                Number(
-                  (profile.inventory! as { items: Array<any> })["items"].reduce(
-                    (a: number, b: ShopItemData) => a + Number(b.price),
-                    0,
-                  ),
-                )
-              ).toString(),
-            )
-            .addField("💼 Jobs", profile.jobs || "None")
+            .setColor([0, 0, 255])
+            .setThumbnail((target || user).displayAvatarURL())
+            .addFields([
+              { name: "🔼 Levels", value: String(profile.level) },
+              { name: "✨ XPs", value: String(profile.xp) },
+              { name: "💰 Coins", value: String(profile.coin) },
+              {
+                name: "🤑 Net Worth",
+                value: (
+                  Number(profile.coin) +
+                  Number(
+                    (profile.inventory! as { items: Array<any> })["items"].reduce(
+                      (a: number, b: ShopItemData) => a + Number(b.price),
+                      0,
+                    ),
+                  )
+                ).toString(),
+              },
+              { name: "💼 Jobs", value: profile.jobs || "None" },
+            ])
             .setFooter({
               text: `Requested by ${interaction.user.username}`,
               iconURL: interaction.user.avatarURL() ?? undefined,

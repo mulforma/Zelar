@@ -1,5 +1,5 @@
-import { SlashCommandBuilder } from "@discordjs/builders";
-import { Client, CommandInteraction, MessageEmbed } from "discord.js";
+import { SlashCommandBuilder } from "discord.js";
+import { Client, ChatInputCommandInteraction, EmbedBuilder } from "discord.js";
 
 export default {
   data: new SlashCommandBuilder()
@@ -7,7 +7,7 @@ export default {
     .setDescription("Flips a coin and returns the result")
     .addIntegerOption((option) => option.setName("seed").setDescription("Seed for the coin flip generated value")),
   category: "Game",
-  async execute(client: Client, interaction: CommandInteraction): Promise<void> {
+  async execute(client: Client, interaction: ChatInputCommandInteraction): Promise<any> {
     // Get seed
     const seed = interaction.options.getInteger("seed") || new Date().getTime();
     // Random number function
@@ -24,12 +24,14 @@ export default {
     // Reply with result
     await interaction.reply({
       embeds: [
-        new MessageEmbed()
+        new EmbedBuilder()
           .setTitle("🎲 Coin Flip")
-          .addField("Result", isEven ? "Heads" : "Tails")
-          .addField("Generated Number", String(genNum))
-          .addField("Seed", String(seed))
-          .setColor(0x00ff00),
+          .addFields([
+            { name: "Result", value: isEven ? "Heads" : "Tails" },
+            { name: "Generated Number", value: String(genNum) },
+            { name: "Seed", value: String(seed) },
+          ])
+          .setColor([0, 255, 0]),
       ],
     });
   },

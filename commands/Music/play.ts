@@ -1,6 +1,6 @@
-import { SlashCommandBuilder } from "@discordjs/builders";
+import { SlashCommandBuilder } from "discord.js";
 import { QueryType } from "discord-player";
-import { Client, CommandInteraction, GuildMember } from "discord.js";
+import { Client, ChatInputCommandInteraction, GuildMember } from "discord.js";
 
 export default {
   data: new SlashCommandBuilder()
@@ -8,7 +8,7 @@ export default {
     .setDescription("Add a song to the queue.")
     .addStringOption((option) => option.setName("song").setDescription("The song to play.").setRequired(true)),
   category: "Music",
-  async execute(client: Client, interaction: CommandInteraction): Promise<void> {
+  async execute(client: Client, interaction: ChatInputCommandInteraction): Promise<any> {
     // Get query
     const query = interaction.options.getString("song")!;
 

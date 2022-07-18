@@ -1,6 +1,6 @@
-import { SlashCommandBuilder } from "@discordjs/builders";
+import { Colors, SlashCommandBuilder } from "discord.js";
 import axios from "axios";
-import { Client, CommandInteraction, MessageEmbed, TextChannel } from "discord.js";
+import { Client, ChatInputCommandInteraction, EmbedBuilder, TextChannel } from "discord.js";
 
 // Set rating
 const rating = {
@@ -18,12 +18,12 @@ export default {
       option.setName("tag").setDescription("The tag to search for (Separate with commas)").setRequired(false),
     ),
   category: "Nsfw",
-  async execute(client: Client, interaction: CommandInteraction): Promise<void> {
+  async execute(client: Client, interaction: ChatInputCommandInteraction): Promise<any> {
     // Check if channel is NSFW
     if (!(<TextChannel>interaction.channel!).nsfw) {
       // Send error message
       await interaction.reply({
-        embeds: [new MessageEmbed().setColor("#ff0000").setDescription("This channel is not NSFW")],
+        embeds: [new EmbedBuilder().setColor("#ff0000").setDescription("This channel is not NSFW")],
       });
       // Return
       return;
@@ -44,10 +44,10 @@ export default {
       // Send image
       interaction.reply({
         embeds: [
-          new MessageEmbed()
+          new EmbedBuilder()
             .setTitle(`Image from ${res.data[0].tag_string_artist}`)
             .setImage(res.data[0].file_url)
-            .setColor("GREEN")
+            .setColor(Colors.Green)
             .setURL(`https://danbooru.donmai.us/posts/${res.data[0].id}`)
             .setFooter({
               text: `rating: ${rating[res.data[0].rating as keyof typeof rating]} | score: ${res.data[0].score}`,

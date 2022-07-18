@@ -1,10 +1,10 @@
-import { SlashCommandBuilder } from "@discordjs/builders";
-import { Client, CommandInteraction } from "discord.js";
+import { SlashCommandBuilder } from "discord.js";
+import { Client, ChatInputCommandInteraction } from "discord.js";
 
 export default {
   data: new SlashCommandBuilder().setName("pause").setDescription("Pauses the current song."),
   category: "Music",
-  async execute(client: Client, interaction: CommandInteraction): Promise<void> {
+  async execute(client: Client, interaction: ChatInputCommandInteraction): Promise<any> {
     // Get queue
     const queue = client.player.getQueue(interaction.guild!.id);
 

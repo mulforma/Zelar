@@ -1,6 +1,6 @@
-import { SlashCommandBuilder } from "@discordjs/builders";
+import { Colors, SlashCommandBuilder } from "discord.js";
 import { getItemData } from "../../methods/getItemData.js";
-import { Client, CommandInteraction, MessageEmbed } from "discord.js";
+import { Client, ChatInputCommandInteraction, EmbedBuilder } from "discord.js";
 
 export default {
   data: new SlashCommandBuilder()
@@ -8,7 +8,7 @@ export default {
     .setDescription("Get information about an item.")
     .addStringOption((option) => option.setName("item").setDescription("The name of the item.").setRequired(true)),
   category: "Economics",
-  async execute(client: Client, interaction: CommandInteraction): Promise<void> {
+  async execute(client: Client, interaction: ChatInputCommandInteraction): Promise<any> {
     // Get item name
     const itemName = interaction.options.getString("item");
     // Get item data
@@ -21,20 +21,22 @@ export default {
       return;
     }
     // Create embed
-    const embed = new MessageEmbed()
+    const embed = new EmbedBuilder()
       // Set title
       .setTitle(`${itemData.itemEmoji} ${itemData.itemName}`)
-      // Add field
-      .addField("Description", itemData.itemDescription!, true)
-      .addField("ID", String(itemData.itemId), true)
-      .addField("Type", String(itemData.itemType), true)
-      .addField("Rarity", String(itemData.itemRarity), true)
-      .addField("Price", String(itemData.price), true)
-      .addField("Icon", itemData.itemEmoji!, true)
-      .addField("Usable?", itemData.usable!.toString(), true)
-      .addField("Sellable?", itemData.sellable!.toString(), true)
+      // Add fields
+      .addFields([
+        { name: "Description", value: itemData.itemDescription!, inline: true },
+        { name: "ID", value: String(itemData.itemId), inline: true },
+        { name: "Type", value: String(itemData.itemType), inline: true },
+        { name: "Rarity", value: String(itemData.itemRarity), inline: true },
+        { name: "Price", value: String(itemData.price), inline: true },
+        { name: "Icon", value: itemData.itemEmoji!, inline: true },
+        { name: "Usable?", value: itemData.usable!.toString(), inline: true },
+        { name: "Sellable?", value: itemData.sellable!.toString(), inline: true },
+      ])
       // Set color
-      .setColor("BLUE");
+      .setColor(Colors.Blue);
     // Send embed
     await interaction.reply({ embeds: [embed] });
   },

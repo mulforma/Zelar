@@ -1,7 +1,7 @@
-import { SlashCommandBuilder } from "@discordjs/builders";
+import { SlashCommandBuilder } from "discord.js";
 import { getUserData } from "../../methods/getUserData.js";
 import { addCoin } from "../../methods/addCoin.js";
-import { Client, CommandInteraction } from "discord.js";
+import { Client, ChatInputCommandInteraction } from "discord.js";
 import { randomBytes } from "crypto";
 
 export default {
@@ -13,7 +13,7 @@ export default {
       option.setName("number").setDescription("The number to bet (1-10).").setRequired(true),
     ),
   category: "Game",
-  async execute(client: Client, interaction: CommandInteraction): Promise<void> {
+  async execute(client: Client, interaction: ChatInputCommandInteraction): Promise<any> {
     // Get random number
     const number = (randomBytes(1)[0] % 10) + 1;
     // Timestamp

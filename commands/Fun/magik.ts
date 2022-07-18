@@ -1,6 +1,6 @@
-import { SlashCommandBuilder, SlashCommandUserOption } from "@discordjs/builders";
+import { SlashCommandBuilder, SlashCommandUserOption } from "discord.js";
 import axios from "axios";
-import { Client, CommandInteraction } from "discord.js";
+import { Client, ChatInputCommandInteraction } from "discord.js";
 
 export default {
   data: new SlashCommandBuilder()
@@ -10,13 +10,13 @@ export default {
       option.setName("user").setDescription("The user to get the avatar of").setRequired(false),
     ),
   category: "Fun",
-  async execute(client: Client, interaction: CommandInteraction): Promise<void> {
+  async execute(client: Client, interaction: ChatInputCommandInteraction): Promise<any> {
     // Defer reply
     await interaction.deferReply();
     // Get user
     const user = interaction.options.getUser("user") || interaction.user;
     // Get avatar
-    const avatar = user.displayAvatarURL({ format: "png", size: 512 });
+    const avatar = user.displayAvatarURL({ size: 512 });
     // GET request to nekobot api yet we are lazy to do it ourselves
     // TODO: Instead of using other's api, we should use our own technique. This will improve performance much better.
     const { data } = await axios.get(`https://nekobot.xyz/api/imagegen?type=magik&image=${avatar}&intensity=1`);

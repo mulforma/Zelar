@@ -1,12 +1,12 @@
 import "dotenv/config";
 import * as fs from "fs";
-import { Client, Intents, Collection } from "discord.js";
+import { Client, GatewayIntentBits, Collection } from "discord.js";
 import { Player } from "discord-player";
 import log from "npmlog";
 
 // Create new client instance
 const client = new Client({
-  intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_VOICE_STATES, Intents.FLAGS.GUILD_MESSAGES],
+  intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildVoiceStates, GatewayIntentBits.GuildMessages],
 });
 
 // Create command collection

@@ -1,11 +1,7 @@
 import { CommandInteraction } from "discord.js";
 import { prisma } from "../prisma/connect.js";
 
-export const createProfile = async (
-  interaction: CommandInteraction,
-  userId: string,
-  guildId: string,
-): Promise<void> => {
+export const createProfile = async (interaction: CommandInteraction, userId: string, guildId: string): Promise<any> => {
   // Create profile
   await prisma.user.create({
     data: {

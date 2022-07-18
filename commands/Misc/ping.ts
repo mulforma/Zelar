@@ -1,10 +1,10 @@
-import { SlashCommandBuilder } from "@discordjs/builders";
-import { Client, CommandInteraction, Message } from "discord.js";
+import { SlashCommandBuilder } from "discord.js";
+import { Client, ChatInputCommandInteraction, Message } from "discord.js";
 
 export default {
   data: new SlashCommandBuilder().setName("ping").setDescription("Check bots ping"),
   category: "Misc",
-  async execute(client: Client, interaction: CommandInteraction): Promise<void> {
+  async execute(client: Client, interaction: ChatInputCommandInteraction): Promise<any> {
     // Wait for message to send
     const sent = <Message>await interaction.reply({
       content: "Pinging...",

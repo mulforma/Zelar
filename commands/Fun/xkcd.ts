@@ -1,18 +1,18 @@
-import { SlashCommandBuilder } from "@discordjs/builders";
-import { Client, CommandInteraction, MessageEmbed } from "discord.js";
+import { SlashCommandBuilder } from "discord.js";
+import { Client, ChatInputCommandInteraction, EmbedBuilder } from "discord.js";
 import axios from "axios";
 
 export default {
   data: new SlashCommandBuilder().setName("xkcd").setDescription("Get a random xkcd comic"),
   category: "Fun",
-  async execute(client: Client, interaction: CommandInteraction): Promise<void> {
+  async execute(client: Client, interaction: ChatInputCommandInteraction): Promise<any> {
     // Get all possible xkcd comics
     const comics = await axios.get("https://xkcd.com/info.0.json");
     // Get random comic
     const { data } = await axios.get(`https://xkcd.com/${Math.floor(Math.random() * comics.data.num) + 1}/info.0.json`);
 
     // Create embed
-    const embed = new MessageEmbed()
+    const embed = new EmbedBuilder()
       // Set title
       .setTitle(`#${data.num} - ${data.title}`)
       // Set image

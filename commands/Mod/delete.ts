@@ -1,5 +1,5 @@
-import { SlashCommandBuilder } from "@discordjs/builders";
-import { Client, CommandInteraction, Permissions, TextChannel } from "discord.js";
+import { SlashCommandBuilder } from "discord.js";
+import { Client, ChatInputCommandInteraction, PermissionsBitField, TextChannel } from "discord.js";
 
 export default {
   data: new SlashCommandBuilder()
@@ -13,9 +13,11 @@ export default {
         .setRequired(true),
     ),
   category: "Mod",
-  async execute(client: Client, interaction: CommandInteraction): Promise<void> {
+  async execute(client: Client, interaction: ChatInputCommandInteraction): Promise<any> {
     // Check if user has permission to use command
-    if (!(interaction.member?.permissions as Readonly<Permissions>).has(Permissions.FLAGS.MANAGE_MESSAGES)) {
+    if (
+      !(interaction.member?.permissions as Readonly<PermissionsBitField>).has(PermissionsBitField.Flags.ManageMessages)
+    ) {
       // Send error message
       return interaction.reply({
         content: "You can't use this command because you don't have permission to manage message.",

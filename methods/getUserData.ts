@@ -1,8 +1,12 @@
-import { CommandInteraction } from "discord.js";
+import { ChatInputCommandInteraction } from "discord.js";
 import { checkUserExists } from "./checkUserExists.js";
 import { prisma } from "../prisma/connect.js";
 
-export const getUserData = async (interaction: CommandInteraction, userId: string, guildId: string): Promise<any> => {
+export const getUserData = async (
+  interaction: ChatInputCommandInteraction,
+  userId: string,
+  guildId: string,
+): Promise<any> => {
   // Make sure the user exists
   await checkUserExists(interaction, userId, guildId);
   // Get user data

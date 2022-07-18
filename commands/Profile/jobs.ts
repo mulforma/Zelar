@@ -1,5 +1,5 @@
-import { SlashCommandBuilder } from "@discordjs/builders";
-import { Client, CommandInteraction, MessageEmbed } from "discord.js";
+import { Colors, SlashCommandBuilder } from "discord.js";
+import { Client, ChatInputCommandInteraction, EmbedBuilder } from "discord.js";
 import { getUserData } from "../../methods/getUserData.js";
 import { checkTimeout } from "../../methods/checkTimeout.js";
 import { TimeoutCommandData } from "../../types/UserData";
@@ -12,7 +12,7 @@ export default {
     .setDescription("Choose a job")
     .addStringOption((option) => option.setName("job").setDescription("The job you want to choose").setRequired(false)),
   category: "Profile",
-  async execute(client: Client, interaction: CommandInteraction): Promise<void> {
+  async execute(client: Client, interaction: ChatInputCommandInteraction): Promise<any> {
     // Go get a job
     const job = interaction.options.getString("job");
     // Get user data
@@ -22,7 +22,7 @@ export default {
     // Check if job is exists
     if (!job) {
       // Create embed
-      const embed = new MessageEmbed()
+      const embed = new EmbedBuilder()
         // Set title
         .setTitle("Jobs")
         .setDescription(
@@ -36,19 +36,19 @@ export default {
             .join("\n\n"),
         )
         // Set color
-        .setColor("RED");
+        .setColor(Colors.Red);
       // Send embed
       return interaction.reply({ embeds: [embed] });
     } else {
       // Check if job is valid
       if (!jobs.find((j: any) => j.name.toLowerCase() === job.toLowerCase())) {
         // Create embed
-        const embed = new MessageEmbed()
+        const embed = new EmbedBuilder()
           // Set title
           .setTitle("Jobs")
           .setDescription(`The job **${job}** does not exist!`)
           // Set color
-          .setColor("RED");
+          .setColor(Colors.Red);
         // Send embed
         await interaction.reply({ embeds: [embed] });
       } else {
@@ -57,7 +57,7 @@ export default {
           Number(user.level) < Number(jobs.find((j: any) => j.name.toLowerCase() === job.toLowerCase())!.minimumLevel)
         ) {
           // Create embed
-          const embed = new MessageEmbed()
+          const embed = new EmbedBuilder()
             // Set title
             .setTitle("Jobs")
             .setDescription(
@@ -66,18 +66,18 @@ export default {
               } to choose this job!`,
             )
             // Set color
-            .setColor("RED");
+            .setColor(Colors.Red);
           // Send embed
           await interaction.reply({ embeds: [embed] });
           // Check if user already choose this job
         } else if (user.job === job) {
           // Create embed
-          const embed = new MessageEmbed()
+          const embed = new EmbedBuilder()
             // Set title
             .setTitle("Jobs")
             .setDescription("You already choose this job!")
             // Set color
-            .setColor("RED");
+            .setColor(Colors.Red);
           // Send embed
           await interaction.reply({ embeds: [embed] });
         } else {
@@ -97,12 +97,12 @@ export default {
             },
           });
           // Create embed
-          const embed = new MessageEmbed()
+          const embed = new EmbedBuilder()
             // Set title
             .setTitle("Jobs")
             .setDescription(`You have chosen the job **${job}**!`)
             // Set color
-            .setColor("RED");
+            .setColor(Colors.Red);
           // Send embed
           await interaction.reply({ embeds: [embed] });
 

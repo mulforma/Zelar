@@ -1,31 +1,30 @@
-import { SlashCommandBuilder } from "@discordjs/builders";
+import { SlashCommandBuilder } from "discord.js";
 import axios from "axios";
 import {
   Client,
-  CommandInteraction,
-  MessageActionRow,
-  MessageButton,
+  ChatInputCommandInteraction,
+  ActionRowBuilder,
+  ButtonBuilder,
   MessageComponentInteraction,
-  MessageEmbed,
+  EmbedBuilder,
 } from "discord.js";
 import log from "npmlog";
 import { addCoin } from "../../methods/addCoin.js";
+import { ButtonStyle } from "discord-api-types/v10";
 
 export default {
   data: new SlashCommandBuilder().setName("trivia").setDescription("You have 30 seconds to think, Quick!"),
   category: "Game",
-  async execute(client: Client, interaction: CommandInteraction): Promise<void> {
+  async execute(client: Client, interaction: ChatInputCommandInteraction): Promise<any> {
     // Fetch trivia from API
     const response = await axios.get("https://opentdb.com/api.php?amount=1&type=boolean&encode=base64");
     // Set random coin amount
     const randCoin = Math.floor(Math.random() * 30) + 1;
 
     // Create embed
-    const embed = new MessageEmbed()
+    const embed = new EmbedBuilder()
       // Set title
       .setTitle(Buffer.from(response.data.results[0].question.toString(), "base64").toString())
-      // Set color
-      .setColor("RANDOM")
       // Set timestamp
       .setTimestamp()
       // Set footer
@@ -33,27 +32,34 @@ export default {
         text: `Request by ${interaction.user.tag}`,
         iconURL: interaction.user.avatarURL()!,
       })
-      // Add field category
-      .addField("Category", Buffer.from(response.data.results[0].category.toString(), "base64").toString(), true)
-      // Add field difficulty
-      .addField("Difficulty", Buffer.from(response.data.results[0].difficulty.toString(), "base64").toString(), true);
-
+      .addFields([
+        {
+          name: "Category",
+          value: Buffer.from(response.data.results[0].category.toString(), "base64").toString(),
+          inline: true,
+        },
+        {
+          name: "Difficulty",
+          value: Buffer.from(response.data.results[0].difficulty.toString(), "base64").toString(),
+          inline: true,
+        },
+      ]);
     // Add answer buttons
-    const btn = new MessageActionRow().addComponents(
-      new MessageButton()
+    const btn = new ActionRowBuilder<ButtonBuilder>().addComponents(
+      new ButtonBuilder()
         // Set id
         .setCustomId("true")
         // Set text
         .setLabel("True")
         // Set color style
-        .setStyle("SUCCESS"),
-      new MessageButton()
+        .setStyle(ButtonStyle.Success),
+      new ButtonBuilder()
         // Set id
         .setCustomId("false")
         // Set text
         .setLabel("False")
         // Set color style
-        .setStyle("DANGER"),
+        .setStyle(ButtonStyle.Danger),
     );
 
     // Send embed and buttons

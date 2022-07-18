@@ -1,6 +1,6 @@
-import { SlashCommandBuilder } from "@discordjs/builders";
+import { SlashCommandBuilder } from "discord.js";
 import axios from "axios";
-import { Client, CommandInteraction, MessageEmbed, TextChannel } from "discord.js";
+import { Client, ChatInputCommandInteraction, EmbedBuilder, TextChannel } from "discord.js";
 
 export default {
   data: new SlashCommandBuilder()
@@ -10,12 +10,12 @@ export default {
       option.setName("tag").setDescription("The tag to search for (Separate with commas)").setRequired(false),
     ),
   category: "Nsfw",
-  async execute(client: Client, interaction: CommandInteraction): Promise<void> {
+  async execute(client: Client, interaction: ChatInputCommandInteraction): Promise<any> {
     // Check if channel is NSFW
     if (!(<TextChannel>interaction.channel)!.nsfw) {
       // Send error message
       await interaction.reply({
-        embeds: [new MessageEmbed().setColor("#ff0000").setDescription("This channel is not NSFW")],
+        embeds: [new EmbedBuilder().setColor("#ff0000").setDescription("This channel is not NSFW")],
       });
       // Return
       return;
@@ -37,7 +37,7 @@ export default {
     // Send image
     await interaction.reply({
       embeds: [
-        new MessageEmbed()
+        new EmbedBuilder()
           .setTitle(`Image from ${image.owner}`)
           .setColor("#ffb6c1")
           .setImage(image.file_url)

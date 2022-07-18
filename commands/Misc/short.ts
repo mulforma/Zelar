@@ -1,5 +1,5 @@
-import { SlashCommandBuilder } from "@discordjs/builders";
-import { Client, CommandInteraction } from "discord.js";
+import { SlashCommandBuilder } from "discord.js";
+import { Client, ChatInputCommandInteraction } from "discord.js";
 import axios from "axios";
 
 export default {
@@ -8,7 +8,7 @@ export default {
     .setDescription("Shorten a url")
     .addStringOption((option) => option.setName("url").setDescription("The url to shorten").setRequired(true)),
   category: "Misc",
-  async execute(client: Client, interaction: CommandInteraction): Promise<void> {
+  async execute(client: Client, interaction: ChatInputCommandInteraction): Promise<any> {
     // Get url
     const url = interaction.options.getString("url");
     // Deferred reply

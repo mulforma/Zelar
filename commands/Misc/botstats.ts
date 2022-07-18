@@ -1,5 +1,5 @@
-import { SlashCommandBuilder, SlashCommandSubcommandBuilder } from "@discordjs/builders";
-import { Client, CommandInteraction, Guild, MessageEmbed } from "discord.js";
+import { SlashCommandBuilder, SlashCommandSubcommandBuilder } from "discord.js";
+import { Client, ChatInputCommandInteraction, Guild, EmbedBuilder } from "discord.js";
 import { createRequire } from "module";
 import { version as discordVersion } from "discord.js";
 import os from "os";
@@ -19,7 +19,7 @@ export default {
       subcommand.setName("server").setDescription("Check server stats"),
     ),
   category: "Misc",
-  async execute(client: Client, interaction: CommandInteraction): Promise<void> {
+  async execute(client: Client, interaction: ChatInputCommandInteraction): Promise<any> {
     // Get subcommand
     const subcommand = interaction.options.getSubcommand();
     // Promises
@@ -35,7 +35,7 @@ export default {
         // Reply with embed
         await interaction.reply({
           embeds: [
-            new MessageEmbed()
+            new EmbedBuilder()
               .setTitle("Bot info")
               .setColor("#0099ff")
               .setDescription(
@@ -60,22 +60,24 @@ export default {
         // Get location
         await interaction.reply({
           embeds: [
-            new MessageEmbed()
+            new EmbedBuilder()
               .setTitle("Bots server info")
               .setThumbnail(client.user!.displayAvatarURL())
-              .addField("Platform", `${os.platform()} ${os.release()}`, true)
-              .addField("Architecture", os.arch(), true)
-              .addField("System Uptime", ms(ms(`${os.uptime()}s`)), true)
-              .addField("System Hostname", os.hostname(), true)
-              .addField("CPUs", [...new Set(os.cpus().map((x) => x.model))].join("\n"), true)
-              .addField("CPU Cores", os.cpus().length.toString(), true)
-              .addField("RAM Free", `${(os.freemem() / 1024 / 1024).toFixed(2)} MB`, true)
-              .addField("RAM Total", `${(os.totalmem() / 1024 / 1024).toFixed(2)} MB`, true)
-              .addField("RAM Usage", `${((1 - os.freemem() / os.totalmem()) * 100).toFixed(2)}%`, true)
-              .addField("Discord.js Version", `v${discordVersion}`, true)
-              .addField("Node.js Version", process.version, true)
-              .addField("Bots Version", `v${version}`, true)
-              .setColor("#0099ff")
+              .addFields([
+                { name: "Platform", value: `${os.platform()} ${os.release()}`, inline: true },
+                { name: "Architecture", value: os.arch(), inline: true },
+                { name: "System Uptime", value: ms(ms(`${os.uptime()}s`)), inline: true },
+                { name: "System Hostname", value: os.hostname(), inline: true },
+                { name: "CPUs", value: [...new Set(os.cpus().map((x) => x.model))].join("\n"), inline: true },
+                { name: "CPU Cores", value: os.cpus().length.toString(), inline: true },
+                { name: "RAM Free", value: `${(os.freemem() / 1024 / 1024).toFixed(2)} MB`, inline: true },
+                { name: "RAM Total", value: `${(os.totalmem() / 1024 / 1024).toFixed(2)} MB`, inline: true },
+                { name: "RAM Usage", value: `${((1 - os.freemem() / os.totalmem()) * 100).toFixed(2)}%`, inline: true },
+                { name: "Discord.js Version", value: `v${discordVersion}`, inline: true },
+                { name: "Node.js Version", value: process.version, inline: true },
+                { name: "Bots Version", value: `v${version}`, inline: true },
+              ])
+              .setColor([0, 153, 255])
               .setFooter({
                 text: `Requested by ${interaction.user.tag}`,
                 iconURL: interaction.user.avatarURL()!,

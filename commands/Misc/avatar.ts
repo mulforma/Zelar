@@ -1,5 +1,5 @@
-import { SlashCommandBuilder } from "@discordjs/builders";
-import { Client, CommandInteraction, MessageEmbed } from "discord.js";
+import { SlashCommandBuilder } from "discord.js";
+import { Client, ChatInputCommandInteraction, EmbedBuilder } from "discord.js";
 
 export default {
   data: new SlashCommandBuilder()
@@ -9,7 +9,7 @@ export default {
       option.setName("target").setDescription("The user to get the avatar of").setRequired(false),
     ),
   category: "Misc",
-  async execute(client: Client, interaction: CommandInteraction): Promise<void> {
+  async execute(client: Client, interaction: ChatInputCommandInteraction): Promise<any> {
     // Get target
     const target = interaction.options.getUser("target") || interaction.user;
 
@@ -17,15 +17,13 @@ export default {
     await interaction.reply({
       embeds: [
         // Set embed
-        new MessageEmbed()
+        new EmbedBuilder()
           // Set title
           .setTitle(`${target.username}'s avatar`)
           // Set image
           .setImage(
             target.displayAvatarURL({
-              format: "png",
               size: 4096,
-              dynamic: true,
             }),
           )
           // Set footer

@@ -1,9 +1,9 @@
-import { CommandInteraction } from "discord.js";
+import { ChatInputCommandInteraction } from "discord.js";
 import { prisma } from "../prisma/connect.js";
 import { checkUserExists } from "./checkUserExists.js";
 
 export const addCoin = async (
-  interaction: CommandInteraction,
+  interaction: ChatInputCommandInteraction,
   userId: string,
   guildId: string,
   coinAmount: number,

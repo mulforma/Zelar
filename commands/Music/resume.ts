@@ -1,10 +1,10 @@
-import { SlashCommandBuilder } from "@discordjs/builders";
+import { SlashCommandBuilder } from "discord.js";
 import { Client, CommandInteraction } from "discord.js";
 
 export default {
   data: new SlashCommandBuilder().setName("resume").setDescription("Resume the current song."),
   category: "Music",
-  async execute(client: Client, interaction: CommandInteraction): Promise<void> {
+  async execute(client: Client, interaction: CommandInteraction): Promise<any> {
     // Get queue
     const queue = client.player.getQueue(interaction.guild!.id);
 

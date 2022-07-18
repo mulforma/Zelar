@@ -1,6 +1,6 @@
-import { SlashCommandBuilder } from "@discordjs/builders";
+import { SlashCommandBuilder } from "discord.js";
 import { getItemData } from "../../methods/getItemData.js";
-import { Client, CommandInteraction } from "discord.js";
+import { Client, ChatInputCommandInteraction } from "discord.js";
 import { InventoryItemData } from "../../types/InventoryItemData";
 import { prisma } from "../../prisma/connect.js";
 import { getInventory } from "../../methods/getInventory.js";
@@ -14,7 +14,7 @@ export default {
       option.setName("amount").setDescription("The amount of the item to sell").setRequired(true),
     ),
   category: "Economics",
-  async execute(client: Client, interaction: CommandInteraction): Promise<void> {
+  async execute(client: Client, interaction: ChatInputCommandInteraction): Promise<any> {
     // Get item
     const item = interaction.options.getString("item");
     // Get amount

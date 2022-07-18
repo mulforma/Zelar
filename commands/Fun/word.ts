@@ -1,5 +1,5 @@
-import { SlashCommandBuilder } from "@discordjs/builders";
-import { Client, CommandInteraction, Message } from "discord.js";
+import { SlashCommandBuilder } from "discord.js";
+import { Client, ChatInputCommandInteraction, Message } from "discord.js";
 import axios from "axios";
 import { addCoin } from "../../methods/addCoin.js";
 
@@ -10,7 +10,7 @@ export default {
     .addSubcommand((subcommand) => subcommand.setName("fill").setDescription("Fills in the blanks in a word."))
     .addSubcommand((subcommand) => subcommand.setName("sort").setDescription("Sorts a shuffled word.")),
   category: "Fun",
-  async execute(client: Client, interaction: CommandInteraction): Promise<void> {
+  async execute(client: Client, interaction: ChatInputCommandInteraction): Promise<any> {
     // GenBlanks function (For filling in the blanks)
     function genBlanks(letter: Array<string>) {
       // Make some letters underscores
