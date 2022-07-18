@@ -1,7 +1,7 @@
 import "dotenv/config";
 import * as fs from "fs";
 import { Client, GatewayIntentBits, Collection } from "discord.js";
-import { Player } from "discord-player";
+// import { Player } from "discord-player";
 import log from "npmlog";
 
 // Create new client instance
@@ -13,7 +13,7 @@ const client = new Client({
 client.commands = new Collection();
 
 // Initialize Player
-client.player = new Player(client);
+// client.player = new Player(client);
 
 // Read folder 'commands'
 const commandFolder = fs.readdirSync("./commands");
@@ -21,6 +21,10 @@ const commandFolder = fs.readdirSync("./commands");
 // List all folder in files
 for (const folder of commandFolder) {
   try {
+    /* NOTE: Temporary disabled all music commands until the library supports discord.js v14 */
+    if (folder === "music") {
+      continue;
+    }
     // Filter for .js files
     const commandFiles: Array<string> = fs.readdirSync(`./commands/${folder}`).filter((file) => file.endsWith(".js"));
     // List all files in folder
@@ -51,15 +55,19 @@ for (const file of eventFolder) {
   }
 }
 
-// Read folder 'player'
-const playerFolder = fs.readdirSync("./players").filter((file) => file.endsWith(".js"));
+/*
+  NOTE: Temporary disabled all music commands until the library supports discord.js v14
+*/
 
-// List all folder in files
-for (const file of playerFolder) {
-  const { default: player } = await import(`./players/${file}`);
-  // Listen on
-  client.player.on(player.name, (...args: any) => player.run(...args));
-}
+// // Read folder 'player'
+// const playerFolder = fs.readdirSync("./players").filter((file) => file.endsWith(".js"));
+//
+// // List all folder in files
+// for (const file of playerFolder) {
+//   const { default: player } = await import(`./players/${file}`);
+//   // Listen on
+//   client.player.on(player.name, (...args: any) => player.run(...args));
+// }
 
 // Login to bot
 client.login(process.env.NODE_ENV === "production" ? process.env.PROD_TOKEN : process.env.TOKEN).then();
